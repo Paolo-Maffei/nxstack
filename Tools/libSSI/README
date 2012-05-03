@@ -1,0 +1,31 @@
+libSSI v0.9.4 README
+-----------------
+
+1. Overview
+
+The SSI protocol helper library.
+
+2. Structure
+
+See the Doxygen documentation.
+
+3. Usage
+
+SSI-Browser will be modified to use this library.
+
+4. Bugs
+
+	-Some of the parsing helper functions should check the packet type.
+	-The SSI specification (ch. 3.1) defines two different types of the essentially
+	 same SSI packets. If the type byte contains a lower case character a two byte
+	 CRC field is appended to the packet. At the moment the SSI library in the 
+	 Sensinode nanostack does _not_ include the CRC in any packet. Thus the libSSI
+	 functions are at the moment incompatible with such SSI packets that contain
+	 the CRC. Namely the problems are:
+	 i)	none of the packet creation functions add the CRC and
+	 ii)
+
+5. Revisions
+
+	2007-03-28 Mikko Saarnivala	v0.9.4 and README created
+

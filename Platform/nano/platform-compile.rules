@@ -1,0 +1,83 @@
+# ---------------------------------------------------------------------------
+
+# Object files.
+#OBJS = $(notdir $(SRC) ) $(notdir $(ASRC) )
+OBJS = $(addprefix .rels/build/$(APP)/,$(SRC:.c=.rel) ) $(addprefix .rels/build/$(APP)/,$(ASRC:.asm=.rel) )
+DEPS = $(addprefix .deps/deps/$(APP)/,$(SRC:.c=.d) ) 
+# Define all listing files.
+LST = $(ASRC:.asm=.lst) $(SRC:.c=.lst)
+
+# Finish command line options
+ALL_CFLAGS = $(CFLAGS) -I.
+ALL_ASFLAGS = $(ASFLAGS)  -I. 
+#-x assembler-with-cpp 
+
+
+# Build targets:
+binary: error link $(TARGET).$(FORMAT)
+	@echo ""
+	@echo "--- Build complete ---"
+
+config_start: 
+	@echo "--- Config ---"
+
+config: config_start module_id.h modules_conf.h
+	@echo "--- Config done ---"
+
+depend_start:
+	@echo "--- Depend ---"
+	
+.deps/depend: 
+	@mkdir -p .deps
+	@touch .deps/depend
+
+dep:	 module_id.h modules_conf.h
+	@echo "--- Depend done ---"
+
+obj: dep $(OBJS) $(BANK_PROXY)
+	@echo ""
+	@echo "--- Build done ---"
+
+$(TARGET).hex: $(OBJS)
+	$(CC) $(LDFLAGS) -o $(TARGET).hex $(OBJS) 
+	
+link: obj $(TARGET).$(FORMAT)
+	@echo ""
+ifeq ($(HAVE_BANKING),1)
+	@grep '\(^BANK\)\|\(^CSEG\)\|\(^CONST\)\|\(^XINIT\)' $(TARGET).map
+endif
+	@echo "--- Link done ---"
+
+clean:
+	rm -rf .rels $(TARGET).hex *.hex *.asm *.ihx *.lnk *.lst *.map *.mem *.rel *.rst *.sym modules_conf.h module_id.h
+
+clean-deps: 
+	rm -rf .deps 
+	
+.rels/build/$(APP):
+	mkdir -p .rels/build/$(APP)
+	
+ifeq ($(HAVE_BANKING),1)
+.rels/build/$(APP)/%.rel: %.c segment.rules
+	@echo
+	@echo "Compile:" $< " to segment " $(call code_segment,$<)
+	@mkdir -p $(dir  $(addprefix .rels/build/$(APP)/, $(<:.c=.rel)) )
+	$(CC) $(call code_segment,$<) -c $(ALL_CFLAGS) $< -o $(addprefix .rels/build/$(APP)/, $(<:.c=.rel)) 
+else
+.rels/build/$(APP)/%.rel: %.c
+	@echo
+	@echo "Compile:" $< 
+	@mkdir -p $(dir  $(addprefix .rels/build/$(APP)/, $(<:.c=.rel)) )
+	$(CC) -c $(ALL_CFLAGS) $< -o $(addprefix .rels/build/$(APP)/, $(<:.c=.rel)) 
+endif
+	
+.rels/build/$(APP)/%.s : %.c
+	@echo
+	@echo "Compile to asm:" $<
+	$(CC) -S $(ALL_CFLAGS) $< -o $(addprefix .rels/build/$(APP)/, $(<:.c=.s)) 
+
+.rels/build/$(APP)/%.rel : %.asm
+	@echo
+	@echo "Assemble:" $<
+	$(AS) -c $(ALL_ASFLAGS) $< -o $(addprefix .rels/build/$(APP)/, $(<:.asm=.rel)) 
+

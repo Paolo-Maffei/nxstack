@@ -1,0 +1,182 @@
+\hypertarget{flash_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/micro/include/flash.h File Reference}
+\label{flash_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Platform/micro/include/flash.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/micro/include/flash.h}}
+}
+micro.4 external flash 
+
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{flash_8h_ed9f6f969f40848b315c68e4982a3275}{FLASH\_\-SR\_\-SRWD}~0x80
+\item 
+\#define \hyperlink{flash_8h_37579275b60d52577e4c974b2bed3aa3}{FLASH\_\-SR\_\-BP2}~0x10
+\item 
+\#define \hyperlink{flash_8h_28aedb5a49292abeb4fcd5eae73855d4}{FLASH\_\-SR\_\-BP1}~0x08
+\item 
+\#define \hyperlink{flash_8h_792c04c330d980ecd150c3e210a984b5}{FLASH\_\-SR\_\-BP0}~0x04
+\item 
+\#define \hyperlink{flash_8h_b2648ff7535951cf09a099b09d7332ff}{FLASH\_\-SR\_\-WEL}~0x02
+\item 
+\#define \hyperlink{flash_8h_77cb36f96f64ec8418acfaa8cfce7d85}{FLASH\_\-SR\_\-WIP}~0x01
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{flash_8h_cf135f88d5f04d6cd48f6d23274a684f}{flash\_\-read} (uint32\_\-t address, uint8\_\-t $\ast$buffer, uint16\_\-t length)
+\item 
+port\-CHAR \hyperlink{flash_8h_b7f07d62c50b1ac02e861464d1577617}{flash\_\-write} (uint32\_\-t address, uint8\_\-t $\ast$buffer, uint16\_\-t length)
+\item 
+port\-CHAR \hyperlink{flash_8h_3ca897b707638452e485a8966c626f9b}{flash\_\-write\_\-wait} (void)
+\item 
+port\-CHAR \hyperlink{flash_8h_7f8111e351f0d792f40b9bf0b958842c}{flash\_\-erase\_\-sector} (uint32\_\-t address)
+\item 
+int16\_\-t \hyperlink{flash_8h_f1958516b17c8e3242f50317b49d4237}{flash\_\-signature\_\-read} (void)
+\item 
+int16\_\-t \hyperlink{flash_8h_f56c32933157a17aabe729fe06400618}{flash\_\-status\_\-read} (void)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+micro.4 external flash 
+
+Micro.4 external flash: support function headers. 
+
+\subsection{Define Documentation}
+\hypertarget{flash_8h_792c04c330d980ecd150c3e210a984b5}{
+\index{flash.h@{flash.h}!FLASH_SR_BP0@{FLASH\_\-SR\_\-BP0}}
+\index{FLASH_SR_BP0@{FLASH\_\-SR\_\-BP0}!flash.h@{flash.h}}
+\subsubsection[FLASH\_\-SR\_\-BP0]{\setlength{\rightskip}{0pt plus 5cm}\#define FLASH\_\-SR\_\-BP0~0x04}}
+\label{flash_8h_792c04c330d980ecd150c3e210a984b5}
+
+
+Block protect bit 0 \hypertarget{flash_8h_28aedb5a49292abeb4fcd5eae73855d4}{
+\index{flash.h@{flash.h}!FLASH_SR_BP1@{FLASH\_\-SR\_\-BP1}}
+\index{FLASH_SR_BP1@{FLASH\_\-SR\_\-BP1}!flash.h@{flash.h}}
+\subsubsection[FLASH\_\-SR\_\-BP1]{\setlength{\rightskip}{0pt plus 5cm}\#define FLASH\_\-SR\_\-BP1~0x08}}
+\label{flash_8h_28aedb5a49292abeb4fcd5eae73855d4}
+
+
+Block protect bit 1 \hypertarget{flash_8h_37579275b60d52577e4c974b2bed3aa3}{
+\index{flash.h@{flash.h}!FLASH_SR_BP2@{FLASH\_\-SR\_\-BP2}}
+\index{FLASH_SR_BP2@{FLASH\_\-SR\_\-BP2}!flash.h@{flash.h}}
+\subsubsection[FLASH\_\-SR\_\-BP2]{\setlength{\rightskip}{0pt plus 5cm}\#define FLASH\_\-SR\_\-BP2~0x10}}
+\label{flash_8h_37579275b60d52577e4c974b2bed3aa3}
+
+
+Block protect bit 2 \hypertarget{flash_8h_ed9f6f969f40848b315c68e4982a3275}{
+\index{flash.h@{flash.h}!FLASH_SR_SRWD@{FLASH\_\-SR\_\-SRWD}}
+\index{FLASH_SR_SRWD@{FLASH\_\-SR\_\-SRWD}!flash.h@{flash.h}}
+\subsubsection[FLASH\_\-SR\_\-SRWD]{\setlength{\rightskip}{0pt plus 5cm}\#define FLASH\_\-SR\_\-SRWD~0x80}}
+\label{flash_8h_ed9f6f969f40848b315c68e4982a3275}
+
+
+Flash status register bits Status register write protect \hypertarget{flash_8h_b2648ff7535951cf09a099b09d7332ff}{
+\index{flash.h@{flash.h}!FLASH_SR_WEL@{FLASH\_\-SR\_\-WEL}}
+\index{FLASH_SR_WEL@{FLASH\_\-SR\_\-WEL}!flash.h@{flash.h}}
+\subsubsection[FLASH\_\-SR\_\-WEL]{\setlength{\rightskip}{0pt plus 5cm}\#define FLASH\_\-SR\_\-WEL~0x02}}
+\label{flash_8h_b2648ff7535951cf09a099b09d7332ff}
+
+
+Write enable latch \hypertarget{flash_8h_77cb36f96f64ec8418acfaa8cfce7d85}{
+\index{flash.h@{flash.h}!FLASH_SR_WIP@{FLASH\_\-SR\_\-WIP}}
+\index{FLASH_SR_WIP@{FLASH\_\-SR\_\-WIP}!flash.h@{flash.h}}
+\subsubsection[FLASH\_\-SR\_\-WIP]{\setlength{\rightskip}{0pt plus 5cm}\#define FLASH\_\-SR\_\-WIP~0x01}}
+\label{flash_8h_77cb36f96f64ec8418acfaa8cfce7d85}
+
+
+Write in progress (busy) 
+
+\subsection{Function Documentation}
+\hypertarget{flash_8h_7f8111e351f0d792f40b9bf0b958842c}{
+\index{flash.h@{flash.h}!flash_erase_sector@{flash\_\-erase\_\-sector}}
+\index{flash_erase_sector@{flash\_\-erase\_\-sector}!flash.h@{flash.h}}
+\subsubsection[flash\_\-erase\_\-sector]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR flash\_\-erase\_\-sector (uint32\_\-t {\em address})}}
+\label{flash_8h_7f8111e351f0d792f40b9bf0b958842c}
+
+
+Flash sector erase. Sector size is 64 kilobytes. Address must point at start of sector.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]block address on flash\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free or address not valid (must be at start of sector) \end{Desc}
+\hypertarget{flash_8h_cf135f88d5f04d6cd48f6d23274a684f}{
+\index{flash.h@{flash.h}!flash_read@{flash\_\-read}}
+\index{flash_read@{flash\_\-read}!flash.h@{flash.h}}
+\subsubsection[flash\_\-read]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR flash\_\-read (uint32\_\-t {\em address}, uint8\_\-t $\ast$ {\em buffer}, uint16\_\-t {\em length})}}
+\label{flash_8h_cf135f88d5f04d6cd48f6d23274a684f}
+
+
+Read flash block.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]block address on flash \item[{\em buffer}]pointer to buffer \item[{\em length}]length of read buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free or init failed \end{Desc}
+\hypertarget{flash_8h_f1958516b17c8e3242f50317b49d4237}{
+\index{flash.h@{flash.h}!flash_signature_read@{flash\_\-signature\_\-read}}
+\index{flash_signature_read@{flash\_\-signature\_\-read}!flash.h@{flash.h}}
+\subsubsection[flash\_\-signature\_\-read]{\setlength{\rightskip}{0pt plus 5cm}int16\_\-t flash\_\-signature\_\-read (void)}}
+\label{flash_8h_f1958516b17c8e3242f50317b49d4237}
+
+
+Flash signature read. Wakes the device up from power down mode. Signature value should be 0x12 if the flash is present and working.
+
+\begin{Desc}
+\item[Returns:]signature value 
+
+-1 bus not free \end{Desc}
+\hypertarget{flash_8h_f56c32933157a17aabe729fe06400618}{
+\index{flash.h@{flash.h}!flash_status_read@{flash\_\-status\_\-read}}
+\index{flash_status_read@{flash\_\-status\_\-read}!flash.h@{flash.h}}
+\subsubsection[flash\_\-status\_\-read]{\setlength{\rightskip}{0pt plus 5cm}int16\_\-t flash\_\-status\_\-read (void)}}
+\label{flash_8h_f56c32933157a17aabe729fe06400618}
+
+
+Flash status read.
+
+\begin{Desc}
+\item[Returns:]status register value 
+
+-1 bus not free \end{Desc}
+\hypertarget{flash_8h_b7f07d62c50b1ac02e861464d1577617}{
+\index{flash.h@{flash.h}!flash_write@{flash\_\-write}}
+\index{flash_write@{flash\_\-write}!flash.h@{flash.h}}
+\subsubsection[flash\_\-write]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR flash\_\-write (uint32\_\-t {\em address}, uint8\_\-t $\ast$ {\em buffer}, uint16\_\-t {\em length})}}
+\label{flash_8h_b7f07d62c50b1ac02e861464d1577617}
+
+
+Write flash page. Page size is 256 bytes. Write address must point at start of page.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]block address on flash \item[{\em buffer}]pointer to buffer \item[{\em length}]length of read buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free or address not valid (must be at start of page) \end{Desc}
+\hypertarget{flash_8h_3ca897b707638452e485a8966c626f9b}{
+\index{flash.h@{flash.h}!flash_write_wait@{flash\_\-write\_\-wait}}
+\index{flash_write_wait@{flash\_\-write\_\-wait}!flash.h@{flash.h}}
+\subsubsection[flash\_\-write\_\-wait]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR flash\_\-write\_\-wait (void)}}
+\label{flash_8h_3ca897b707638452e485a8966c626f9b}
+
+
+Wait flash operation to complete.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free \end{Desc}

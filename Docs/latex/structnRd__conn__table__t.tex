@@ -1,0 +1,135 @@
+\hypertarget{structnRd__conn__table__t}{
+\section{n\-Rd\_\-conn\_\-table\_\-t Struct Reference}
+\label{structnRd__conn__table__t}\index{nRd_conn_table_t@{nRd\_\-conn\_\-table\_\-t}}
+}
+{\tt \#include $<$n\-Routed.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+unsigned short int \hyperlink{structnRd__conn__table__t_ef29a3bed84c79f36abb200754e0d8f9}{active}
+\item 
+unsigned int \hyperlink{structnRd__conn__table__t_a5c0f98d682b0b0c72b3d4d62b086f05}{fd}
+\item 
+unsigned char \hyperlink{structnRd__conn__table__t_6c975baed728a05b1bd47c7c13f2d50e}{proto}
+\item 
+unsigned short int \hyperlink{structnRd__conn__table__t_f096eab8cfea2f2bb18763a05114c3f5}{source\_\-port}
+\item 
+unsigned short int \hyperlink{structnRd__conn__table__t_c53b007ada85589b07305a287e3173cd}{destination\_\-port}
+\item 
+unsigned char \hyperlink{structnRd__conn__table__t_f6751f67d1c85517fe6f930da3479fec}{address\_\-type}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>unsigned char \hyperlink{structnRd__conn__table__t_ff09c033c2910e672f3f89c6110a8695}{addr\_hw} \mbox{[}6\mbox{]}\\
+\>unsigned char \hyperlink{structnRd__conn__table__t_6c297e055b95f2789f00e341e5aef58e}{addr\_15\_4\_long} \mbox{[}8\mbox{]}\\
+\>unsigned char \hyperlink{structnRd__conn__table__t_b92003a2d27148c501eee1a5d3e1f1a1}{addr\_15\_4\_short} \mbox{[}2\mbox{]}\\
+\>unsigned char \hyperlink{structnRd__conn__table__t_581a82e1027a1ab6f1c4f81afdc5168b}{addr\_str} \mbox{[}16\mbox{]}\\
+\>unsigned int \hyperlink{structnRd__conn__table__t_ca2bf21d951dd2a9a5f7ae3cfe76c663}{addr\_32b}\\
+\} \hyperlink{structnRd__conn__table__t_3fa059682daacf2b1a9c62993d22e53f}{addr}\\
+
+\end{tabbing}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Definition for the structure that is used as the entries for the conncetion table.
+
+An array constructed from this structure is used to store the connection information table i.e. the table which the n\-Routed checks where to relay data coming from the GW dongle. One \hyperlink{structnRd__conn__table__t}{n\-Rd\_\-conn\_\-table\_\-t} structure contains the relevant information for one TCP connection. The different fields (proto, sadd etc.) are filled in by the \hyperlink{tcpserver_8c_0eb8fdec50bfdfa77f5dca2e40ba7f99}{process\_\-tcp\_\-connection()} function as the application that initiated the TCP connection sends the necessary information. The format of the packet containing this information is defined in the nanostack-PC manual. The connection is not active (i.e. no data is relayed to the application) before the application has sent this information. The fields act as a filters which the n\-Routed uses to decide where (one or several) to relay a packet after it has been received from the GW dongle. Not all the fields are mandatory meaning that a) not all the fields are applicable to all possible protocols (e.g. for nano\-UDP only port number is used. See the nano\-DUP spcification for more information) and b) limited wildcard functionality is available. See the nano\-Stack-PC manual for more details. More complex filters would be possible to implement (e.g. accepting only packets which contain signal level information) but usefullness of such extensions is highly questionable.
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000008}{Todo}]Add support for IPv6 addresses -mjs \end{Desc}
+
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structnRd__conn__table__t_ef29a3bed84c79f36abb200754e0d8f9}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!active@{active}}
+\index{active@{active}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[active]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int \hyperlink{structnRd__conn__table__t_ef29a3bed84c79f36abb200754e0d8f9}{n\-Rd\_\-conn\_\-table\_\-t::active}}}
+\label{structnRd__conn__table__t_ef29a3bed84c79f36abb200754e0d8f9}
+
+
+This variable indicates whether the connection is already active and properly configured by the remote application. 0=inactive, 1=active. \hypertarget{structnRd__conn__table__t_3fa059682daacf2b1a9c62993d22e53f}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!addr@{addr}}
+\index{addr@{addr}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[addr]{\setlength{\rightskip}{0pt plus 5cm}union \{ ... \}   \hyperlink{structnRd__conn__table__t_3fa059682daacf2b1a9c62993d22e53f}{n\-Rd\_\-conn\_\-table\_\-t::addr}}}
+\label{structnRd__conn__table__t_3fa059682daacf2b1a9c62993d22e53f}
+
+
+This union encapsulates the different address types inside one variable. \hypertarget{structnRd__conn__table__t_6c297e055b95f2789f00e341e5aef58e}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!addr_15_4_long@{addr\_\-15\_\-4\_\-long}}
+\index{addr_15_4_long@{addr\_\-15\_\-4\_\-long}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[addr\_\-15\_\-4\_\-long]{\setlength{\rightskip}{0pt plus 5cm}unsigned char \hyperlink{structnRd__conn__table__t_6c297e055b95f2789f00e341e5aef58e}{n\-Rd\_\-conn\_\-table\_\-t::addr\_\-15\_\-4\_\-long}\mbox{[}8\mbox{]}}}
+\label{structnRd__conn__table__t_6c297e055b95f2789f00e341e5aef58e}
+
+
+The 802.15.4 device long address. \hypertarget{structnRd__conn__table__t_b92003a2d27148c501eee1a5d3e1f1a1}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!addr_15_4_short@{addr\_\-15\_\-4\_\-short}}
+\index{addr_15_4_short@{addr\_\-15\_\-4\_\-short}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[addr\_\-15\_\-4\_\-short]{\setlength{\rightskip}{0pt plus 5cm}unsigned char \hyperlink{structnRd__conn__table__t_b92003a2d27148c501eee1a5d3e1f1a1}{n\-Rd\_\-conn\_\-table\_\-t::addr\_\-15\_\-4\_\-short}\mbox{[}2\mbox{]}}}
+\label{structnRd__conn__table__t_b92003a2d27148c501eee1a5d3e1f1a1}
+
+
+The 802.15.4 device PAN ID or 802.15.4 device short address. \hypertarget{structnRd__conn__table__t_ca2bf21d951dd2a9a5f7ae3cfe76c663}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!addr_32b@{addr\_\-32b}}
+\index{addr_32b@{addr\_\-32b}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[addr\_\-32b]{\setlength{\rightskip}{0pt plus 5cm}unsigned int \hyperlink{structnRd__conn__table__t_ca2bf21d951dd2a9a5f7ae3cfe76c663}{n\-Rd\_\-conn\_\-table\_\-t::addr\_\-32b}}}
+\label{structnRd__conn__table__t_ca2bf21d951dd2a9a5f7ae3cfe76c663}
+
+
+The IPv4 source address where the packet has originated (if applicable) in hardware byte order (little endian). \hypertarget{structnRd__conn__table__t_ff09c033c2910e672f3f89c6110a8695}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!addr_hw@{addr\_\-hw}}
+\index{addr_hw@{addr\_\-hw}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[addr\_\-hw]{\setlength{\rightskip}{0pt plus 5cm}unsigned char \hyperlink{structnRd__conn__table__t_ff09c033c2910e672f3f89c6110a8695}{n\-Rd\_\-conn\_\-table\_\-t::addr\_\-hw}\mbox{[}6\mbox{]}}}
+\label{structnRd__conn__table__t_ff09c033c2910e672f3f89c6110a8695}
+
+
+The IEEE HW address of the origin of the packet. \hypertarget{structnRd__conn__table__t_581a82e1027a1ab6f1c4f81afdc5168b}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!addr_str@{addr\_\-str}}
+\index{addr_str@{addr\_\-str}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[addr\_\-str]{\setlength{\rightskip}{0pt plus 5cm}unsigned char \hyperlink{structnRd__conn__table__t_581a82e1027a1ab6f1c4f81afdc5168b}{n\-Rd\_\-conn\_\-table\_\-t::addr\_\-str}\mbox{[}16\mbox{]}}}
+\label{structnRd__conn__table__t_581a82e1027a1ab6f1c4f81afdc5168b}
+
+
+The IPv4 address in string format. \hypertarget{structnRd__conn__table__t_f6751f67d1c85517fe6f930da3479fec}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!address_type@{address\_\-type}}
+\index{address_type@{address\_\-type}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[address\_\-type]{\setlength{\rightskip}{0pt plus 5cm}unsigned char \hyperlink{structnRd__conn__table__t_f6751f67d1c85517fe6f930da3479fec}{n\-Rd\_\-conn\_\-table\_\-t::address\_\-type}}}
+\label{structnRd__conn__table__t_f6751f67d1c85517fe6f930da3479fec}
+
+
+The type of address which is stored into the address union addr. This uses the protocol definitions from the n\-RP specification. A value of 0x\-FE means no address has been set. \hypertarget{structnRd__conn__table__t_c53b007ada85589b07305a287e3173cd}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!destination_port@{destination\_\-port}}
+\index{destination_port@{destination\_\-port}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[destination\_\-port]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int \hyperlink{structnRd__conn__table__t_c53b007ada85589b07305a287e3173cd}{n\-Rd\_\-conn\_\-table\_\-t::destination\_\-port}}}
+\label{structnRd__conn__table__t_c53b007ada85589b07305a287e3173cd}
+
+
+The destination port number. 0x\-FFFF means no port set. \hypertarget{structnRd__conn__table__t_a5c0f98d682b0b0c72b3d4d62b086f05}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!fd@{fd}}
+\index{fd@{fd}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[fd]{\setlength{\rightskip}{0pt plus 5cm}unsigned int \hyperlink{structnRd__conn__table__t_a5c0f98d682b0b0c72b3d4d62b086f05}{n\-Rd\_\-conn\_\-table\_\-t::fd}}}
+\label{structnRd__conn__table__t_a5c0f98d682b0b0c72b3d4d62b086f05}
+
+
+The file descriptor of the TCP connection. \hypertarget{structnRd__conn__table__t_6c975baed728a05b1bd47c7c13f2d50e}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!proto@{proto}}
+\index{proto@{proto}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[proto]{\setlength{\rightskip}{0pt plus 5cm}unsigned char \hyperlink{structnRd__conn__table__t_6c975baed728a05b1bd47c7c13f2d50e}{n\-Rd\_\-conn\_\-table\_\-t::proto}}}
+\label{structnRd__conn__table__t_6c975baed728a05b1bd47c7c13f2d50e}
+
+
+The protocol that the application that created this TCP connection wants to receive. Basic types: 0x00=raw (default), 0x01=nano\-UDP, 0x02=nano\-TCP.See nano\-Stack PC manual for more details on use. \hypertarget{structnRd__conn__table__t_f096eab8cfea2f2bb18763a05114c3f5}{
+\index{nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}!source_port@{source\_\-port}}
+\index{source_port@{source\_\-port}!nRd_conn_table_t@{n\-Rd\_\-conn\_\-table\_\-t}}
+\subsubsection[source\_\-port]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int \hyperlink{structnRd__conn__table__t_f096eab8cfea2f2bb18763a05114c3f5}{n\-Rd\_\-conn\_\-table\_\-t::source\_\-port}}}
+\label{structnRd__conn__table__t_f096eab8cfea2f2bb18763a05114c3f5}
+
+
+The source port number. 0x\-FFFF means no port set. 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/n\-Route/\hyperlink{nRouted_8h}{n\-Routed.h}\end{CompactItemize}

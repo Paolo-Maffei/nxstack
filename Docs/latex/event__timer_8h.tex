@@ -1,0 +1,113 @@
+\hypertarget{event__timer_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/event\_\-timer.h File Reference}
+\label{event__timer_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/include/event_timer.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/event\_\-timer.h}}
+}
+Event timer API. 
+
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{event__timer_8h_6f94edc7a35d1700a35ac7aeffa0bf23}{evt\-Timer\-Alloc} (x\-Queue\-Handle queue, unsigned port\-CHAR size)
+\item 
+void \hyperlink{event__timer_8h_2c9f9f28ba413f29fce00b1f4a6d4575}{evt\-Timer\-Free} (unsigned port\-CHAR timer)
+\item 
+port\-CHAR \hyperlink{event__timer_8h_905121884874be9e630e508e68abe0a0}{evt\-Timer\-Start} (unsigned port\-CHAR timer, unsigned port\-CHAR $\ast$tmr\_\-data, port\-Tick\-Type ticks)
+\item 
+port\-CHAR \hyperlink{event__timer_8h_cd8286e5b198bcc794723ca47f388caf}{evt\-Timer\-Stop} (unsigned port\-CHAR timer)
+\item 
+port\-CHAR \hyperlink{event__timer_8h_37fcef084a3e17300f5c29e121f508aa}{evt\-Timer\-Check} (unsigned port\-CHAR timer)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Event timer API. 
+
+Function headers: Event timers. 
+
+\subsection{Function Documentation}
+\hypertarget{event__timer_8h_6f94edc7a35d1700a35ac7aeffa0bf23}{
+\index{event_timer.h@{event\_\-timer.h}!evtTimerAlloc@{evtTimerAlloc}}
+\index{evtTimerAlloc@{evtTimerAlloc}!event_timer.h@{event\_\-timer.h}}
+\subsubsection[evtTimerAlloc]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR evt\-Timer\-Alloc (x\-Queue\-Handle {\em queue}, unsigned port\-CHAR {\em size})}}
+\label{event__timer_8h_6f94edc7a35d1700a35ac7aeffa0bf23}
+
+
+Allocate an event timer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em queue}]Queue to pass the data to \item[{\em size}]Size of event data structure\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]-1 no free timers 
+
+timer id \end{Desc}
+\hypertarget{event__timer_8h_37fcef084a3e17300f5c29e121f508aa}{
+\index{event_timer.h@{event\_\-timer.h}!evtTimerCheck@{evtTimerCheck}}
+\index{evtTimerCheck@{evtTimerCheck}!event_timer.h@{event\_\-timer.h}}
+\subsubsection[evtTimerCheck]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR evt\-Timer\-Check (unsigned port\-CHAR {\em timer})}}
+\label{event__timer_8h_37fcef084a3e17300f5c29e121f508aa}
+
+
+Check the event timer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em timer}]timer ID\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-FALSE not running 
+
+pd\-TRUE running \end{Desc}
+\hypertarget{event__timer_8h_2c9f9f28ba413f29fce00b1f4a6d4575}{
+\index{event_timer.h@{event\_\-timer.h}!evtTimerFree@{evtTimerFree}}
+\index{evtTimerFree@{evtTimerFree}!event_timer.h@{event\_\-timer.h}}
+\subsubsection[evtTimerFree]{\setlength{\rightskip}{0pt plus 5cm}void evt\-Timer\-Free (unsigned port\-CHAR {\em timer})}}
+\label{event__timer_8h_2c9f9f28ba413f29fce00b1f4a6d4575}
+
+
+Free an event timer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em timer}]timer ID \end{description}
+\end{Desc}
+\hypertarget{event__timer_8h_905121884874be9e630e508e68abe0a0}{
+\index{event_timer.h@{event\_\-timer.h}!evtTimerStart@{evtTimerStart}}
+\index{evtTimerStart@{evtTimerStart}!event_timer.h@{event\_\-timer.h}}
+\subsubsection[evtTimerStart]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR evt\-Timer\-Start (unsigned port\-CHAR {\em timer}, unsigned port\-CHAR $\ast$ {\em tmr\_\-data}, port\-Tick\-Type {\em ticks})}}
+\label{event__timer_8h_905121884874be9e630e508e68abe0a0}
+
+
+Start the event timer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em timer}]timer ID \item[{\em data}]pointer to event data structure \item[{\em ticks}]time in system ticks\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 false timer ID 
+
+1 OK \end{Desc}
+\hypertarget{event__timer_8h_cd8286e5b198bcc794723ca47f388caf}{
+\index{event_timer.h@{event\_\-timer.h}!evtTimerStop@{evtTimerStop}}
+\index{evtTimerStop@{evtTimerStop}!event_timer.h@{event\_\-timer.h}}
+\subsubsection[evtTimerStop]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR evt\-Timer\-Stop (unsigned port\-CHAR {\em timer})}}
+\label{event__timer_8h_cd8286e5b198bcc794723ca47f388caf}
+
+
+Stop the event timer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em timer}]timer ID\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 false timer ID 
+
+1 OK \end{Desc}

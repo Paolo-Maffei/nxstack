@@ -1,0 +1,3 @@
+v0.1	First daemon initialization routines -mjs
+v0.1f	Daemon init, TCP server, config parsing and logging utilities done -mjs
+v0.1g	Serial send buffer structures more or less finalized -mjs

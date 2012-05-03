@@ -1,0 +1,420 @@
+\hypertarget{rf802__15__4_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/rf802\_\-15\_\-4.c File Reference}
+\label{rf802__15__4_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/modules/rf802_15_4.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/rf802\_\-15\_\-4.c}}
+}
+802.15.4 protocol module. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}semphr.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}socket.h\char`\"{}}\par
+{\tt \#include \char`\"{}buffer.h\char`\"{}}\par
+{\tt \#include \char`\"{}bus.h\char`\"{}}\par
+{\tt \#include \char`\"{}module.h\char`\"{}}\par
+{\tt \#include \char`\"{}neighbor\_\-routing\_\-table.h\char`\"{}}\par
+{\tt \#include \char`\"{}control\_\-message.h\char`\"{}}\par
+{\tt \#include \char`\"{}event\_\-timer.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf.h\char`\"{}}\par
+{\tt \#include \char`\"{}mac.h\char`\"{}}\par
+{\tt \#include \char`\"{}cipv6.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{rf802__15__4_8c_f28e45bcd7b2fd635ca133b5b1a501d6}{SLOT\_\-12}~40672
+\item 
+\#define \hyperlink{rf802__15__4_8c_8dfaa62b28e8a932575cd85e31465b48}{LAST\_\-SLOT\_\-12}~4052
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{rf802__15__4_8c_0452664a26c850e937c1b551f22a3019}{rf\_\-802\_\-15\_\-4\_\-init} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{rf802__15__4_8c_3496c52df80490308e0c9fa425a0554f}{rf\_\-802\_\-15\_\-4\_\-handle} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+uint8\_\-t \hyperlink{rf802__15__4_8c_a6136ddf0954c95c5c8da7b5517c298a}{rf\_\-802\_\-15\_\-4\_\-create\_\-mac\_\-frame} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+uint16\_\-t \hyperlink{rf802__15__4_8c_60db12603b418ab385ecef60236dd622}{mac\_\-random\_\-generate} (void)
+\item 
+uint8\_\-t \hyperlink{rf802__15__4_8c_d2883c50499130bdc146f1b8c216e32e}{mac\_\-header\_\-analyze} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+void \hyperlink{rf802__15__4_8c_e156ee12c56870cc32039827875cc6bd}{mac\_\-sqn\_\-update} (uint8\_\-t data)
+\item 
+uint8\_\-t \hyperlink{rf802__15__4_8c_0c0774d2ed588fb23723b50180a39632}{mac\_\-dest\_\-check} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf, uint8\_\-t flag)
+\item 
+uint8\_\-t \hyperlink{rf802__15__4_8c_633bbab060b94a4818b756a70cc34c4c}{mac\_\-rfd\_\-src\_\-check} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+void \hyperlink{rf802__15__4_8c_a5f7369080fec80f5551b0b3a380ce96}{mac\_\-ctrl\_\-message\_\-builder} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf, \hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3}{mac\_\-control\_\-id\_\-t} message\_\-id, uint8\_\-t temp, uint8\_\-t value)
+\item 
+void \hyperlink{rf802__15__4_8c_4f1ea1df9af351b00814a3b916d755b3}{mac\_\-command\_\-frames\_\-handle} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+void \hyperlink{rf802__15__4_8c_89f78e1eb0268d9a29748597530106c9}{mac\_\-build\_\-command\_\-frame\_\-header} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+uint8\_\-t $\ast$ \hyperlink{rf802__15__4_8c_83d07fc3d6a0e3b7342b94a034aa9465}{mac\_\-add\_\-address} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf, uint8\_\-t $\ast$ind, uint8\_\-t type, uint8\_\-t pan\_\-id)
+\item 
+void \hyperlink{rf802__15__4_8c_b3f9bb43410e58f659ad4354795d21d9}{mac\_\-parse\_\-beacon} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$tmp\_\-buffer)
+\item 
+void \hyperlink{rf802__15__4_8c_88eea7787eb3b03f9caf112302d1d869}{rf\_\-rx\_\-callback} (void $\ast$param)
+\item 
+void \hyperlink{rf802__15__4_8c_b4d78451b1ccee855f36af110e6d6a2e}{mac\_\-push} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$b)
+\item 
+void \hyperlink{rf802__15__4_8c_c87c1dac2e315c388f5f7ac52b2f875a}{rf\_\-802\_\-15\_\-4\_\-store\_\-address\_\-to\_\-ram} (void)
+\item 
+void \hyperlink{rf802__15__4_8c_171ee35061cdbbef9ac84ed6c6a53068}{rf\_\-802\_\-15\_\-4\_\-pib\_\-reset} (void)
+\item 
+void \hyperlink{rf802__15__4_8c_758ebd59146e7c5d54243b4089cf0b51}{rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set} (uint8\_\-t support\_\-short\_\-addr)
+\item 
+void \hyperlink{rf802__15__4_8c_69b5127b9af8191432a020363220f9ee}{mac\_\-set\_\-mac\_\-pib\_\-parameter} (uint8\_\-t $\ast$pointer, \hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1}{mac\_\-pib\_\-enum\_\-t} type)
+\item 
+void \hyperlink{rf802__15__4_8c_b303be816fcb38c5088377eaafae2493}{mac\_\-handle\_\-address\_\-decoder} (rf\_\-address\_\-mode\_\-t mode)
+\item 
+port\-CHAR \hyperlink{rf802__15__4_8c_7858b08048b1156f9c6dcb8b86c2cf56}{get\_\-coord\_\-address} (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$address)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+x\-Queue\-Handle \hyperlink{rf802__15__4_8c_231a544d9ce4769fb14f3baa3ae53dd8}{buffers}
+\item 
+uint16\_\-t \hyperlink{rf802__15__4_8c_e20a3f6994e805827bd584e85807b92c}{channel\_\-list} = 0
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+802.15.4 protocol module. 
+
+802.15.4 MAC and CSMA sequence: handler functions. A more feature-rich implementation of the MAC, using acknowledgements and beacons (when configured to do so) Supports only long address format 
+
+\subsection{Define Documentation}
+\hypertarget{rf802__15__4_8c_8dfaa62b28e8a932575cd85e31465b48}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!LAST_SLOT_12@{LAST\_\-SLOT\_\-12}}
+\index{LAST_SLOT_12@{LAST\_\-SLOT\_\-12}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[LAST\_\-SLOT\_\-12]{\setlength{\rightskip}{0pt plus 5cm}\#define LAST\_\-SLOT\_\-12~4052}}
+\label{rf802__15__4_8c_8dfaa62b28e8a932575cd85e31465b48}
+
+
+Last slots syncronize values in ms \hypertarget{rf802__15__4_8c_f28e45bcd7b2fd635ca133b5b1a501d6}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!SLOT_12@{SLOT\_\-12}}
+\index{SLOT_12@{SLOT\_\-12}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[SLOT\_\-12]{\setlength{\rightskip}{0pt plus 5cm}\#define SLOT\_\-12~40672}}
+\label{rf802__15__4_8c_f28e45bcd7b2fd635ca133b5b1a501d6}
+
+
+Timeslot synch value for superframe 
+
+\subsection{Function Documentation}
+\hypertarget{rf802__15__4_8c_7858b08048b1156f9c6dcb8b86c2cf56}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!get_coord_address@{get\_\-coord\_\-address}}
+\index{get_coord_address@{get\_\-coord\_\-address}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[get\_\-coord\_\-address]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR get\_\-coord\_\-address (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em address})}}
+\label{rf802__15__4_8c_7858b08048b1156f9c6dcb8b86c2cf56}
+
+
+Function call get coordinator address from MAC-PIB.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]poniter for address structure where functions write address information. \end{description}
+\end{Desc}
+\hypertarget{rf802__15__4_8c_83d07fc3d6a0e3b7342b94a034aa9465}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_add_address@{mac\_\-add\_\-address}}
+\index{mac_add_address@{mac\_\-add\_\-address}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-add\_\-address]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t $\ast$ mac\_\-add\_\-address (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf}, uint8\_\-t $\ast$ {\em ind}, uint8\_\-t {\em type}, uint8\_\-t {\em pan\_\-id})}}
+\label{rf802__15__4_8c_83d07fc3d6a0e3b7342b94a034aa9465}
+
+
+Current used function which address to buffer from MAC-PIB.
+
+Only for stack internal use. \hypertarget{rf802__15__4_8c_89f78e1eb0268d9a29748597530106c9}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_build_command_frame_header@{mac\_\-build\_\-command\_\-frame\_\-header}}
+\index{mac_build_command_frame_header@{mac\_\-build\_\-command\_\-frame\_\-header}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-build\_\-command\_\-frame\_\-header]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-build\_\-command\_\-frame\_\-header (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{rf802__15__4_8c_89f78e1eb0268d9a29748597530106c9}
+
+
+Function build mac command frame headers.
+
+Header structure based on MAc COMMAND ID which is buffers first byte.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer for buffer \end{description}
+\end{Desc}
+\hypertarget{rf802__15__4_8c_4f1ea1df9af351b00814a3b916d755b3}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_command_frames_handle@{mac\_\-command\_\-frames\_\-handle}}
+\index{mac_command_frames_handle@{mac\_\-command\_\-frames\_\-handle}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-command\_\-frames\_\-handle]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-command\_\-frames\_\-handle (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{rf802__15__4_8c_4f1ea1df9af351b00814a3b916d755b3}
+
+
+Function parse and handle mac command frames.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer tu buffer. \item[{\em packet\_\-check}]indicate dublicate packets. \end{description}
+\end{Desc}
+\hypertarget{rf802__15__4_8c_a5f7369080fec80f5551b0b3a380ce96}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_ctrl_message_builder@{mac\_\-ctrl\_\-message\_\-builder}}
+\index{mac_ctrl_message_builder@{mac\_\-ctrl\_\-message\_\-builder}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-ctrl\_\-message\_\-builder]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-ctrl\_\-message\_\-builder (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf}, \hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3}{mac\_\-control\_\-id\_\-t} {\em message\_\-id}, uint8\_\-t {\em temp}, uint8\_\-t {\em value})}}
+\label{rf802__15__4_8c_a5f7369080fec80f5551b0b3a380ce96}
+
+
+Function build and send control messages to Network manager or Application.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer for data structure. \item[{\em message\_\-id}]define message structure. \item[{\em temp}]iclude some control parameter. \item[{\em value}]wanted setup value defined by temp parameter. \end{description}
+\end{Desc}
+\hypertarget{rf802__15__4_8c_0c0774d2ed588fb23723b50180a39632}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_dest_check@{mac\_\-dest\_\-check}}
+\index{mac_dest_check@{mac\_\-dest\_\-check}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-dest\_\-check]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t mac\_\-dest\_\-check (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf}, uint8\_\-t {\em flag})}}
+\label{rf802__15__4_8c_0c0774d2ed588fb23723b50180a39632}
+
+
+Function check destination address and also source when device is RFD and its running beacon enable mac-mode.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer for buffer \item[{\em $\backslash$return}]1 when destination match, RFD in the Beacon-enable state compare \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 when packet its not for this device \end{Desc}
+\hypertarget{rf802__15__4_8c_b303be816fcb38c5088377eaafae2493}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_handle_address_decoder@{mac\_\-handle\_\-address\_\-decoder}}
+\index{mac_handle_address_decoder@{mac\_\-handle\_\-address\_\-decoder}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-handle\_\-address\_\-decoder]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-handle\_\-address\_\-decoder (rf\_\-address\_\-mode\_\-t {\em mode})}}
+\label{rf802__15__4_8c_b303be816fcb38c5088377eaafae2493}
+
+
+API for address decoder use for diffrent device type.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em mode}]RF\_\-DECODER\_\-NONE / RF\_\-DECODER\_\-COORDINATOR / RF\_\-DECODER\_\-ON. \end{description}
+\end{Desc}
+\hypertarget{rf802__15__4_8c_d2883c50499130bdc146f1b8c216e32e}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_header_analyze@{mac\_\-header\_\-analyze}}
+\index{mac_header_analyze@{mac\_\-header\_\-analyze}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-header\_\-analyze]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t mac\_\-header\_\-analyze (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{rf802__15__4_8c_d2883c50499130bdc146f1b8c216e32e}
+
+
+Function parse general mac header part Frame control, sqn and address field.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer tu buffer. \item[{\em response}]include result of the analyze (Frame type, sqn and ack\_\-req). \end{description}
+\end{Desc}
+\hypertarget{rf802__15__4_8c_b3f9bb43410e58f659ad4354795d21d9}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_parse_beacon@{mac\_\-parse\_\-beacon}}
+\index{mac_parse_beacon@{mac\_\-parse\_\-beacon}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-parse\_\-beacon]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-parse\_\-beacon (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em tmp\_\-buffer})}}
+\label{rf802__15__4_8c_b3f9bb43410e58f659ad4354795d21d9}
+
+
+Parse beacon frame and update result active scan.
+
+Function use scan\_\-res\_\-ptr pointer which indicates buffer for result of active scan process. MAC task initialize global pointer to indicated to this buffer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]Buffer to process \end{description}
+\end{Desc}
+\hypertarget{rf802__15__4_8c_b4d78451b1ccee855f36af110e6d6a2e}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_push@{mac\_\-push}}
+\index{mac_push@{mac\_\-push}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-push]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-push (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em b})}}
+\label{rf802__15__4_8c_b4d78451b1ccee855f36af110e6d6a2e}
+
+
+Function to push buffers to MAC, used by the RF driver \hypertarget{rf802__15__4_8c_60db12603b418ab385ecef60236dd622}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_random_generate@{mac\_\-random\_\-generate}}
+\index{mac_random_generate@{mac\_\-random\_\-generate}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-random\_\-generate]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t mac\_\-random\_\-generate (void)}}
+\label{rf802__15__4_8c_60db12603b418ab385ecef60236dd622}
+
+
+Random value function.
+
+Function create random value between 1-16 and return that. Function use random value for index to select random value from rand\_\-table-array.
+
+\begin{Desc}
+\item[Returns:]rand random value. \end{Desc}
+\hypertarget{rf802__15__4_8c_633bbab060b94a4818b756a70cc34c4c}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_rfd_src_check@{mac\_\-rfd\_\-src\_\-check}}
+\index{mac_rfd_src_check@{mac\_\-rfd\_\-src\_\-check}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-rfd\_\-src\_\-check]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t mac\_\-rfd\_\-src\_\-check (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{rf802__15__4_8c_633bbab060b94a4818b756a70cc34c4c}
+
+
+Function compare source adrres to coordinator address.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer for buffer \item[{\em $\backslash$return}]1 when address is from coordinator \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 when packet its not from coordinator \end{Desc}
+\hypertarget{rf802__15__4_8c_69b5127b9af8191432a020363220f9ee}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_set_mac_pib_parameter@{mac\_\-set\_\-mac\_\-pib\_\-parameter}}
+\index{mac_set_mac_pib_parameter@{mac\_\-set\_\-mac\_\-pib\_\-parameter}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-set\_\-mac\_\-pib\_\-parameter]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-set\_\-mac\_\-pib\_\-parameter (uint8\_\-t $\ast$ {\em pointer}, \hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1}{mac\_\-pib\_\-enum\_\-t} {\em type})}}
+\label{rf802__15__4_8c_69b5127b9af8191432a020363220f9ee}
+
+
+Function is for set up some MAC-PIB parameters.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pointer}]to set up arguments. \item[{\em type}]type attribute for MAC-PIB parameter. \end{description}
+\end{Desc}
+\hypertarget{rf802__15__4_8c_e156ee12c56870cc32039827875cc6bd}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!mac_sqn_update@{mac\_\-sqn\_\-update}}
+\index{mac_sqn_update@{mac\_\-sqn\_\-update}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[mac\_\-sqn\_\-update]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-sqn\_\-update (uint8\_\-t {\em sqn\_\-data})}}
+\label{rf802__15__4_8c_e156ee12c56870cc32039827875cc6bd}
+
+
+Function update MAC data and beacon sqn number by gives parameter.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em sqn\_\-data}]1=DATA \& 0=BEACON. \end{description}
+\end{Desc}
+\hypertarget{rf802__15__4_8c_a6136ddf0954c95c5c8da7b5517c298a}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!rf_802_15_4_create_mac_frame@{rf\_\-802\_\-15\_\-4\_\-create\_\-mac\_\-frame}}
+\index{rf_802_15_4_create_mac_frame@{rf\_\-802\_\-15\_\-4\_\-create\_\-mac\_\-frame}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[rf\_\-802\_\-15\_\-4\_\-create\_\-mac\_\-frame]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t rf\_\-802\_\-15\_\-4\_\-create\_\-mac\_\-frame (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{rf802__15__4_8c_a6136ddf0954c95c5c8da7b5517c298a}
+
+
+Function create MAC-frame.
+
+Function got pointer for buffer-structure and build data-frame automatic.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]indicates pointer for buffer structure. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ack flag which indicated ack-requirement for frame. \end{Desc}
+\hypertarget{rf802__15__4_8c_3496c52df80490308e0c9fa425a0554f}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!rf_802_15_4_handle@{rf\_\-802\_\-15\_\-4\_\-handle}}
+\index{rf_802_15_4_handle@{rf\_\-802\_\-15\_\-4\_\-handle}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[rf\_\-802\_\-15\_\-4\_\-handle]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-802\_\-15\_\-4\_\-handle (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{rf802__15__4_8c_3496c52df80490308e0c9fa425a0554f}
+
+
+Standard nanostack buffer handler.
+
+Function prefilters buffers and forwards downward buffers to rf\_\-802\_\-15\_\-4\_\-queue-table.
+
+Function has the following states:\begin{itemize}
+\item CONNECT, this case only forwards data frames to upper and from upper layers\item DISCONNECT, forward just mac-commands and acks\item BEACON\_\-TRACK, forward only beacon framesopen-zb\_\-ref\_\-guide\_\-v1.1.pdf to rf\_\-802\_\-15\_\-4\_\-queue\item AD-HOC, forward only data and ack frames\end{itemize}
+
+
+Handle also analyze packets MAC header from Radio. After header analyze process continue based on frame type.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]Buffer to process \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE Buffer handled by this module 
+
+pd\-FALSE Buffer rejected by module \end{Desc}
+\hypertarget{rf802__15__4_8c_0452664a26c850e937c1b551f22a3019}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!rf_802_15_4_init@{rf\_\-802\_\-15\_\-4\_\-init}}
+\index{rf_802_15_4_init@{rf\_\-802\_\-15\_\-4\_\-init}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[rf\_\-802\_\-15\_\-4\_\-init]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-802\_\-15\_\-4\_\-init (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{rf802__15__4_8c_0452664a26c850e937c1b551f22a3019}
+
+
+Standard nanostack module initalizer.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{rf802__15__4_8c_758ebd59146e7c5d54243b4089cf0b51}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!rf_802_15_4_ip_layer_address_mode_set@{rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set}}
+\index{rf_802_15_4_ip_layer_address_mode_set@{rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set (uint8\_\-t {\em support\_\-short\_\-addr})}}
+\label{rf802__15__4_8c_758ebd59146e7c5d54243b4089cf0b51}
+
+
+Function setup IP modules address mode and also forward MAC and short address information.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em support\_\-short\_\-addr}]1=Support \& 0=Not support. \end{description}
+\end{Desc}
+\hypertarget{rf802__15__4_8c_171ee35061cdbbef9ac84ed6c6a53068}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!rf_802_15_4_pib_reset@{rf\_\-802\_\-15\_\-4\_\-pib\_\-reset}}
+\index{rf_802_15_4_pib_reset@{rf\_\-802\_\-15\_\-4\_\-pib\_\-reset}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[rf\_\-802\_\-15\_\-4\_\-pib\_\-reset]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-802\_\-15\_\-4\_\-pib\_\-reset (void)}}
+\label{rf802__15__4_8c_171ee35061cdbbef9ac84ed6c6a53068}
+
+
+Reset MAC PIB information structure.
+
+This function call when want to initialize MAC PIB to default values. \hypertarget{rf802__15__4_8c_c87c1dac2e315c388f5f7ac52b2f875a}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!rf_802_15_4_store_address_to_ram@{rf\_\-802\_\-15\_\-4\_\-store\_\-address\_\-to\_\-ram}}
+\index{rf_802_15_4_store_address_to_ram@{rf\_\-802\_\-15\_\-4\_\-store\_\-address\_\-to\_\-ram}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[rf\_\-802\_\-15\_\-4\_\-store\_\-address\_\-to\_\-ram]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-802\_\-15\_\-4\_\-store\_\-address\_\-to\_\-ram (void)}}
+\label{rf802__15__4_8c_c87c1dac2e315c388f5f7ac52b2f875a}
+
+
+Store address information to ram for address decoder. \hypertarget{rf802__15__4_8c_88eea7787eb3b03f9caf112302d1d869}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!rf_rx_callback@{rf\_\-rx\_\-callback}}
+\index{rf_rx_callback@{rf\_\-rx\_\-callback}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[rf\_\-rx\_\-callback]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-rx\_\-callback (void $\ast$ {\em param})}}
+\label{rf802__15__4_8c_88eea7787eb3b03f9caf112302d1d869}
+
+
+RF receive callback \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em param}]not used \end{description}
+\end{Desc}
+
+
+\subsection{Variable Documentation}
+\hypertarget{rf802__15__4_8c_231a544d9ce4769fb14f3baa3ae53dd8}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!buffers@{buffers}}
+\index{buffers@{buffers}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[buffers]{\setlength{\rightskip}{0pt plus 5cm}x\-Queue\-Handle \hyperlink{rf__dma_8c_231a544d9ce4769fb14f3baa3ae53dd8}{buffers}}}
+\label{rf802__15__4_8c_231a544d9ce4769fb14f3baa3ae53dd8}
+
+
+Common variables \hypertarget{rf802__15__4_8c_e20a3f6994e805827bd584e85807b92c}{
+\index{rf802_15_4.c@{rf802\_\-15\_\-4.c}!channel_list@{channel\_\-list}}
+\index{channel_list@{channel\_\-list}!rf802_15_4.c@{rf802\_\-15\_\-4.c}}
+\subsubsection[channel\_\-list]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t \hyperlink{rf802__15__4_8c_e20a3f6994e805827bd584e85807b92c}{channel\_\-list} = 0}}
+\label{rf802__15__4_8c_e20a3f6994e805827bd584e85807b92c}
+
+
+Mac task.
+
+Reads message queues from rf\_\-802\_\-15\_\-4\_\-queue and detects buffer type. Types: HANDLE\_\-RX, HANDLE\_\-TX and HANDLE\_\-CONTROL. HANDLE\_\-RX, detect frametype and forward data to upper. HANDLE\_\-TX, build data-frame based on source and destination address. HANDLE\_\-CONTROL, from NWK\_\-CONFIG-module task handle: send response back.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pv\-Parameters}]not used \end{description}
+\end{Desc}

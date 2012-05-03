@@ -1,0 +1,59 @@
+\hypertarget{nrp__uart_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Examples/nano\_\-router\_\-n600/nrp\_\-uart.c File Reference}
+\label{nrp__uart_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Examples/nano_router_n600/nrp_uart.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Examples/nano\_\-router\_\-n600/nrp\_\-uart.c}}
+}
+nano.4 NRP UART driver. 
+
+{\tt \#include $<$sys/inttypes.h$>$}\par
+{\tt \#include $<$cc2430\_\-sfr.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}semphr.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}dma.h\char`\"{}}\par
+{\tt \#include \char`\"{}nrp\_\-uart.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{nrp__uart_8c_d6314dcd719c0dce1b395d13feeb6ab9}{nrp\_\-rx\-ISR} (void)
+\item 
+void \hyperlink{nrp__uart_8c_136027e2790120894e59d46ab0510a94}{nrp\_\-tx\-ISR} (void)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+uint8\_\-t \hyperlink{nrp__uart_8c_c423997418749ba589a7fb3cc8bc2b10}{nrp\_\-uart\_\-rx\_\-buffer} \mbox{[}NRP\_\-UART\_\-RX\_\-LEN\mbox{]}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+nano.4 NRP UART driver. 
+
+Nano.4: NRP UART control: no message queues. 
+
+\subsection{Function Documentation}
+\hypertarget{nrp__uart_8c_d6314dcd719c0dce1b395d13feeb6ab9}{
+\index{nrp_uart.c@{nrp\_\-uart.c}!nrp_rxISR@{nrp\_\-rxISR}}
+\index{nrp_rxISR@{nrp\_\-rxISR}!nrp_uart.c@{nrp\_\-uart.c}}
+\subsubsection[nrp\_\-rxISR]{\setlength{\rightskip}{0pt plus 5cm}void nrp\_\-rx\-ISR (void)}}
+\label{nrp__uart_8c_d6314dcd719c0dce1b395d13feeb6ab9}
+
+
+UART RX interrupt service routine for UART 1 \hypertarget{nrp__uart_8c_136027e2790120894e59d46ab0510a94}{
+\index{nrp_uart.c@{nrp\_\-uart.c}!nrp_txISR@{nrp\_\-txISR}}
+\index{nrp_txISR@{nrp\_\-txISR}!nrp_uart.c@{nrp\_\-uart.c}}
+\subsubsection[nrp\_\-txISR]{\setlength{\rightskip}{0pt plus 5cm}void nrp\_\-tx\-ISR (void)}}
+\label{nrp__uart_8c_136027e2790120894e59d46ab0510a94}
+
+
+UART Tx interrupt service routine. for UART 1 
+
+\subsection{Variable Documentation}
+\hypertarget{nrp__uart_8c_c423997418749ba589a7fb3cc8bc2b10}{
+\index{nrp_uart.c@{nrp\_\-uart.c}!nrp_uart_rx_buffer@{nrp\_\-uart\_\-rx\_\-buffer}}
+\index{nrp_uart_rx_buffer@{nrp\_\-uart\_\-rx\_\-buffer}!nrp_uart.c@{nrp\_\-uart.c}}
+\subsubsection[nrp\_\-uart\_\-rx\_\-buffer]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{nrp__uart_8c_c423997418749ba589a7fb3cc8bc2b10}{nrp\_\-uart\_\-rx\_\-buffer}\mbox{[}NRP\_\-UART\_\-RX\_\-LEN\mbox{]}}}
+\label{nrp__uart_8c_c423997418749ba589a7fb3cc8bc2b10}
+
+
+The queue used to hold received characters. 

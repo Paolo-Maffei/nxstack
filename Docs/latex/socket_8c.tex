@@ -1,0 +1,330 @@
+\hypertarget{socket_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/socket.c File Reference}
+\label{socket_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/socket.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/socket.c}}
+}
+Protocol stack socket API. 
+
+{\tt \#include $<$sys/inttypes.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}stack.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}module.h\char`\"{}}\par
+{\tt \#include \char`\"{}socket.h\char`\"{}}\par
+{\tt \#include \char`\"{}mac.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{socket_8c_5d46d04d1762d647b99a1053e627c13d}{stack\_\-buffer\_\-push} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$b)
+\item 
+\hyperlink{structsocket__t}{socket\_\-t} $\ast$ \hyperlink{socket_8c_a6f7b5be473d7e51f64096db43ad30f2}{socket\_\-find} (uint16\_\-t port, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$sa)
+\item 
+void \hyperlink{socket_8c_88dfcfff0e51ecdd3cc5d3aa967cf93e}{socket\_\-port\_\-random} (\hyperlink{structsocket__t}{socket\_\-t} $\ast$si)
+\item 
+int8\_\-t \hyperlink{socket_8c_0b0b5301cab62897139672d6f8ad4c4c}{socket\_\-id\_\-find} (\hyperlink{structsocket__t}{socket\_\-t} $\ast$si)
+\item 
+void \hyperlink{socket_8c_8fe6ea62ef1e4d30acd1fadeaa3df74d}{socket\_\-init} (void)
+\item 
+\hyperlink{structsocket__t}{socket\_\-t} $\ast$ \hyperlink{socket_8c_52611a93e427574e481ec81382d51d5f}{socket} (module\_\-id\_\-t protocol, \hyperlink{socket_8h_041daa666328e99aae40477895597d8d}{sock\_\-handler\_\-func} sock\_\-handler)
+\item 
+port\-CHAR \hyperlink{socket_8c_14f3b4a63186d93cd3ddb1f2a4120377}{socket\_\-close} (\hyperlink{structsocket__t}{socket\_\-t} $\ast$si)
+\item 
+port\-CHAR \hyperlink{socket_8c_005740d957ab5d95ffb1448079c18c5f}{socket\_\-bind} (\hyperlink{structsocket__t}{socket\_\-t} $\ast$si, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$sa)
+\item 
+\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ \hyperlink{socket_8c_6adda56cd86a667ea00c99e7b2cd5739}{socket\_\-buffer\_\-get} (\hyperlink{structsocket__t}{socket\_\-t} $\ast$si)
+\item 
+port\-CHAR \hyperlink{socket_8c_005c8294d4af9cf079e2c690513eb926}{socket\_\-buffer\_\-free} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buffer)
+\item 
+port\-CHAR \hyperlink{socket_8c_d4f34c22b7b3c84e18ace19f65e439e9}{socket\_\-sendto} (\hyperlink{structsocket__t}{socket\_\-t} $\ast$si, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$dst, \hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{socket_8c_8ca5ee26ebfd96fa413f4d7f1ddbb3d6}{socket\_\-write} (\hyperlink{structsocket__t}{socket\_\-t} $\ast$si, \hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{socket_8c_73cfc659f1503e0cf5773933b972944e}{socket\_\-connect} (\hyperlink{structsocket__t}{socket\_\-t} $\ast$si, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$dst)
+\item 
+\hyperlink{structsocket__t}{socket\_\-t} $\ast$ \hyperlink{socket_8c_67b2e80ce2c877bcb0a84b9005716fd7}{socket\_\-accept} (\hyperlink{structsocket__t}{socket\_\-t} $\ast$si, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$dst, \hyperlink{socket_8h_041daa666328e99aae40477895597d8d}{sock\_\-handler\_\-func} sock\_\-handler)
+\item 
+\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ \hyperlink{socket_8c_2d3c516662b270d95a3dc0663c25f407}{socket\_\-read} (\hyperlink{structsocket__t}{socket\_\-t} $\ast$si, uint16\_\-t time)
+\item 
+port\-CHAR \hyperlink{socket_8c_6c9e4615b1da08f6f896c9bd1f9762ac}{socket\_\-up} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$b)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Protocol stack socket API. 
+
+Protocol stack API: socket handling, buffer management API 
+
+\subsection{Function Documentation}
+\hypertarget{socket_8c_52611a93e427574e481ec81382d51d5f}{
+\index{socket.c@{socket.c}!socket@{socket}}
+\index{socket@{socket}!socket.c@{socket.c}}
+\subsubsection[socket]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structsocket__t}{socket\_\-t}$\ast$ socket (module\_\-id\_\-t {\em protocol}, \hyperlink{socket_8h_041daa666328e99aae40477895597d8d}{sock\_\-handler\_\-func} {\em sock\_\-handler})}}
+\label{socket_8c_52611a93e427574e481ec81382d51d5f}
+
+
+Create a socket.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em protocol}]protocol to use \item[{\em sock\_\-handler}]socket receive handler\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to new socket \end{Desc}
+\hypertarget{socket_8c_67b2e80ce2c877bcb0a84b9005716fd7}{
+\index{socket.c@{socket.c}!socket_accept@{socket\_\-accept}}
+\index{socket_accept@{socket\_\-accept}!socket.c@{socket.c}}
+\subsubsection[socket\_\-accept]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structsocket__t}{socket\_\-t}$\ast$ socket\_\-accept (\hyperlink{structsocket__t}{socket\_\-t} $\ast$ {\em si}, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em dst}, \hyperlink{socket_8h_041daa666328e99aae40477895597d8d}{sock\_\-handler\_\-func} {\em sock\_\-handler})}}
+\label{socket_8c_67b2e80ce2c877bcb0a84b9005716fd7}
+
+
+Accept new connection from specified destination.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em si}]pointer to socket \item[{\em dst}]pointer to destination address \item[{\em sock\_\-handler}]pointer to receive handler\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to new socket \end{Desc}
+\hypertarget{socket_8c_005740d957ab5d95ffb1448079c18c5f}{
+\index{socket.c@{socket.c}!socket_bind@{socket\_\-bind}}
+\index{socket_bind@{socket\_\-bind}!socket.c@{socket.c}}
+\subsubsection[socket\_\-bind]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR socket\_\-bind (\hyperlink{structsocket__t}{socket\_\-t} $\ast$ {\em si}, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em sa})}}
+\label{socket_8c_005740d957ab5d95ffb1448079c18c5f}
+
+
+Bind socket to a specific port
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em si}]pointer to socket \item[{\em sa}]address to bind to\end{description}
+\end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000002}{Todo}]support for address types beside nano\-IP\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FAIL (port out of range or invalid socket pointer)\end{Desc}
+Control-message socket
+
+Now core detech control-messgae \hypertarget{socket_8c_005c8294d4af9cf079e2c690513eb926}{
+\index{socket.c@{socket.c}!socket_buffer_free@{socket\_\-buffer\_\-free}}
+\index{socket_buffer_free@{socket\_\-buffer\_\-free}!socket.c@{socket.c}}
+\subsubsection[socket\_\-buffer\_\-free]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR socket\_\-buffer\_\-free (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buffer})}}
+\label{socket_8c_005c8294d4af9cf079e2c690513eb926}
+
+
+Free a buffer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buffer}]pointer to buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE \end{Desc}
+\hypertarget{socket_8c_6adda56cd86a667ea00c99e7b2cd5739}{
+\index{socket.c@{socket.c}!socket_buffer_get@{socket\_\-buffer\_\-get}}
+\index{socket_buffer_get@{socket\_\-buffer\_\-get}!socket.c@{socket.c}}
+\subsubsection[socket\_\-buffer\_\-get]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structbuffer__t}{buffer\_\-t}$\ast$ socket\_\-buffer\_\-get (\hyperlink{structsocket__t}{socket\_\-t} $\ast$ {\em si})}}
+\label{socket_8c_6adda56cd86a667ea00c99e7b2cd5739}
+
+
+Allocate a buffer per socket id.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em si}]pointer to socket\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to buffer, 0 if none available \end{Desc}
+\hypertarget{socket_8c_14f3b4a63186d93cd3ddb1f2a4120377}{
+\index{socket.c@{socket.c}!socket_close@{socket\_\-close}}
+\index{socket_close@{socket\_\-close}!socket.c@{socket.c}}
+\subsubsection[socket\_\-close]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR socket\_\-close (\hyperlink{structsocket__t}{socket\_\-t} $\ast$ {\em si})}}
+\label{socket_8c_14f3b4a63186d93cd3ddb1f2a4120377}
+
+
+Free a socket.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em si}]pointer to socket\end{description}
+\end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000001}{Todo}]handle private protocol pointers -$>$ closing sequence etc.\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FAIL (caused by invalid socket pointer) \end{Desc}
+\hypertarget{socket_8c_73cfc659f1503e0cf5773933b972944e}{
+\index{socket.c@{socket.c}!socket_connect@{socket\_\-connect}}
+\index{socket_connect@{socket\_\-connect}!socket.c@{socket.c}}
+\subsubsection[socket\_\-connect]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR socket\_\-connect (\hyperlink{structsocket__t}{socket\_\-t} $\ast$ {\em si}, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em dst})}}
+\label{socket_8c_73cfc659f1503e0cf5773933b972944e}
+
+
+Connect socket to specified destination.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em si}]pointer to socket \item[{\em dst}]pointer to destination address\end{description}
+\end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000003}{Todo}]handling of private structures\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE \end{Desc}
+\hypertarget{socket_8c_a6f7b5be473d7e51f64096db43ad30f2}{
+\index{socket.c@{socket.c}!socket_find@{socket\_\-find}}
+\index{socket_find@{socket\_\-find}!socket.c@{socket.c}}
+\subsubsection[socket\_\-find]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structsocket__t}{socket\_\-t}$\ast$ socket\_\-find (uint16\_\-t {\em port}, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em sa})}}
+\label{socket_8c_a6f7b5be473d7e51f64096db43ad30f2}
+
+
+Find socket pointer by port/address pair
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em port}]port number \item[{\em sa}]address\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to socket \end{Desc}
+\hypertarget{socket_8c_0b0b5301cab62897139672d6f8ad4c4c}{
+\index{socket.c@{socket.c}!socket_id_find@{socket\_\-id\_\-find}}
+\index{socket_id_find@{socket\_\-id\_\-find}!socket.c@{socket.c}}
+\subsubsection[socket\_\-id\_\-find]{\setlength{\rightskip}{0pt plus 5cm}int8\_\-t socket\_\-id\_\-find (\hyperlink{structsocket__t}{socket\_\-t} $\ast$ {\em si})}}
+\label{socket_8c_0b0b5301cab62897139672d6f8ad4c4c}
+
+
+Find socket pointer per id (find out if it is valid)
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em si}]pointer to socket\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]socket id 
+
+-1 not found \end{Desc}
+\hypertarget{socket_8c_8fe6ea62ef1e4d30acd1fadeaa3df74d}{
+\index{socket.c@{socket.c}!socket_init@{socket\_\-init}}
+\index{socket_init@{socket\_\-init}!socket.c@{socket.c}}
+\subsubsection[socket\_\-init]{\setlength{\rightskip}{0pt plus 5cm}void socket\_\-init (void)}}
+\label{socket_8c_8fe6ea62ef1e4d30acd1fadeaa3df74d}
+
+
+Initialize socket API \hypertarget{socket_8c_88dfcfff0e51ecdd3cc5d3aa967cf93e}{
+\index{socket.c@{socket.c}!socket_port_random@{socket\_\-port\_\-random}}
+\index{socket_port_random@{socket\_\-port\_\-random}!socket.c@{socket.c}}
+\subsubsection[socket\_\-port\_\-random]{\setlength{\rightskip}{0pt plus 5cm}void socket\_\-port\_\-random (\hyperlink{structsocket__t}{socket\_\-t} $\ast$ {\em si})}}
+\label{socket_8c_88dfcfff0e51ecdd3cc5d3aa967cf93e}
+
+
+Get a \char`\"{}random\char`\"{} free port for socket.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em si}]pointer to socket \end{description}
+\end{Desc}
+\hypertarget{socket_8c_2d3c516662b270d95a3dc0663c25f407}{
+\index{socket.c@{socket.c}!socket_read@{socket\_\-read}}
+\index{socket_read@{socket\_\-read}!socket.c@{socket.c}}
+\subsubsection[socket\_\-read]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structbuffer__t}{buffer\_\-t}$\ast$ socket\_\-read (\hyperlink{structsocket__t}{socket\_\-t} $\ast$ {\em si}, uint16\_\-t {\em time})}}
+\label{socket_8c_2d3c516662b270d95a3dc0663c25f407}
+
+
+Read a socket. This is used when handler callbacks are not used.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em si}]pointer to socket \item[{\em time}]time to wait\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to buffer 
+
+0 (no buffer) \end{Desc}
+\hypertarget{socket_8c_d4f34c22b7b3c84e18ace19f65e439e9}{
+\index{socket.c@{socket.c}!socket_sendto@{socket\_\-sendto}}
+\index{socket_sendto@{socket\_\-sendto}!socket.c@{socket.c}}
+\subsubsection[socket\_\-sendto]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR socket\_\-sendto (\hyperlink{structsocket__t}{socket\_\-t} $\ast$ {\em si}, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em dst}, \hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{socket_8c_d4f34c22b7b3c84e18ace19f65e439e9}
+
+
+Send a single packet to specified destination.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em si}]pointer to socket \item[{\em dst}]pointer to destination address \item[{\em buf}]pointer to buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FAIL \end{Desc}
+\hypertarget{socket_8c_6c9e4615b1da08f6f896c9bd1f9762ac}{
+\index{socket.c@{socket.c}!socket_up@{socket\_\-up}}
+\index{socket_up@{socket\_\-up}!socket.c@{socket.c}}
+\subsubsection[socket\_\-up]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR socket\_\-up (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em b})}}
+\label{socket_8c_6c9e4615b1da08f6f896c9bd1f9762ac}
+
+
+Pass a buffer from stack to a socket.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em b}]pointer to buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE socket found 
+
+pd\-FALSE no socket \end{Desc}
+\hypertarget{socket_8c_8ca5ee26ebfd96fa413f4d7f1ddbb3d6}{
+\index{socket.c@{socket.c}!socket_write@{socket\_\-write}}
+\index{socket_write@{socket\_\-write}!socket.c@{socket.c}}
+\subsubsection[socket\_\-write]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR socket\_\-write (\hyperlink{structsocket__t}{socket\_\-t} $\ast$ {\em si}, \hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{socket_8c_8ca5ee26ebfd96fa413f4d7f1ddbb3d6}
+
+
+Send data using a connected socket.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em si}]pointer to socket \item[{\em buf}]pointer to buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE \end{Desc}
+\hypertarget{socket_8c_5d46d04d1762d647b99a1053e627c13d}{
+\index{socket.c@{socket.c}!stack_buffer_push@{stack\_\-buffer\_\-push}}
+\index{stack_buffer_push@{stack\_\-buffer\_\-push}!socket.c@{socket.c}}
+\subsubsection[stack\_\-buffer\_\-push]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR stack\_\-buffer\_\-push (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em b})}}
+\label{socket_8c_5d46d04d1762d647b99a1053e627c13d}
+
+
+Push buffer to stack.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em b}]pointer to buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE queue full \end{Desc}

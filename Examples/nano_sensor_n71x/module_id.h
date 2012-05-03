@@ -1,0 +1,18 @@
+#ifndef _MODULE_ID_H
+#define _MODULE_ID_H
+/* module_id.h generated */
+
+typedef enum { MODULE_NONE = 0,
+MODULE_CIPV6,
+MODULE_CUDP,
+MODULE_DRI,
+MODULE_ICMP,
+MODULE_MAC_15_4,
+MODULE_NRP,
+MODULE_NUDP,
+MODULE_NWK_MANAGER,
+MODULE_RF_802_15_4,
+MODULE_SSI,
+MODULE_APP,
+MODULE_MAX } module_id_t;
+#endif  /*_MODULE_ID_H*/

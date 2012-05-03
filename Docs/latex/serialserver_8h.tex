@@ -1,0 +1,177 @@
+\hypertarget{serialserver_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/n\-Route/serialserver.h File Reference}
+\label{serialserver_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Tools/nRoute/serialserver.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/nRoute/serialserver.h}}
+}
+{\tt \#include \char`\"{}n\-Routed.h\char`\"{}}\par
+{\tt \#include \char`\"{}port.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t}
+\item 
+struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{serialserver_8h_0a07beae6fb26ce3e0e812b24126dda0}{nrp\_\-from\_\-serial} (unsigned char packet\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]}, int len)
+\item 
+int \hyperlink{serialserver_8h_e1a29e498724fcfebb69666c93918523}{init\_\-serial\_\-buffers} (void)
+\item 
+int \hyperlink{serialserver_8h_ba9606d44c66b0b8e4590213f84fe673}{add\_\-packet} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr, char packet\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]})
+\item 
+int \hyperlink{serialserver_8h_5d51942f0ef0b6445c054f3032f4555f}{get\_\-bottom\_\-packet} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr, char $\ast$packet)
+\item 
+int \hyperlink{serialserver_8h_1b258be2c3a250127d23e74e0f524a00}{purge\_\-bottom\_\-packet} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr)
+\item 
+int \hyperlink{serialserver_8h_d1906dfda0437f68ccc02e98ec91b6d9}{purge\_\-packet} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr, char packet\_\-header\mbox{[}25\mbox{]})
+\item 
+int \hyperlink{serialserver_8h_3f3be2bf87e312a69c82b7d4b4ca22d1}{clear\_\-buffer} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr)
+\item 
+int \hyperlink{serialserver_8h_153474125511d686cc5b172d9e5bf58d}{send\_\-to\_\-serial} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr, char packet\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} \hyperlink{serialserver_8h_97225d6b27c2b1eb59c787ef7455fccb}{serial\_\-send\_\-buffer}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This header file contains those declarations that are essential part of the serial server functionality. 
+
+\subsection{Function Documentation}
+\hypertarget{serialserver_8h_ba9606d44c66b0b8e4590213f84fe673}{
+\index{serialserver.h@{serialserver.h}!add_packet@{add\_\-packet}}
+\index{add_packet@{add\_\-packet}!serialserver.h@{serialserver.h}}
+\subsubsection[add\_\-packet]{\setlength{\rightskip}{0pt plus 5cm}int add\_\-packet (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr}, char {\em packet}\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]})}}
+\label{serialserver_8h_ba9606d44c66b0b8e4590213f84fe673}
+
+
+Adds a packet to specified buffer.
+
+This function adds the packet given as parameter to the specified buffer and adjusts the buffers top pointer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$bufaddr}]Pointer to the buffer where the packet is to be added. \item[{\em packet}]A n\-RP packet. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 (zero) if the packet was succesfully added to the buffer, -1 if buffer was full and the packet was dropped. \end{Desc}
+\hypertarget{serialserver_8h_3f3be2bf87e312a69c82b7d4b4ca22d1}{
+\index{serialserver.h@{serialserver.h}!clear_buffer@{clear\_\-buffer}}
+\index{clear_buffer@{clear\_\-buffer}!serialserver.h@{serialserver.h}}
+\subsubsection[clear\_\-buffer]{\setlength{\rightskip}{0pt plus 5cm}int clear\_\-buffer (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr})}}
+\label{serialserver_8h_3f3be2bf87e312a69c82b7d4b4ca22d1}
+
+
+Remove all packets from buffer.
+
+This function removes all the packets from a buffer pointed to by buffaddr and adjusts the bottom and top pointers accordingly.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em bufaddr}]A pointer to the buffer which is to be cleared. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Number of packets removed, 0 (zero) if no packets were removed, -1 if an unspecified error occured. \end{Desc}
+\hypertarget{serialserver_8h_5d51942f0ef0b6445c054f3032f4555f}{
+\index{serialserver.h@{serialserver.h}!get_bottom_packet@{get\_\-bottom\_\-packet}}
+\index{get_bottom_packet@{get\_\-bottom\_\-packet}!serialserver.h@{serialserver.h}}
+\subsubsection[get\_\-bottom\_\-packet]{\setlength{\rightskip}{0pt plus 5cm}int get\_\-bottom\_\-packet (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr}, char $\ast$ {\em packet})}}
+\label{serialserver_8h_5d51942f0ef0b6445c054f3032f4555f}
+
+
+Retrieves the bottom packet.
+
+This function is used to retrieve the bottom packet which is to be sent next.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em bufaddr}]Pointer to the buffer where the packet is to be retrieved. \item[{\em packet}]Pointer to a char array where the retrieved packet is copied. At least MAX\_\-NRP\_\-PACKET\_\-SIZE octets must be reserved to the array before the function is called. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 (zero) if packet was succesfully retrieved, 1 if the buffer was empty, -1 if packet is a NULL pointer, -2 if an unspecified error occured. \end{Desc}
+\hypertarget{serialserver_8h_e1a29e498724fcfebb69666c93918523}{
+\index{serialserver.h@{serialserver.h}!init_serial_buffers@{init\_\-serial\_\-buffers}}
+\index{init_serial_buffers@{init\_\-serial\_\-buffers}!serialserver.h@{serialserver.h}}
+\subsubsection[init\_\-serial\_\-buffers]{\setlength{\rightskip}{0pt plus 5cm}int init\_\-serial\_\-buffers (void)}}
+\label{serialserver_8h_e1a29e498724fcfebb69666c93918523}
+
+
+The buffer initialization function.
+
+The serial servers send buffers are initialized in this function. Memory is allocated and the buffers internal pointers are set. If a separate priority send buffer will be implemented in the future, it must also be initialized here.
+
+\begin{Desc}
+\item[Returns:]0 on success, -1 on failure to allocate memory for buffers. \end{Desc}
+\hypertarget{serialserver_8h_0a07beae6fb26ce3e0e812b24126dda0}{
+\index{serialserver.h@{serialserver.h}!nrp_from_serial@{nrp\_\-from\_\-serial}}
+\index{nrp_from_serial@{nrp\_\-from\_\-serial}!serialserver.h@{serialserver.h}}
+\subsubsection[nrp\_\-from\_\-serial]{\setlength{\rightskip}{0pt plus 5cm}int nrp\_\-from\_\-serial (unsigned char {\em packet}\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]}, int {\em len})}}
+\label{serialserver_8h_0a07beae6fb26ce3e0e812b24126dda0}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000012}{Todo}]Implement the Type ID 1 \& 2 handling! -mjs \end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000012}{Todo}]Add support for other address types. The only supported at the moment is 802.15.4 long address 8 bytes. -mjs \end{Desc}
+\hypertarget{serialserver_8h_1b258be2c3a250127d23e74e0f524a00}{
+\index{serialserver.h@{serialserver.h}!purge_bottom_packet@{purge\_\-bottom\_\-packet}}
+\index{purge_bottom_packet@{purge\_\-bottom\_\-packet}!serialserver.h@{serialserver.h}}
+\subsubsection[purge\_\-bottom\_\-packet]{\setlength{\rightskip}{0pt plus 5cm}int purge\_\-bottom\_\-packet (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr})}}
+\label{serialserver_8h_1b258be2c3a250127d23e74e0f524a00}
+
+
+Remove the bottom packet.
+
+This function removes the packet pointed to by the bottom pointer from the buffer specified by the buffaddr. After this the bottom pointer will be readjusted to point to the new bottom packet.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em bufaddr}]Pointer to the buffer where the packet is to be purged from. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 (zero) if the packet was succesfully purged, 1 if the buffer was already empty or -1 if an unspecified error occured. \end{Desc}
+\hypertarget{serialserver_8h_d1906dfda0437f68ccc02e98ec91b6d9}{
+\index{serialserver.h@{serialserver.h}!purge_packet@{purge\_\-packet}}
+\index{purge_packet@{purge\_\-packet}!serialserver.h@{serialserver.h}}
+\subsubsection[purge\_\-packet]{\setlength{\rightskip}{0pt plus 5cm}int purge\_\-packet (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr}, char {\em packet\_\-header}\mbox{[}25\mbox{]})}}
+\label{serialserver_8h_d1906dfda0437f68ccc02e98ec91b6d9}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000014}{Todo}]This function is yet to be implmented -mjs. \end{Desc}
+\hypertarget{serialserver_8h_153474125511d686cc5b172d9e5bf58d}{
+\index{serialserver.h@{serialserver.h}!send_to_serial@{send\_\-to\_\-serial}}
+\index{send_to_serial@{send\_\-to\_\-serial}!serialserver.h@{serialserver.h}}
+\subsubsection[send\_\-to\_\-serial]{\setlength{\rightskip}{0pt plus 5cm}int send\_\-to\_\-serial (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr}, char {\em packet}\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]})}}
+\label{serialserver_8h_153474125511d686cc5b172d9e5bf58d}
+
+
+This function is used to send n\-RP packets to serial interface.
+
+This function does not actually send the packet to serial interface but simply adds the packet into serial send buffer. As the buffer is a FIFO the packet will be placed as the last entry in the buffer. The address of the buffer is required so that we can have more than one send buffer in the future e.g. normal and priority buffers. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em bufaddr}]The address of the buffer where the packet is placed. \item[{\em packet}]The packet which is to placed in to the buffer. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 (zero) is returned if the packet was succesfully placed in to the buffer, -1 if buffer was full. \end{Desc}
+
+
+\subsection{Variable Documentation}
+\hypertarget{serialserver_8h_97225d6b27c2b1eb59c787ef7455fccb}{
+\index{serialserver.h@{serialserver.h}!serial_send_buffer@{serial\_\-send\_\-buffer}}
+\index{serial_send_buffer@{serial\_\-send\_\-buffer}!serialserver.h@{serialserver.h}}
+\subsubsection[serial\_\-send\_\-buffer]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} \hyperlink{serialserver_8h_97225d6b27c2b1eb59c787ef7455fccb}{serial\_\-send\_\-buffer}}}
+\label{serialserver_8h_97225d6b27c2b1eb59c787ef7455fccb}
+
+
+serial\_\-send\_\-buffer The actual serial port send buffer.
+
+This buffer is introduced here but e.g. memory for some of its internals is allocated at \hyperlink{serialserver_8c_e1a29e498724fcfebb69666c93918523}{init\_\-serial\_\-buffers()}. 

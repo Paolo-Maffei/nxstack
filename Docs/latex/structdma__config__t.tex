@@ -1,0 +1,94 @@
+\hypertarget{structdma__config__t}{
+\section{dma\_\-config\_\-t Struct Reference}
+\label{structdma__config__t}\index{dma_config_t@{dma\_\-config\_\-t}}
+}
+{\tt \#include $<$dma.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+uint8\_\-t \hyperlink{structdma__config__t_fb5908c7e14524a97700beaccd97ba53}{src\_\-h}
+\item 
+uint8\_\-t \hyperlink{structdma__config__t_df559811e53bbde7b6dc8cc6abb17e87}{src\_\-l}
+\item 
+uint8\_\-t \hyperlink{structdma__config__t_528a6d47caadb8b50b6bfa73444fb711}{dst\_\-h}
+\item 
+uint8\_\-t \hyperlink{structdma__config__t_ba26fe8bc8fc23929a766db7afe2e082}{dst\_\-l}
+\item 
+uint8\_\-t \hyperlink{structdma__config__t_c28c429f8e8b40eb50daf4994ecdf056}{len\_\-h}
+\item 
+uint8\_\-t \hyperlink{structdma__config__t_a4bfe298c22cedde28a40bd00d1db608}{len\_\-l}
+\item 
+uint8\_\-t \hyperlink{structdma__config__t_e41c35fc1ca1e6b7ddace92021656e4f}{t\_\-mode}
+\item 
+uint8\_\-t \hyperlink{structdma__config__t_ad91fc2dadb15a7a368fa2731f4a0e8b}{addr\_\-mode}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+DMA configuration structure 
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structdma__config__t_ad91fc2dadb15a7a368fa2731f4a0e8b}{
+\index{dma_config_t@{dma\_\-config\_\-t}!addr_mode@{addr\_\-mode}}
+\index{addr_mode@{addr\_\-mode}!dma_config_t@{dma\_\-config\_\-t}}
+\subsubsection[addr\_\-mode]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structdma__config__t_ad91fc2dadb15a7a368fa2731f4a0e8b}{dma\_\-config\_\-t::addr\_\-mode}}}
+\label{structdma__config__t_ad91fc2dadb15a7a368fa2731f4a0e8b}
+
+
+address mode: 7-6=src inc, 5-4=dst\_\-inc, 3=IRQ, 2=M8(vlen) 1-0:priority \hypertarget{structdma__config__t_528a6d47caadb8b50b6bfa73444fb711}{
+\index{dma_config_t@{dma\_\-config\_\-t}!dst_h@{dst\_\-h}}
+\index{dst_h@{dst\_\-h}!dma_config_t@{dma\_\-config\_\-t}}
+\subsubsection[dst\_\-h]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structdma__config__t_528a6d47caadb8b50b6bfa73444fb711}{dma\_\-config\_\-t::dst\_\-h}}}
+\label{structdma__config__t_528a6d47caadb8b50b6bfa73444fb711}
+
+
+dest. address high byte \hypertarget{structdma__config__t_ba26fe8bc8fc23929a766db7afe2e082}{
+\index{dma_config_t@{dma\_\-config\_\-t}!dst_l@{dst\_\-l}}
+\index{dst_l@{dst\_\-l}!dma_config_t@{dma\_\-config\_\-t}}
+\subsubsection[dst\_\-l]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structdma__config__t_ba26fe8bc8fc23929a766db7afe2e082}{dma\_\-config\_\-t::dst\_\-l}}}
+\label{structdma__config__t_ba26fe8bc8fc23929a766db7afe2e082}
+
+
+dest. address low byte \hypertarget{structdma__config__t_c28c429f8e8b40eb50daf4994ecdf056}{
+\index{dma_config_t@{dma\_\-config\_\-t}!len_h@{len\_\-h}}
+\index{len_h@{len\_\-h}!dma_config_t@{dma\_\-config\_\-t}}
+\subsubsection[len\_\-h]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structdma__config__t_c28c429f8e8b40eb50daf4994ecdf056}{dma\_\-config\_\-t::len\_\-h}}}
+\label{structdma__config__t_c28c429f8e8b40eb50daf4994ecdf056}
+
+
+transfer mode in high 3 bits, length high byte, 4 lowest bits \hypertarget{structdma__config__t_a4bfe298c22cedde28a40bd00d1db608}{
+\index{dma_config_t@{dma\_\-config\_\-t}!len_l@{len\_\-l}}
+\index{len_l@{len\_\-l}!dma_config_t@{dma\_\-config\_\-t}}
+\subsubsection[len\_\-l]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structdma__config__t_a4bfe298c22cedde28a40bd00d1db608}{dma\_\-config\_\-t::len\_\-l}}}
+\label{structdma__config__t_a4bfe298c22cedde28a40bd00d1db608}
+
+
+length low byte \hypertarget{structdma__config__t_fb5908c7e14524a97700beaccd97ba53}{
+\index{dma_config_t@{dma\_\-config\_\-t}!src_h@{src\_\-h}}
+\index{src_h@{src\_\-h}!dma_config_t@{dma\_\-config\_\-t}}
+\subsubsection[src\_\-h]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structdma__config__t_fb5908c7e14524a97700beaccd97ba53}{dma\_\-config\_\-t::src\_\-h}}}
+\label{structdma__config__t_fb5908c7e14524a97700beaccd97ba53}
+
+
+source address high byte \hypertarget{structdma__config__t_df559811e53bbde7b6dc8cc6abb17e87}{
+\index{dma_config_t@{dma\_\-config\_\-t}!src_l@{src\_\-l}}
+\index{src_l@{src\_\-l}!dma_config_t@{dma\_\-config\_\-t}}
+\subsubsection[src\_\-l]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structdma__config__t_df559811e53bbde7b6dc8cc6abb17e87}{dma\_\-config\_\-t::src\_\-l}}}
+\label{structdma__config__t_df559811e53bbde7b6dc8cc6abb17e87}
+
+
+source address low byte \hypertarget{structdma__config__t_e41c35fc1ca1e6b7ddace92021656e4f}{
+\index{dma_config_t@{dma\_\-config\_\-t}!t_mode@{t\_\-mode}}
+\index{t_mode@{t\_\-mode}!dma_config_t@{dma\_\-config\_\-t}}
+\subsubsection[t\_\-mode]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structdma__config__t_e41c35fc1ca1e6b7ddace92021656e4f}{dma\_\-config\_\-t::t\_\-mode}}}
+\label{structdma__config__t_e41c35fc1ca1e6b7ddace92021656e4f}
+
+
+transfer mode: bit7=word mode, 6-5=block/single 4-0=trigger 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/nano/include/\hyperlink{dma_8h}{dma.h}\end{CompactItemize}

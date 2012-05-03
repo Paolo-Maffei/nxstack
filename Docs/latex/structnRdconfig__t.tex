@@ -1,0 +1,123 @@
+\hypertarget{structnRdconfig__t}{
+\section{n\-Rdconfig\_\-t Struct Reference}
+\label{structnRdconfig__t}\index{nRdconfig_t@{nRdconfig\_\-t}}
+}
+{\tt \#include $<$n\-Routed.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+char \hyperlink{structnRdconfig__t_a7672061ebda79d00c44848f9fdd92f1}{wdir} \mbox{[}128\mbox{]}
+\item 
+char \hyperlink{structnRdconfig__t_3547a24e8d3de9b4fd944436dc8ac4ce}{serialport} \mbox{[}128\mbox{]}
+\item 
+int \hyperlink{structnRdconfig__t_1ea3e47a7eb26c77e75e086d43accfb5}{uselogging}
+\item 
+int \hyperlink{structnRdconfig__t_22ac64dd30576544d6da3aaad596093f}{loglevel}
+\item 
+char \hyperlink{structnRdconfig__t_5dbdadb12b1dfa4a7266f0ac7b4c9ee6}{logfile} \mbox{[}128\mbox{]}
+\item 
+int \hyperlink{structnRdconfig__t_38a3366fe88f4f983001879c3d21532b}{tcpport}
+\item 
+char \hyperlink{structnRdconfig__t_7bc3c655e748fa2f111b01c18ce42e30}{tcpaddr} \mbox{[}32\mbox{]}
+\item 
+int \hyperlink{structnRdconfig__t_8b2003cf3fd6431e43d6e53ec563a968}{tcpallowmulti}
+\item 
+int \hyperlink{structnRdconfig__t_76150067cf1ce716265a738d93e46c75}{tcpmaxconn}
+\item 
+int \hyperlink{structnRdconfig__t_fbda9271df1df01f8670ec718d3b73d3}{serialbufsize}
+\item 
+int \hyperlink{structnRdconfig__t_69ce236d67271ff0a4c579ab2a9a0698}{protocol}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Struct for configuration data.
+
+The \hyperlink{structnRdconfig__t}{n\-Rdconfig\_\-t} struct contains fields for all the relevant configuration information for n\-Routed. 
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structnRdconfig__t_5dbdadb12b1dfa4a7266f0ac7b4c9ee6}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!logfile@{logfile}}
+\index{logfile@{logfile}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[logfile]{\setlength{\rightskip}{0pt plus 5cm}char \hyperlink{structnRdconfig__t_5dbdadb12b1dfa4a7266f0ac7b4c9ee6}{n\-Rdconfig\_\-t::logfile}\mbox{[}128\mbox{]}}}
+\label{structnRdconfig__t_5dbdadb12b1dfa4a7266f0ac7b4c9ee6}
+
+
+Character array containing the path to the n\-Routed logfile. Default: \char`\"{}/var/log/n\-Routed.log\char`\"{} \hypertarget{structnRdconfig__t_22ac64dd30576544d6da3aaad596093f}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!loglevel@{loglevel}}
+\index{loglevel@{loglevel}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[loglevel]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdconfig__t_22ac64dd30576544d6da3aaad596093f}{n\-Rdconfig\_\-t::loglevel}}}
+\label{structnRdconfig__t_22ac64dd30576544d6da3aaad596093f}
+
+
+The amount of information that is logged. 0=low (only starting, exiting and errors are logged), 1=medium (some additional information is also logged), 2=high (extensive logging, almost every action is logged. Be careful with logfile size). Default: 0 \hypertarget{structnRdconfig__t_69ce236d67271ff0a4c579ab2a9a0698}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!protocol@{protocol}}
+\index{protocol@{protocol}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[protocol]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdconfig__t_69ce236d67271ff0a4c579ab2a9a0698}{n\-Rdconfig\_\-t::protocol}}}
+\label{structnRdconfig__t_69ce236d67271ff0a4c579ab2a9a0698}
+
+
+Protocol to register \hypertarget{structnRdconfig__t_fbda9271df1df01f8670ec718d3b73d3}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!serialbufsize@{serialbufsize}}
+\index{serialbufsize@{serialbufsize}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[serialbufsize]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdconfig__t_fbda9271df1df01f8670ec718d3b73d3}{n\-Rdconfig\_\-t::serialbufsize}}}
+\label{structnRdconfig__t_fbda9271df1df01f8670ec718d3b73d3}
+
+
+How many packets should the serial server sendbuffer have space for. Default: 20 \hypertarget{structnRdconfig__t_3547a24e8d3de9b4fd944436dc8ac4ce}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!serialport@{serialport}}
+\index{serialport@{serialport}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[serialport]{\setlength{\rightskip}{0pt plus 5cm}char \hyperlink{structnRdconfig__t_3547a24e8d3de9b4fd944436dc8ac4ce}{n\-Rdconfig\_\-t::serialport}\mbox{[}128\mbox{]}}}
+\label{structnRdconfig__t_3547a24e8d3de9b4fd944436dc8ac4ce}
+
+
+Character array containing the path to serial port device to use. Default: \char`\"{}/dev/tty\-S0\char`\"{} \hypertarget{structnRdconfig__t_7bc3c655e748fa2f111b01c18ce42e30}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!tcpaddr@{tcpaddr}}
+\index{tcpaddr@{tcpaddr}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[tcpaddr]{\setlength{\rightskip}{0pt plus 5cm}char \hyperlink{structnRdconfig__t_7bc3c655e748fa2f111b01c18ce42e30}{n\-Rdconfig\_\-t::tcpaddr}\mbox{[}32\mbox{]}}}
+\label{structnRdconfig__t_7bc3c655e748fa2f111b01c18ce42e30}
+
+
+The address of the interface where to bind the TCP server. \hypertarget{structnRdconfig__t_8b2003cf3fd6431e43d6e53ec563a968}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!tcpallowmulti@{tcpallowmulti}}
+\index{tcpallowmulti@{tcpallowmulti}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[tcpallowmulti]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdconfig__t_8b2003cf3fd6431e43d6e53ec563a968}{n\-Rdconfig\_\-t::tcpallowmulti}}}
+\label{structnRdconfig__t_8b2003cf3fd6431e43d6e53ec563a968}
+
+
+Whether to allow multiple TCP connections from the same IP address. 0=no 1=yes. Default: 1 \hypertarget{structnRdconfig__t_76150067cf1ce716265a738d93e46c75}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!tcpmaxconn@{tcpmaxconn}}
+\index{tcpmaxconn@{tcpmaxconn}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[tcpmaxconn]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdconfig__t_76150067cf1ce716265a738d93e46c75}{n\-Rdconfig\_\-t::tcpmaxconn}}}
+\label{structnRdconfig__t_76150067cf1ce716265a738d93e46c75}
+
+
+The maximum number of simultaneous TCP connections. Default: 1 \hypertarget{structnRdconfig__t_38a3366fe88f4f983001879c3d21532b}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!tcpport@{tcpport}}
+\index{tcpport@{tcpport}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[tcpport]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdconfig__t_38a3366fe88f4f983001879c3d21532b}{n\-Rdconfig\_\-t::tcpport}}}
+\label{structnRdconfig__t_38a3366fe88f4f983001879c3d21532b}
+
+
+The TCP port number to listen for connections. Default: 21780 \hypertarget{structnRdconfig__t_1ea3e47a7eb26c77e75e086d43accfb5}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!uselogging@{uselogging}}
+\index{uselogging@{uselogging}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[uselogging]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdconfig__t_1ea3e47a7eb26c77e75e086d43accfb5}{n\-Rdconfig\_\-t::uselogging}}}
+\label{structnRdconfig__t_1ea3e47a7eb26c77e75e086d43accfb5}
+
+
+Whether to log events in to log file. 0=NO, 1=YES. Default: 1 \hypertarget{structnRdconfig__t_a7672061ebda79d00c44848f9fdd92f1}{
+\index{nRdconfig_t@{n\-Rdconfig\_\-t}!wdir@{wdir}}
+\index{wdir@{wdir}!nRdconfig_t@{n\-Rdconfig\_\-t}}
+\subsubsection[wdir]{\setlength{\rightskip}{0pt plus 5cm}char \hyperlink{structnRdconfig__t_a7672061ebda79d00c44848f9fdd92f1}{n\-Rdconfig\_\-t::wdir}\mbox{[}128\mbox{]}}}
+\label{structnRdconfig__t_a7672061ebda79d00c44848f9fdd92f1}
+
+
+Character array containing the working directory path. Default: \char`\"{}/tmp/n\-Routed/\char`\"{} 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/n\-Route/\hyperlink{nRouted_8h}{n\-Routed.h}\end{CompactItemize}

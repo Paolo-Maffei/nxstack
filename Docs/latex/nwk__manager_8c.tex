@@ -1,0 +1,120 @@
+\hypertarget{nwk__manager_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/nwk\_\-manager.c File Reference}
+\label{nwk__manager_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/modules/nwk_manager.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/nwk\_\-manager.c}}
+}
+802.15.4 MAC management module. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}socket.h\char`\"{}}\par
+{\tt \#include \char`\"{}buffer.h\char`\"{}}\par
+{\tt \#include \char`\"{}module.h\char`\"{}}\par
+{\tt \#include \char`\"{}neighbor\_\-routing\_\-table.h\char`\"{}}\par
+{\tt \#include \char`\"{}event\_\-timer.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf.h\char`\"{}}\par
+{\tt \#include \char`\"{}control\_\-message.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{nwk__manager_8c_e555292f3da81705fc61272931736cc8}{nwk\_\-manager\_\-init} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{nwk__manager_8c_335ec8574fa53daafa5bf14e1a56ffe6}{nwk\_\-manager\_\-handle} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buffer)
+\item 
+port\-CHAR \hyperlink{nwk__manager_8c_bae5884fc797934edcce038b8f84fa49}{nwk\_\-manager\_\-check} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\begin{CompactList}\small\item\em This function returns \_\-always\_\- pd\-FALSE. \item\end{CompactList}\item 
+void \hyperlink{nwk__manager_8c_866bc4bbe613004803295e013c318a16}{nwk\_\-manager\_\-create\_\-ctrl\_\-message\_\-to\_\-mac} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf, \hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3}{mac\_\-control\_\-id\_\-t} message\_\-id, uint8\_\-t parameter)
+\begin{CompactList}\small\item\em This function creates a control message acoording to the parameters and sends it to the MAC module. \item\end{CompactList}\item 
+void \hyperlink{nwk__manager_8c_7d816957095e20dbc2afb235874f2334}{nwk\_\-manager\_\-launch} (void)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+802.15.4 MAC management module. 
+
+802.15.4 MAC management module: handler functions. 
+
+\subsection{Function Documentation}
+\hypertarget{nwk__manager_8c_bae5884fc797934edcce038b8f84fa49}{
+\index{nwk_manager.c@{nwk\_\-manager.c}!nwk_manager_check@{nwk\_\-manager\_\-check}}
+\index{nwk_manager_check@{nwk\_\-manager\_\-check}!nwk_manager.c@{nwk\_\-manager.c}}
+\subsubsection[nwk\_\-manager\_\-check]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR nwk\_\-manager\_\-check (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{nwk__manager_8c_bae5884fc797934edcce038b8f84fa49}
+
+
+This function returns \_\-always\_\- pd\-FALSE. 
+
+Standard nanostack buffer checker.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]Buffer to process \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE Buffer passed module check 
+
+pd\-FALSE Buffer rejected by module \end{Desc}
+\hypertarget{nwk__manager_8c_866bc4bbe613004803295e013c318a16}{
+\index{nwk_manager.c@{nwk\_\-manager.c}!nwk_manager_create_ctrl_message_to_mac@{nwk\_\-manager\_\-create\_\-ctrl\_\-message\_\-to\_\-mac}}
+\index{nwk_manager_create_ctrl_message_to_mac@{nwk\_\-manager\_\-create\_\-ctrl\_\-message\_\-to\_\-mac}!nwk_manager.c@{nwk\_\-manager.c}}
+\subsubsection[nwk\_\-manager\_\-create\_\-ctrl\_\-message\_\-to\_\-mac]{\setlength{\rightskip}{0pt plus 5cm}void nwk\_\-manager\_\-create\_\-ctrl\_\-message\_\-to\_\-mac (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf}, \hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3}{mac\_\-control\_\-id\_\-t} {\em message\_\-id}, uint8\_\-t {\em parameter})}}
+\label{nwk__manager_8c_866bc4bbe613004803295e013c318a16}
+
+
+This function creates a control message acoording to the parameters and sends it to the MAC module. 
+
+Build and send control messages to MAC module.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]Pointer for data structure. \item[{\em message\_\-id}]Message type \item[{\em parameter}]Setup value: logical channel for START\_\-REQ and ASSOC\_\-REQ, scan type for SCAN\_\-REQ \end{description}
+\end{Desc}
+\hypertarget{nwk__manager_8c_335ec8574fa53daafa5bf14e1a56ffe6}{
+\index{nwk_manager.c@{nwk\_\-manager.c}!nwk_manager_handle@{nwk\_\-manager\_\-handle}}
+\index{nwk_manager_handle@{nwk\_\-manager\_\-handle}!nwk_manager.c@{nwk\_\-manager.c}}
+\subsubsection[nwk\_\-manager\_\-handle]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR nwk\_\-manager\_\-handle (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buffer})}}
+\label{nwk__manager_8c_335ec8574fa53daafa5bf14e1a56ffe6}
+
+
+Standard nanostack buffer handler.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]Buffer to process \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE Buffer handled by this module 
+
+pd\-FALSE Buffer rejected by module \end{Desc}
+\hypertarget{nwk__manager_8c_e555292f3da81705fc61272931736cc8}{
+\index{nwk_manager.c@{nwk\_\-manager.c}!nwk_manager_init@{nwk\_\-manager\_\-init}}
+\index{nwk_manager_init@{nwk\_\-manager\_\-init}!nwk_manager.c@{nwk\_\-manager.c}}
+\subsubsection[nwk\_\-manager\_\-init]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR nwk\_\-manager\_\-init (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{nwk__manager_8c_e555292f3da81705fc61272931736cc8}
+
+
+Standard nanostack module initalizer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]A buffer for compatibility with stack functions \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{nwk__manager_8c_7d816957095e20dbc2afb235874f2334}{
+\index{nwk_manager.c@{nwk\_\-manager.c}!nwk_manager_launch@{nwk\_\-manager\_\-launch}}
+\index{nwk_manager_launch@{nwk\_\-manager\_\-launch}!nwk_manager.c@{nwk\_\-manager.c}}
+\subsubsection[nwk\_\-manager\_\-launch]{\setlength{\rightskip}{0pt plus 5cm}void nwk\_\-manager\_\-launch (void)}}
+\label{nwk__manager_8c_7d816957095e20dbc2afb235874f2334}
+
+
+Lauch RFD device Assocation process.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}

@@ -1,0 +1,686 @@
+\hypertarget{rf__802__15__4_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/rf\_\-802\_\-15\_\-4.h File Reference}
+\label{rf__802__15__4_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/include/rf_802_15_4.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/rf\_\-802\_\-15\_\-4.h}}
+}
+RF 802.15.4 modules constant and stuctures. 
+
+{\tt \#include \char`\"{}buffer.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structmac__15__4__event__t}{mac\_\-15\_\-4\_\-event\_\-t}
+\item 
+struct \hyperlink{structmac__tx__pool__t}{mac\_\-tx\_\-pool\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__pib__t}{rf\_\-802\_\-15\_\-4\_\-pib\_\-t}
+\item 
+struct \hyperlink{structpan__descriptor__t}{pan\_\-descriptor\_\-t}
+\item 
+struct \hyperlink{structack__waiting__pool__t}{ack\_\-waiting\_\-pool\_\-t}
+\item 
+struct \hyperlink{structdisc__res__t}{disc\_\-res\_\-t}
+\item 
+struct \hyperlink{structdiscover__res__t}{discover\_\-res\_\-t}
+\item 
+struct \hyperlink{structrf__mac__header__analyze__t}{rf\_\-mac\_\-header\_\-analyze\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__beacon__notify__t}{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__assoc__req__t}{rf\_\-802\_\-15\_\-4\_\-assoc\_\-req\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__disassocite__req__t}{rf\_\-802\_\-15\_\-4\_\-disassocite\_\-req\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__disassocite__ind__t}{rf\_\-802\_\-15\_\-4\_\-disassocite\_\-ind\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__rx__enable__req__t}{rf\_\-802\_\-15\_\-4\_\-rx\_\-enable\_\-req\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__scan__req__t}{rf\_\-802\_\-15\_\-4\_\-scan\_\-req\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__scan__confirm__t}{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__comm__status__ind__t}{rf\_\-802\_\-15\_\-4\_\-comm\_\-status\_\-ind\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__synch__req__t}{rf\_\-802\_\-15\_\-4\_\-synch\_\-req\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__synch__lost__t}{rf\_\-802\_\-15\_\-4\_\-synch\_\-lost\_\-t}
+\item 
+struct \hyperlink{structrf__802__15__4__poll__req__t}{rf\_\-802\_\-15\_\-4\_\-poll\_\-req\_\-t}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{rf__802__15__4_8h_a8cecfc5c5c054d2875c03e77b7be15d}{TRUE}~1
+\item 
+\#define \hyperlink{rf__802__15__4_8h_e21043003731fcc05157f61cb6351a70}{FC\_\-DST\_\-MODE}~0x0C
+\item 
+\#define \hyperlink{rf__802__15__4_8h_e96853bcb003b10b80b0adf317867df1}{MC\_\-ALTER\_\-COORD}~0x01
+\item 
+\#define \hyperlink{rf__802__15__4_8h_873ee6efb40bab3dc7e7a79b8a17db3a}{ACTIVE\_\-SCAN}~0x01
+\item 
+\#define \hyperlink{rf__802__15__4_8h_7f74f085a2305c0a6e23adc4e0ea7989}{CMD\_\-ASSOC\_\-REQ}~1
+\item 
+\#define \hyperlink{rf__802__15__4_8h_98c9e628f629ce7044efc1fa612f855b}{BI\_\-12}~40673
+\item 
+\#define \hyperlink{rf__802__15__4_8h_9da0938e6f795a2e6be402e2b616f6cb}{a\-Max\-PHYPacket\-Size}~127
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum \hyperlink{rf__802__15__4_8h_ffa9298afe5e5525bc95731508416054}{mac\_\-tx\_\-engine\_\-state\_\-t} 
+\item 
+enum \hyperlink{rf__802__15__4_8h_343a7927f43f2ee514c20f86ccd8a015}{mac\_\-internal\_\-state\_\-t} 
+\item 
+enum \hyperlink{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4f}{mac\_\-state\_\-t} \{ \hyperlink{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4fd109cff3542f43a377b902371f462251}{BEACON\_\-TRACK} =  0, 
+\hyperlink{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4fd92488d991b9dd268a0fc135d3dd62c4}{DISSCONNECT} =  1, 
+\hyperlink{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4f20391dd2915a0e64343d24c2f2e40b95}{CONNECT} =  2, 
+\hyperlink{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4f6a917f18f3f7b1d8ccd117dbcf307eda}{AD\_\-HOC} =  3
+ \}
+\item 
+enum \hyperlink{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af}{assoc\_\-status\_\-t} \{ \hyperlink{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47afd6c335850d156a55bff3e1efabd84ed2}{ASSOC\_\-SUCCESSFUL} =  0, 
+\hyperlink{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af3e59448817170faaf02adeb219d163f4}{PAN\_\-AT\_\-CAPACITY} =  1, 
+\hyperlink{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af9c57583ad491217a69a63fdabf336c8e}{ACCESS\_\-DENIED} =  2
+ \}
+\item 
+enum \hyperlink{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8}{mac\_\-runnin\_\-mode\_\-t} \{ \hyperlink{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8ccb1ce47b6528c244a2d29d093a47212}{AD\_\-HOC\_\-MODE} =  0, 
+\hyperlink{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8f4be382035e055d1eb9d49e9de7adf80}{BEACON\_\-ENABLE\_\-MODE} =  1, 
+\hyperlink{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8ce462a5b19c656464f16ec088006710a}{BEACON\_\-ENABLE\_\-COORD\_\-MODE} =  2, 
+\hyperlink{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a84ea7a5821d9f3fd2cf16250d49a02c90}{ROUTER\_\-MODE} =  3
+ \}
+\item 
+enum \hyperlink{rf__802__15__4_8h_099434bf4a881a6e0be8e35b4bc34e5b}{mac\_\-device\_\-type\_\-t} \{ \hyperlink{rf__802__15__4_8h_099434bf4a881a6e0be8e35b4bc34e5ba9198f5f01907bd003d31c2c0bb65bed}{MAC\_\-RFD\_\-TYPE} =  0, 
+\hyperlink{rf__802__15__4_8h_099434bf4a881a6e0be8e35b4bc34e5bd7ea7786f88cc6f2e5cab3a1d303f4e6}{MAC\_\-FFD\_\-TYPE} =  1
+ \}
+\item 
+enum \hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3}{mac\_\-control\_\-id\_\-t} \{ \par
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d35aa32363253bb9427e18cf645edc8847}{BEACON\_\-NOTIFY} =  0, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3bae20e552cd67979613556b2be4113e8}{ASSOC\_\-REQ} =  1, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d33ca91c2c0f6d63fae5cf3f850e2c2239}{ASSOC\_\-IND} =  2, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3e17d810475f4e956246dc05f074abbb1}{ASSOC\_\-RESPONSE} =  3, 
+\par
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d34ae7ccb563c3823dbe35acfc74bfc23e}{ASSOC\_\-CONFIRM} =  4, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3df196c5f3a736e95559a3f84a721835b}{DISSASSOC\_\-REQ} =  5, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3fe9518abc32f66756643cb86349ef3b2}{DISSASSOC\_\-IND} =  6, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3d0215dc7674de86ed935ce0063287526}{GET\_\-REQ} =  7, 
+\par
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d34c7295552c687cf1970e99fe21b73ef3}{GET\_\-CONFIRM} =  8, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d328cada8d65372f144109d75aa70697e1}{SET\_\-REQ} =  9, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3073b2a4ef2d76ddd4cb101be428b5775}{SET\_\-CONFIRM} =  10, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3a9f5d8a3a361f766eab5fe9b9798509b}{GTS\_\-REQ} =  11, 
+\par
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d332e10b2802e629f919db9474aa92fa52}{GTS\_\-CONFIRM} =  12, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3363f6f8d7a454f59e7dc93304d6b4ec2}{GTS\_\-IND} =  13, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d35a70bb85b632ddc9e7cfee3e97c1a39d}{POLL\_\-REQ} =  14, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3c5cb8e5ba551f18b16fd5f93cc89d530}{COMM\_\-STATUS} =  15, 
+\par
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d38c3e2a8a51cd41976b53fdb8b58b3680}{ORPHAN\_\-IND} =  16, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d38adae9ab93eef069bdb69d4eb388d762}{ORPHAN\_\-RESPONSE} =  17, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d34703473e1b82f9224cb2a7acdf7e8dfe}{SCAN\_\-REQ} =  18, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d302d46e6c5c6b60226565d89ea3b02de0}{SCAN\_\-CONFIRM} =  19, 
+\par
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d36b8779542b5cee93c272fbcbac97fa06}{START\_\-REQ} =  20, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3c532f1d286ed4a78266f9d03f16c6434}{START\_\-CONFIRM} =  21, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3e87f79730e9911c44a57b1dc216e9393}{RX\_\-ENABLE\_\-REQ} =  22, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3182e185a2945501f87abf40a920852fb}{RX\_\-ENABLE\_\-CONFIRM} =  23, 
+\par
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3dc0968317170b28165a64063acf58953}{SYNCH\_\-REQ} =  24, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d359497e21d7865e8cb2387c3f45e12da7}{SYNCH\_\-LOSS\_\-IND} =  25, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d32e56f6a3c653f26b0f18043816596381}{RESET\_\-REQ} =  26, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3785232912d3cad462ada6879f6f3b598}{RESET\_\-CONFIRM} =  27, 
+\par
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d32ec6760f9eafeb9f453cd1c86bb4b33f}{ROUTER\_\-START} =  28, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3247cdd4a9269db3ffdccc4eb532ac934}{PEND\_\-REQ} =  29, 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3ec851750be6c49917bedf99e92ef3e78}{PEND\_\-DATA\_\-NOT\_\-DOWNLOAD} =  30
+ \}
+\item 
+enum \hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1}{mac\_\-pib\_\-enum\_\-t} \{ \par
+\hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d12c6f1ad095e4cabb1aa4580b74291eec}{MAC\_\-CURRENT\_\-CHANNEL}, 
+\hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1cd8cf2618d16ef6851f398e82d9821a1}{MAC\_\-IEEE\_\-ADDRESS}, 
+\hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d190d76917ffadda0435a3f20923d8eb78}{MAC\_\-CORD\_\-IEEE\_\-ADDRESS}, 
+\hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d197eebb53ff44f1a58b658034abb0c56e}{MAC\_\-PAN\_\-ID}, 
+\par
+\hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1b2937f16db153638210d8a4ed1da1fdc}{MAC\_\-SO}, 
+\hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1ed0deb9880062332661961632739755d}{MAC\_\-BO}, 
+\hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d157db36cae7a8367f98a9abf9b05f74c0}{MAC\_\-SHORT\_\-ADDRESS}, 
+\hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d16ade225ddc2cac8fe103b6f7e0962844}{PENDING\_\-TTL}, 
+\par
+\hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1fc6ac4196225df0ac1ddd69cb3f19426}{RUNNING\_\-MODE}, 
+\hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1ece2cbd0c7f7408cc02a0b4afe4de924}{ASSOC\_\-PERMIT}
+ \}
+\item 
+enum \hyperlink{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd2}{csma\_\-response\_\-t} \{ \par
+\hyperlink{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd273e394ccc8ebd0497a367ed9a7886b5f}{MAC\_\-TX\_\-SUCCESS} =  0, 
+\hyperlink{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd2047cdcff095928c4038a6eb182e06dd9}{MAC\_\-NO\_\-ACK} =  1, 
+\hyperlink{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd2c5937d941043d0a22d1766db818774d5}{MAC\_\-CCA\_\-BUSY} =  2, 
+\hyperlink{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd27169b756c19608b218d51d3eb1779136}{MAC\_\-CCA\_\-OK} =  3, 
+\par
+\hyperlink{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd23f43b7bbb5eecc2e66063d3c49d6f74d}{MAC\_\-NO\_\-TIMESLOT} =  4
+ \}
+\item 
+enum \hyperlink{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b62}{synch\_\-lost\_\-reason\_\-t} \{ \hyperlink{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b622f27f9297c427b4891df130bed6bb64a}{PAN\_\-ID\_\-CONFLIGTH} =  0, 
+\hyperlink{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b624fa78817fb68c0da0f970eb1d9f438e6}{REALIGMENT}, 
+\hyperlink{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b62990c33d625a1e14cced57a8930f374a9}{BEACON\_\-LOST}, 
+\hyperlink{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b621a443aee74d54cb6b96a1b181566e2a6}{NO\_\-ACK\_\-FROM\_\-COORD}
+ \}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{rf__802__15__4_8h_171ee35061cdbbef9ac84ed6c6a53068}{rf\_\-802\_\-15\_\-4\_\-pib\_\-reset} (void)
+\item 
+void \hyperlink{rf__802__15__4_8h_c87c1dac2e315c388f5f7ac52b2f875a}{rf\_\-802\_\-15\_\-4\_\-store\_\-address\_\-to\_\-ram} (void)
+\item 
+void \hyperlink{rf__802__15__4_8h_758ebd59146e7c5d54243b4089cf0b51}{rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set} (uint8\_\-t support\_\-short\_\-addr)
+\item 
+port\-CHAR \hyperlink{rf__802__15__4_8h_7858b08048b1156f9c6dcb8b86c2cf56}{get\_\-coord\_\-address} (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$address)
+\item 
+void \hyperlink{rf__802__15__4_8h_69b5127b9af8191432a020363220f9ee}{mac\_\-set\_\-mac\_\-pib\_\-parameter} (uint8\_\-t $\ast$pointer, \hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1}{mac\_\-pib\_\-enum\_\-t} type)
+\item 
+void \hyperlink{rf__802__15__4_8h_b303be816fcb38c5088377eaafae2493}{mac\_\-handle\_\-address\_\-decoder} (rf\_\-address\_\-mode\_\-t mode)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+RF 802.15.4 modules constant and stuctures. 
+
+
+
+\subsection{Define Documentation}
+\hypertarget{rf__802__15__4_8h_873ee6efb40bab3dc7e7a79b8a17db3a}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ACTIVE_SCAN@{ACTIVE\_\-SCAN}}
+\index{ACTIVE_SCAN@{ACTIVE\_\-SCAN}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[ACTIVE\_\-SCAN]{\setlength{\rightskip}{0pt plus 5cm}\#define ACTIVE\_\-SCAN~0x01}}
+\label{rf__802__15__4_8h_873ee6efb40bab3dc7e7a79b8a17db3a}
+
+
+Mac-scan constant \hypertarget{rf__802__15__4_8h_9da0938e6f795a2e6be402e2b616f6cb}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!aMaxPHYPacketSize@{aMaxPHYPacketSize}}
+\index{aMaxPHYPacketSize@{aMaxPHYPacketSize}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[aMaxPHYPacketSize]{\setlength{\rightskip}{0pt plus 5cm}\#define a\-Max\-PHYPacket\-Size~127}}
+\label{rf__802__15__4_8h_9da0938e6f795a2e6be402e2b616f6cb}
+
+
+MAC Constant based on to IEEE 802.15.4 standard \hypertarget{rf__802__15__4_8h_98c9e628f629ce7044efc1fa612f855b}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!BI_12@{BI\_\-12}}
+\index{BI_12@{BI\_\-12}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[BI\_\-12]{\setlength{\rightskip}{0pt plus 5cm}\#define BI\_\-12~40673}}
+\label{rf__802__15__4_8h_98c9e628f629ce7044efc1fa612f855b}
+
+
+Superframe timing value \hypertarget{rf__802__15__4_8h_7f74f085a2305c0a6e23adc4e0ea7989}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!CMD_ASSOC_REQ@{CMD\_\-ASSOC\_\-REQ}}
+\index{CMD_ASSOC_REQ@{CMD\_\-ASSOC\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[CMD\_\-ASSOC\_\-REQ]{\setlength{\rightskip}{0pt plus 5cm}\#define CMD\_\-ASSOC\_\-REQ~1}}
+\label{rf__802__15__4_8h_7f74f085a2305c0a6e23adc4e0ea7989}
+
+
+Mac-command-id \hypertarget{rf__802__15__4_8h_e21043003731fcc05157f61cb6351a70}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!FC_DST_MODE@{FC\_\-DST\_\-MODE}}
+\index{FC_DST_MODE@{FC\_\-DST\_\-MODE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[FC\_\-DST\_\-MODE]{\setlength{\rightskip}{0pt plus 5cm}\#define FC\_\-DST\_\-MODE~0x0C}}
+\label{rf__802__15__4_8h_e21043003731fcc05157f61cb6351a70}
+
+
+MAC Header masks \hypertarget{rf__802__15__4_8h_e96853bcb003b10b80b0adf317867df1}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MC_ALTER_COORD@{MC\_\-ALTER\_\-COORD}}
+\index{MC_ALTER_COORD@{MC\_\-ALTER\_\-COORD}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[MC\_\-ALTER\_\-COORD]{\setlength{\rightskip}{0pt plus 5cm}\#define MC\_\-ALTER\_\-COORD~0x01}}
+\label{rf__802__15__4_8h_e96853bcb003b10b80b0adf317867df1}
+
+
+Mac Capability constant \hypertarget{rf__802__15__4_8h_a8cecfc5c5c054d2875c03e77b7be15d}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!TRUE@{TRUE}}
+\index{TRUE@{TRUE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[TRUE]{\setlength{\rightskip}{0pt plus 5cm}\#define TRUE~1}}
+\label{rf__802__15__4_8h_a8cecfc5c5c054d2875c03e77b7be15d}
+
+
+Frame control field, just for 802\_\-15\_\-4\_\-RAW 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!assoc_status_t@{assoc\_\-status\_\-t}}
+\index{assoc_status_t@{assoc\_\-status\_\-t}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[assoc\_\-status\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af}{assoc\_\-status\_\-t}}}
+\label{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af}
+
+
+Association response status \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{ASSOC_SUCCESSFUL@{ASSOC\_\-SUCCESSFUL}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ASSOC_SUCCESSFUL@{ASSOC\_\-SUCCESSFUL}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47afd6c335850d156a55bff3e1efabd84ed2}{
+ASSOC\_\-SUCCESSFUL}
+\label{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47afd6c335850d156a55bff3e1efabd84ed2}
+}]Association succesfully. \index{PAN_AT_CAPACITY@{PAN\_\-AT\_\-CAPACITY}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!PAN_AT_CAPACITY@{PAN\_\-AT\_\-CAPACITY}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af3e59448817170faaf02adeb219d163f4}{
+PAN\_\-AT\_\-CAPACITY}
+\label{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af3e59448817170faaf02adeb219d163f4}
+}]PAN network is full. \index{ACCESS_DENIED@{ACCESS\_\-DENIED}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ACCESS_DENIED@{ACCESS\_\-DENIED}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af9c57583ad491217a69a63fdabf336c8e}{
+ACCESS\_\-DENIED}
+\label{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af9c57583ad491217a69a63fdabf336c8e}
+}]Access denied by ACL-list. \end{description}
+\end{Desc}
+
+\hypertarget{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd2}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!csma_response_t@{csma\_\-response\_\-t}}
+\index{csma_response_t@{csma\_\-response\_\-t}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[csma\_\-response\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd2}{csma\_\-response\_\-t}}}
+\label{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd2}
+
+
+MAC CSMA-process return values \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{MAC_TX_SUCCESS@{MAC\_\-TX\_\-SUCCESS}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_TX_SUCCESS@{MAC\_\-TX\_\-SUCCESS}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd273e394ccc8ebd0497a367ed9a7886b5f}{
+MAC\_\-TX\_\-SUCCESS}
+\label{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd273e394ccc8ebd0497a367ed9a7886b5f}
+}]TX complete. \index{MAC_NO_ACK@{MAC\_\-NO\_\-ACK}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_NO_ACK@{MAC\_\-NO\_\-ACK}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd2047cdcff095928c4038a6eb182e06dd9}{
+MAC\_\-NO\_\-ACK}
+\label{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd2047cdcff095928c4038a6eb182e06dd9}
+}]NO ack from destination. \index{MAC_CCA_BUSY@{MAC\_\-CCA\_\-BUSY}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_CCA_BUSY@{MAC\_\-CCA\_\-BUSY}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd2c5937d941043d0a22d1766db818774d5}{
+MAC\_\-CCA\_\-BUSY}
+\label{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd2c5937d941043d0a22d1766db818774d5}
+}]Channel too busy. \index{MAC_CCA_OK@{MAC\_\-CCA\_\-OK}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_CCA_OK@{MAC\_\-CCA\_\-OK}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd27169b756c19608b218d51d3eb1779136}{
+MAC\_\-CCA\_\-OK}
+\label{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd27169b756c19608b218d51d3eb1779136}
+}]Channel free. \index{MAC_NO_TIMESLOT@{MAC\_\-NO\_\-TIMESLOT}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_NO_TIMESLOT@{MAC\_\-NO\_\-TIMESLOT}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd23f43b7bbb5eecc2e66063d3c49d6f74d}{
+MAC\_\-NO\_\-TIMESLOT}
+\label{rf__802__15__4_8h_773d0785c06f4ac05b92daada509bcd23f43b7bbb5eecc2e66063d3c49d6f74d}
+}]No time slot before next beacon. \end{description}
+\end{Desc}
+
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!mac_control_id_t@{mac\_\-control\_\-id\_\-t}}
+\index{mac_control_id_t@{mac\_\-control\_\-id\_\-t}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[mac\_\-control\_\-id\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3}{mac\_\-control\_\-id\_\-t}}}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3}
+
+
+RF802\_\-15\_\-4 control message-id enumeration \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{BEACON_NOTIFY@{BEACON\_\-NOTIFY}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!BEACON_NOTIFY@{BEACON\_\-NOTIFY}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d35aa32363253bb9427e18cf645edc8847}{
+BEACON\_\-NOTIFY}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d35aa32363253bb9427e18cf645edc8847}
+}]Beacon notify message to upper layer. \index{ASSOC_REQ@{ASSOC\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ASSOC_REQ@{ASSOC\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3bae20e552cd67979613556b2be4113e8}{
+ASSOC\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3bae20e552cd67979613556b2be4113e8}
+}]Association request from upper layer. \index{ASSOC_IND@{ASSOC\_\-IND}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ASSOC_IND@{ASSOC\_\-IND}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d33ca91c2c0f6d63fae5cf3f850e2c2239}{
+ASSOC\_\-IND}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d33ca91c2c0f6d63fae5cf3f850e2c2239}
+}]Association indication to upper layer. \index{ASSOC_RESPONSE@{ASSOC\_\-RESPONSE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ASSOC_RESPONSE@{ASSOC\_\-RESPONSE}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3e17d810475f4e956246dc05f074abbb1}{
+ASSOC\_\-RESPONSE}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3e17d810475f4e956246dc05f074abbb1}
+}]Association response from upper layer waiting for client data request mac-command. \index{ASSOC_CONFIRM@{ASSOC\_\-CONFIRM}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ASSOC_CONFIRM@{ASSOC\_\-CONFIRM}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d34ae7ccb563c3823dbe35acfc74bfc23e}{
+ASSOC\_\-CONFIRM}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d34ae7ccb563c3823dbe35acfc74bfc23e}
+}]Association confirm to upper layer waiting for client data request mac-command. \index{DISSASSOC_REQ@{DISSASSOC\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!DISSASSOC_REQ@{DISSASSOC\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3df196c5f3a736e95559a3f84a721835b}{
+DISSASSOC\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3df196c5f3a736e95559a3f84a721835b}
+}]Dissassocation request from upper layer. \index{DISSASSOC_IND@{DISSASSOC\_\-IND}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!DISSASSOC_IND@{DISSASSOC\_\-IND}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3fe9518abc32f66756643cb86349ef3b2}{
+DISSASSOC\_\-IND}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3fe9518abc32f66756643cb86349ef3b2}
+}]Dissassocation indication to upper layer. \index{GET_REQ@{GET\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!GET_REQ@{GET\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3d0215dc7674de86ed935ce0063287526}{
+GET\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3d0215dc7674de86ed935ce0063287526}
+}]Get Mac-PIB attribute value message from upper layer. \index{GET_CONFIRM@{GET\_\-CONFIRM}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!GET_CONFIRM@{GET\_\-CONFIRM}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d34c7295552c687cf1970e99fe21b73ef3}{
+GET\_\-CONFIRM}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d34c7295552c687cf1970e99fe21b73ef3}
+}]Confirm message to GET request to upper layer. \index{SET_REQ@{SET\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!SET_REQ@{SET\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d328cada8d65372f144109d75aa70697e1}{
+SET\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d328cada8d65372f144109d75aa70697e1}
+}]Set Mac-PIB attribute by gives parameter value message from upper layer. \index{SET_CONFIRM@{SET\_\-CONFIRM}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!SET_CONFIRM@{SET\_\-CONFIRM}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3073b2a4ef2d76ddd4cb101be428b5775}{
+SET\_\-CONFIRM}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3073b2a4ef2d76ddd4cb101be428b5775}
+}]Confirm message to SET request to upper layer. \index{GTS_REQ@{GTS\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!GTS_REQ@{GTS\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3a9f5d8a3a361f766eab5fe9b9798509b}{
+GTS\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3a9f5d8a3a361f766eab5fe9b9798509b}
+}]GTS request message from upper layer. \index{GTS_CONFIRM@{GTS\_\-CONFIRM}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!GTS_CONFIRM@{GTS\_\-CONFIRM}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d332e10b2802e629f919db9474aa92fa52}{
+GTS\_\-CONFIRM}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d332e10b2802e629f919db9474aa92fa52}
+}]Confirm message to GTS request message to upper layer. \index{GTS_IND@{GTS\_\-IND}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!GTS_IND@{GTS\_\-IND}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3363f6f8d7a454f59e7dc93304d6b4ec2}{
+GTS\_\-IND}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3363f6f8d7a454f59e7dc93304d6b4ec2}
+}]GTS indication message to upper layer. \index{POLL_REQ@{POLL\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!POLL_REQ@{POLL\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d35a70bb85b632ddc9e7cfee3e97c1a39d}{
+POLL\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d35a70bb85b632ddc9e7cfee3e97c1a39d}
+}]Poll request message from upper layer. \index{COMM_STATUS@{COMM\_\-STATUS}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!COMM_STATUS@{COMM\_\-STATUS}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3c5cb8e5ba551f18b16fd5f93cc89d530}{
+COMM\_\-STATUS}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3c5cb8e5ba551f18b16fd5f93cc89d530}
+}]Genral communication status message to upper layer. \index{ORPHAN_IND@{ORPHAN\_\-IND}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ORPHAN_IND@{ORPHAN\_\-IND}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d38c3e2a8a51cd41976b53fdb8b58b3680}{
+ORPHAN\_\-IND}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d38c3e2a8a51cd41976b53fdb8b58b3680}
+}]Orphan indication message to upper layer. \index{ORPHAN_RESPONSE@{ORPHAN\_\-RESPONSE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ORPHAN_RESPONSE@{ORPHAN\_\-RESPONSE}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d38adae9ab93eef069bdb69d4eb388d762}{
+ORPHAN\_\-RESPONSE}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d38adae9ab93eef069bdb69d4eb388d762}
+}]Orphan response message message from upper layer. \index{SCAN_REQ@{SCAN\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!SCAN_REQ@{SCAN\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d34703473e1b82f9224cb2a7acdf7e8dfe}{
+SCAN\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d34703473e1b82f9224cb2a7acdf7e8dfe}
+}]Scan request message from upper layer. \index{SCAN_CONFIRM@{SCAN\_\-CONFIRM}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!SCAN_CONFIRM@{SCAN\_\-CONFIRM}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d302d46e6c5c6b60226565d89ea3b02de0}{
+SCAN\_\-CONFIRM}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d302d46e6c5c6b60226565d89ea3b02de0}
+}]Scan result message to upper layer. \index{START_REQ@{START\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!START_REQ@{START\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d36b8779542b5cee93c272fbcbac97fa06}{
+START\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d36b8779542b5cee93c272fbcbac97fa06}
+}]Start PAN-network request message from upper layer. \index{START_CONFIRM@{START\_\-CONFIRM}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!START_CONFIRM@{START\_\-CONFIRM}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3c532f1d286ed4a78266f9d03f16c6434}{
+START\_\-CONFIRM}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3c532f1d286ed4a78266f9d03f16c6434}
+}]Start PAN-network confirm message to upper layer. \index{RX_ENABLE_REQ@{RX\_\-ENABLE\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!RX_ENABLE_REQ@{RX\_\-ENABLE\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3e87f79730e9911c44a57b1dc216e9393}{
+RX\_\-ENABLE\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3e87f79730e9911c44a57b1dc216e9393}
+}]Receiver enable set by gives time parameter request message from upper layer. \index{RX_ENABLE_CONFIRM@{RX\_\-ENABLE\_\-CONFIRM}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!RX_ENABLE_CONFIRM@{RX\_\-ENABLE\_\-CONFIRM}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3182e185a2945501f87abf40a920852fb}{
+RX\_\-ENABLE\_\-CONFIRM}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3182e185a2945501f87abf40a920852fb}
+}]Confirm message to RX\_\-ENABLE\_\-REQ to upperlayer. \index{SYNCH_REQ@{SYNCH\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!SYNCH_REQ@{SYNCH\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3dc0968317170b28165a64063acf58953}{
+SYNCH\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3dc0968317170b28165a64063acf58953}
+}]Synchronization request message from upperlayer. \index{SYNCH_LOSS_IND@{SYNCH\_\-LOSS\_\-IND}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!SYNCH_LOSS_IND@{SYNCH\_\-LOSS\_\-IND}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d359497e21d7865e8cb2387c3f45e12da7}{
+SYNCH\_\-LOSS\_\-IND}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d359497e21d7865e8cb2387c3f45e12da7}
+}]Synchronization lost indication message to upperlayer. \index{RESET_REQ@{RESET\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!RESET_REQ@{RESET\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d32e56f6a3c653f26b0f18043816596381}{
+RESET\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d32e56f6a3c653f26b0f18043816596381}
+}]Reset MAC-PIB request message from upper layer. \index{RESET_CONFIRM@{RESET\_\-CONFIRM}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!RESET_CONFIRM@{RESET\_\-CONFIRM}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3785232912d3cad462ada6879f6f3b598}{
+RESET\_\-CONFIRM}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3785232912d3cad462ada6879f6f3b598}
+}]Reset MAC-PIB confirm message to upper layer. \index{ROUTER_START@{ROUTER\_\-START}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ROUTER_START@{ROUTER\_\-START}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d32ec6760f9eafeb9f453cd1c86bb4b33f}{
+ROUTER\_\-START}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d32ec6760f9eafeb9f453cd1c86bb4b33f}
+}]Start router mode with defined channel, PAN-id \& address. \index{PEND_REQ@{PEND\_\-REQ}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!PEND_REQ@{PEND\_\-REQ}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3247cdd4a9269db3ffdccc4eb532ac934}{
+PEND\_\-REQ}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3247cdd4a9269db3ffdccc4eb532ac934}
+}]FFD device can store data for specified client. \index{PEND_DATA_NOT_DOWNLOAD@{PEND\_\-DATA\_\-NOT\_\-DOWNLOAD}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!PEND_DATA_NOT_DOWNLOAD@{PEND\_\-DATA\_\-NOT\_\-DOWNLOAD}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3ec851750be6c49917bedf99e92ef3e78}{
+PEND\_\-DATA\_\-NOT\_\-DOWNLOAD}
+\label{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3ec851750be6c49917bedf99e92ef3e78}
+}]When RFD haven't dowload pending data from coordnator. \end{description}
+\end{Desc}
+
+\hypertarget{rf__802__15__4_8h_099434bf4a881a6e0be8e35b4bc34e5b}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!mac_device_type_t@{mac\_\-device\_\-type\_\-t}}
+\index{mac_device_type_t@{mac\_\-device\_\-type\_\-t}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[mac\_\-device\_\-type\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{rf__802__15__4_8h_099434bf4a881a6e0be8e35b4bc34e5b}{mac\_\-device\_\-type\_\-t}}}
+\label{rf__802__15__4_8h_099434bf4a881a6e0be8e35b4bc34e5b}
+
+
+MAC logical Device type \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{MAC_RFD_TYPE@{MAC\_\-RFD\_\-TYPE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_RFD_TYPE@{MAC\_\-RFD\_\-TYPE}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_099434bf4a881a6e0be8e35b4bc34e5ba9198f5f01907bd003d31c2c0bb65bed}{
+MAC\_\-RFD\_\-TYPE}
+\label{rf__802__15__4_8h_099434bf4a881a6e0be8e35b4bc34e5ba9198f5f01907bd003d31c2c0bb65bed}
+}]Client use RFD, not use dynamical memory management. \index{MAC_FFD_TYPE@{MAC\_\-FFD\_\-TYPE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_FFD_TYPE@{MAC\_\-FFD\_\-TYPE}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_099434bf4a881a6e0be8e35b4bc34e5bd7ea7786f88cc6f2e5cab3a1d303f4e6}{
+MAC\_\-FFD\_\-TYPE}
+\label{rf__802__15__4_8h_099434bf4a881a6e0be8e35b4bc34e5bd7ea7786f88cc6f2e5cab3a1d303f4e6}
+}]Coordinator / Router use FFD, use dynamical memory management. \end{description}
+\end{Desc}
+
+\hypertarget{rf__802__15__4_8h_343a7927f43f2ee514c20f86ccd8a015}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!mac_internal_state_t@{mac\_\-internal\_\-state\_\-t}}
+\index{mac_internal_state_t@{mac\_\-internal\_\-state\_\-t}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[mac\_\-internal\_\-state\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{rf__802__15__4_8h_343a7927f43f2ee514c20f86ccd8a015}{mac\_\-internal\_\-state\_\-t}}}
+\label{rf__802__15__4_8h_343a7927f43f2ee514c20f86ccd8a015}
+
+
+Mac layers states \hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!mac_pib_enum_t@{mac\_\-pib\_\-enum\_\-t}}
+\index{mac_pib_enum_t@{mac\_\-pib\_\-enum\_\-t}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[mac\_\-pib\_\-enum\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1}{mac\_\-pib\_\-enum\_\-t}}}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1}
+
+
+MAC-PIB attribute enumeration ID's \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{MAC_CURRENT_CHANNEL@{MAC\_\-CURRENT\_\-CHANNEL}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_CURRENT_CHANNEL@{MAC\_\-CURRENT\_\-CHANNEL}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d12c6f1ad095e4cabb1aa4580b74291eec}{
+MAC\_\-CURRENT\_\-CHANNEL}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d12c6f1ad095e4cabb1aa4580b74291eec}
+}]Logical channel. \index{MAC_IEEE_ADDRESS@{MAC\_\-IEEE\_\-ADDRESS}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_IEEE_ADDRESS@{MAC\_\-IEEE\_\-ADDRESS}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1cd8cf2618d16ef6851f398e82d9821a1}{
+MAC\_\-IEEE\_\-ADDRESS}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1cd8cf2618d16ef6851f398e82d9821a1}
+}]Long IEEE address. \index{MAC_CORD_IEEE_ADDRESS@{MAC\_\-CORD\_\-IEEE\_\-ADDRESS}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_CORD_IEEE_ADDRESS@{MAC\_\-CORD\_\-IEEE\_\-ADDRESS}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d190d76917ffadda0435a3f20923d8eb78}{
+MAC\_\-CORD\_\-IEEE\_\-ADDRESS}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d190d76917ffadda0435a3f20923d8eb78}
+}]Coordinators Long IEEE address. \index{MAC_PAN_ID@{MAC\_\-PAN\_\-ID}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_PAN_ID@{MAC\_\-PAN\_\-ID}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d197eebb53ff44f1a58b658034abb0c56e}{
+MAC\_\-PAN\_\-ID}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d197eebb53ff44f1a58b658034abb0c56e}
+}]PAN id. \index{MAC_SO@{MAC\_\-SO}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_SO@{MAC\_\-SO}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1b2937f16db153638210d8a4ed1da1fdc}{
+MAC\_\-SO}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1b2937f16db153638210d8a4ed1da1fdc}
+}]Superframe order. \index{MAC_BO@{MAC\_\-BO}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_BO@{MAC\_\-BO}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1ed0deb9880062332661961632739755d}{
+MAC\_\-BO}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1ed0deb9880062332661961632739755d}
+}]Beacon Order. \index{MAC_SHORT_ADDRESS@{MAC\_\-SHORT\_\-ADDRESS}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!MAC_SHORT_ADDRESS@{MAC\_\-SHORT\_\-ADDRESS}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d157db36cae7a8367f98a9abf9b05f74c0}{
+MAC\_\-SHORT\_\-ADDRESS}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d157db36cae7a8367f98a9abf9b05f74c0}
+}]Hort address. \index{PENDING_TTL@{PENDING\_\-TTL}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!PENDING_TTL@{PENDING\_\-TTL}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d16ade225ddc2cac8fe103b6f7e0962844}{
+PENDING\_\-TTL}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d16ade225ddc2cac8fe103b6f7e0962844}
+}]How many 15 seconds period FFD device store pending data buffer. \index{RUNNING_MODE@{RUNNING\_\-MODE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!RUNNING_MODE@{RUNNING\_\-MODE}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1fc6ac4196225df0ac1ddd69cb3f19426}{
+RUNNING\_\-MODE}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1fc6ac4196225df0ac1ddd69cb3f19426}
+}]Mac running mode. \index{ASSOC_PERMIT@{ASSOC\_\-PERMIT}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ASSOC_PERMIT@{ASSOC\_\-PERMIT}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1ece2cbd0c7f7408cc02a0b4afe4de924}{
+ASSOC\_\-PERMIT}
+\label{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1ece2cbd0c7f7408cc02a0b4afe4de924}
+}]Handle assocation permit flag. \end{description}
+\end{Desc}
+
+\hypertarget{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!mac_runnin_mode_t@{mac\_\-runnin\_\-mode\_\-t}}
+\index{mac_runnin_mode_t@{mac\_\-runnin\_\-mode\_\-t}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[mac\_\-runnin\_\-mode\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8}{mac\_\-runnin\_\-mode\_\-t}}}
+\label{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8}
+
+
+MAC modules running mode \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{AD_HOC_MODE@{AD\_\-HOC\_\-MODE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!AD_HOC_MODE@{AD\_\-HOC\_\-MODE}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8ccb1ce47b6528c244a2d29d093a47212}{
+AD\_\-HOC\_\-MODE}
+\label{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8ccb1ce47b6528c244a2d29d093a47212}
+}]AD-HOC MODE. \index{BEACON_ENABLE_MODE@{BEACON\_\-ENABLE\_\-MODE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!BEACON_ENABLE_MODE@{BEACON\_\-ENABLE\_\-MODE}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8f4be382035e055d1eb9d49e9de7adf80}{
+BEACON\_\-ENABLE\_\-MODE}
+\label{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8f4be382035e055d1eb9d49e9de7adf80}
+}]Beacon enable client mode. \index{BEACON_ENABLE_COORD_MODE@{BEACON\_\-ENABLE\_\-COORD\_\-MODE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!BEACON_ENABLE_COORD_MODE@{BEACON\_\-ENABLE\_\-COORD\_\-MODE}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8ce462a5b19c656464f16ec088006710a}{
+BEACON\_\-ENABLE\_\-COORD\_\-MODE}
+\label{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a8ce462a5b19c656464f16ec088006710a}
+}]Beacon enable Coordinator mode. \index{ROUTER_MODE@{ROUTER\_\-MODE}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!ROUTER_MODE@{ROUTER\_\-MODE}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a84ea7a5821d9f3fd2cf16250d49a02c90}{
+ROUTER\_\-MODE}
+\label{rf__802__15__4_8h_8fa66854e826b2e5abff2a77a266e7a84ea7a5821d9f3fd2cf16250d49a02c90}
+}]Beacon enable Router mode \end{description}
+\end{Desc}
+
+\hypertarget{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4f}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!mac_state_t@{mac\_\-state\_\-t}}
+\index{mac_state_t@{mac\_\-state\_\-t}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[mac\_\-state\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4f}{mac\_\-state\_\-t}}}
+\label{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4f}
+
+
+Mac layers states \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{BEACON_TRACK@{BEACON\_\-TRACK}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!BEACON_TRACK@{BEACON\_\-TRACK}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4fd109cff3542f43a377b902371f462251}{
+BEACON\_\-TRACK}
+\label{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4fd109cff3542f43a377b902371f462251}
+}]Active scan \& beacon tarckin state,forward only Beacon frame. \index{DISSCONNECT@{DISSCONNECT}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!DISSCONNECT@{DISSCONNECT}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4fd92488d991b9dd268a0fc135d3dd62c4}{
+DISSCONNECT}
+\label{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4fd92488d991b9dd268a0fc135d3dd62c4}
+}]Not associated, forward only mac-command-frames and ack. \index{CONNECT@{CONNECT}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!CONNECT@{CONNECT}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4f20391dd2915a0e64343d24c2f2e40b95}{
+CONNECT}
+\label{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4f20391dd2915a0e64343d24c2f2e40b95}
+}]Device is complete associated with coordinator, forward data- and mac-command frames. \index{AD_HOC@{AD\_\-HOC}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!AD_HOC@{AD\_\-HOC}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4f6a917f18f3f7b1d8ccd117dbcf307eda}{
+AD\_\-HOC}
+\label{rf__802__15__4_8h_222287b6ac933745e39ca393bb0cfe4f6a917f18f3f7b1d8ccd117dbcf307eda}
+}]AD-HOC state, forward data- and ack-frames. \end{description}
+\end{Desc}
+
+\hypertarget{rf__802__15__4_8h_ffa9298afe5e5525bc95731508416054}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!mac_tx_engine_state_t@{mac\_\-tx\_\-engine\_\-state\_\-t}}
+\index{mac_tx_engine_state_t@{mac\_\-tx\_\-engine\_\-state\_\-t}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[mac\_\-tx\_\-engine\_\-state\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{rf__802__15__4_8h_ffa9298afe5e5525bc95731508416054}{mac\_\-tx\_\-engine\_\-state\_\-t}}}
+\label{rf__802__15__4_8h_ffa9298afe5e5525bc95731508416054}
+
+
+Mac layers states \hypertarget{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b62}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!synch_lost_reason_t@{synch\_\-lost\_\-reason\_\-t}}
+\index{synch_lost_reason_t@{synch\_\-lost\_\-reason\_\-t}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[synch\_\-lost\_\-reason\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b62}{synch\_\-lost\_\-reason\_\-t}}}
+\label{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b62}
+
+
+Synhrpnize lost reason enumeration ID's \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{PAN_ID_CONFLIGTH@{PAN\_\-ID\_\-CONFLIGTH}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!PAN_ID_CONFLIGTH@{PAN\_\-ID\_\-CONFLIGTH}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b622f27f9297c427b4891df130bed6bb64a}{
+PAN\_\-ID\_\-CONFLIGTH}
+\label{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b622f27f9297c427b4891df130bed6bb64a}
+}]Detect same PAN-id, but source is not current coordinator. \index{REALIGMENT@{REALIGMENT}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!REALIGMENT@{REALIGMENT}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b624fa78817fb68c0da0f970eb1d9f438e6}{
+REALIGMENT}
+\label{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b624fa78817fb68c0da0f970eb1d9f438e6}
+}]Coordinator has change network options. \index{BEACON_LOST@{BEACON\_\-LOST}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!BEACON_LOST@{BEACON\_\-LOST}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b62990c33d625a1e14cced57a8930f374a9}{
+BEACON\_\-LOST}
+\label{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b62990c33d625a1e14cced57a8930f374a9}
+}]Not received beacon. \index{NO_ACK_FROM_COORD@{NO\_\-ACK\_\-FROM\_\-COORD}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!NO_ACK_FROM_COORD@{NO\_\-ACK\_\-FROM\_\-COORD}}\item[{\em 
+\hypertarget{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b621a443aee74d54cb6b96a1b181566e2a6}{
+NO\_\-ACK\_\-FROM\_\-COORD}
+\label{rf__802__15__4_8h_b7a607c44af208866c5d708fd7729b621a443aee74d54cb6b96a1b181566e2a6}
+}]Coordinator has not send response for RFD device \end{description}
+\end{Desc}
+
+
+
+\subsection{Function Documentation}
+\hypertarget{rf__802__15__4_8h_7858b08048b1156f9c6dcb8b86c2cf56}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!get_coord_address@{get\_\-coord\_\-address}}
+\index{get_coord_address@{get\_\-coord\_\-address}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[get\_\-coord\_\-address]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR get\_\-coord\_\-address (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em address})}}
+\label{rf__802__15__4_8h_7858b08048b1156f9c6dcb8b86c2cf56}
+
+
+Function call get coordinator address from MAC-PIB.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]poniter for address structure where functions write address information. \end{description}
+\end{Desc}
+\hypertarget{rf__802__15__4_8h_b303be816fcb38c5088377eaafae2493}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!mac_handle_address_decoder@{mac\_\-handle\_\-address\_\-decoder}}
+\index{mac_handle_address_decoder@{mac\_\-handle\_\-address\_\-decoder}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[mac\_\-handle\_\-address\_\-decoder]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-handle\_\-address\_\-decoder (rf\_\-address\_\-mode\_\-t {\em mode})}}
+\label{rf__802__15__4_8h_b303be816fcb38c5088377eaafae2493}
+
+
+API for address decoder use for diffrent device type.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em mode}]RF\_\-DECODER\_\-NONE / RF\_\-DECODER\_\-COORDINATOR / RF\_\-DECODER\_\-ON. \end{description}
+\end{Desc}
+\hypertarget{rf__802__15__4_8h_69b5127b9af8191432a020363220f9ee}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!mac_set_mac_pib_parameter@{mac\_\-set\_\-mac\_\-pib\_\-parameter}}
+\index{mac_set_mac_pib_parameter@{mac\_\-set\_\-mac\_\-pib\_\-parameter}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[mac\_\-set\_\-mac\_\-pib\_\-parameter]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-set\_\-mac\_\-pib\_\-parameter (uint8\_\-t $\ast$ {\em pointer}, \hyperlink{rf__802__15__4_8h_ddc59a173e7ec1edfc478f802b0ab8d1}{mac\_\-pib\_\-enum\_\-t} {\em type})}}
+\label{rf__802__15__4_8h_69b5127b9af8191432a020363220f9ee}
+
+
+Function is for set up some MAC-PIB parameters.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pointer}]to set up arguments. \item[{\em type}]type attribute for MAC-PIB parameter. \end{description}
+\end{Desc}
+\hypertarget{rf__802__15__4_8h_758ebd59146e7c5d54243b4089cf0b51}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!rf_802_15_4_ip_layer_address_mode_set@{rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set}}
+\index{rf_802_15_4_ip_layer_address_mode_set@{rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set (uint8\_\-t {\em support\_\-short\_\-addr})}}
+\label{rf__802__15__4_8h_758ebd59146e7c5d54243b4089cf0b51}
+
+
+Function setup IP modules address mode and also forward MAC and short address information.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em support\_\-short\_\-addr}]1=Support \& 0=Not support. \end{description}
+\end{Desc}
+\hypertarget{rf__802__15__4_8h_171ee35061cdbbef9ac84ed6c6a53068}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!rf_802_15_4_pib_reset@{rf\_\-802\_\-15\_\-4\_\-pib\_\-reset}}
+\index{rf_802_15_4_pib_reset@{rf\_\-802\_\-15\_\-4\_\-pib\_\-reset}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[rf\_\-802\_\-15\_\-4\_\-pib\_\-reset]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-802\_\-15\_\-4\_\-pib\_\-reset (void)}}
+\label{rf__802__15__4_8h_171ee35061cdbbef9ac84ed6c6a53068}
+
+
+Reset MAC PIB information structure.
+
+This function call when want to initialize MAC PIB to default values. \hypertarget{rf__802__15__4_8h_c87c1dac2e315c388f5f7ac52b2f875a}{
+\index{rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}!rf_802_15_4_store_address_to_ram@{rf\_\-802\_\-15\_\-4\_\-store\_\-address\_\-to\_\-ram}}
+\index{rf_802_15_4_store_address_to_ram@{rf\_\-802\_\-15\_\-4\_\-store\_\-address\_\-to\_\-ram}!rf_802_15_4.h@{rf\_\-802\_\-15\_\-4.h}}
+\subsubsection[rf\_\-802\_\-15\_\-4\_\-store\_\-address\_\-to\_\-ram]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-802\_\-15\_\-4\_\-store\_\-address\_\-to\_\-ram (void)}}
+\label{rf__802__15__4_8h_c87c1dac2e315c388f5f7ac52b2f875a}
+
+
+Store address information to ram for address decoder. 

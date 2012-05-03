@@ -1,0 +1,137 @@
+\hypertarget{event__timer_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/event\_\-timer.c File Reference}
+\label{event__timer_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/event_timer.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/event\_\-timer.c}}
+}
+Event timer API. 
+
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}event\_\-timer.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{event__timer_8c_9ca051aa77e17583aa5a85d5de5c199a}{v\-Application\-Tick\-Hook} (void)
+\item 
+void \hyperlink{event__timer_8c_7755e82ec55b6aca26b5d567c1390172}{evt\-Timer\-Init} (void)
+\item 
+port\-CHAR \hyperlink{event__timer_8c_6f94edc7a35d1700a35ac7aeffa0bf23}{evt\-Timer\-Alloc} (x\-Queue\-Handle queue, unsigned port\-CHAR size)
+\item 
+void \hyperlink{event__timer_8c_2c9f9f28ba413f29fce00b1f4a6d4575}{evt\-Timer\-Free} (unsigned port\-CHAR timer)
+\item 
+port\-CHAR \hyperlink{event__timer_8c_905121884874be9e630e508e68abe0a0}{evt\-Timer\-Start} (unsigned port\-CHAR timer, unsigned port\-CHAR $\ast$tmr\_\-data, port\-Tick\-Type ticks)
+\item 
+port\-CHAR \hyperlink{event__timer_8c_cd8286e5b198bcc794723ca47f388caf}{evt\-Timer\-Stop} (unsigned port\-CHAR timer)
+\item 
+port\-CHAR \hyperlink{event__timer_8c_37fcef084a3e17300f5c29e121f508aa}{evt\-Timer\-Check} (unsigned port\-CHAR timer)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Event timer API. 
+
+Event timer API: allocation and tick hook function. 
+
+\subsection{Function Documentation}
+\hypertarget{event__timer_8c_6f94edc7a35d1700a35ac7aeffa0bf23}{
+\index{event_timer.c@{event\_\-timer.c}!evtTimerAlloc@{evtTimerAlloc}}
+\index{evtTimerAlloc@{evtTimerAlloc}!event_timer.c@{event\_\-timer.c}}
+\subsubsection[evtTimerAlloc]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR evt\-Timer\-Alloc (x\-Queue\-Handle {\em queue}, unsigned port\-CHAR {\em size})}}
+\label{event__timer_8c_6f94edc7a35d1700a35ac7aeffa0bf23}
+
+
+Allocate an event timer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em queue}]Queue to pass the data to \item[{\em size}]Size of event data structure\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]-1 no free timers 
+
+timer id \end{Desc}
+\hypertarget{event__timer_8c_37fcef084a3e17300f5c29e121f508aa}{
+\index{event_timer.c@{event\_\-timer.c}!evtTimerCheck@{evtTimerCheck}}
+\index{evtTimerCheck@{evtTimerCheck}!event_timer.c@{event\_\-timer.c}}
+\subsubsection[evtTimerCheck]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR evt\-Timer\-Check (unsigned port\-CHAR {\em timer})}}
+\label{event__timer_8c_37fcef084a3e17300f5c29e121f508aa}
+
+
+Check the event timer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em timer}]timer ID\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-FALSE not running 
+
+pd\-TRUE running \end{Desc}
+\hypertarget{event__timer_8c_2c9f9f28ba413f29fce00b1f4a6d4575}{
+\index{event_timer.c@{event\_\-timer.c}!evtTimerFree@{evtTimerFree}}
+\index{evtTimerFree@{evtTimerFree}!event_timer.c@{event\_\-timer.c}}
+\subsubsection[evtTimerFree]{\setlength{\rightskip}{0pt plus 5cm}void evt\-Timer\-Free (unsigned port\-CHAR {\em timer})}}
+\label{event__timer_8c_2c9f9f28ba413f29fce00b1f4a6d4575}
+
+
+Free an event timer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em timer}]timer ID \end{description}
+\end{Desc}
+\hypertarget{event__timer_8c_7755e82ec55b6aca26b5d567c1390172}{
+\index{event_timer.c@{event\_\-timer.c}!evtTimerInit@{evtTimerInit}}
+\index{evtTimerInit@{evtTimerInit}!event_timer.c@{event\_\-timer.c}}
+\subsubsection[evtTimerInit]{\setlength{\rightskip}{0pt plus 5cm}void evt\-Timer\-Init (void)}}
+\label{event__timer_8c_7755e82ec55b6aca26b5d567c1390172}
+
+
+Init event timer system. \hypertarget{event__timer_8c_905121884874be9e630e508e68abe0a0}{
+\index{event_timer.c@{event\_\-timer.c}!evtTimerStart@{evtTimerStart}}
+\index{evtTimerStart@{evtTimerStart}!event_timer.c@{event\_\-timer.c}}
+\subsubsection[evtTimerStart]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR evt\-Timer\-Start (unsigned port\-CHAR {\em timer}, unsigned port\-CHAR $\ast$ {\em tmr\_\-data}, port\-Tick\-Type {\em ticks})}}
+\label{event__timer_8c_905121884874be9e630e508e68abe0a0}
+
+
+Start the event timer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em timer}]timer ID \item[{\em data}]pointer to event data structure \item[{\em ticks}]time in system ticks\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 false timer ID 
+
+1 OK \end{Desc}
+\hypertarget{event__timer_8c_cd8286e5b198bcc794723ca47f388caf}{
+\index{event_timer.c@{event\_\-timer.c}!evtTimerStop@{evtTimerStop}}
+\index{evtTimerStop@{evtTimerStop}!event_timer.c@{event\_\-timer.c}}
+\subsubsection[evtTimerStop]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR evt\-Timer\-Stop (unsigned port\-CHAR {\em timer})}}
+\label{event__timer_8c_cd8286e5b198bcc794723ca47f388caf}
+
+
+Stop the event timer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em timer}]timer ID\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 false timer ID 
+
+1 OK \end{Desc}
+\hypertarget{event__timer_8c_9ca051aa77e17583aa5a85d5de5c199a}{
+\index{event_timer.c@{event\_\-timer.c}!vApplicationTickHook@{vApplicationTickHook}}
+\index{vApplicationTickHook@{vApplicationTickHook}!event_timer.c@{event\_\-timer.c}}
+\subsubsection[vApplicationTickHook]{\setlength{\rightskip}{0pt plus 5cm}void v\-Application\-Tick\-Hook (void)}}
+\label{event__timer_8c_9ca051aa77e17583aa5a85d5de5c199a}
+
+
+Timer tick hook. 

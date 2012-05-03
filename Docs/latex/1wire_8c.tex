@@ -1,0 +1,190 @@
+\hypertarget{1wire_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/micro/1wire.c File Reference}
+\label{1wire_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Platform/micro/1wire.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/micro/1wire.c}}
+}
+1-wire interface functions. 
+
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}semphr.h\char`\"{}}\par
+{\tt \#include $<$sys/inttypes.h$>$}\par
+{\tt \#include $<$signal.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}bus.h\char`\"{}}\par
+{\tt \#include \char`\"{}1wire.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{1wire_8c_e33ba41d09daa58611d500e039956d14}{bus\_\-1wire\_\-write\_\-bit} (uint8\_\-t bit)
+\item 
+uint8\_\-t \hyperlink{1wire_8c_5cf05b227dd828a9cbb7fd8404d7d058}{bus\_\-1wire\_\-read\_\-bit} (void)
+\item 
+port\-CHAR \hyperlink{1wire_8c_dd72d7cb8253fc8b479e359fc03d68e8}{bus\_\-1wire\_\-reset} (void)
+\item 
+void \hyperlink{1wire_8c_7c60945c3ab304f178581939af029603}{bus\_\-1wire\_\-write} (uint8\_\-t byte)
+\item 
+uint8\_\-t \hyperlink{1wire_8c_3efbb867ed864820d1c4ccaa0f55436c}{bus\_\-1wire\_\-read} (void)
+\item 
+uint8\_\-t \hyperlink{1wire_8c_7a280794f3b8459d163040716176efa6}{bus\_\-1wire\_\-search} (b1w\_\-reg $\ast$device, uint8\_\-t num\_\-id)
+\item 
+port\-CHAR \hyperlink{1wire_8c_d9f804d20b8b4296a6abc6ee7a84a6e4}{bus\_\-1wire\_\-select} (b1w\_\-reg device)
+\item 
+port\-CHAR \hyperlink{1wire_8c_c41f9a67f48dfd8673b65894fecf4a37}{bus\_\-1wire\_\-read\_\-rom} (b1w\_\-reg device)
+\item 
+port\-CHAR \hyperlink{1wire_8c_11c442043d787cb895cd47cbc2ef6a6e}{bus\_\-1wire\_\-read\_\-memory} (b1w\_\-reg device, uint16\_\-t address, uint8\_\-t $\ast$buffer, uint8\_\-t bytes)
+\item 
+void \hyperlink{1wire_8c_b0c69eebf504c5d0ef7264b6289a967a}{bus\_\-1wire\_\-crc\_\-add} (uint8\_\-t $\ast$crc, uint8\_\-t byte)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+1-wire interface functions. 
+
+Micro.4: 1-wire interface support functions. 
+
+\subsection{Function Documentation}
+\hypertarget{1wire_8c_b0c69eebf504c5d0ef7264b6289a967a}{
+\index{1wire.c@{1wire.c}!bus_1wire_crc_add@{bus\_\-1wire\_\-crc\_\-add}}
+\index{bus_1wire_crc_add@{bus\_\-1wire\_\-crc\_\-add}!1wire.c@{1wire.c}}
+\subsubsection[bus\_\-1wire\_\-crc\_\-add]{\setlength{\rightskip}{0pt plus 5cm}void bus\_\-1wire\_\-crc\_\-add (uint8\_\-t $\ast$ {\em crc}, uint8\_\-t {\em byte})}}
+\label{1wire_8c_b0c69eebf504c5d0ef7264b6289a967a}
+
+
+Count 8-bit CRC for 1-wire. Variable crc is updated.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em crc}]checksum variable, set to 0 before adding first byte \item[{\em byte}]value to add to checksum \end{description}
+\end{Desc}
+\hypertarget{1wire_8c_3efbb867ed864820d1c4ccaa0f55436c}{
+\index{1wire.c@{1wire.c}!bus_1wire_read@{bus\_\-1wire\_\-read}}
+\index{bus_1wire_read@{bus\_\-1wire\_\-read}!1wire.c@{1wire.c}}
+\subsubsection[bus\_\-1wire\_\-read]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t bus\_\-1wire\_\-read (void)}}
+\label{1wire_8c_3efbb867ed864820d1c4ccaa0f55436c}
+
+
+Read a byte from 1-wire bus
+
+\begin{Desc}
+\item[Returns:]byte from bus \end{Desc}
+\hypertarget{1wire_8c_5cf05b227dd828a9cbb7fd8404d7d058}{
+\index{1wire.c@{1wire.c}!bus_1wire_read_bit@{bus\_\-1wire\_\-read\_\-bit}}
+\index{bus_1wire_read_bit@{bus\_\-1wire\_\-read\_\-bit}!1wire.c@{1wire.c}}
+\subsubsection[bus\_\-1wire\_\-read\_\-bit]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t bus\_\-1wire\_\-read\_\-bit (void)}}
+\label{1wire_8c_5cf05b227dd828a9cbb7fd8404d7d058}
+
+
+Read a bit from 1-wire bus
+
+\begin{Desc}
+\item[Returns:]bit from bus \end{Desc}
+\hypertarget{1wire_8c_11c442043d787cb895cd47cbc2ef6a6e}{
+\index{1wire.c@{1wire.c}!bus_1wire_read_memory@{bus\_\-1wire\_\-read\_\-memory}}
+\index{bus_1wire_read_memory@{bus\_\-1wire\_\-read\_\-memory}!1wire.c@{1wire.c}}
+\subsubsection[bus\_\-1wire\_\-read\_\-memory]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR bus\_\-1wire\_\-read\_\-memory (b1w\_\-reg {\em device}, uint16\_\-t {\em address}, uint8\_\-t $\ast$ {\em buffer}, uint8\_\-t {\em bytes})}}
+\label{1wire_8c_11c442043d787cb895cd47cbc2ef6a6e}
+
+
+Read DS2502 device memory (Read memory)
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em device}]device address \item[{\em address}]address to start read \item[{\em buffer}]data buffer \item[{\em bytes}]amount of bytes to read\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE or pd\-FALSE (no devices present or invalid family) \end{Desc}
+\hypertarget{1wire_8c_c41f9a67f48dfd8673b65894fecf4a37}{
+\index{1wire.c@{1wire.c}!bus_1wire_read_rom@{bus\_\-1wire\_\-read\_\-rom}}
+\index{bus_1wire_read_rom@{bus\_\-1wire\_\-read\_\-rom}!1wire.c@{1wire.c}}
+\subsubsection[bus\_\-1wire\_\-read\_\-rom]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR bus\_\-1wire\_\-read\_\-rom (b1w\_\-reg {\em device})}}
+\label{1wire_8c_c41f9a67f48dfd8673b65894fecf4a37}
+
+
+Read 1-wire bus device address (Read ROM) Works only if there is just one device on the bus.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em device}]device address is returned here\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE or pd\-FALSE (no devices present) \end{Desc}
+\hypertarget{1wire_8c_dd72d7cb8253fc8b479e359fc03d68e8}{
+\index{1wire.c@{1wire.c}!bus_1wire_reset@{bus\_\-1wire\_\-reset}}
+\index{bus_1wire_reset@{bus\_\-1wire\_\-reset}!1wire.c@{1wire.c}}
+\subsubsection[bus\_\-1wire\_\-reset]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR bus\_\-1wire\_\-reset (void)}}
+\label{1wire_8c_dd72d7cb8253fc8b479e359fc03d68e8}
+
+
+Execute 1-wire bus reset sequence
+
+Bus reset and device present pulse detection for 1-wire bus.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE devices present 
+
+pd\-FAIL no devices present \end{Desc}
+\hypertarget{1wire_8c_7a280794f3b8459d163040716176efa6}{
+\index{1wire.c@{1wire.c}!bus_1wire_search@{bus\_\-1wire\_\-search}}
+\index{bus_1wire_search@{bus\_\-1wire\_\-search}!1wire.c@{1wire.c}}
+\subsubsection[bus\_\-1wire\_\-search]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t bus\_\-1wire\_\-search (b1w\_\-reg $\ast$ {\em device}, uint8\_\-t {\em num\_\-id})}}
+\label{1wire_8c_7a280794f3b8459d163040716176efa6}
+
+
+Search 1-wire bus
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em device}]array of device structures \item[{\em num\_\-id}]size of array\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]number of devices found on the bus \end{Desc}
+\hypertarget{1wire_8c_d9f804d20b8b4296a6abc6ee7a84a6e4}{
+\index{1wire.c@{1wire.c}!bus_1wire_select@{bus\_\-1wire\_\-select}}
+\index{bus_1wire_select@{bus\_\-1wire\_\-select}!1wire.c@{1wire.c}}
+\subsubsection[bus\_\-1wire\_\-select]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR bus\_\-1wire\_\-select (b1w\_\-reg {\em device})}}
+\label{1wire_8c_d9f804d20b8b4296a6abc6ee7a84a6e4}
+
+
+Select 1-wire bus device by address (Match ROM)
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em device}]device address\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE or pd\-FALSE (no devices present) \end{Desc}
+\hypertarget{1wire_8c_7c60945c3ab304f178581939af029603}{
+\index{1wire.c@{1wire.c}!bus_1wire_write@{bus\_\-1wire\_\-write}}
+\index{bus_1wire_write@{bus\_\-1wire\_\-write}!1wire.c@{1wire.c}}
+\subsubsection[bus\_\-1wire\_\-write]{\setlength{\rightskip}{0pt plus 5cm}void bus\_\-1wire\_\-write (uint8\_\-t {\em byte})}}
+\label{1wire_8c_7c60945c3ab304f178581939af029603}
+
+
+Write a byte to 1-wire bus
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em byte}]byte to send \end{description}
+\end{Desc}
+\hypertarget{1wire_8c_e33ba41d09daa58611d500e039956d14}{
+\index{1wire.c@{1wire.c}!bus_1wire_write_bit@{bus\_\-1wire\_\-write\_\-bit}}
+\index{bus_1wire_write_bit@{bus\_\-1wire\_\-write\_\-bit}!1wire.c@{1wire.c}}
+\subsubsection[bus\_\-1wire\_\-write\_\-bit]{\setlength{\rightskip}{0pt plus 5cm}void bus\_\-1wire\_\-write\_\-bit (uint8\_\-t {\em bit})}}
+\label{1wire_8c_e33ba41d09daa58611d500e039956d14}
+
+
+Write a bit to 1-wire bus
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em bit}]bit to send \end{description}
+\end{Desc}

@@ -1,0 +1,327 @@
+.objs/build/micro_compass_u510/../../FreeRTOS/Source/tasks.o: ../../FreeRTOS/Source/tasks.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h
+.objs/build/micro_compass_u510/../../FreeRTOS/Source/queue.o: ../../FreeRTOS/Source/queue.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/croutine.h
+.objs/build/micro_compass_u510/../../FreeRTOS/Source/portable/MemMang/heap_2.o: ../../FreeRTOS/Source/portable/MemMang/heap_2.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h
+.objs/build/micro_compass_u510/../../FreeRTOS/Source/list.o: ../../FreeRTOS/Source/list.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/list.h
+.objs/build/micro_compass_u510/../../Platform/micro/port.o: ../../Platform/micro/port.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h
+.objs/build/micro_compass_u510/../../Common/protocol_lib.o: ../../Common/protocol_lib.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Common/include/control_message.h \
+  ../../Common/include/rf_802_15_4.h ../../Common/include/buffer.h \
+  module_id.h ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../FreeRTOS/Source/include/semphr.h ../../Common/include/cipv6.h \
+  ../../Common/include/socket.h ../../Common/include/stack.h \
+  ../../Common/include/module.h modules_conf.h
+.objs/build/micro_compass_u510/../../Platform/micro/bus.o: ../../Platform/micro/bus.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/semphr.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Platform/micro/include/bus.h ../../Platform/micro/include/1wire.h
+.objs/build/micro_compass_u510/../../Platform/micro/gpio.o: ../../Platform/micro/gpio.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/semphr.h \
+  ../../Platform/micro/include/bus.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Platform/micro/include/gpio.h
+.objs/build/micro_compass_u510/../../Platform/micro/flash.o: ../../Platform/micro/flash.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/semphr.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Platform/micro/include/bus.h ../../Platform/micro/include/flash.h
+.objs/build/micro_compass_u510/../../Platform/micro/debug.o: ../../Platform/micro/debug.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/semphr.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Platform/micro/include/powersave.h
+.objs/build/micro_compass_u510/../../Platform/micro/1wire.o: ../../Platform/micro/1wire.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/semphr.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Platform/micro/include/bus.h ../../Platform/micro/include/1wire.h
+.objs/build/micro_compass_u510/../../Platform/micro/mac.o: ../../Platform/micro/mac.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/semphr.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Platform/micro/include/bus.h ../../Common/include/stack.h \
+  ../../Common/include/buffer.h module_id.h ../../Common/include/module.h \
+  modules_conf.h ../../Common/include/rf_802_15_4.h \
+  ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../Common/include/mac.h
+.objs/build/micro_compass_u510/../../Platform/micro/timer.o: ../../Platform/micro/timer.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h
+.objs/build/micro_compass_u510/../../Common/event_timer.o: ../../Common/event_timer.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../Common/include/event_timer.h
+.objs/build/micro_compass_u510/../../Common/module.o: ../../Common/module.c ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Common/include/stack.h ../../Common/include/buffer.h module_id.h \
+  ../../Common/include/module.h modules_conf.h \
+  ../../Common/include/rf_802_15_4.h ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h
+.objs/build/micro_compass_u510/../../Common/socket.o: ../../Common/socket.c ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h ../../Common/include/stack.h \
+  ../../Common/include/address.h ../../Common/include/buffer.h \
+  module_id.h ../../Common/include/module.h modules_conf.h \
+  ../../Common/include/rf_802_15_4.h ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../Common/include/debug.h ../../Platform/micro/include/progmem.h \
+  ../../Common/include/socket.h ../../Common/include/mac.h
+.objs/build/micro_compass_u510/../../Common/stack.o: ../../Common/stack.c ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h ../../Common/include/stack.h \
+  ../../Common/include/address.h ../../Common/include/buffer.h \
+  module_id.h ../../Common/include/module.h modules_conf.h \
+  ../../Common/include/rf_802_15_4.h ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../Common/include/socket.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h \
+  ../../Common/include/control_message.h
+.objs/build/micro_compass_u510/../../Common/routing.o: ../../Common/routing.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/semphr.h \
+  ../../FreeRTOS/Source/include/queue.h ../../Common/include/address.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../Common/include/socket.h ../../Common/include/stack.h \
+  ../../Common/include/buffer.h module_id.h ../../Common/include/module.h \
+  modules_conf.h ../../Common/include/rf_802_15_4.h \
+  ../../Platform/micro/include/rf.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h \
+  ../../Platform/micro/include/bus.h
+.objs/build/micro_compass_u510/../../Common/modules/icmp.o: ../../Common/modules/icmp.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Common/include/socket.h ../../Common/include/stack.h \
+  ../../Common/include/buffer.h module_id.h ../../Common/include/module.h \
+  modules_conf.h ../../Common/include/rf_802_15_4.h \
+  ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../Common/include/control_message.h ../../Common/include/cipv6.h
+.objs/build/micro_compass_u510/../../Common/modules/rf802_15_4.o: ../../Common/modules/rf802_15_4.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../FreeRTOS/Source/include/semphr.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Common/include/socket.h ../../Common/include/stack.h \
+  ../../Common/include/buffer.h module_id.h ../../Common/include/module.h \
+  modules_conf.h ../../Common/include/rf_802_15_4.h \
+  ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../Platform/micro/include/bus.h \
+  ../../Common/include/control_message.h \
+  ../../Common/include/event_timer.h ../../Common/include/mac.h \
+  ../../Common/include/cipv6.h
+.objs/build/micro_compass_u510/../../Platform/micro/rf.o: ../../Platform/micro/rf.c ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/semphr.h \
+  ../../Platform/micro/include/bus.h ../../Common/include/stack.h \
+  ../../Common/include/address.h ../../Common/include/buffer.h \
+  module_id.h ../../Common/include/module.h modules_conf.h \
+  ../../Common/include/rf_802_15_4.h ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../Common/include/debug.h ../../Platform/micro/include/progmem.h \
+  ../../Common/include/mac.h ../../Platform/micro/include/gpio.h
+.objs/build/micro_compass_u510/../../Common/modules/cIPv6.o: ../../Common/modules/cIPv6.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Common/include/stack.h ../../Common/include/buffer.h module_id.h \
+  ../../Common/include/module.h modules_conf.h \
+  ../../Common/include/rf_802_15_4.h ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../Common/include/control_message.h \
+  ../../Common/include/event_timer.h ../../Common/include/cipv6.h \
+  ../../Common/include/socket.h
+.objs/build/micro_compass_u510/../../Common/modules/cUDP.o: ../../Common/modules/cUDP.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Common/include/stack.h ../../Common/include/buffer.h module_id.h \
+  ../../Common/include/module.h modules_conf.h \
+  ../../Common/include/rf_802_15_4.h ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../Common/include/socket.h ../../Common/include/event_timer.h \
+  ../../Common/include/control_message.h ../../Common/include/cipv6.h
+.objs/build/micro_compass_u510/../../Common/modules/ssi.o: ../../Common/modules/ssi.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Common/include/stack.h ../../Common/include/buffer.h module_id.h \
+  ../../Common/include/module.h modules_conf.h \
+  ../../Common/include/rf_802_15_4.h ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h \
+  ../../Common/include/ssi.h ../../Common/include/event_timer.h
+.objs/build/micro_compass_u510/./main.o: main.c ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../Platform/micro/include/bus.h ../../Platform/micro/include/gpio.h \
+  ../../Common/include/debug.h ../../Platform/micro/include/progmem.h \
+  ../../Common/include/address.h ../../Common/include/ssi.h \
+  ../../Platform/micro/include/adc.h \
+  ../../Platform/micro/include/compass.h ../../Common/include/socket.h \
+  ../../Common/include/stack.h ../../Common/include/buffer.h module_id.h \
+  ../../Common/include/module.h modules_conf.h \
+  ../../Common/include/rf_802_15_4.h ../../Platform/micro/include/rf.h \
+  ../../Common/include/neighbor_routing_table.h
+.objs/build/micro_compass_u510/../../Platform/micro/adc.o: ../../Platform/micro/adc.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/semphr.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
+  ../../Platform/micro/include/adc.h \
+  ../../Platform/micro/include/powersave.h
+.objs/build/micro_compass_u510/../../Platform/micro/compass.o: ../../Platform/micro/compass.c \
+  ../../FreeRTOS/Source/include/FreeRTOS.h \
+  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
+  ../../FreeRTOS/Source/include/portable.h \
+  ../../FreeRTOS/Source/portable/GCC/MSP430F449/portmacro.h \
+  ../../FreeRTOS/Source/include/queue.h \
+  ../../FreeRTOS/Source/include/task.h \
+  ../../FreeRTOS/Source/include/list.h \
+  ../../FreeRTOS/Source/include/semphr.h \
+  ../../Platform/micro/include/compass.h \
+  ../../Platform/micro/include/bus.h ../../Common/include/debug.h \
+  ../../Platform/micro/include/progmem.h ../../Common/include/address.h

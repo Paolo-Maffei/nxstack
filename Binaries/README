@@ -1,0 +1,1 @@
+Pre-built binaries for tools and examples. These binaries are not replaced by the Makefiles. When re-building an application use the new binary from that application directory.

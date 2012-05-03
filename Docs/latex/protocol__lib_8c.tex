@@ -1,0 +1,100 @@
+\hypertarget{protocol__lib_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/protocol\_\-lib.c File Reference}
+\label{protocol__lib_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/protocol_lib.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/protocol\_\-lib.c}}
+}
+Nanostack support applications. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}control\_\-message.h\char`\"{}}\par
+{\tt \#include \char`\"{}neighbor\_\-routing\_\-table.h\char`\"{}}\par
+{\tt \#include \char`\"{}semphr.h\char`\"{}}\par
+{\tt \#include \char`\"{}cipv6.h\char`\"{}}\par
+{\tt \#include \char`\"{}socket.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{protocol__lib_8c_da2028bdaefa19a98ba23e464b744676}{stack\_\-service\_\-init} (stack\_\-event\_\-t stack\_\-event, \hyperlink{socket_8h_041daa666328e99aae40477895597d8d}{sock\_\-handler\_\-func} stack\_\-event\_\-handler, uint8\_\-t gateway\_\-discover, \hyperlink{structgateway__cache__t}{gateway\_\-cache\_\-t} $\ast$gw\_\-table)
+\item 
+\hyperlink{control__message_8h_a517e422e7baca3bcf3f4676a7a70597}{ip\_\-control\_\-id\_\-t} \hyperlink{protocol__lib_8c_8d434572b03cf0883331092902895fb2}{parse\_\-event\_\-message} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+void \hyperlink{protocol__lib_8c_480ab4f38b5c899246c54c6584d0a423}{push\_\-to\_\-app} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Nanostack support applications. 
+
+Module includes Ping, Gateway disvover, Gateway advertisment... . 
+
+\subsection{Function Documentation}
+\hypertarget{protocol__lib_8c_8d434572b03cf0883331092902895fb2}{
+\index{protocol_lib.c@{protocol\_\-lib.c}!parse_event_message@{parse\_\-event\_\-message}}
+\index{parse_event_message@{parse\_\-event\_\-message}!protocol_lib.c@{protocol\_\-lib.c}}
+\subsubsection[parse\_\-event\_\-message]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{control__message_8h_a517e422e7baca3bcf3f4676a7a70597}{ip\_\-control\_\-id\_\-t} parse\_\-event\_\-message (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{protocol__lib_8c_8d434572b03cf0883331092902895fb2}
+
+
+Parse stack evet message.
+
+Function parse stack event message and return event type.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer for stack event message \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]BROKEN\_\-LINK when packet transmission was failed to destination. 
+
+ROUTER\_\-DISCOVER\_\-RESPONSE GW-table updated by GW advertisment. 
+
+PENDING\_\-TIMEOUT Indirect data send was not Polling from pending proxy. 
+
+TOO\_\-LONG\_\-PACKET application payload too long to send. 
+
+ASSOCIATION\_\-WITH\_\-COORDINATOR RFD device was complete assocation with Cordinator now RFD can send data. 
+
+ASSOCIATION\_\-LOST Assocation to Cordinator losted 
+
+COORDINATOR\_\-STARTED Cordinators network and MAC setups ready. 
+
+GATEWAY\_\-STARTED Gateways network and MAC setups ready. 
+
+NOT\_\-ASSOCIATED Error status when RFD device try to send data before assocation. 
+
+MAC\_\-QUEUE\_\-FULL MAC task message queue full then application shuold wait a while. 
+
+MAC\_\-CCA\_\-ERR Channel reserve fail and transmission fail also. \end{Desc}
+\hypertarget{protocol__lib_8c_480ab4f38b5c899246c54c6584d0a423}{
+\index{protocol_lib.c@{protocol\_\-lib.c}!push_to_app@{push\_\-to\_\-app}}
+\index{push_to_app@{push\_\-to\_\-app}!protocol_lib.c@{protocol\_\-lib.c}}
+\subsubsection[push\_\-to\_\-app]{\setlength{\rightskip}{0pt plus 5cm}void push\_\-to\_\-app (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{protocol__lib_8c_480ab4f38b5c899246c54c6584d0a423}
+
+
+Stack event to APP.
+
+Push stack event messges from stack to message queue. \hypertarget{protocol__lib_8c_da2028bdaefa19a98ba23e464b744676}{
+\index{protocol_lib.c@{protocol\_\-lib.c}!stack_service_init@{stack\_\-service\_\-init}}
+\index{stack_service_init@{stack\_\-service\_\-init}!protocol_lib.c@{protocol\_\-lib.c}}
+\subsubsection[stack\_\-service\_\-init]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR stack\_\-service\_\-init (stack\_\-event\_\-t {\em stack\_\-event}, \hyperlink{socket_8h_041daa666328e99aae40477895597d8d}{sock\_\-handler\_\-func} {\em stack\_\-event\_\-handler}, uint8\_\-t {\em gateway\_\-discover}, \hyperlink{structgateway__cache__t}{gateway\_\-cache\_\-t} $\ast$ {\em gw\_\-table})}}
+\label{protocol__lib_8c_da2028bdaefa19a98ba23e464b744676}
+
+
+Stack service init.
+
+Init stack event bus using message queue or callback function. Also init automatick GW tracking.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em stack\_\-event}]pointer for stack evet message queue, give NULL if want use function callback \item[{\em stack\_\-event\_\-handler}]handler for stack event callback if want poll message queue give NULL \item[{\em gateway\_\-discover}]boolean value for GW tracking, 1 enable automatick tarcking then have to give pointer for GW-table \item[{\em gw\_\-table}]pointer to global GW-table to application, give NULL if \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-FALSE service initialize fail 
+
+pd\-TRIE Initilize complete \end{Desc}

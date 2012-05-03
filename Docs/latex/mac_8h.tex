@@ -1,0 +1,49 @@
+\hypertarget{mac_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/mac.h File Reference}
+\label{mac_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/include/mac.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/mac.h}}
+}
+MAC API. 
+
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{mac_8h_a12dd6bf4d0cb42d0d9c7569ef98d6a4}{mac\_\-set} (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$address)
+\item 
+port\-CHAR \hyperlink{mac_8h_39afdb8d293495245cfe87d17d28be5a}{mac\_\-get} (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$address)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+MAC API. 
+
+Function headers: getting HW MAC from device. 
+
+\subsection{Function Documentation}
+\hypertarget{mac_8h_39afdb8d293495245cfe87d17d28be5a}{
+\index{mac.h@{mac.h}!mac_get@{mac\_\-get}}
+\index{mac_get@{mac\_\-get}!mac.h@{mac.h}}
+\subsubsection[mac\_\-get]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR mac\_\-get (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em address})}}
+\label{mac_8h_39afdb8d293495245cfe87d17d28be5a}
+
+
+Get the unique device ID. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]Device ID information in the address field on pd\-TRUE \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE or pd\-FALSE (no storage/not found/corrupted) \end{Desc}
+\hypertarget{mac_8h_a12dd6bf4d0cb42d0d9c7569ef98d6a4}{
+\index{mac.h@{mac.h}!mac_set@{mac\_\-set}}
+\index{mac_set@{mac\_\-set}!mac.h@{mac.h}}
+\subsubsection[mac\_\-set]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-set (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em address})}}
+\label{mac_8h_a12dd6bf4d0cb42d0d9c7569ef98d6a4}
+
+
+Set the unique device ID. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]Device ID information in the address field \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE or pd\-FALSE (no storage/not editable) \end{Desc}

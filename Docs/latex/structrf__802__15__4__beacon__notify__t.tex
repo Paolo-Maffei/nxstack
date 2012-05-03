@@ -1,0 +1,76 @@
+\hypertarget{structrf__802__15__4__beacon__notify__t}{
+\section{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t Struct Reference}
+\label{structrf__802__15__4__beacon__notify__t}\index{rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}}
+}
+{\tt \#include $<$rf\_\-802\_\-15\_\-4.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+uint8\_\-t \hyperlink{structrf__802__15__4__beacon__notify__t_f92b6f437f0c161dd5fe4049c55277e4}{bsn}
+\item 
+\hyperlink{structpan__descriptor__t}{pan\_\-descriptor\_\-t} \hyperlink{structrf__802__15__4__beacon__notify__t_95757d52f8c93f6b606bb18011c5c9ac}{pan\-Descriptor}
+\item 
+uint8\_\-t \hyperlink{structrf__802__15__4__beacon__notify__t_65ed3ca74f853fa41c161844d901d87d}{pend\_\-addr\_\-spec}
+\item 
+uint8\_\-t \hyperlink{structrf__802__15__4__beacon__notify__t_a8b0e217a6210483b05eeb7d631be1fd}{pend\_\-address\_\-list} \mbox{[}56\mbox{]}
+\item 
+uint8\_\-t \hyperlink{structrf__802__15__4__beacon__notify__t_615ecd7915386d4733ba13aa31d6a333}{sdu\_\-length}
+\item 
+uint8\_\-t \hyperlink{structrf__802__15__4__beacon__notify__t_5af4eff5ea62bc06bda82fc144abf6ed}{sdu} \mbox{[}5\mbox{]}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Beacon notification using in superframe-state. 
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structrf__802__15__4__beacon__notify__t_f92b6f437f0c161dd5fe4049c55277e4}{
+\index{rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}!bsn@{bsn}}
+\index{bsn@{bsn}!rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}}
+\subsubsection[bsn]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structrf__802__15__4__beacon__notify__t_f92b6f437f0c161dd5fe4049c55277e4}{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t::bsn}}}
+\label{structrf__802__15__4__beacon__notify__t_f92b6f437f0c161dd5fe4049c55277e4}
+
+
+Sequence number of beacon frame. \hypertarget{structrf__802__15__4__beacon__notify__t_95757d52f8c93f6b606bb18011c5c9ac}{
+\index{rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}!panDescriptor@{panDescriptor}}
+\index{panDescriptor@{panDescriptor}!rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}}
+\subsubsection[panDescriptor]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structpan__descriptor__t}{pan\_\-descriptor\_\-t} \hyperlink{structrf__802__15__4__beacon__notify__t_95757d52f8c93f6b606bb18011c5c9ac}{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t::pan\-Descriptor}}}
+\label{structrf__802__15__4__beacon__notify__t_95757d52f8c93f6b606bb18011c5c9ac}
+
+
+Description of PAN-network. \hypertarget{structrf__802__15__4__beacon__notify__t_65ed3ca74f853fa41c161844d901d87d}{
+\index{rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}!pend_addr_spec@{pend\_\-addr\_\-spec}}
+\index{pend_addr_spec@{pend\_\-addr\_\-spec}!rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}}
+\subsubsection[pend\_\-addr\_\-spec]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structrf__802__15__4__beacon__notify__t_65ed3ca74f853fa41c161844d901d87d}{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t::pend\_\-addr\_\-spec}}}
+\label{structrf__802__15__4__beacon__notify__t_65ed3ca74f853fa41c161844d901d87d}
+
+
+Shows pendind address count. \hypertarget{structrf__802__15__4__beacon__notify__t_a8b0e217a6210483b05eeb7d631be1fd}{
+\index{rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}!pend_address_list@{pend\_\-address\_\-list}}
+\index{pend_address_list@{pend\_\-address\_\-list}!rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}}
+\subsubsection[pend\_\-address\_\-list]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structrf__802__15__4__beacon__notify__t_a8b0e217a6210483b05eeb7d631be1fd}{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t::pend\_\-address\_\-list}\mbox{[}56\mbox{]}}}
+\label{structrf__802__15__4__beacon__notify__t_a8b0e217a6210483b05eeb7d631be1fd}
+
+
+Pending address-list. \hypertarget{structrf__802__15__4__beacon__notify__t_5af4eff5ea62bc06bda82fc144abf6ed}{
+\index{rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}!sdu@{sdu}}
+\index{sdu@{sdu}!rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}}
+\subsubsection[sdu]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structrf__802__15__4__beacon__notify__t_5af4eff5ea62bc06bda82fc144abf6ed}{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t::sdu}\mbox{[}5\mbox{]}}}
+\label{structrf__802__15__4__beacon__notify__t_5af4eff5ea62bc06bda82fc144abf6ed}
+
+
+Beacon payload. \hypertarget{structrf__802__15__4__beacon__notify__t_615ecd7915386d4733ba13aa31d6a333}{
+\index{rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}!sdu_length@{sdu\_\-length}}
+\index{sdu_length@{sdu\_\-length}!rf_802_15_4_beacon_notify_t@{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t}}
+\subsubsection[sdu\_\-length]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structrf__802__15__4__beacon__notify__t_615ecd7915386d4733ba13aa31d6a333}{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t::sdu\_\-length}}}
+\label{structrf__802__15__4__beacon__notify__t_615ecd7915386d4733ba13aa31d6a333}
+
+
+Beacon payload length. 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/\hyperlink{rf__802__15__4_8h}{rf\_\-802\_\-15\_\-4.h}\end{CompactItemize}

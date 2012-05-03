@@ -1,0 +1,160 @@
+\hypertarget{ssi_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/ssi.c File Reference}
+\label{ssi_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/modules/ssi.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/ssi.c}}
+}
+SSI protocol module. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}stack.h\char`\"{}}\par
+{\tt \#include \char`\"{}buffer.h\char`\"{}}\par
+{\tt \#include \char`\"{}module.h\char`\"{}}\par
+{\tt \#include \char`\"{}ssi.h\char`\"{}}\par
+{\tt \#include \char`\"{}event\_\-timer.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{ssi_8c_124eb8d6c52de1cec6558d3e9a6bc939}{ssi\_\-init} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{ssi_8c_96a4e845d511eb76813287f08b667671}{ssi\_\-handle} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{ssi_8c_fd3b0750cb7a08c6e364d8994527157b}{ssi\_\-check} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+void \hyperlink{ssi_8c_71e0732d6c9c4f06824761ecdea20c8e}{ssi\_\-update} (void $\ast$param)
+\item 
+void \hyperlink{ssi_8c_6dc5f2c49d61806f0cec7b9722399903}{ssi\_\-discovery} (void $\ast$pbuf)
+\item 
+void \hyperlink{ssi_8c_ed8ba4445e67afca561eb91d980dbb91}{ssi\_\-data\_\-request} (void $\ast$pbuf)
+\item 
+void \hyperlink{ssi_8c_d4107b1507386a3c150abbfae05746e4}{ssi\_\-sensor\_\-update} (uint8\_\-t ind, uint32\_\-t value)
+\item 
+void \hyperlink{ssi_8c_f6d084292645972c8703b26119206ec8}{ssi\_\-sensor\_\-update\_\-from\_\-ISR} (uint8\_\-t ind, uint32\_\-t value)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+SSI protocol module. 
+
+SSI protocol module: SSI sensor data server. Module usage is covered in examples micro\_\-ssi and micro\_\-compass. 
+
+\subsection{Function Documentation}
+\hypertarget{ssi_8c_fd3b0750cb7a08c6e364d8994527157b}{
+\index{ssi.c@{ssi.c}!ssi_check@{ssi\_\-check}}
+\index{ssi_check@{ssi\_\-check}!ssi.c@{ssi.c}}
+\subsubsection[ssi\_\-check]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR ssi\_\-check (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{ssi_8c_fd3b0750cb7a08c6e364d8994527157b}
+
+
+SSI buffer check.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK 
+
+pd\-FALSE OK \end{Desc}
+\hypertarget{ssi_8c_ed8ba4445e67afca561eb91d980dbb91}{
+\index{ssi.c@{ssi.c}!ssi_data_request@{ssi\_\-data\_\-request}}
+\index{ssi_data_request@{ssi\_\-data\_\-request}!ssi.c@{ssi.c}}
+\subsubsection[ssi\_\-data\_\-request]{\setlength{\rightskip}{0pt plus 5cm}void ssi\_\-data\_\-request (void $\ast$ {\em pbuf})}}
+\label{ssi_8c_ed8ba4445e67afca561eb91d980dbb91}
+
+
+SSI data request handler.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pbuf}]pointer to buffer \end{description}
+\end{Desc}
+\hypertarget{ssi_8c_6dc5f2c49d61806f0cec7b9722399903}{
+\index{ssi.c@{ssi.c}!ssi_discovery@{ssi\_\-discovery}}
+\index{ssi_discovery@{ssi\_\-discovery}!ssi.c@{ssi.c}}
+\subsubsection[ssi\_\-discovery]{\setlength{\rightskip}{0pt plus 5cm}void ssi\_\-discovery (void $\ast$ {\em pbuf})}}
+\label{ssi_8c_6dc5f2c49d61806f0cec7b9722399903}
+
+
+SSI discovery handler.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pbuf}]pointer to buffer \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{ssi_8c_96a4e845d511eb76813287f08b667671}{
+\index{ssi.c@{ssi.c}!ssi_handle@{ssi\_\-handle}}
+\index{ssi_handle@{ssi\_\-handle}!ssi.c@{ssi.c}}
+\subsubsection[ssi\_\-handle]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR ssi\_\-handle (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{ssi_8c_96a4e845d511eb76813287f08b667671}
+
+
+SSI buffer handler.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to buffer \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{ssi_8c_124eb8d6c52de1cec6558d3e9a6bc939}{
+\index{ssi.c@{ssi.c}!ssi_init@{ssi\_\-init}}
+\index{ssi_init@{ssi\_\-init}!ssi.c@{ssi.c}}
+\subsubsection[ssi\_\-init]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR ssi\_\-init (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{ssi_8c_124eb8d6c52de1cec6558d3e9a6bc939}
+
+
+Initialize SSI module.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{ssi_8c_d4107b1507386a3c150abbfae05746e4}{
+\index{ssi.c@{ssi.c}!ssi_sensor_update@{ssi\_\-sensor\_\-update}}
+\index{ssi_sensor_update@{ssi\_\-sensor\_\-update}!ssi.c@{ssi.c}}
+\subsubsection[ssi\_\-sensor\_\-update]{\setlength{\rightskip}{0pt plus 5cm}void ssi\_\-sensor\_\-update (uint8\_\-t {\em ind}, uint32\_\-t {\em value})}}
+\label{ssi_8c_d4107b1507386a3c150abbfae05746e4}
+
+
+SSI sensor value update.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ind}]nr of sensor (in array, not ID) \item[{\em value}]new value \end{description}
+\end{Desc}
+\hypertarget{ssi_8c_f6d084292645972c8703b26119206ec8}{
+\index{ssi.c@{ssi.c}!ssi_sensor_update_from_ISR@{ssi\_\-sensor\_\-update\_\-from\_\-ISR}}
+\index{ssi_sensor_update_from_ISR@{ssi\_\-sensor\_\-update\_\-from\_\-ISR}!ssi.c@{ssi.c}}
+\subsubsection[ssi\_\-sensor\_\-update\_\-from\_\-ISR]{\setlength{\rightskip}{0pt plus 5cm}void ssi\_\-sensor\_\-update\_\-from\_\-ISR (uint8\_\-t {\em ind}, uint32\_\-t {\em value})}}
+\label{ssi_8c_f6d084292645972c8703b26119206ec8}
+
+
+SSI sensor value update from ISR.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ind}]nr of sensor (in array, not ID) \item[{\em value}]new value \end{description}
+\end{Desc}
+\hypertarget{ssi_8c_71e0732d6c9c4f06824761ecdea20c8e}{
+\index{ssi.c@{ssi.c}!ssi_update@{ssi\_\-update}}
+\index{ssi_update@{ssi\_\-update}!ssi.c@{ssi.c}}
+\subsubsection[ssi\_\-update]{\setlength{\rightskip}{0pt plus 5cm}void ssi\_\-update (void $\ast$ {\em param})}}
+\label{ssi_8c_71e0732d6c9c4f06824761ecdea20c8e}
+
+
+SSI value update event check.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em param}]not used \end{description}
+\end{Desc}

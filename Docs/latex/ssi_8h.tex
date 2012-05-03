@@ -1,0 +1,181 @@
+\hypertarget{ssi_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/ssi.h File Reference}
+\label{ssi_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/include/ssi.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/ssi.h}}
+}
+SSI protocol sensor structure. 
+
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structssi__sensor__t}{ssi\_\-sensor\_\-t}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{ssi_8h_7d3fe17e8d144f27059d87a7dd404ab1}{SSI\_\-DATA\_\-TYPE\_\-FLOAT}~0x00
+\item 
+\#define \hyperlink{ssi_8h_1553f9ec263d37859bdb9981d89c95cb}{SSI\_\-DATA\_\-TYPE\_\-INT}~0x01
+\item 
+\#define \hyperlink{ssi_8h_e0314b3ba73444e30c15943a8d8003dc}{SSI\_\-DATA\_\-TYPE\_\-CONF}~0x02
+\item 
+\#define \hyperlink{ssi_8h_7d3fe17e8d144f27059d87a7dd404ab1}{SSI\_\-DATA\_\-TYPE\_\-FLOAT}~0x00
+\item 
+\#define \hyperlink{ssi_8h_1553f9ec263d37859bdb9981d89c95cb}{SSI\_\-DATA\_\-TYPE\_\-INT}~0x01
+\item 
+\#define \hyperlink{ssi_8h_e0314b3ba73444e30c15943a8d8003dc}{SSI\_\-DATA\_\-TYPE\_\-CONF}~0x02
+\item 
+\#define \hyperlink{ssi_8h_0afa7c90a7ac68e9acbe81e4084d1f60}{SSI\_\-STATUS\_\-ENABLED}~0x01
+\item 
+\#define \hyperlink{ssi_8h_e81c9603caac385c13dae95ecf5e2a0f}{SSI\_\-STATUS\_\-REQUESTED}~0x40
+\item 
+\#define \hyperlink{ssi_8h_35191e8850b384cd922e678b2e41a3d4}{SSI\_\-STATUS\_\-UPDATED}~0x80
+\item 
+\#define \hyperlink{ssi_8h_bd3469ca605fa5c190775a637126c001}{SSI\_\-GROUP\_\-MASK}~0x\-C000
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum \hyperlink{ssi_8h_409ad6362ec72d6f4fc581d725c2be67}{ssi\_\-cmd\_\-t} 
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{ssi_8h_d4107b1507386a3c150abbfae05746e4}{ssi\_\-sensor\_\-update} (uint8\_\-t ind, uint32\_\-t value)
+\item 
+void \hyperlink{ssi_8h_f6d084292645972c8703b26119206ec8}{ssi\_\-sensor\_\-update\_\-from\_\-ISR} (uint8\_\-t ind, uint32\_\-t value)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+SSI protocol sensor structure. 
+
+SSI protocol headers and structures.
+
+SSI Protocol Structure
+
+ADDR\mbox{[}1\mbox{]} $|$ CMD\mbox{[}1\mbox{]} - Always present
+
+ID\mbox{[}2\mbox{]} - Typical sensor ID ID\mbox{[}2\mbox{]} \& 0x\-C000 == 0x\-C000 - Sensor description tuple 0x3F00 = GROUP\_\-MASK
+
+TYPE\mbox{[}1\mbox{]} $|$ INS\mbox{[}1\mbox{]} $|$ DATA\mbox{[}4\mbox{]} $|$ STAT\mbox{[}1\mbox{]} - For data response
+
+TYPE\mbox{[}1\mbox{]} $|$ INS\mbox{[}1\mbox{]} $|$ ATTR\mbox{[}1\mbox{]} $|$ DATA\mbox{[}4\mbox{]} or ASCII\mbox{[}16\mbox{]} - For configuration
+
+SSI Protocol commands
+
+Capital = no CRC, lower case = CRC
+
+q - Query presence on SSI device (respond with q) c - Discover sensors (respond with n) n - Discovery reply z - Reset sensor device g - Get configuration data from sensor s - Set configuration data of a sensor w - Like s but for ascii data x - Configuration response to g i - Configuration response to s r - Request sensor data d - Data response from sensor p - Read/write free-form text (for protocol extensions) 
+
+\subsection{Define Documentation}
+\hypertarget{ssi_8h_e0314b3ba73444e30c15943a8d8003dc}{
+\index{ssi.h@{ssi.h}!SSI_DATA_TYPE_CONF@{SSI\_\-DATA\_\-TYPE\_\-CONF}}
+\index{SSI_DATA_TYPE_CONF@{SSI\_\-DATA\_\-TYPE\_\-CONF}!ssi.h@{ssi.h}}
+\subsubsection[SSI\_\-DATA\_\-TYPE\_\-CONF]{\setlength{\rightskip}{0pt plus 5cm}\#define SSI\_\-DATA\_\-TYPE\_\-CONF~0x02}}
+\label{ssi_8h_e0314b3ba73444e30c15943a8d8003dc}
+
+
+non-displayable configuration sensor \hypertarget{ssi_8h_e0314b3ba73444e30c15943a8d8003dc}{
+\index{ssi.h@{ssi.h}!SSI_DATA_TYPE_CONF@{SSI\_\-DATA\_\-TYPE\_\-CONF}}
+\index{SSI_DATA_TYPE_CONF@{SSI\_\-DATA\_\-TYPE\_\-CONF}!ssi.h@{ssi.h}}
+\subsubsection[SSI\_\-DATA\_\-TYPE\_\-CONF]{\setlength{\rightskip}{0pt plus 5cm}\#define SSI\_\-DATA\_\-TYPE\_\-CONF~0x02}}
+\label{ssi_8h_e0314b3ba73444e30c15943a8d8003dc}
+
+
+non-displayable configuration sensor \hypertarget{ssi_8h_7d3fe17e8d144f27059d87a7dd404ab1}{
+\index{ssi.h@{ssi.h}!SSI_DATA_TYPE_FLOAT@{SSI\_\-DATA\_\-TYPE\_\-FLOAT}}
+\index{SSI_DATA_TYPE_FLOAT@{SSI\_\-DATA\_\-TYPE\_\-FLOAT}!ssi.h@{ssi.h}}
+\subsubsection[SSI\_\-DATA\_\-TYPE\_\-FLOAT]{\setlength{\rightskip}{0pt plus 5cm}\#define SSI\_\-DATA\_\-TYPE\_\-FLOAT~0x00}}
+\label{ssi_8h_7d3fe17e8d144f27059d87a7dd404ab1}
+
+
+SSI unit type: IEEE 32-bit floating point \hypertarget{ssi_8h_7d3fe17e8d144f27059d87a7dd404ab1}{
+\index{ssi.h@{ssi.h}!SSI_DATA_TYPE_FLOAT@{SSI\_\-DATA\_\-TYPE\_\-FLOAT}}
+\index{SSI_DATA_TYPE_FLOAT@{SSI\_\-DATA\_\-TYPE\_\-FLOAT}!ssi.h@{ssi.h}}
+\subsubsection[SSI\_\-DATA\_\-TYPE\_\-FLOAT]{\setlength{\rightskip}{0pt plus 5cm}\#define SSI\_\-DATA\_\-TYPE\_\-FLOAT~0x00}}
+\label{ssi_8h_7d3fe17e8d144f27059d87a7dd404ab1}
+
+
+SSI unit type: IEEE 32-bit floating point \hypertarget{ssi_8h_1553f9ec263d37859bdb9981d89c95cb}{
+\index{ssi.h@{ssi.h}!SSI_DATA_TYPE_INT@{SSI\_\-DATA\_\-TYPE\_\-INT}}
+\index{SSI_DATA_TYPE_INT@{SSI\_\-DATA\_\-TYPE\_\-INT}!ssi.h@{ssi.h}}
+\subsubsection[SSI\_\-DATA\_\-TYPE\_\-INT]{\setlength{\rightskip}{0pt plus 5cm}\#define SSI\_\-DATA\_\-TYPE\_\-INT~0x01}}
+\label{ssi_8h_1553f9ec263d37859bdb9981d89c95cb}
+
+
+SSI unit type: signed 32-bit integer \hypertarget{ssi_8h_1553f9ec263d37859bdb9981d89c95cb}{
+\index{ssi.h@{ssi.h}!SSI_DATA_TYPE_INT@{SSI\_\-DATA\_\-TYPE\_\-INT}}
+\index{SSI_DATA_TYPE_INT@{SSI\_\-DATA\_\-TYPE\_\-INT}!ssi.h@{ssi.h}}
+\subsubsection[SSI\_\-DATA\_\-TYPE\_\-INT]{\setlength{\rightskip}{0pt plus 5cm}\#define SSI\_\-DATA\_\-TYPE\_\-INT~0x01}}
+\label{ssi_8h_1553f9ec263d37859bdb9981d89c95cb}
+
+
+SSI unit type: signed 32-bit integer \hypertarget{ssi_8h_bd3469ca605fa5c190775a637126c001}{
+\index{ssi.h@{ssi.h}!SSI_GROUP_MASK@{SSI\_\-GROUP\_\-MASK}}
+\index{SSI_GROUP_MASK@{SSI\_\-GROUP\_\-MASK}!ssi.h@{ssi.h}}
+\subsubsection[SSI\_\-GROUP\_\-MASK]{\setlength{\rightskip}{0pt plus 5cm}\#define SSI\_\-GROUP\_\-MASK~0x\-C000}}
+\label{ssi_8h_bd3469ca605fa5c190775a637126c001}
+
+
+SSI sensor ID grouping mask \hypertarget{ssi_8h_0afa7c90a7ac68e9acbe81e4084d1f60}{
+\index{ssi.h@{ssi.h}!SSI_STATUS_ENABLED@{SSI\_\-STATUS\_\-ENABLED}}
+\index{SSI_STATUS_ENABLED@{SSI\_\-STATUS\_\-ENABLED}!ssi.h@{ssi.h}}
+\subsubsection[SSI\_\-STATUS\_\-ENABLED]{\setlength{\rightskip}{0pt plus 5cm}\#define SSI\_\-STATUS\_\-ENABLED~0x01}}
+\label{ssi_8h_0afa7c90a7ac68e9acbe81e4084d1f60}
+
+
+SSI sensor status flag: enabled \hypertarget{ssi_8h_e81c9603caac385c13dae95ecf5e2a0f}{
+\index{ssi.h@{ssi.h}!SSI_STATUS_REQUESTED@{SSI\_\-STATUS\_\-REQUESTED}}
+\index{SSI_STATUS_REQUESTED@{SSI\_\-STATUS\_\-REQUESTED}!ssi.h@{ssi.h}}
+\subsubsection[SSI\_\-STATUS\_\-REQUESTED]{\setlength{\rightskip}{0pt plus 5cm}\#define SSI\_\-STATUS\_\-REQUESTED~0x40}}
+\label{ssi_8h_e81c9603caac385c13dae95ecf5e2a0f}
+
+
+SSI sensor status flag: data request pending \hypertarget{ssi_8h_35191e8850b384cd922e678b2e41a3d4}{
+\index{ssi.h@{ssi.h}!SSI_STATUS_UPDATED@{SSI\_\-STATUS\_\-UPDATED}}
+\index{SSI_STATUS_UPDATED@{SSI\_\-STATUS\_\-UPDATED}!ssi.h@{ssi.h}}
+\subsubsection[SSI\_\-STATUS\_\-UPDATED]{\setlength{\rightskip}{0pt plus 5cm}\#define SSI\_\-STATUS\_\-UPDATED~0x80}}
+\label{ssi_8h_35191e8850b384cd922e678b2e41a3d4}
+
+
+SSI sensor status flag: data updated since last request 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{ssi_8h_409ad6362ec72d6f4fc581d725c2be67}{
+\index{ssi.h@{ssi.h}!ssi_cmd_t@{ssi\_\-cmd\_\-t}}
+\index{ssi_cmd_t@{ssi\_\-cmd\_\-t}!ssi.h@{ssi.h}}
+\subsubsection[ssi\_\-cmd\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{ssi_8h_409ad6362ec72d6f4fc581d725c2be67}{ssi\_\-cmd\_\-t}}}
+\label{ssi_8h_409ad6362ec72d6f4fc581d725c2be67}
+
+
+SSI command enumeration 
+
+\subsection{Function Documentation}
+\hypertarget{ssi_8h_d4107b1507386a3c150abbfae05746e4}{
+\index{ssi.h@{ssi.h}!ssi_sensor_update@{ssi\_\-sensor\_\-update}}
+\index{ssi_sensor_update@{ssi\_\-sensor\_\-update}!ssi.h@{ssi.h}}
+\subsubsection[ssi\_\-sensor\_\-update]{\setlength{\rightskip}{0pt plus 5cm}void ssi\_\-sensor\_\-update (uint8\_\-t {\em ind}, uint32\_\-t {\em value})}}
+\label{ssi_8h_d4107b1507386a3c150abbfae05746e4}
+
+
+SSI sensor value update.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ind}]nr of sensor (in array, not ID) \item[{\em value}]new value \end{description}
+\end{Desc}
+\hypertarget{ssi_8h_f6d084292645972c8703b26119206ec8}{
+\index{ssi.h@{ssi.h}!ssi_sensor_update_from_ISR@{ssi\_\-sensor\_\-update\_\-from\_\-ISR}}
+\index{ssi_sensor_update_from_ISR@{ssi\_\-sensor\_\-update\_\-from\_\-ISR}!ssi.h@{ssi.h}}
+\subsubsection[ssi\_\-sensor\_\-update\_\-from\_\-ISR]{\setlength{\rightskip}{0pt plus 5cm}void ssi\_\-sensor\_\-update\_\-from\_\-ISR (uint8\_\-t {\em ind}, uint32\_\-t {\em value})}}
+\label{ssi_8h_f6d084292645972c8703b26119206ec8}
+
+
+SSI sensor value update from ISR.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ind}]nr of sensor (in array, not ID) \item[{\em value}]new value \end{description}
+\end{Desc}

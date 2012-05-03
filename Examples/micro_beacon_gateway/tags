@@ -1,0 +1,96 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ALL_ASFLAGS	Makefile	/^ALL_ASFLAGS = $(ASFLAGS)  -I. -x assembler-with-cpp $/;"	m
+ALL_CFLAGS	Makefile	/^ALL_CFLAGS = $(CFLAGS) -I.$/;"	m
+APP	Makefile	/^APP=micro_gateway$/;"	m
+COMMON_DIR	Makefile	/^COMMON_DIR =..\/..\/Common$/;"	m
+DEPS	Makefile	/^DEPS = $(addprefix .deps\/deps\/root\/$(APP)\/,$(SRC:.c=.d) ) $/;"	m
+EXTRAINCDIRS	Makefile	/^EXTRAINCDIRS = $/;"	m
+FREERTOS_CONFIG_H	FreeRTOSConfig.h	63;"	d
+INCLUDE_uxTaskPriorityGet	FreeRTOSConfig.h	104;"	d
+INCLUDE_vTaskCleanUpResources	FreeRTOSConfig.h	106;"	d
+INCLUDE_vTaskDelay	FreeRTOSConfig.h	109;"	d
+INCLUDE_vTaskDelayUntil	FreeRTOSConfig.h	108;"	d
+INCLUDE_vTaskDelete	FreeRTOSConfig.h	105;"	d
+INCLUDE_vTaskPrioritySet	FreeRTOSConfig.h	103;"	d
+INCLUDE_vTaskSuspend	FreeRTOSConfig.h	107;"	d
+LST	Makefile	/^LST = $(ASRC:.S=.lst) $(SRC:.c=.lst)$/;"	m
+MODULE_APP	module_id.h	/^MODULE_APP,$/;"	e	enum:__anon1
+MODULE_CIPV6	module_id.h	/^MODULE_CIPV6,$/;"	e	enum:__anon1
+MODULE_CUDP	module_id.h	/^MODULE_CUDP,$/;"	e	enum:__anon1
+MODULE_DRI	module_id.h	/^MODULE_DRI,$/;"	e	enum:__anon1
+MODULE_ICMP	module_id.h	/^MODULE_ICMP,$/;"	e	enum:__anon1
+MODULE_MAC_15_4	module_id.h	/^MODULE_MAC_15_4,$/;"	e	enum:__anon1
+MODULE_MAX	module_id.h	/^MODULE_MAX } module_id_t;$/;"	e	enum:__anon1
+MODULE_NONE	module_id.h	/^typedef enum { MODULE_NONE = 0,$/;"	e	enum:__anon1
+MODULE_NRP	module_id.h	/^MODULE_NRP,$/;"	e	enum:__anon1
+MODULE_NUDP	module_id.h	/^MODULE_NUDP,$/;"	e	enum:__anon1
+MODULE_NWK_MANAGER	module_id.h	/^MODULE_NWK_MANAGER,$/;"	e	enum:__anon1
+MODULE_RF_802_15_4	module_id.h	/^MODULE_RF_802_15_4,$/;"	e	enum:__anon1
+MODULE_SSI	module_id.h	/^MODULE_SSI,$/;"	e	enum:__anon1
+OBJS	Makefile	/^OBJS = $(addprefix .objs\/build\/root\/$(APP)\/,$(SRC:.c=.o) ) $(addprefix .objs\/build\/root\/$(APP)\/,$(ASRC:.S=.o) )$/;"	m
+OPT	Makefile	/^OPT = s$/;"	m
+PLATFORM_DIR	Makefile	/^PLATFORM_DIR=..\/..\/Platform\/micro$/;"	m
+PORT_DIR	Makefile	/^PORT_DIR = $(PLATFORM_DIR)$/;"	m
+SOURCE_DIR	Makefile	/^SOURCE_DIR = ..\/..\/FreeRTOS\/Source$/;"	m
+TARGET	Makefile	/^TARGET = $(APP)$/;"	m
+_MODULE_ID_H	module_id.h	2;"	d
+cipv6_check	modules_conf.h	/^extern portCHAR cipv6_check( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+cipv6_handle	modules_conf.h	/^extern portCHAR cipv6_handle( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+cipv6_init	modules_conf.h	/^extern portCHAR cipv6_init(buffer_t *buf);$/;"	p	signature:(buffer_t *buf)
+configCPU_CLOCK_HZ	FreeRTOSConfig.h	84;"	d
+configIDLE_SHOULD_YIELD	FreeRTOSConfig.h	93;"	d
+configMAXIMUM_STACK_SIZE	FreeRTOSConfig.h	88;"	d
+configMAX_CO_ROUTINE_PRIORITIES	FreeRTOSConfig.h	98;"	d
+configMAX_PRIORITIES	FreeRTOSConfig.h	86;"	d
+configMAX_TASK_NAME_LEN	FreeRTOSConfig.h	90;"	d
+configMINIMAL_STACK_SIZE	FreeRTOSConfig.h	87;"	d
+configTICK_RATE_HZ	FreeRTOSConfig.h	85;"	d
+configTOTAL_HEAP_SIZE	FreeRTOSConfig.h	89;"	d
+configUSE_16_BIT_TICKS	FreeRTOSConfig.h	92;"	d
+configUSE_CO_ROUTINES	FreeRTOSConfig.h	97;"	d
+configUSE_IDLE_HOOK	FreeRTOSConfig.h	78;"	d
+configUSE_IDLE_HOOK	FreeRTOSConfig.h	80;"	d
+configUSE_PREEMPTION	FreeRTOSConfig.h	83;"	d
+configUSE_TICK_HOOK	FreeRTOSConfig.h	96;"	d
+configUSE_TRACE_FACILITY	FreeRTOSConfig.h	91;"	d
+cudp_check	modules_conf.h	/^extern portCHAR cudp_check( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+cudp_handle	modules_conf.h	/^extern portCHAR cudp_handle( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+cudp_init	modules_conf.h	/^extern portCHAR cudp_init(buffer_t *buf);$/;"	p	signature:(buffer_t *buf)
+data_address	main.c	/^sockaddr_t data_address = $/;"	v
+data_rx	main.c	/^socket_t *data_rx=0;$/;"	v
+dri_check	modules_conf.h	/^extern portCHAR dri_check( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+dri_handle	modules_conf.h	/^extern portCHAR dri_handle( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+dri_init	modules_conf.h	/^extern portCHAR dri_init(buffer_t *buf);$/;"	p	signature:(buffer_t *buf)
+gateway_features	modules_conf.h	/^uint8_t gateway_features;$/;"	v
+icmp_check	modules_conf.h	/^extern portCHAR icmp_check( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+icmp_handle	modules_conf.h	/^extern portCHAR icmp_handle( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+icmp_init	modules_conf.h	/^extern portCHAR icmp_init(buffer_t *buf);$/;"	p	signature:(buffer_t *buf)
+mac_check	modules_conf.h	/^extern portCHAR mac_check( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+mac_handle	modules_conf.h	/^extern portCHAR mac_handle( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+mac_init	modules_conf.h	/^extern portCHAR mac_init(buffer_t *buf);$/;"	p	signature:(buffer_t *buf)
+main	main.c	/^int main( void )$/;"	f	signature:( void )
+module_id_t	module_id.h	/^MODULE_MAX } module_id_t;$/;"	t	typeref:enum:__anon1
+modules	modules_conf.h	/^module_t modules[] = {$/;"	v
+nrp_check	modules_conf.h	/^extern portCHAR nrp_check( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+nrp_handle	modules_conf.h	/^extern portCHAR nrp_handle( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+nrp_init	modules_conf.h	/^extern portCHAR nrp_init(buffer_t *buf);$/;"	p	signature:(buffer_t *buf)
+nudp_check	modules_conf.h	/^extern portCHAR nudp_check( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+nudp_handle	modules_conf.h	/^extern portCHAR nudp_handle( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+nudp_init	modules_conf.h	/^extern portCHAR nudp_init(buffer_t *buf);$/;"	p	signature:(buffer_t *buf)
+nwk_manager_check	modules_conf.h	/^extern portCHAR nwk_manager_check( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+nwk_manager_handle	modules_conf.h	/^extern portCHAR nwk_manager_handle( buffer_t *buffer );$/;"	p	signature:( buffer_t *buffer )
+nwk_manager_init	modules_conf.h	/^extern portCHAR nwk_manager_init( buffer_t *buf);$/;"	p	signature:( buffer_t *buf)
+rf_802_15_4_check	modules_conf.h	/^extern portCHAR rf_802_15_4_check( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+rf_802_15_4_handle	modules_conf.h	/^extern portCHAR rf_802_15_4_handle( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+rf_802_15_4_init	modules_conf.h	/^extern portCHAR rf_802_15_4_init(buffer_t *buf);$/;"	p	signature:(buffer_t *buf)
+ssi_check	modules_conf.h	/^extern portCHAR ssi_check( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+ssi_handle	modules_conf.h	/^extern portCHAR ssi_handle( buffer_t *buf );$/;"	p	signature:( buffer_t *buf )
+ssi_init	modules_conf.h	/^extern portCHAR ssi_init(buffer_t *buf);$/;"	p	signature:(buffer_t *buf)
+stack_event	main.c	/^stack_event_t stack_event; $/;"	v
+vgateway	main.c	/^static void vgateway( void *pvParameters )$/;"	f	file:	signature:( void *pvParameters )
+vgateway	main.c	/^static void vgateway( void *pvParameters );$/;"	p	file:	signature:( void *pvParameters )

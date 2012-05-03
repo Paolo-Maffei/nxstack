@@ -1,0 +1,135 @@
+\hypertarget{routing_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/routing.c File Reference}
+\label{routing_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/routing.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/routing.c}}
+}
+Routing module which handle routing \& neighbourtable informations. 
+
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}semphr.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include $<$sys/inttypes.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}address.h\char`\"{}}\par
+{\tt \#include \char`\"{}neighbor\_\-routing\_\-table.h\char`\"{}}\par
+{\tt \#include \char`\"{}socket.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}bus.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{routing_8c_952768b88e3c5870b4e3183a50e9440a}{check\_\-tables\_\-status} (void $\ast$unused\_\-parameter)
+\item 
+void \hyperlink{routing_8c_7ac6451b2ea78d1ec060cbe2bf18ae01}{routing\_\-init} (void)
+\item 
+\hyperlink{structneighbor__table__t}{neighbor\_\-table\_\-t} $\ast$ \hyperlink{routing_8c_e5432fd23593bf7dd1f3526e684e15ac}{get\_\-neighbour\_\-info} (void)
+\item 
+uint8\_\-t \hyperlink{routing_8c_ffe4db392af0e09632b0a0c689d926a7}{update\_\-neighbour\_\-table} (\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} type, \hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} address, int8\_\-t last\_\-rssi, uint8\_\-t last\_\-sqn, uint8\_\-t remove)
+\item 
+void \hyperlink{routing_8c_9c97e5d0a1ec439aab5041b7c779267a}{update\_\-tables\_\-ttl} (\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} type, \hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} address)
+\item 
+dest\_\-delivery\_\-t \hyperlink{routing_8c_1a6f574008e16dd3963549fdb059b705}{check\_\-neighbour\_\-table} (\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} type, \hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} address)
+\item 
+void \hyperlink{routing_8c_562618f77ce9d5b8950b28e7e7b3fa54}{print\_\-table\_\-information} (void)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Routing module which handle routing \& neighbourtable informations. 
+
+This module will be usefull for every modules who want check neighbor\_\-tables and routing\_\-tables 
+
+\subsection{Function Documentation}
+\hypertarget{routing_8c_1a6f574008e16dd3963549fdb059b705}{
+\index{routing.c@{routing.c}!check_neighbour_table@{check\_\-neighbour\_\-table}}
+\index{check_neighbour_table@{check\_\-neighbour\_\-table}!routing.c@{routing.c}}
+\subsubsection[check\_\-neighbour\_\-table]{\setlength{\rightskip}{0pt plus 5cm}dest\_\-delivery\_\-t check\_\-neighbour\_\-table (\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} {\em type}, \hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} {\em address})}}
+\label{routing_8c_1a6f574008e16dd3963549fdb059b705}
+
+
+Check destination address from neighbor.
+
+IP-layer uses this function when it has to forward packet.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em type}]indicates type of destination address mode \item[{\em address}]destination address\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]BROADCAST when address was broadcast. 
+
+NEIGHBOR when address was already in list. 
+
+NO\_\-SUPPORT when address type not valid. \end{Desc}
+\hypertarget{routing_8c_952768b88e3c5870b4e3183a50e9440a}{
+\index{routing.c@{routing.c}!check_tables_status@{check\_\-tables\_\-status}}
+\index{check_tables_status@{check\_\-tables\_\-status}!routing.c@{routing.c}}
+\subsubsection[check\_\-tables\_\-status]{\setlength{\rightskip}{0pt plus 5cm}void check\_\-tables\_\-status (void $\ast$ {\em unused\_\-parameter})}}
+\label{routing_8c_952768b88e3c5870b4e3183a50e9440a}
+
+
+Checkout routing- and neighbor tables time-stamp.
+
+If function detect that TTL, time to live value is coming zero it delete route or neighbor-info. \hypertarget{routing_8c_e5432fd23593bf7dd1f3526e684e15ac}{
+\index{routing.c@{routing.c}!get_neighbour_info@{get\_\-neighbour\_\-info}}
+\index{get_neighbour_info@{get\_\-neighbour\_\-info}!routing.c@{routing.c}}
+\subsubsection[get\_\-neighbour\_\-info]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structneighbor__table__t}{neighbor\_\-table\_\-t}$\ast$ get\_\-neighbour\_\-info (void)}}
+\label{routing_8c_e5432fd23593bf7dd1f3526e684e15ac}
+
+
+Function for look for neighbourtable.
+
+After check shuold run free\_\-table\_\-semaphore()
+
+\begin{Desc}
+\item[Returns:]address for neighbour table \end{Desc}
+\hypertarget{routing_8c_562618f77ce9d5b8950b28e7e7b3fa54}{
+\index{routing.c@{routing.c}!print_table_information@{print\_\-table\_\-information}}
+\index{print_table_information@{print\_\-table\_\-information}!routing.c@{routing.c}}
+\subsubsection[print\_\-table\_\-information]{\setlength{\rightskip}{0pt plus 5cm}void print\_\-table\_\-information (void)}}
+\label{routing_8c_562618f77ce9d5b8950b28e7e7b3fa54}
+
+
+Printout neighbour and routing table information. \hypertarget{routing_8c_7ac6451b2ea78d1ec060cbe2bf18ae01}{
+\index{routing.c@{routing.c}!routing_init@{routing\_\-init}}
+\index{routing_init@{routing\_\-init}!routing.c@{routing.c}}
+\subsubsection[routing\_\-init]{\setlength{\rightskip}{0pt plus 5cm}void routing\_\-init (void)}}
+\label{routing_8c_7ac6451b2ea78d1ec060cbe2bf18ae01}
+
+
+Initialize Neighbour and Routing tables.
+
+Create also semaphore for tables. \hypertarget{routing_8c_ffe4db392af0e09632b0a0c689d926a7}{
+\index{routing.c@{routing.c}!update_neighbour_table@{update\_\-neighbour\_\-table}}
+\index{update_neighbour_table@{update\_\-neighbour\_\-table}!routing.c@{routing.c}}
+\subsubsection[update\_\-neighbour\_\-table]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t update\_\-neighbour\_\-table (\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} {\em type}, \hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} {\em address}, int8\_\-t {\em last\_\-rssi}, uint8\_\-t {\em last\_\-sqn}, uint8\_\-t {\em remove})}}
+\label{routing_8c_ffe4db392af0e09632b0a0c689d926a7}
+
+
+Update neighbor tables if necessary.
+
+Mac-layer use this function every time when received packet which LQI $>$ 0.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em type}]indicates type of neighbor address mode \item[{\em address}]neighbor address \item[{\em lqi}]Last received LQI value \item[{\em last\_\-sqn}]last MAC sqn from this address\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]1 when last\_\-sqn is different than current 
+
+0 when sqn is same, now MAC discard packet \end{Desc}
+\hypertarget{routing_8c_9c97e5d0a1ec439aab5041b7c779267a}{
+\index{routing.c@{routing.c}!update_tables_ttl@{update\_\-tables\_\-ttl}}
+\index{update_tables_ttl@{update\_\-tables\_\-ttl}!routing.c@{routing.c}}
+\subsubsection[update\_\-tables\_\-ttl]{\setlength{\rightskip}{0pt plus 5cm}void update\_\-tables\_\-ttl (\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} {\em type}, \hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} {\em address})}}
+\label{routing_8c_9c97e5d0a1ec439aab5041b7c779267a}
+
+
+Update neighbor \& routing table TTL when unicast TX working.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em type}]indicates type of address \item[{\em address}]\end{description}
+\end{Desc}

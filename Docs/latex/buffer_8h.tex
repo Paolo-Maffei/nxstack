@@ -1,0 +1,114 @@
+\hypertarget{buffer_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/buffer.h File Reference}
+\label{buffer_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/include/buffer.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/buffer.h}}
+}
+buffer type definitions. 
+
+{\tt \#include \char`\"{}address.h\char`\"{}}\par
+{\tt \#include \char`\"{}module\_\-id.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structbuffer__options__t}{buffer\_\-options\_\-t}
+\item 
+struct \hyperlink{structbuffer__t}{buffer\_\-t}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{buffer_8h_12a666fddf45291b6d72e4375a8c26f3}{buffer\_\-data\_\-pointer}(x)~\&(x $\rightarrow$ buf\mbox{[}x $\rightarrow$ buf\_\-ptr\mbox{]})
+\item 
+\#define \hyperlink{buffer_8h_13d613fcda6df27b13a4502b922395d0}{buffer\_\-data\_\-end}(x)~\&(x $\rightarrow$ buf\mbox{[}x $\rightarrow$ buf\_\-end\mbox{]})
+\item 
+\#define \hyperlink{buffer_8h_0bfe73f7621f02284e4d27e2f797e5d3}{buffer\_\-data\_\-length}(x)~(x $\rightarrow$ buf\_\-end - x $\rightarrow$ buf\_\-ptr)
+\item 
+\#define \hyperlink{buffer_8h_6f26265606608e089a313c5a396c90b7}{buffer\_\-data\_\-free}(x)~(x $\rightarrow$ size - x $\rightarrow$ buf\_\-end)
+\item 
+\#define \hyperlink{buffer_8h_455bb56b2ea83fb6d612dc369c80be52}{buffer\_\-push\_\-uint8}(x, z)~x $\rightarrow$ buf\mbox{[}x $\rightarrow$ buf\_\-end++\mbox{]} = z
+\item 
+\#define \hyperlink{buffer_8h_466292430e8c036cf00e2d423c552cfb}{buffer\_\-pull\_\-uint8}(x)~x $\rightarrow$ buf\mbox{[}x $\rightarrow$ buf\_\-ptr++\mbox{]}
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum \hyperlink{buffer_8h_1ee2fd526bf1d6e6d892b10466c7e725}{buffer\_\-type\_\-t} 
+\item 
+enum \hyperlink{buffer_8h_03eee9524252e108b2762c560b60da9b}{handle\_\-t} 
+\item 
+enum \hyperlink{buffer_8h_584321097d4e6c6a37198fbbb6d76c71}{buffer\_\-direction\_\-t} 
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+buffer type definitions. 
+
+nano\-Stack: buffer carrier structure. 
+
+\subsection{Define Documentation}
+\hypertarget{buffer_8h_13d613fcda6df27b13a4502b922395d0}{
+\index{buffer.h@{buffer.h}!buffer_data_end@{buffer\_\-data\_\-end}}
+\index{buffer_data_end@{buffer\_\-data\_\-end}!buffer.h@{buffer.h}}
+\subsubsection[buffer\_\-data\_\-end]{\setlength{\rightskip}{0pt plus 5cm}\#define buffer\_\-data\_\-end(x)~\&(x $\rightarrow$ buf\mbox{[}x $\rightarrow$ buf\_\-end\mbox{]})}}
+\label{buffer_8h_13d613fcda6df27b13a4502b922395d0}
+
+
+get pointer to end of data \hypertarget{buffer_8h_6f26265606608e089a313c5a396c90b7}{
+\index{buffer.h@{buffer.h}!buffer_data_free@{buffer\_\-data\_\-free}}
+\index{buffer_data_free@{buffer\_\-data\_\-free}!buffer.h@{buffer.h}}
+\subsubsection[buffer\_\-data\_\-free]{\setlength{\rightskip}{0pt plus 5cm}\#define buffer\_\-data\_\-free(x)~(x $\rightarrow$ size - x $\rightarrow$ buf\_\-end)}}
+\label{buffer_8h_6f26265606608e089a313c5a396c90b7}
+
+
+free data bytes in buffer \hypertarget{buffer_8h_0bfe73f7621f02284e4d27e2f797e5d3}{
+\index{buffer.h@{buffer.h}!buffer_data_length@{buffer\_\-data\_\-length}}
+\index{buffer_data_length@{buffer\_\-data\_\-length}!buffer.h@{buffer.h}}
+\subsubsection[buffer\_\-data\_\-length]{\setlength{\rightskip}{0pt plus 5cm}\#define buffer\_\-data\_\-length(x)~(x $\rightarrow$ buf\_\-end - x $\rightarrow$ buf\_\-ptr)}}
+\label{buffer_8h_0bfe73f7621f02284e4d27e2f797e5d3}
+
+
+get data length \hypertarget{buffer_8h_12a666fddf45291b6d72e4375a8c26f3}{
+\index{buffer.h@{buffer.h}!buffer_data_pointer@{buffer\_\-data\_\-pointer}}
+\index{buffer_data_pointer@{buffer\_\-data\_\-pointer}!buffer.h@{buffer.h}}
+\subsubsection[buffer\_\-data\_\-pointer]{\setlength{\rightskip}{0pt plus 5cm}\#define buffer\_\-data\_\-pointer(x)~\&(x $\rightarrow$ buf\mbox{[}x $\rightarrow$ buf\_\-ptr\mbox{]})}}
+\label{buffer_8h_12a666fddf45291b6d72e4375a8c26f3}
+
+
+get pointer to data \hypertarget{buffer_8h_466292430e8c036cf00e2d423c552cfb}{
+\index{buffer.h@{buffer.h}!buffer_pull_uint8@{buffer\_\-pull\_\-uint8}}
+\index{buffer_pull_uint8@{buffer\_\-pull\_\-uint8}!buffer.h@{buffer.h}}
+\subsubsection[buffer\_\-pull\_\-uint8]{\setlength{\rightskip}{0pt plus 5cm}\#define buffer\_\-pull\_\-uint8(x)~x $\rightarrow$ buf\mbox{[}x $\rightarrow$ buf\_\-ptr++\mbox{]}}}
+\label{buffer_8h_466292430e8c036cf00e2d423c552cfb}
+
+
+read 1 byte out of the buffer \hypertarget{buffer_8h_455bb56b2ea83fb6d612dc369c80be52}{
+\index{buffer.h@{buffer.h}!buffer_push_uint8@{buffer\_\-push\_\-uint8}}
+\index{buffer_push_uint8@{buffer\_\-push\_\-uint8}!buffer.h@{buffer.h}}
+\subsubsection[buffer\_\-push\_\-uint8]{\setlength{\rightskip}{0pt plus 5cm}\#define buffer\_\-push\_\-uint8(x, z)~x $\rightarrow$ buf\mbox{[}x $\rightarrow$ buf\_\-end++\mbox{]} = z}}
+\label{buffer_8h_455bb56b2ea83fb6d612dc369c80be52}
+
+
+append 1 byte to data 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{buffer_8h_584321097d4e6c6a37198fbbb6d76c71}{
+\index{buffer.h@{buffer.h}!buffer_direction_t@{buffer\_\-direction\_\-t}}
+\index{buffer_direction_t@{buffer\_\-direction\_\-t}!buffer.h@{buffer.h}}
+\subsubsection[buffer\_\-direction\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{buffer_8h_584321097d4e6c6a37198fbbb6d76c71}{buffer\_\-direction\_\-t}}}
+\label{buffer_8h_584321097d4e6c6a37198fbbb6d76c71}
+
+
+buffer direction. \hypertarget{buffer_8h_1ee2fd526bf1d6e6d892b10466c7e725}{
+\index{buffer.h@{buffer.h}!buffer_type_t@{buffer\_\-type\_\-t}}
+\index{buffer_type_t@{buffer\_\-type\_\-t}!buffer.h@{buffer.h}}
+\subsubsection[buffer\_\-type\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{buffer_8h_1ee2fd526bf1d6e6d892b10466c7e725}{buffer\_\-type\_\-t}}}
+\label{buffer_8h_1ee2fd526bf1d6e6d892b10466c7e725}
+
+
+buffer types \hypertarget{buffer_8h_03eee9524252e108b2762c560b60da9b}{
+\index{buffer.h@{buffer.h}!handle_t@{handle\_\-t}}
+\index{handle_t@{handle\_\-t}!buffer.h@{buffer.h}}
+\subsubsection[handle\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{buffer_8h_03eee9524252e108b2762c560b60da9b}{handle\_\-t}}}
+\label{buffer_8h_03eee9524252e108b2762c560b60da9b}
+
+
+handle types 

@@ -1,0 +1,127 @@
+\hypertarget{structnRdstat__t}{
+\section{n\-Rdstat\_\-t Struct Reference}
+\label{structnRdstat__t}\index{nRdstat_t@{nRdstat\_\-t}}
+}
+{\tt \#include $<$n\-Routed.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+int \hyperlink{structnRdstat__t_afc21d80b9ea15c65cff7b4cec7973e5}{tcp\_\-connections}
+\item 
+int \hyperlink{structnRdstat__t_564faff52a7149d351488516cffbfc35}{tcp\_\-conns\_\-open}
+\item 
+int \hyperlink{structnRdstat__t_7e77d4adf8d902e944de8ed14bc4691e}{connections\_\-dropped}
+\item 
+int \hyperlink{structnRdstat__t_346e4fe879447dbe64689e46401d07d1}{packets\_\-from\_\-tcp}
+\item 
+int \hyperlink{structnRdstat__t_dfc822591f9e821e6835fc009158b187}{packets\_\-from\_\-serial}
+\item 
+int \hyperlink{structnRdstat__t_aee0b8cec83aff779e9b6a0062ba6677}{set\_\-config\_\-packets\_\-sent}
+\item 
+int \hyperlink{structnRdstat__t_fa233a9c22104e9ef722143968f18d32}{get\_\-config\_\-packets\_\-sent}
+\item 
+int \hyperlink{structnRdstat__t_518d1b1a04c73f328e18e8dfec9691a7}{malformed\_\-packets\_\-tcp}
+\item 
+int \hyperlink{structnRdstat__t_ea478ea425e07a7511bb8dc909c049ca}{malformed\_\-packets\_\-serial}
+\item 
+long int \hyperlink{structnRdstat__t_1b3082b4f7c51e187c43ef4964cf5bb3}{bytes\_\-sent}
+\item 
+long int \hyperlink{structnRdstat__t_2b421bcc473a30ddf8044bd26482e07d}{bytes\_\-received}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Struct for statistics.
+
+All the statistics from the n\-Routed are stored in \hyperlink{structnRdstat__t}{n\-Rdstat\_\-t} struct.
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000007}{Todo}]The macros for manipulating the statistics struct are implmented but not used anywhere -mjs \end{Desc}
+
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structnRdstat__t_2b421bcc473a30ddf8044bd26482e07d}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!bytes_received@{bytes\_\-received}}
+\index{bytes_received@{bytes\_\-received}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[bytes\_\-received]{\setlength{\rightskip}{0pt plus 5cm}long int \hyperlink{structnRdstat__t_2b421bcc473a30ddf8044bd26482e07d}{n\-Rdstat\_\-t::bytes\_\-received}}}
+\label{structnRdstat__t_2b421bcc473a30ddf8044bd26482e07d}
+
+
+Total bytes received (TCP and serial). \hypertarget{structnRdstat__t_1b3082b4f7c51e187c43ef4964cf5bb3}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!bytes_sent@{bytes\_\-sent}}
+\index{bytes_sent@{bytes\_\-sent}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[bytes\_\-sent]{\setlength{\rightskip}{0pt plus 5cm}long int \hyperlink{structnRdstat__t_1b3082b4f7c51e187c43ef4964cf5bb3}{n\-Rdstat\_\-t::bytes\_\-sent}}}
+\label{structnRdstat__t_1b3082b4f7c51e187c43ef4964cf5bb3}
+
+
+Total bytes sent (TCP and serial). \hypertarget{structnRdstat__t_7e77d4adf8d902e944de8ed14bc4691e}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!connections_dropped@{connections\_\-dropped}}
+\index{connections_dropped@{connections\_\-dropped}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[connections\_\-dropped]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdstat__t_7e77d4adf8d902e944de8ed14bc4691e}{n\-Rdstat\_\-t::connections\_\-dropped}}}
+\label{structnRdstat__t_7e77d4adf8d902e944de8ed14bc4691e}
+
+
+Total number of TCP connections that were dropped. \hypertarget{structnRdstat__t_fa233a9c22104e9ef722143968f18d32}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!get_config_packets_sent@{get\_\-config\_\-packets\_\-sent}}
+\index{get_config_packets_sent@{get\_\-config\_\-packets\_\-sent}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[get\_\-config\_\-packets\_\-sent]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdstat__t_fa233a9c22104e9ef722143968f18d32}{n\-Rdstat\_\-t::get\_\-config\_\-packets\_\-sent}}}
+\label{structnRdstat__t_fa233a9c22104e9ef722143968f18d32}
+
+
+Number of get\_\-config packets that have been sent to the serial device. \hypertarget{structnRdstat__t_ea478ea425e07a7511bb8dc909c049ca}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!malformed_packets_serial@{malformed\_\-packets\_\-serial}}
+\index{malformed_packets_serial@{malformed\_\-packets\_\-serial}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[malformed\_\-packets\_\-serial]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdstat__t_ea478ea425e07a7511bb8dc909c049ca}{n\-Rdstat\_\-t::malformed\_\-packets\_\-serial}}}
+\label{structnRdstat__t_ea478ea425e07a7511bb8dc909c049ca}
+
+
+Number of malformed packets that have been received by the serial server. \hypertarget{structnRdstat__t_518d1b1a04c73f328e18e8dfec9691a7}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!malformed_packets_tcp@{malformed\_\-packets\_\-tcp}}
+\index{malformed_packets_tcp@{malformed\_\-packets\_\-tcp}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[malformed\_\-packets\_\-tcp]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdstat__t_518d1b1a04c73f328e18e8dfec9691a7}{n\-Rdstat\_\-t::malformed\_\-packets\_\-tcp}}}
+\label{structnRdstat__t_518d1b1a04c73f328e18e8dfec9691a7}
+
+
+Number of malformed packets that have been received by the TCP server. \hypertarget{structnRdstat__t_dfc822591f9e821e6835fc009158b187}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!packets_from_serial@{packets\_\-from\_\-serial}}
+\index{packets_from_serial@{packets\_\-from\_\-serial}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[packets\_\-from\_\-serial]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdstat__t_dfc822591f9e821e6835fc009158b187}{n\-Rdstat\_\-t::packets\_\-from\_\-serial}}}
+\label{structnRdstat__t_dfc822591f9e821e6835fc009158b187}
+
+
+Number of packets that have been received by the serial server. \hypertarget{structnRdstat__t_346e4fe879447dbe64689e46401d07d1}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!packets_from_tcp@{packets\_\-from\_\-tcp}}
+\index{packets_from_tcp@{packets\_\-from\_\-tcp}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[packets\_\-from\_\-tcp]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdstat__t_346e4fe879447dbe64689e46401d07d1}{n\-Rdstat\_\-t::packets\_\-from\_\-tcp}}}
+\label{structnRdstat__t_346e4fe879447dbe64689e46401d07d1}
+
+
+Number of packets that have been received by the TCP server. \hypertarget{structnRdstat__t_aee0b8cec83aff779e9b6a0062ba6677}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!set_config_packets_sent@{set\_\-config\_\-packets\_\-sent}}
+\index{set_config_packets_sent@{set\_\-config\_\-packets\_\-sent}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[set\_\-config\_\-packets\_\-sent]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdstat__t_aee0b8cec83aff779e9b6a0062ba6677}{n\-Rdstat\_\-t::set\_\-config\_\-packets\_\-sent}}}
+\label{structnRdstat__t_aee0b8cec83aff779e9b6a0062ba6677}
+
+
+Number of set\_\-config packets that have been sent to the serial device. \hypertarget{structnRdstat__t_afc21d80b9ea15c65cff7b4cec7973e5}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!tcp_connections@{tcp\_\-connections}}
+\index{tcp_connections@{tcp\_\-connections}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[tcp\_\-connections]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdstat__t_afc21d80b9ea15c65cff7b4cec7973e5}{n\-Rdstat\_\-t::tcp\_\-connections}}}
+\label{structnRdstat__t_afc21d80b9ea15c65cff7b4cec7973e5}
+
+
+Total number of TCP connections that the server has accepted. \hypertarget{structnRdstat__t_564faff52a7149d351488516cffbfc35}{
+\index{nRdstat_t@{n\-Rdstat\_\-t}!tcp_conns_open@{tcp\_\-conns\_\-open}}
+\index{tcp_conns_open@{tcp\_\-conns\_\-open}!nRdstat_t@{n\-Rdstat\_\-t}}
+\subsubsection[tcp\_\-conns\_\-open]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{structnRdstat__t_564faff52a7149d351488516cffbfc35}{n\-Rdstat\_\-t::tcp\_\-conns\_\-open}}}
+\label{structnRdstat__t_564faff52a7149d351488516cffbfc35}
+
+
+Number of open TCP connections. 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/n\-Route/\hyperlink{nRouted_8h}{n\-Routed.h}\end{CompactItemize}

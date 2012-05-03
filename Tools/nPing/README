@@ -1,0 +1,55 @@
+nPing v0.9 README
+-----------------
+
+1. Overview
+
+	nPing is a very simple nanoPing client that implements just the basic functionality of an ordinary ping application.
+	The nPing does not currently use any libraries but all the nRP specific stuff is implemented in itself. However when
+	the nRP library will be finished (probably in nanoStack release v1.0) the nPing will also be modified to use the nRP
+	library. Untill that point nPing source code (with the SSI-Browser source code) is a very good source of information
+	how to write custom applications that can use the nRouted services.
+
+	NOTE: As of nPing v0.9 it has been using the libnRP library. The
+	code will still go through some small modifications.
+
+2. Structure
+
+	The nPing client has a very simple structure which can be divided into
+	seven main parts. As the program is started it performs the following tasks:
+	
+	-parse command line arguments
+	-open socket
+	-connect to nRouted
+	-send configuration packet (NOTE: this configuration packet is used to tell nRouted which packets from the sensor
+	 network it should relay back to us)
+	-check configuration reply
+	-start sending nPing packets and wait for replies (with timeouts)
+	-after receiving a ctrl+c or after a specified number of packets
+	 have been sent the program prints out some statistics and exits
+
+3. Usage
+
+	Using nPing is very simple.
+	
+	-make sure that nRouted is running ok
+	-just type ./nPing [OPTIONS] [ADDR]
+		Where the only optional parameter is:
+		-c [count]					-The number of nPing packets to send.
+		-S [nRouted_address:port]	-The address and port number where the nRouted TCP server is located.
+		Mandatory parameters:
+		[ADDR] 						-The 802.15.4 MAC address of the target. Use ff:ff:ff:ff:ff:ff:ff:ff for
+									 broadcast ping.
+
+
+4. Bugs
+
+	None known at the moment (2006-08-21) but there still might be some.
+	
+
+5. Revisions
+
+	2006-07-14	Mikko Saarnivala	Initial text
+	2006-08-21	Mikko Saarnivala	Version 0.9
+	2006-10-10	Mikko Saarnivala	v0.9.2 Added several patches by Klaus S. Madsen of Department of Computer Science,
+				University of Copenhagen <klaussm@diku.dk>
+	

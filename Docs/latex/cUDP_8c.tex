@@ -1,0 +1,70 @@
+\hypertarget{cUDP_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/c\-UDP.c File Reference}
+\label{cUDP_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/modules/cUDP.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/cUDP.c}}
+}
+Compressed UDP for IPv6-packets. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$sys/inttypes.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}stack.h\char`\"{}}\par
+{\tt \#include \char`\"{}buffer.h\char`\"{}}\par
+{\tt \#include \char`\"{}module.h\char`\"{}}\par
+{\tt \#include \char`\"{}socket.h\char`\"{}}\par
+{\tt \#include \char`\"{}event\_\-timer.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf\_\-802\_\-15\_\-4.h\char`\"{}}\par
+{\tt \#include \char`\"{}control\_\-message.h\char`\"{}}\par
+{\tt \#include \char`\"{}cipv6.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{cUDP_8c_1335a0c5154279f741f15ccfd5e04025}{cudp\_\-handle} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{cUDP_8c_4245f4ed32930b06a6f0aad2714f37bc}{cudp\_\-check} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Compressed UDP for IPv6-packets. 
+
+Support 16-bits port number and 4-bits compressed 
+
+\subsection{Function Documentation}
+\hypertarget{cUDP_8c_4245f4ed32930b06a6f0aad2714f37bc}{
+\index{cUDP.c@{c\-UDP.c}!cudp_check@{cudp\_\-check}}
+\index{cudp_check@{cudp\_\-check}!cUDP.c@{c\-UDP.c}}
+\subsubsection[cudp\_\-check]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR cudp\_\-check (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{cUDP_8c_4245f4ed32930b06a6f0aad2714f37bc}
+
+
+The c\-UDP buffer checker.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE is c\-UDP 
+
+pd\-FALSE is not c\-UDP or broken header \end{Desc}
+\hypertarget{cUDP_8c_1335a0c5154279f741f15ccfd5e04025}{
+\index{cUDP.c@{c\-UDP.c}!cudp_handle@{cudp\_\-handle}}
+\index{cudp_handle@{cudp\_\-handle}!cUDP.c@{c\-UDP.c}}
+\subsubsection[cudp\_\-handle]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR cudp\_\-handle (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{cUDP_8c_1335a0c5154279f741f15ccfd5e04025}
+
+
+Main c\-UDP buffer handler.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to buffer \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}

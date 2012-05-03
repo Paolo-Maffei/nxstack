@@ -1,0 +1,105 @@
+\hypertarget{address_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/address.h File Reference}
+\label{address_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/include/address.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/address.h}}
+}
+address type definitions. 
+
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structsockaddr__t}{sockaddr\_\-t}
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef uint8\_\-t \hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} \mbox{[}ADDR\_\-SIZE\mbox{]}
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum \hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} \{ \par
+\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d07e76a62e6dae715afc17dc09ea1557f}{ADDR\_\-NONE}, 
+\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551dffcf3dd4a0fd74aed01cbb043c058923}{ADDR\_\-802\_\-15\_\-4\_\-LONG}, 
+\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551da5793da90ea076e468907c271b0d3515}{ADDR\_\-802\_\-15\_\-4\_\-SHORT}, 
+\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551dbc636daf1f0b7fa61c6728935d92e9ab}{ADDR\_\-802\_\-15\_\-4\_\-PAN\_\-SHORT}, 
+\par
+\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d17e538047f6814061959ea6ac56accae}{ADDR\_\-802\_\-15\_\-4\_\-PAN\_\-LONG}, 
+\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d9e7eac96bf8cd155a02f121db090534a}{ADDR\_\-SHORT}, 
+\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d819327e5745501666017c507010bd862}{ADDR\_\-PAN}, 
+\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d63e8216975c00f25c564f7ef13d50d39}{ADDR\_\-DATA}, 
+\par
+\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551dc93224935ed7968d39d8ff579994ce12}{ADDR\_\-BROADCAST}, 
+\hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d92a493f948d521977dff2c0f9a582b8d}{ADDR\_\-COORDINATOR}
+ \}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+address type definitions. 
+
+nano\-Stack: supported address types and associated data structures. 
+
+\subsection{Typedef Documentation}
+\hypertarget{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{
+\index{address.h@{address.h}!address_t@{address\_\-t}}
+\index{address_t@{address\_\-t}!address.h@{address.h}}
+\subsubsection[address\_\-t]{\setlength{\rightskip}{0pt plus 5cm}typedef uint8\_\-t \hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t}\mbox{[}ADDR\_\-SIZE\mbox{]}}}
+\label{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}
+
+
+Address field 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551d}{
+\index{address.h@{address.h}!addrtype_t@{addrtype\_\-t}}
+\index{addrtype_t@{addrtype\_\-t}!address.h@{address.h}}
+\subsubsection[addrtype\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t}}}
+\label{address_8h_faf76b5591da0abd0584dec411d0551d}
+
+
+Address types \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{ADDR_NONE@{ADDR\_\-NONE}!address.h@{address.h}}\index{address.h@{address.h}!ADDR_NONE@{ADDR\_\-NONE}}\item[{\em 
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551d07e76a62e6dae715afc17dc09ea1557f}{
+ADDR\_\-NONE}
+\label{address_8h_faf76b5591da0abd0584dec411d0551d07e76a62e6dae715afc17dc09ea1557f}
+}]No address \index{ADDR_802_15_4_LONG@{ADDR\_\-802\_\-15\_\-4\_\-LONG}!address.h@{address.h}}\index{address.h@{address.h}!ADDR_802_15_4_LONG@{ADDR\_\-802\_\-15\_\-4\_\-LONG}}\item[{\em 
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551dffcf3dd4a0fd74aed01cbb043c058923}{
+ADDR\_\-802\_\-15\_\-4\_\-LONG}
+\label{address_8h_faf76b5591da0abd0584dec411d0551dffcf3dd4a0fd74aed01cbb043c058923}
+}]64-bit 802.15.4 address \index{ADDR_802_15_4_SHORT@{ADDR\_\-802\_\-15\_\-4\_\-SHORT}!address.h@{address.h}}\index{address.h@{address.h}!ADDR_802_15_4_SHORT@{ADDR\_\-802\_\-15\_\-4\_\-SHORT}}\item[{\em 
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551da5793da90ea076e468907c271b0d3515}{
+ADDR\_\-802\_\-15\_\-4\_\-SHORT}
+\label{address_8h_faf76b5591da0abd0584dec411d0551da5793da90ea076e468907c271b0d3515}
+}]16-bit 802.15.4 address \index{ADDR_802_15_4_PAN_SHORT@{ADDR\_\-802\_\-15\_\-4\_\-PAN\_\-SHORT}!address.h@{address.h}}\index{address.h@{address.h}!ADDR_802_15_4_PAN_SHORT@{ADDR\_\-802\_\-15\_\-4\_\-PAN\_\-SHORT}}\item[{\em 
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551dbc636daf1f0b7fa61c6728935d92e9ab}{
+ADDR\_\-802\_\-15\_\-4\_\-PAN\_\-SHORT}
+\label{address_8h_faf76b5591da0abd0584dec411d0551dbc636daf1f0b7fa61c6728935d92e9ab}
+}]16-bit PAN with 16-bit 802.15.4 address \index{ADDR_802_15_4_PAN_LONG@{ADDR\_\-802\_\-15\_\-4\_\-PAN\_\-LONG}!address.h@{address.h}}\index{address.h@{address.h}!ADDR_802_15_4_PAN_LONG@{ADDR\_\-802\_\-15\_\-4\_\-PAN\_\-LONG}}\item[{\em 
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551d17e538047f6814061959ea6ac56accae}{
+ADDR\_\-802\_\-15\_\-4\_\-PAN\_\-LONG}
+\label{address_8h_faf76b5591da0abd0584dec411d0551d17e538047f6814061959ea6ac56accae}
+}]16-bit PAN with 64-bit 802.15.4 address \index{ADDR_SHORT@{ADDR\_\-SHORT}!address.h@{address.h}}\index{address.h@{address.h}!ADDR_SHORT@{ADDR\_\-SHORT}}\item[{\em 
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551d9e7eac96bf8cd155a02f121db090534a}{
+ADDR\_\-SHORT}
+\label{address_8h_faf76b5591da0abd0584dec411d0551d9e7eac96bf8cd155a02f121db090534a}
+}]8-bit address in octet 0 \index{ADDR_PAN@{ADDR\_\-PAN}!address.h@{address.h}}\index{address.h@{address.h}!ADDR_PAN@{ADDR\_\-PAN}}\item[{\em 
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551d819327e5745501666017c507010bd862}{
+ADDR\_\-PAN}
+\label{address_8h_faf76b5591da0abd0584dec411d0551d819327e5745501666017c507010bd862}
+}]16-bit PAN-id \index{ADDR_DATA@{ADDR\_\-DATA}!address.h@{address.h}}\index{address.h@{address.h}!ADDR_DATA@{ADDR\_\-DATA}}\item[{\em 
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551d63e8216975c00f25c564f7ef13d50d39}{
+ADDR\_\-DATA}
+\label{address_8h_faf76b5591da0abd0584dec411d0551d63e8216975c00f25c564f7ef13d50d39}
+}]Attribute-based data-centric query \index{ADDR_BROADCAST@{ADDR\_\-BROADCAST}!address.h@{address.h}}\index{address.h@{address.h}!ADDR_BROADCAST@{ADDR\_\-BROADCAST}}\item[{\em 
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551dc93224935ed7968d39d8ff579994ce12}{
+ADDR\_\-BROADCAST}
+\label{address_8h_faf76b5591da0abd0584dec411d0551dc93224935ed7968d39d8ff579994ce12}
+}]Broadcast address \index{ADDR_COORDINATOR@{ADDR\_\-COORDINATOR}!address.h@{address.h}}\index{address.h@{address.h}!ADDR_COORDINATOR@{ADDR\_\-COORDINATOR}}\item[{\em 
+\hypertarget{address_8h_faf76b5591da0abd0584dec411d0551d92a493f948d521977dff2c0f9a582b8d}{
+ADDR\_\-COORDINATOR}
+\label{address_8h_faf76b5591da0abd0584dec411d0551d92a493f948d521977dff2c0f9a582b8d}
+}]Coordinator address only for Beacon enable mode \end{description}
+\end{Desc}
+

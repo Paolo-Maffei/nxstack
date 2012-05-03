@@ -1,0 +1,4 @@
+This release is tested using FreeRTOS 4.1.2.
+Apply FreeRTOS patch:
+patch -p0 < FreeRTOS.patch
+

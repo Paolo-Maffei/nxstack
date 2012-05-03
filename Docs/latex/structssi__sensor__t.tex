@@ -1,0 +1,87 @@
+\hypertarget{structssi__sensor__t}{
+\section{ssi\_\-sensor\_\-t Struct Reference}
+\label{structssi__sensor__t}\index{ssi_sensor_t@{ssi\_\-sensor\_\-t}}
+}
+{\tt \#include $<$ssi.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+uint16\_\-t \hyperlink{structssi__sensor__t_8b3e3e3f864d8e04c9b666a08ba20261}{id}
+\item 
+uint8\_\-t \hyperlink{structssi__sensor__t_a1f1ccefe0efae173472155afc32a384}{unit}
+\item 
+int8\_\-t \hyperlink{structssi__sensor__t_6bbdc857baffd97f4832a621c5b15343}{scaler}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>uint32\_t \hyperlink{structssi__sensor__t_a775f2114a8d9f1dea8a0cf9e1ce37b1}{i}\\
+\>float \hyperlink{structssi__sensor__t_cb3e2bf1d106593a0f2dd9c35c0cf0fa}{f}\\
+\} \hyperlink{structssi__sensor__t_e3694c3eec6093c8a81844bd00206dd8}{sdata}\\
+
+\end{tabbing}\item 
+uint8\_\-t \hyperlink{structssi__sensor__t_3bd3afd85de5f062280f40b14a565328}{status}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+SSI sensor structure 
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structssi__sensor__t_cb3e2bf1d106593a0f2dd9c35c0cf0fa}{
+\index{ssi_sensor_t@{ssi\_\-sensor\_\-t}!f@{f}}
+\index{f@{f}!ssi_sensor_t@{ssi\_\-sensor\_\-t}}
+\subsubsection[f]{\setlength{\rightskip}{0pt plus 5cm}float \hyperlink{structssi__sensor__t_cb3e2bf1d106593a0f2dd9c35c0cf0fa}{ssi\_\-sensor\_\-t::f}}}
+\label{structssi__sensor__t_cb3e2bf1d106593a0f2dd9c35c0cf0fa}
+
+
+Value: IEEE 32-bit floating point \hypertarget{structssi__sensor__t_a775f2114a8d9f1dea8a0cf9e1ce37b1}{
+\index{ssi_sensor_t@{ssi\_\-sensor\_\-t}!i@{i}}
+\index{i@{i}!ssi_sensor_t@{ssi\_\-sensor\_\-t}}
+\subsubsection[i]{\setlength{\rightskip}{0pt plus 5cm}uint32\_\-t \hyperlink{structssi__sensor__t_a775f2114a8d9f1dea8a0cf9e1ce37b1}{ssi\_\-sensor\_\-t::i}}}
+\label{structssi__sensor__t_a775f2114a8d9f1dea8a0cf9e1ce37b1}
+
+
+Value: signed 32-bit integer \hypertarget{structssi__sensor__t_8b3e3e3f864d8e04c9b666a08ba20261}{
+\index{ssi_sensor_t@{ssi\_\-sensor\_\-t}!id@{id}}
+\index{id@{id}!ssi_sensor_t@{ssi\_\-sensor\_\-t}}
+\subsubsection[id]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t \hyperlink{structssi__sensor__t_8b3e3e3f864d8e04c9b666a08ba20261}{ssi\_\-sensor\_\-t::id}}}
+\label{structssi__sensor__t_8b3e3e3f864d8e04c9b666a08ba20261}
+
+
+The sensor's ID \hypertarget{structssi__sensor__t_6bbdc857baffd97f4832a621c5b15343}{
+\index{ssi_sensor_t@{ssi\_\-sensor\_\-t}!scaler@{scaler}}
+\index{scaler@{scaler}!ssi_sensor_t@{ssi\_\-sensor\_\-t}}
+\subsubsection[scaler]{\setlength{\rightskip}{0pt plus 5cm}int8\_\-t \hyperlink{structssi__sensor__t_6bbdc857baffd97f4832a621c5b15343}{ssi\_\-sensor\_\-t::scaler}}}
+\label{structssi__sensor__t_6bbdc857baffd97f4832a621c5b15343}
+
+
+Unit scaling factor 10's exp for ints, precision for floats \hypertarget{structssi__sensor__t_e3694c3eec6093c8a81844bd00206dd8}{
+\index{ssi_sensor_t@{ssi\_\-sensor\_\-t}!sdata@{sdata}}
+\index{sdata@{sdata}!ssi_sensor_t@{ssi\_\-sensor\_\-t}}
+\subsubsection[sdata]{\setlength{\rightskip}{0pt plus 5cm}union \{ ... \}   \hyperlink{structssi__sensor__t_e3694c3eec6093c8a81844bd00206dd8}{ssi\_\-sensor\_\-t::sdata}}}
+\label{structssi__sensor__t_e3694c3eec6093c8a81844bd00206dd8}
+
+
+Current data reading, updated by application, type defined by unit field \hypertarget{structssi__sensor__t_3bd3afd85de5f062280f40b14a565328}{
+\index{ssi_sensor_t@{ssi\_\-sensor\_\-t}!status@{status}}
+\index{status@{status}!ssi_sensor_t@{ssi\_\-sensor\_\-t}}
+\subsubsection[status]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structssi__sensor__t_3bd3afd85de5f062280f40b14a565328}{ssi\_\-sensor\_\-t::status}}}
+\label{structssi__sensor__t_3bd3afd85de5f062280f40b14a565328}
+
+
+Sensor status flags: enabled, data updated/requested flags \hypertarget{structssi__sensor__t_a1f1ccefe0efae173472155afc32a384}{
+\index{ssi_sensor_t@{ssi\_\-sensor\_\-t}!unit@{unit}}
+\index{unit@{unit}!ssi_sensor_t@{ssi\_\-sensor\_\-t}}
+\subsubsection[unit]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structssi__sensor__t_a1f1ccefe0efae173472155afc32a384}{ssi\_\-sensor\_\-t::unit}}}
+\label{structssi__sensor__t_a1f1ccefe0efae173472155afc32a384}
+
+
+Sensor's unit type, float or int 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/\hyperlink{ssi_8h}{ssi.h}\end{CompactItemize}
