@@ -1,0 +1,49 @@
+\hypertarget{structfifo__buffer__t}{
+\section{fifo\_\-buffer\_\-t Struct Reference}
+\label{structfifo__buffer__t}\index{fifo_buffer_t@{fifo\_\-buffer\_\-t}}
+}
+{\tt \#include $<$serialserver.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+\hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t} $\ast$ \hyperlink{structfifo__buffer__t_5daee039d39228d2a6346711d6d07bf4}{top}
+\item 
+\hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t} $\ast$ \hyperlink{structfifo__buffer__t_423e4348f2849bd7d99d96d2df10efec}{bottom}
+\item 
+\hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t} $\ast$ \hyperlink{structfifo__buffer__t_572f410339929c934f4c89e2e1a90b76}{fifo\_\-ring}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This struct defines the actual FIFO buffer. 
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structfifo__buffer__t_423e4348f2849bd7d99d96d2df10efec}{
+\index{fifo_buffer_t@{fifo\_\-buffer\_\-t}!bottom@{bottom}}
+\index{bottom@{bottom}!fifo_buffer_t@{fifo\_\-buffer\_\-t}}
+\subsubsection[bottom]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t}$\ast$ \hyperlink{structfifo__buffer__t_423e4348f2849bd7d99d96d2df10efec}{fifo\_\-buffer\_\-t::bottom}}}
+\label{structfifo__buffer__t_423e4348f2849bd7d99d96d2df10efec}
+
+
+This pointer points at all times to the bottom of the stack (=FIFO) i.e. it's the first item to be purged from the stack. \hypertarget{structfifo__buffer__t_572f410339929c934f4c89e2e1a90b76}{
+\index{fifo_buffer_t@{fifo\_\-buffer\_\-t}!fifo_ring@{fifo\_\-ring}}
+\index{fifo_ring@{fifo\_\-ring}!fifo_buffer_t@{fifo\_\-buffer\_\-t}}
+\subsubsection[fifo\_\-ring]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t}$\ast$ \hyperlink{structfifo__buffer__t_572f410339929c934f4c89e2e1a90b76}{fifo\_\-buffer\_\-t::fifo\_\-ring}}}
+\label{structfifo__buffer__t_572f410339929c934f4c89e2e1a90b76}
+
+
+The actual buffer. The size of the buffer is set at initialization. Variable n\-Rdconf.serialbufsize is used as the size. \hypertarget{structfifo__buffer__t_5daee039d39228d2a6346711d6d07bf4}{
+\index{fifo_buffer_t@{fifo\_\-buffer\_\-t}!top@{top}}
+\index{top@{top}!fifo_buffer_t@{fifo\_\-buffer\_\-t}}
+\subsubsection[top]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t}$\ast$ \hyperlink{structfifo__buffer__t_5daee039d39228d2a6346711d6d07bf4}{fifo\_\-buffer\_\-t::top}}}
+\label{structfifo__buffer__t_5daee039d39228d2a6346711d6d07bf4}
+
+
+This pointer points at all times to the top of the stack (=FIFO) i.e. it's the last item that has been added to the stack. 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/n\-Route/\hyperlink{serialserver_8h}{serialserver.h}\end{CompactItemize}

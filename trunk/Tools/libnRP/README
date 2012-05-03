@@ -1,0 +1,32 @@
+nPing v0.9 README
+-----------------
+
+1. Overview
+
+	The libnRP is intended to help a user to write his/hers own program that
+	uses a nRouted server to connect to sensor nodes. It has several
+	definitions, macros, functions etc. that can be very helpful.
+	Probably the most useful thing is the libnrp_create_data_pkt_hdr()
+	function that contrary to what its name might suggest can be used to
+	create a complete nRP data packet.
+
+2. Structure
+
+	To be added later.
+
+3. Usage
+
+	At the moment there is one usage example available. The nPing (from
+	v0.9) uses the libnRP and can be used as a source of information how
+	to use the libnRP (including a makefile). There will be a doxygen
+	generated html reference available soon.
+
+4. Bugs
+
+	Both libnrp_create_data_pkt_hdr() and ilbnrp_create_conf_pkt() have
+	some bugs, a fix will be available soon.
+
+5. Revisions
+
+	2006-08-21 Mikko Saarnivala	Initial README
+

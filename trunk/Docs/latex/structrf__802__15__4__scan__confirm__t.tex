@@ -1,0 +1,76 @@
+\hypertarget{structrf__802__15__4__scan__confirm__t}{
+\section{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t Struct Reference}
+\label{structrf__802__15__4__scan__confirm__t}\index{rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}}
+}
+{\tt \#include $<$rf\_\-802\_\-15\_\-4.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+uint8\_\-t \hyperlink{structrf__802__15__4__scan__confirm__t_0d370206ccff9f39718af8b79650d437}{status}
+\item 
+uint8\_\-t \hyperlink{structrf__802__15__4__scan__confirm__t_4b7a9839e5e9d6f309257bb0a1f36a5b}{scan\_\-type}
+\item 
+uint16\_\-t \hyperlink{structrf__802__15__4__scan__confirm__t_72106d46e0d0caf8217fad75c5a15bfc}{unscanned\_\-channels}
+\item 
+uint8\_\-t \hyperlink{structrf__802__15__4__scan__confirm__t_69e1e9a757f57301370d4e4229aa60da}{resultlist\_\-size}
+\item 
+int8\_\-t \hyperlink{structrf__802__15__4__scan__confirm__t_7103a6c3f7f6804e8d4764bb8bf7aada}{ed\_\-list} \mbox{[}16\mbox{]}
+\item 
+\hyperlink{structpan__descriptor__t}{pan\_\-descriptor\_\-t} \hyperlink{structrf__802__15__4__scan__confirm__t_54212a819202dc21a64ea73e630de2bc}{pan\_\-descriptor} \mbox{[}4\mbox{]}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Scan confirm. 
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structrf__802__15__4__scan__confirm__t_7103a6c3f7f6804e8d4764bb8bf7aada}{
+\index{rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}!ed_list@{ed\_\-list}}
+\index{ed_list@{ed\_\-list}!rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}}
+\subsubsection[ed\_\-list]{\setlength{\rightskip}{0pt plus 5cm}int8\_\-t \hyperlink{structrf__802__15__4__scan__confirm__t_7103a6c3f7f6804e8d4764bb8bf7aada}{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t::ed\_\-list}\mbox{[}16\mbox{]}}}
+\label{structrf__802__15__4__scan__confirm__t_7103a6c3f7f6804e8d4764bb8bf7aada}
+
+
+Result of the ED-scan. \hypertarget{structrf__802__15__4__scan__confirm__t_54212a819202dc21a64ea73e630de2bc}{
+\index{rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}!pan_descriptor@{pan\_\-descriptor}}
+\index{pan_descriptor@{pan\_\-descriptor}!rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}}
+\subsubsection[pan\_\-descriptor]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structpan__descriptor__t}{pan\_\-descriptor\_\-t} \hyperlink{structrf__802__15__4__scan__confirm__t_54212a819202dc21a64ea73e630de2bc}{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t::pan\_\-descriptor}\mbox{[}4\mbox{]}}}
+\label{structrf__802__15__4__scan__confirm__t_54212a819202dc21a64ea73e630de2bc}
+
+
+Result of the Passive or Active scan, list of network descriptions found. \hypertarget{structrf__802__15__4__scan__confirm__t_69e1e9a757f57301370d4e4229aa60da}{
+\index{rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}!resultlist_size@{resultlist\_\-size}}
+\index{resultlist_size@{resultlist\_\-size}!rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}}
+\subsubsection[resultlist\_\-size]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structrf__802__15__4__scan__confirm__t_69e1e9a757f57301370d4e4229aa60da}{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t::resultlist\_\-size}}}
+\label{structrf__802__15__4__scan__confirm__t_69e1e9a757f57301370d4e4229aa60da}
+
+
+Result-list size. \hypertarget{structrf__802__15__4__scan__confirm__t_4b7a9839e5e9d6f309257bb0a1f36a5b}{
+\index{rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}!scan_type@{scan\_\-type}}
+\index{scan_type@{scan\_\-type}!rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}}
+\subsubsection[scan\_\-type]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structrf__802__15__4__scan__confirm__t_4b7a9839e5e9d6f309257bb0a1f36a5b}{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t::scan\_\-type}}}
+\label{structrf__802__15__4__scan__confirm__t_4b7a9839e5e9d6f309257bb0a1f36a5b}
+
+
+0=ED-scan, 1=Active-scan, 2=Passive-scan \& 3=Orphan-scan. \hypertarget{structrf__802__15__4__scan__confirm__t_0d370206ccff9f39718af8b79650d437}{
+\index{rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}!status@{status}}
+\index{status@{status}!rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}}
+\subsubsection[status]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structrf__802__15__4__scan__confirm__t_0d370206ccff9f39718af8b79650d437}{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t::status}}}
+\label{structrf__802__15__4__scan__confirm__t_0d370206ccff9f39718af8b79650d437}
+
+
+Status of scan prosess. \hypertarget{structrf__802__15__4__scan__confirm__t_72106d46e0d0caf8217fad75c5a15bfc}{
+\index{rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}!unscanned_channels@{unscanned\_\-channels}}
+\index{unscanned_channels@{unscanned\_\-channels}!rf_802_15_4_scan_confirm_t@{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t}}
+\subsubsection[unscanned\_\-channels]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t \hyperlink{structrf__802__15__4__scan__confirm__t_72106d46e0d0caf8217fad75c5a15bfc}{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t::unscanned\_\-channels}}}
+\label{structrf__802__15__4__scan__confirm__t_72106d46e0d0caf8217fad75c5a15bfc}
+
+
+Unscanned\_\-channels. 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/\hyperlink{rf__802__15__4_8h}{rf\_\-802\_\-15\_\-4.h}\end{CompactItemize}

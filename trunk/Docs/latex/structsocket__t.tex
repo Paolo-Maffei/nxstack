@@ -1,0 +1,85 @@
+\hypertarget{structsocket__t}{
+\section{socket\_\-t Struct Reference}
+\label{structsocket__t}\index{socket_t@{socket\_\-t}}
+}
+{\tt \#include $<$socket.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+uint8\_\-t \hyperlink{structsocket__t_70368ea424aea352c4705a6c210949f7}{protocol}
+\item 
+uint8\_\-t \hyperlink{structsocket__t_ac1f42ef7ee07bed7f96631b4752dabb}{stack\_\-id}
+\item 
+uint16\_\-t \hyperlink{structsocket__t_367f8e34a0abb424055cc8fcb3388705}{listen}
+\item 
+uint16\_\-t \hyperlink{structsocket__t_584532d6d7f8a88d0b8e5b263dba7621}{port}
+\item 
+\hyperlink{structsockaddr__t}{sockaddr\_\-t} \hyperlink{structsocket__t_dd056ea6adc14e1cb056e3195ee540c2}{sa}
+\item 
+x\-Queue\-Handle \hyperlink{structsocket__t_6fdb7e88bf89a5bc524a576a7b2a2ac8}{queue}
+\item 
+\hyperlink{socket_8h_041daa666328e99aae40477895597d8d}{sock\_\-handler\_\-func} \hyperlink{structsocket__t_e9c15a340c51976f69a600d9e2b7b716}{callback}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Socket structure 
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structsocket__t_e9c15a340c51976f69a600d9e2b7b716}{
+\index{socket_t@{socket\_\-t}!callback@{callback}}
+\index{callback@{callback}!socket_t@{socket\_\-t}}
+\subsubsection[callback]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{socket_8h_041daa666328e99aae40477895597d8d}{sock\_\-handler\_\-func} \hyperlink{structsocket__t_e9c15a340c51976f69a600d9e2b7b716}{socket\_\-t::callback}}}
+\label{structsocket__t_e9c15a340c51976f69a600d9e2b7b716}
+
+
+Socket handling callback function \hypertarget{structsocket__t_367f8e34a0abb424055cc8fcb3388705}{
+\index{socket_t@{socket\_\-t}!listen@{listen}}
+\index{listen@{listen}!socket_t@{socket\_\-t}}
+\subsubsection[listen]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t \hyperlink{structsocket__t_367f8e34a0abb424055cc8fcb3388705}{socket\_\-t::listen}}}
+\label{structsocket__t_367f8e34a0abb424055cc8fcb3388705}
+
+
+True when enabled for listening \hypertarget{structsocket__t_584532d6d7f8a88d0b8e5b263dba7621}{
+\index{socket_t@{socket\_\-t}!port@{port}}
+\index{port@{port}!socket_t@{socket\_\-t}}
+\subsubsection[port]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t \hyperlink{structsocket__t_584532d6d7f8a88d0b8e5b263dba7621}{socket\_\-t::port}}}
+\label{structsocket__t_584532d6d7f8a88d0b8e5b263dba7621}
+
+
+Port number \hypertarget{structsocket__t_70368ea424aea352c4705a6c210949f7}{
+\index{socket_t@{socket\_\-t}!protocol@{protocol}}
+\index{protocol@{protocol}!socket_t@{socket\_\-t}}
+\subsubsection[protocol]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structsocket__t_70368ea424aea352c4705a6c210949f7}{socket\_\-t::protocol}}}
+\label{structsocket__t_70368ea424aea352c4705a6c210949f7}
+
+
+protocol ID \hypertarget{structsocket__t_6fdb7e88bf89a5bc524a576a7b2a2ac8}{
+\index{socket_t@{socket\_\-t}!queue@{queue}}
+\index{queue@{queue}!socket_t@{socket\_\-t}}
+\subsubsection[queue]{\setlength{\rightskip}{0pt plus 5cm}x\-Queue\-Handle \hyperlink{structsocket__t_6fdb7e88bf89a5bc524a576a7b2a2ac8}{socket\_\-t::queue}}}
+\label{structsocket__t_6fdb7e88bf89a5bc524a576a7b2a2ac8}
+
+
+Receive queue, when no callbacks \hypertarget{structsocket__t_dd056ea6adc14e1cb056e3195ee540c2}{
+\index{socket_t@{socket\_\-t}!sa@{sa}}
+\index{sa@{sa}!socket_t@{socket\_\-t}}
+\subsubsection[sa]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structsockaddr__t}{sockaddr\_\-t} \hyperlink{structsocket__t_dd056ea6adc14e1cb056e3195ee540c2}{socket\_\-t::sa}}}
+\label{structsocket__t_dd056ea6adc14e1cb056e3195ee540c2}
+
+
+Address structure (destination) \hypertarget{structsocket__t_ac1f42ef7ee07bed7f96631b4752dabb}{
+\index{socket_t@{socket\_\-t}!stack_id@{stack\_\-id}}
+\index{stack_id@{stack\_\-id}!socket_t@{socket\_\-t}}
+\subsubsection[stack\_\-id]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structsocket__t_ac1f42ef7ee07bed7f96631b4752dabb}{socket\_\-t::stack\_\-id}}}
+\label{structsocket__t_ac1f42ef7ee07bed7f96631b4752dabb}
+
+
+protocol ID 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/\hyperlink{socket_8h}{socket.h}\end{CompactItemize}

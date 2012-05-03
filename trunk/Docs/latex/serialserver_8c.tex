@@ -1,0 +1,262 @@
+\hypertarget{serialserver_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/n\-Route/serialserver.c File Reference}
+\label{serialserver_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Tools/nRoute/serialserver.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/nRoute/serialserver.c}}
+}
+{\tt \#include $<$sys/types.h$>$}\par
+{\tt \#include $<$sys/socket.h$>$}\par
+{\tt \#include $<$netinet/in.h$>$}\par
+{\tt \#include $<$sys/stat.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$fcntl.h$>$}\par
+{\tt \#include $<$errno.h$>$}\par
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$syslog.h$>$}\par
+{\tt \#include $<$stdarg.h$>$}\par
+{\tt \#include $<$sys/time.h$>$}\par
+{\tt \#include $<$time.h$>$}\par
+{\tt \#include $<$pthread.h$>$}\par
+{\tt \#include $<$sys/ipc.h$>$}\par
+{\tt \#include $<$sys/msg.h$>$}\par
+{\tt \#include $<$sys/poll.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}serialserver.h\char`\"{}}\par
+{\tt \#include \char`\"{}nrp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{serialserver_8c_40aea12bcf55afc06ed55efe9fc41e9b}{serial\_\-server} (void)
+\item 
+int \hyperlink{serialserver_8c_0a07beae6fb26ce3e0e812b24126dda0}{nrp\_\-from\_\-serial} (unsigned char packet\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]}, int len)
+\item 
+int \hyperlink{serialserver_8c_e1a29e498724fcfebb69666c93918523}{init\_\-serial\_\-buffers} (void)
+\item 
+int \hyperlink{serialserver_8c_ba9606d44c66b0b8e4590213f84fe673}{add\_\-packet} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr, char packet\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]})
+\item 
+int \hyperlink{serialserver_8c_5d51942f0ef0b6445c054f3032f4555f}{get\_\-bottom\_\-packet} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr, char $\ast$packet)
+\item 
+int \hyperlink{serialserver_8c_1b258be2c3a250127d23e74e0f524a00}{purge\_\-bottom\_\-packet} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr)
+\item 
+int \hyperlink{serialserver_8c_d1906dfda0437f68ccc02e98ec91b6d9}{purge\_\-packet} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr, char packet\_\-header\mbox{[}25\mbox{]})
+\item 
+int \hyperlink{serialserver_8c_3f3be2bf87e312a69c82b7d4b4ca22d1}{clear\_\-buffer} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr)
+\item 
+int \hyperlink{serialserver_8c_153474125511d686cc5b172d9e5bf58d}{send\_\-to\_\-serial} (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$bufaddr, char packet\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]})
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\hyperlink{structnRdconfig__t}{n\-Rdconfig\_\-t} \hyperlink{serialserver_8c_f140eca56a91b1d202fdae8f6585f42a}{n\-Rdconf}
+\item 
+FILE $\ast$ \hyperlink{serialserver_8c_f106d2b15829dad5697a514e160a22f3}{serialfp}
+\item 
+int \hyperlink{serialserver_8c_47edf10920788f9aa97540340c5ff606}{haltsystem}
+\item 
+unsigned char \hyperlink{serialserver_8c_7e822c1df17d0b694e2b16378a39ef47}{nrp\_\-proto\_\-table} \mbox{[}32\mbox{]}\mbox{[}64\mbox{]}
+\item 
+unsigned char \hyperlink{serialserver_8c_307304cf297a55eb10df201dc55abd15}{nrp\_\-addr\_\-table} \mbox{[}32\mbox{]}\mbox{[}128\mbox{]}
+\item 
+char \hyperlink{serialserver_8c_7564d12ad7b7d93d5ba603fc704d855a}{n\-Routed\_\-lockfile} \mbox{[}64\mbox{]}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Serial interface server functionality.
+
+All the serial port server functionality is implmented in this file. The file also contains the buffer manipulation functions. 
+
+\subsection{Function Documentation}
+\hypertarget{serialserver_8c_ba9606d44c66b0b8e4590213f84fe673}{
+\index{serialserver.c@{serialserver.c}!add_packet@{add\_\-packet}}
+\index{add_packet@{add\_\-packet}!serialserver.c@{serialserver.c}}
+\subsubsection[add\_\-packet]{\setlength{\rightskip}{0pt plus 5cm}int add\_\-packet (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr}, char {\em packet}\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]})}}
+\label{serialserver_8c_ba9606d44c66b0b8e4590213f84fe673}
+
+
+Adds a packet to specified buffer.
+
+This function adds the packet given as parameter to the specified buffer and adjusts the buffers top pointer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em $\ast$bufaddr}]Pointer to the buffer where the packet is to be added. \item[{\em packet}]A n\-RP packet. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 (zero) if the packet was succesfully added to the buffer, -1 if buffer was full and the packet was dropped. \end{Desc}
+\hypertarget{serialserver_8c_3f3be2bf87e312a69c82b7d4b4ca22d1}{
+\index{serialserver.c@{serialserver.c}!clear_buffer@{clear\_\-buffer}}
+\index{clear_buffer@{clear\_\-buffer}!serialserver.c@{serialserver.c}}
+\subsubsection[clear\_\-buffer]{\setlength{\rightskip}{0pt plus 5cm}int clear\_\-buffer (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr})}}
+\label{serialserver_8c_3f3be2bf87e312a69c82b7d4b4ca22d1}
+
+
+Remove all packets from buffer.
+
+This function removes all the packets from a buffer pointed to by buffaddr and adjusts the bottom and top pointers accordingly.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em bufaddr}]A pointer to the buffer which is to be cleared. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Number of packets removed, 0 (zero) if no packets were removed, -1 if an unspecified error occured. \end{Desc}
+\hypertarget{serialserver_8c_5d51942f0ef0b6445c054f3032f4555f}{
+\index{serialserver.c@{serialserver.c}!get_bottom_packet@{get\_\-bottom\_\-packet}}
+\index{get_bottom_packet@{get\_\-bottom\_\-packet}!serialserver.c@{serialserver.c}}
+\subsubsection[get\_\-bottom\_\-packet]{\setlength{\rightskip}{0pt plus 5cm}int get\_\-bottom\_\-packet (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr}, char $\ast$ {\em packet})}}
+\label{serialserver_8c_5d51942f0ef0b6445c054f3032f4555f}
+
+
+Retrieves the bottom packet.
+
+This function is used to retrieve the bottom packet which is to be sent next.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em bufaddr}]Pointer to the buffer where the packet is to be retrieved. \item[{\em packet}]Pointer to a char array where the retrieved packet is copied. At least MAX\_\-NRP\_\-PACKET\_\-SIZE octets must be reserved to the array before the function is called. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 (zero) if packet was succesfully retrieved, 1 if the buffer was empty, -1 if packet is a NULL pointer, -2 if an unspecified error occured. \end{Desc}
+\hypertarget{serialserver_8c_e1a29e498724fcfebb69666c93918523}{
+\index{serialserver.c@{serialserver.c}!init_serial_buffers@{init\_\-serial\_\-buffers}}
+\index{init_serial_buffers@{init\_\-serial\_\-buffers}!serialserver.c@{serialserver.c}}
+\subsubsection[init\_\-serial\_\-buffers]{\setlength{\rightskip}{0pt plus 5cm}int init\_\-serial\_\-buffers (void)}}
+\label{serialserver_8c_e1a29e498724fcfebb69666c93918523}
+
+
+The buffer initialization function.
+
+The serial servers send buffers are initialized in this function. Memory is allocated and the buffers internal pointers are set. If a separate priority send buffer will be implemented in the future, it must also be initialized here.
+
+\begin{Desc}
+\item[Returns:]0 on success, -1 on failure to allocate memory for buffers. \end{Desc}
+\hypertarget{serialserver_8c_0a07beae6fb26ce3e0e812b24126dda0}{
+\index{serialserver.c@{serialserver.c}!nrp_from_serial@{nrp\_\-from\_\-serial}}
+\index{nrp_from_serial@{nrp\_\-from\_\-serial}!serialserver.c@{serialserver.c}}
+\subsubsection[nrp\_\-from\_\-serial]{\setlength{\rightskip}{0pt plus 5cm}int nrp\_\-from\_\-serial (unsigned char {\em packet}\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]}, int {\em len})}}
+\label{serialserver_8c_0a07beae6fb26ce3e0e812b24126dda0}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000012}{Todo}]Implement the Type ID 1 \& 2 handling! -mjs \end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000012}{Todo}]Add support for other address types. The only supported at the moment is 802.15.4 long address 8 bytes. -mjs \end{Desc}
+\hypertarget{serialserver_8c_1b258be2c3a250127d23e74e0f524a00}{
+\index{serialserver.c@{serialserver.c}!purge_bottom_packet@{purge\_\-bottom\_\-packet}}
+\index{purge_bottom_packet@{purge\_\-bottom\_\-packet}!serialserver.c@{serialserver.c}}
+\subsubsection[purge\_\-bottom\_\-packet]{\setlength{\rightskip}{0pt plus 5cm}int purge\_\-bottom\_\-packet (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr})}}
+\label{serialserver_8c_1b258be2c3a250127d23e74e0f524a00}
+
+
+Remove the bottom packet.
+
+This function removes the packet pointed to by the bottom pointer from the buffer specified by the buffaddr. After this the bottom pointer will be readjusted to point to the new bottom packet.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em bufaddr}]Pointer to the buffer where the packet is to be purged from. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 (zero) if the packet was succesfully purged, 1 if the buffer was already empty or -1 if an unspecified error occured. \end{Desc}
+\hypertarget{serialserver_8c_d1906dfda0437f68ccc02e98ec91b6d9}{
+\index{serialserver.c@{serialserver.c}!purge_packet@{purge\_\-packet}}
+\index{purge_packet@{purge\_\-packet}!serialserver.c@{serialserver.c}}
+\subsubsection[purge\_\-packet]{\setlength{\rightskip}{0pt plus 5cm}int purge\_\-packet (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr}, char {\em packet\_\-header}\mbox{[}25\mbox{]})}}
+\label{serialserver_8c_d1906dfda0437f68ccc02e98ec91b6d9}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000014}{Todo}]This function is yet to be implmented -mjs. \end{Desc}
+\hypertarget{serialserver_8c_153474125511d686cc5b172d9e5bf58d}{
+\index{serialserver.c@{serialserver.c}!send_to_serial@{send\_\-to\_\-serial}}
+\index{send_to_serial@{send\_\-to\_\-serial}!serialserver.c@{serialserver.c}}
+\subsubsection[send\_\-to\_\-serial]{\setlength{\rightskip}{0pt plus 5cm}int send\_\-to\_\-serial (struct \hyperlink{structfifo__buffer__t}{fifo\_\-buffer\_\-t} $\ast$ {\em bufaddr}, char {\em packet}\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]})}}
+\label{serialserver_8c_153474125511d686cc5b172d9e5bf58d}
+
+
+This function is used to send n\-RP packets to serial interface.
+
+This function does not actually send the packet to serial interface but simply adds the packet into serial send buffer. As the buffer is a FIFO the packet will be placed as the last entry in the buffer. The address of the buffer is required so that we can have more than one send buffer in the future e.g. normal and priority buffers. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em bufaddr}]The address of the buffer where the packet is placed. \item[{\em packet}]The packet which is to placed in to the buffer. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 (zero) is returned if the packet was succesfully placed in to the buffer, -1 if buffer was full. \end{Desc}
+\hypertarget{serialserver_8c_40aea12bcf55afc06ed55efe9fc41e9b}{
+\index{serialserver.c@{serialserver.c}!serial_server@{serial\_\-server}}
+\index{serial_server@{serial\_\-server}!serialserver.c@{serialserver.c}}
+\subsubsection[serial\_\-server]{\setlength{\rightskip}{0pt plus 5cm}void serial\_\-server (void)}}
+\label{serialserver_8c_40aea12bcf55afc06ed55efe9fc41e9b}
+
+
+The serial server.
+
+This function implements the serial port server which listens to data arriving from radio module.
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000010}{Todo}]Parts of the serial server is yet to be implemented. -mjs \end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000010}{Todo}]Dongle initialization has not been implemented. Need a dongle for this. -mjs \end{Desc}
+
+
+\subsection{Variable Documentation}
+\hypertarget{serialserver_8c_47edf10920788f9aa97540340c5ff606}{
+\index{serialserver.c@{serialserver.c}!haltsystem@{haltsystem}}
+\index{haltsystem@{haltsystem}!serialserver.c@{serialserver.c}}
+\subsubsection[haltsystem]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{tcpserver_8c_47edf10920788f9aa97540340c5ff606}{haltsystem}}}
+\label{serialserver_8c_47edf10920788f9aa97540340c5ff606}
+
+
+System communications.
+
+If an unrecoverable error occures in some of the daemons threads, the thread must set this system wide variable into 1. All threads must check this variable from time to time (interval $<$ 3 seconds) to see if they must stop execution and return to the main function which will then exit the whole daemon. \hypertarget{serialserver_8c_f140eca56a91b1d202fdae8f6585f42a}{
+\index{serialserver.c@{serialserver.c}!nRdconf@{nRdconf}}
+\index{nRdconf@{nRdconf}!serialserver.c@{serialserver.c}}
+\subsubsection[nRdconf]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structnRdconfig__t}{n\-Rdconfig\_\-t} \hyperlink{tcpserver_8c_f140eca56a91b1d202fdae8f6585f42a}{n\-Rdconf}}}
+\label{serialserver_8c_f140eca56a91b1d202fdae8f6585f42a}
+
+
+Configuration struct.
+
+The global variable that contains the configuration data. The default values of some parameters are assigned to the variable in \hyperlink{nRouted_8c_f9f24c4cf29126b1832517b188aeb585}{parse\_\-config()}. \hypertarget{serialserver_8c_7564d12ad7b7d93d5ba603fc704d855a}{
+\index{serialserver.c@{serialserver.c}!nRouted_lockfile@{nRouted\_\-lockfile}}
+\index{nRouted_lockfile@{nRouted\_\-lockfile}!serialserver.c@{serialserver.c}}
+\subsubsection[nRouted\_\-lockfile]{\setlength{\rightskip}{0pt plus 5cm}char \hyperlink{tcpserver_8c_7564d12ad7b7d93d5ba603fc704d855a}{n\-Routed\_\-lockfile}\mbox{[}64\mbox{]}}}
+\label{serialserver_8c_7564d12ad7b7d93d5ba603fc704d855a}
+
+
+The n\-Routed lock file.
+
+When n\-Routed is started it eventually checks if a lock file exists. This is done so that only one instance of n\-Routed is running simultaneously. \hypertarget{serialserver_8c_307304cf297a55eb10df201dc55abd15}{
+\index{serialserver.c@{serialserver.c}!nrp_addr_table@{nrp\_\-addr\_\-table}}
+\index{nrp_addr_table@{nrp\_\-addr\_\-table}!serialserver.c@{serialserver.c}}
+\subsubsection[nrp\_\-addr\_\-table]{\setlength{\rightskip}{0pt plus 5cm}unsigned char \hyperlink{tcpserver_8c_307304cf297a55eb10df201dc55abd15}{nrp\_\-addr\_\-table}\mbox{[}32\mbox{]}\mbox{[}128\mbox{]}}}
+\label{serialserver_8c_307304cf297a55eb10df201dc55abd15}
+
+
+The n\-RP address type lookup table.
+
+This table contains the \char`\"{}mappings\char`\"{} between the n\-RP address type identifiers (one octet values) and their names. \hypertarget{serialserver_8c_7e822c1df17d0b694e2b16378a39ef47}{
+\index{serialserver.c@{serialserver.c}!nrp_proto_table@{nrp\_\-proto\_\-table}}
+\index{nrp_proto_table@{nrp\_\-proto\_\-table}!serialserver.c@{serialserver.c}}
+\subsubsection[nrp\_\-proto\_\-table]{\setlength{\rightskip}{0pt plus 5cm}unsigned char \hyperlink{tcpserver_8c_7e822c1df17d0b694e2b16378a39ef47}{nrp\_\-proto\_\-table}\mbox{[}32\mbox{]}\mbox{[}64\mbox{]}}}
+\label{serialserver_8c_7e822c1df17d0b694e2b16378a39ef47}
+
+
+The n\-RP protocol lookup table.
+
+This table is used to have a relation between the n\-RP internal protocol numbering and their humanreadable string representations. The maximum amount of different protocols is at the moment 32 and the maximum length of each string representation is 63 characters. \hypertarget{serialserver_8c_f106d2b15829dad5697a514e160a22f3}{
+\index{serialserver.c@{serialserver.c}!serialfp@{serialfp}}
+\index{serialfp@{serialfp}!serialserver.c@{serialserver.c}}
+\subsubsection[serialfp]{\setlength{\rightskip}{0pt plus 5cm}FILE$\ast$ \hyperlink{serialserver_8c_f106d2b15829dad5697a514e160a22f3}{serialfp}}}
+\label{serialserver_8c_f106d2b15829dad5697a514e160a22f3}
+
+
+Serial port file descriptor.
+
+The global file descriptor variable that is associated to the serial port device file in init\_\-conf() 

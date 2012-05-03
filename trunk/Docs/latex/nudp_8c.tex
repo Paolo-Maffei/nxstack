@@ -1,0 +1,76 @@
+\hypertarget{nudp_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/nudp.c File Reference}
+\label{nudp_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/modules/nudp.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/nudp.c}}
+}
+nano\-UDP protocol module. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}stack.h\char`\"{}}\par
+{\tt \#include \char`\"{}buffer.h\char`\"{}}\par
+{\tt \#include \char`\"{}module.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{nudp_8c_4d8efc1755bac5c9886756941f06d443}{nudp\_\-init} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{nudp_8c_ed0d6dbc5d23b66d9722df69f8bb76b1}{nudp\_\-handle} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{nudp_8c_f929b79f20a0857efd350183f7ad2b6d}{nudp\_\-check} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+nano\-UDP protocol module. 
+
+The nano\-UDP protocol module: handler functions. 
+
+\subsection{Function Documentation}
+\hypertarget{nudp_8c_f929b79f20a0857efd350183f7ad2b6d}{
+\index{nudp.c@{nudp.c}!nudp_check@{nudp\_\-check}}
+\index{nudp_check@{nudp\_\-check}!nudp.c@{nudp.c}}
+\subsubsection[nudp\_\-check]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR nudp\_\-check (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{nudp_8c_f929b79f20a0857efd350183f7ad2b6d}
+
+
+The n\-UDP buffer checker.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE is n\-UDP 
+
+pd\-FALSE is not n\-UDP or broken header \end{Desc}
+\hypertarget{nudp_8c_ed0d6dbc5d23b66d9722df69f8bb76b1}{
+\index{nudp.c@{nudp.c}!nudp_handle@{nudp\_\-handle}}
+\index{nudp_handle@{nudp\_\-handle}!nudp.c@{nudp.c}}
+\subsubsection[nudp\_\-handle]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR nudp\_\-handle (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{nudp_8c_ed0d6dbc5d23b66d9722df69f8bb76b1}
+
+
+Main n\-UDP buffer handler.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to buffer \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{nudp_8c_4d8efc1755bac5c9886756941f06d443}{
+\index{nudp.c@{nudp.c}!nudp_init@{nudp\_\-init}}
+\index{nudp_init@{nudp\_\-init}!nudp.c@{nudp.c}}
+\subsubsection[nudp\_\-init]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR nudp\_\-init (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{nudp_8c_4d8efc1755bac5c9886756941f06d443}
+
+
+Initialize n\-UDP module.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}

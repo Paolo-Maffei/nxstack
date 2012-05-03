@@ -1,0 +1,237 @@
+\hypertarget{libSSI_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/lib\-SSI/lib\-SSI.c File Reference}
+\label{libSSI_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Tools/libSSI/libSSI.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/libSSI/libSSI.c}}
+}
+The \hyperlink{libSSI_8c}{lib\-SSI.c} source code file. 
+
+{\tt \#include \char`\"{}lib\-SSI.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+unsigned char $\ast$ \hyperlink{libSSI_8c_0435f803022b0062821d0207687d4f9f}{lib\-SSI\_\-create\_\-query} (unsigned char $\ast$addr)
+\item 
+int \hyperlink{libSSI_8c_ca3656207563de659d47ddff9ebe0a8e}{lib\-SSI\_\-parse\_\-answer} (unsigned char $\ast$buffer, unsigned char $\ast$address, unsigned char $\ast$version, unsigned char $\ast$buffer\_\-sz, unsigned char $\ast$msg\_\-delay, unsigned char $\ast$reserved)
+\item 
+unsigned char $\ast$ \hyperlink{libSSI_8c_e999b15a2e684c22572024514984f1d8}{lib\-SSI\_\-sensor\_\-discovery} (unsigned char $\ast$addr)
+\item 
+int \hyperlink{libSSI_8c_b56ec703ccbb2a47be371d0cae4644d8}{lib\-SSI\_\-data\_\-request} (unsigned char $\ast$req\_\-buffer, unsigned char $\ast$addr, uint16\_\-t $\ast$sensor\_\-ids, unsigned char $\ast$sensor\_\-count)
+\item 
+int \hyperlink{libSSI_8c_e7c8b1d16adac2bfff94ebf31b0ef33e}{lib\-SSI\_\-parse\_\-data\_\-response} (unsigned char $\ast$buffer, unsigned char $\ast$address, uint16\_\-t $\ast$sensor\_\-ids, uint32\_\-t $\ast$sensor\_\-values, int buffer\_\-len)
+\item 
+uint32\_\-t $\ast$ \hyperlink{libSSI_8c_fc6b2bb869ae4b6ad4f20e3e6778a7dc}{lib\-SSI\_\-get\_\-response\_\-data} (unsigned char $\ast$buffer, unsigned char $\ast$address, uint16\_\-t $\ast$sensor\_\-id, int value\_\-sz)
+\item 
+unsigned char $\ast$ \hyperlink{libSSI_8c_214a1969cca3bc210b5253b2f7ded844}{lib\-SSI\_\-create\_\-observer} (unsigned char $\ast$address, uint16\_\-t interval, int8\_\-t multiplier, uint8\_\-t count, uint8\_\-t length, uint32\_\-t threshold, uint16\_\-t $\ast$sensor\_\-ids, uint8\_\-t sensors)
+\item 
+int \hyperlink{libSSI_8c_b06e5daae7a5fd90d47d8cc7e1d5e32f}{lib\-SSI\_\-parse\_\-obs\_\-created} (unsigned char $\ast$buffer, unsigned char $\ast$address, unsigned char $\ast$observer\_\-id)
+\item 
+int \hyperlink{libSSI_8c_6bf19d62c9f06e867f374679daeb6e9d}{lib\-SSI\_\-parse\_\-obs\_\-finished} (unsigned char $\ast$buffer, unsigned char $\ast$address, unsigned char $\ast$observer\_\-id)
+\item 
+unsigned char $\ast$ \hyperlink{libSSI_8c_7908eaa90dc178dee5859f6e8c79bed7}{lib\-SSI\_\-create\_\-short\_\-error} (unsigned char $\ast$address, unsigned char errorcode)
+\item 
+uint16\_\-t $\ast$ \hyperlink{libSSI_8c_1cf7f1865b83c4db022c1dccc92bb494}{lib\-SSI\_\-parse\_\-error\_\-packet} (unsigned char $\ast$buffer, unsigned char $\ast$address, unsigned char $\ast$errorcode, unsigned char packet\_\-size)
+\item 
+int \hyperlink{libSSI_8c_a09708359b3dd973984887e07d7e9cb2}{lib\-SSI\_\-parse\_\-disc\_\-reply} (unsigned char $\ast$buffer, unsigned char $\ast$address, uint16\_\-t packet\_\-size, unsigned char $\ast$sensors, struct sensor\_\-description\_\-t $\ast$sensor\_\-desc)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{libSSI_8c}{lib\-SSI.c} source code file. 
+
+This file contains code for the SSI library.
+
+Copyright: Sensinode Ltd. 
+
+\subsection{Function Documentation}
+\hypertarget{libSSI_8c_214a1969cca3bc210b5253b2f7ded844}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_create_observer@{libSSI\_\-create\_\-observer}}
+\index{libSSI_create_observer@{libSSI\_\-create\_\-observer}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-create\_\-observer]{\setlength{\rightskip}{0pt plus 5cm}unsigned char$\ast$ lib\-SSI\_\-create\_\-observer (unsigned char $\ast$ {\em address}, uint16\_\-t {\em interval}, int8\_\-t {\em multiplier}, uint8\_\-t {\em count}, uint8\_\-t {\em length}, uint32\_\-t {\em threshold}, uint16\_\-t $\ast$ {\em sensor\_\-ids}, uint8\_\-t {\em sensors})}}
+\label{libSSI_8c_214a1969cca3bc210b5253b2f7ded844}
+
+
+lib\-SSI\_\-create\_\-observer Create an SSI Create Sensor Observer type 'O' packet (or type 'o')
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]A pointer to an unsigned char which contains the device where the observer is created. If the pointer is NULL, wildcard is used. \item[{\em interval}]An uint16\_\-t which contains the refresh time interval for the observer in milliseconds \item[{\em multiplier}]An int8\_\-t which contains a signed 10's exponent multiplier for the refresh interval \item[{\em count}]An uint8\_\-t which contains the number of sensor data responses ('V') to send. A value of 0xff means continuous sending. The continuous mode can be stopped with a 'K' command. \item[{\em length}]An uint8\_\-t representing the number of samples for a specific sensor to be included in a single response. If length $>$ 1 then the response will be of type 'M' instead of default 'V'. \item[{\em threshold}]An 4 byte floating point or integer value casted into an uint32\_\-t which represents the absolute value of minimum change between two consecutive sensor value reads as a condition to send the data. \item[{\em sensor\_\-ids}]A pointer to array of uint16\_\-t elements that contain the sensor id's \item[{\em sensors}]An uint8\_\-t that contains the number of sensors in the sensor\_\-ids array \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer to array of unsigned chars that contains the create observer packet\end{Desc}
+NOTE: The user \_\-must\_\- take care of the freeing of the memory address that this function returns. \hypertarget{libSSI_8c_0435f803022b0062821d0207687d4f9f}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_create_query@{libSSI\_\-create\_\-query}}
+\index{libSSI_create_query@{libSSI\_\-create\_\-query}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-create\_\-query]{\setlength{\rightskip}{0pt plus 5cm}unsigned char$\ast$ lib\-SSI\_\-create\_\-query (unsigned char $\ast$ {\em addr})}}
+\label{libSSI_8c_0435f803022b0062821d0207687d4f9f}
+
+
+lib\-SSI\_\-create\_\-query Create an SSI query.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em addr}]The address (single byte) of the sensor (OPTIONAL) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to a unsigned char array that contains the packet.\end{Desc}
+NOTE: The user \_\-must\_\- take care of the freeing of the memory address that this function returns. \hypertarget{libSSI_8c_7908eaa90dc178dee5859f6e8c79bed7}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_create_short_error@{libSSI\_\-create\_\-short\_\-error}}
+\index{libSSI_create_short_error@{libSSI\_\-create\_\-short\_\-error}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-create\_\-short\_\-error]{\setlength{\rightskip}{0pt plus 5cm}unsigned char$\ast$ lib\-SSI\_\-create\_\-short\_\-error (unsigned char $\ast$ {\em address}, unsigned char {\em errorcode})}}
+\label{libSSI_8c_7908eaa90dc178dee5859f6e8c79bed7}
+
+
+lib\-SSI\_\-create\_\-short\_\-error Create a short SSI error packet (type 'E')
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]a pointer to an unsigned char which contains the address of the device (OPTIONAL, if set to NULL wildcard '?' will be used. \item[{\em errorcode}]an unsigned char containing the specific error code \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a buffer containing the three byte error message \end{Desc}
+\hypertarget{libSSI_8c_b56ec703ccbb2a47be371d0cae4644d8}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_data_request@{libSSI\_\-data\_\-request}}
+\index{libSSI_data_request@{libSSI\_\-data\_\-request}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-data\_\-request]{\setlength{\rightskip}{0pt plus 5cm}int lib\-SSI\_\-data\_\-request (unsigned char $\ast$ {\em req\_\-buffer}, unsigned char $\ast$ {\em addr}, uint16\_\-t $\ast$ {\em sensor\_\-ids}, unsigned char $\ast$ {\em sensor\_\-count})}}
+\label{libSSI_8c_b56ec703ccbb2a47be371d0cae4644d8}
+
+
+lib\-SSI\_\-data\_\-request Create an SSI data request packet.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em req\_\-buffer}]A pointer to an array of unsigned chars where the request packet will be stored \item[{\em addr}]The address (single byte) of the sensor (OPTIONAL) \item[{\em sensor\_\-ids}]The array of sensor ids to request the data from. \item[{\em sensor\_\-count}]The number of sensors in the sensor\_\-ids array. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]1 if ok, -1 if failure\end{Desc}
+NOTE: The user \_\-must\_\- take care of the freeing of the memory address that this function returns. \hypertarget{libSSI_8c_fc6b2bb869ae4b6ad4f20e3e6778a7dc}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_get_response_data@{libSSI\_\-get\_\-response\_\-data}}
+\index{libSSI_get_response_data@{libSSI\_\-get\_\-response\_\-data}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-get\_\-response\_\-data]{\setlength{\rightskip}{0pt plus 5cm}uint32\_\-t$\ast$ lib\-SSI\_\-get\_\-response\_\-data (unsigned char $\ast$ {\em buffer}, unsigned char $\ast$ {\em address}, uint16\_\-t $\ast$ {\em sensor\_\-id}, int {\em value\_\-sz})}}
+\label{libSSI_8c_fc6b2bb869ae4b6ad4f20e3e6778a7dc}
+
+
+lib\-SSI\_\-get\_\-response\_\-data Parse an SSI data response type 'M' packet.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buffer}]An unsigned char buffer that contains the received packet \item[{\em address}]An unsigned char pointer where the address of the sensor device will be stored \item[{\em sensor\_\-id}]A pointer to 16b unsigned interger where sensor ID will be stored \item[{\em value\_\-sz}]The number of sensor values in the packet. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer to an array of uint32\_\-t elements where the sensor values will be stored.\end{Desc}
+NOTE: This function can be used to parse ONLY Sensor Data Response packet of type 'M' ! NOTE: The user \_\-must\_\- take care of the freeing of the memory address that this function returns and the memory range that is allocated for the variablee $\ast$address and $\ast$sensor\_\-id. \hypertarget{libSSI_8c_ca3656207563de659d47ddff9ebe0a8e}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_parse_answer@{libSSI\_\-parse\_\-answer}}
+\index{libSSI_parse_answer@{libSSI\_\-parse\_\-answer}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-parse\_\-answer]{\setlength{\rightskip}{0pt plus 5cm}int lib\-SSI\_\-parse\_\-answer (unsigned char $\ast$ {\em buffer}, unsigned char $\ast$ {\em address}, unsigned char $\ast$ {\em version}, unsigned char $\ast$ {\em buffer\_\-sz}, unsigned char $\ast$ {\em msg\_\-delay}, unsigned char $\ast$ {\em reserved})}}
+\label{libSSI_8c_ca3656207563de659d47ddff9ebe0a8e}
+
+
+lib\-SSI\_\-parse\_\-answer Parse a buffer containing an SSI Answer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buffer}]The buffer that contains the answer \item[{\em address}]A pointer to an unsigned char (a single byte)where the function will store the sensor address \item[{\em version}]A pointer to an unsigned char (two bytes) where the function will store the protocol version number from the received packet \item[{\em buffer\_\-sz}]A pointer to an unsigned char (two bytes) where the function will store the size that must be reserved for data packets (input buffer) \item[{\em msg\_\-delay}]A pointer to an unsigned char (two bytes) where the function will store the delay that has to be kept between messges in milliseconds \item[{\em reserved}]A pointer to an unsigned char (two bytes) where the function will store possible data that may be defined in the future \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]1 on success, -1 on error (errno is not set)\end{Desc}
+NOTE: The user \_\-must\_\- take care of the freeing of the memory addresses that this function allocates for variables $\ast$address, $\ast$version, $\ast$buffer\_\-sz, $\ast$msg\_\-delay and $\ast$reserved. \hypertarget{libSSI_8c_e7c8b1d16adac2bfff94ebf31b0ef33e}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_parse_data_response@{libSSI\_\-parse\_\-data\_\-response}}
+\index{libSSI_parse_data_response@{libSSI\_\-parse\_\-data\_\-response}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-parse\_\-data\_\-response]{\setlength{\rightskip}{0pt plus 5cm}int lib\-SSI\_\-parse\_\-data\_\-response (unsigned char $\ast$ {\em buffer}, unsigned char $\ast$ {\em address}, uint16\_\-t $\ast$ {\em sensor\_\-ids}, uint32\_\-t $\ast$ {\em sensor\_\-values}, int {\em buffer\_\-len})}}
+\label{libSSI_8c_e7c8b1d16adac2bfff94ebf31b0ef33e}
+
+
+lib\-SSI\_\-parse\_\-data\_\-response Parse an SSI data response type 'V' packet.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buffer}]An unsigned char buffer that contains the received packet \item[{\em address}]An unsigned char pointer where the address of the sensor device will be stored \item[{\em sensor\_\-ids}]A pointer to 16b unsigned intergers where sensor ID's will be stored \item[{\em sensor\_\-values}]A pointer to 32b unsigned integers where the actual sensor values will be stored \item[{\em buffer\_\-len}]Length of the buffer. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Number of sensor values parsed from the buffer.\end{Desc}
+NOTE: This function can be used to parse ONLY Sensor Data Response packet of type 'V' ! NOTE: The ith element of sensor\_\-values contains the data associated to the sensor at the ith element of the sensor\_\-ids \hypertarget{libSSI_8c_a09708359b3dd973984887e07d7e9cb2}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_parse_disc_reply@{libSSI\_\-parse\_\-disc\_\-reply}}
+\index{libSSI_parse_disc_reply@{libSSI\_\-parse\_\-disc\_\-reply}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-parse\_\-disc\_\-reply]{\setlength{\rightskip}{0pt plus 5cm}int lib\-SSI\_\-parse\_\-disc\_\-reply (unsigned char $\ast$ {\em buffer}, unsigned char $\ast$ {\em address}, uint16\_\-t {\em packet\_\-size}, unsigned char $\ast$ {\em sensors}, struct sensor\_\-description\_\-t $\ast$ {\em sensor\_\-desc})}}
+\label{libSSI_8c_a09708359b3dd973984887e07d7e9cb2}
+
+
+lib\-SSI\_\-parse\_\-disc\_\-reply Parse an SSI discovery reply packet (type 'N')
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buffer}]a pointer to an unsigned char array containing the packet \item[{\em address}]a pointer to an unsigned char where the address of the sensor device will be stored \item[{\em packet\_\-size}]the total length of the packet \item[{\em sensors}]a pointer to an unsigned char where the total number of sensors found from the packet will be stored \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]The function returns a struct sensor\_\-description $\ast$ pointer which contains the sensor descriptions.\end{Desc}
+NOTE: The user must take care of the freeing of the memory allocated for the returned struct. This memory is allocated within this function so the calling function does not have to do that. \hypertarget{libSSI_8c_1cf7f1865b83c4db022c1dccc92bb494}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_parse_error_packet@{libSSI\_\-parse\_\-error\_\-packet}}
+\index{libSSI_parse_error_packet@{libSSI\_\-parse\_\-error\_\-packet}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-parse\_\-error\_\-packet]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t$\ast$ lib\-SSI\_\-parse\_\-error\_\-packet (unsigned char $\ast$ {\em buffer}, unsigned char $\ast$ {\em address}, unsigned char $\ast$ {\em errorcode}, unsigned char {\em packet\_\-size})}}
+\label{libSSI_8c_1cf7f1865b83c4db022c1dccc92bb494}
+
+
+lib\-SSI\_\-parse\_\-error\_\-packet Parse an SSI error packet (type 'E')
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buffer}]a pointer to unsigned char array containing the packet \item[{\em address}]a pointer to and unsigned char where the address of the device will be stored (a single byte) \item[{\em errorcode}]a pointer to an unsigned char where the errorcode will be stored \item[{\em packet\_\-size}]an unsigned char that contains the length of the packet to be parsed \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If the error packet is of the longer type (so that it contains the sensor ID's of the sensors that produced the error) this function returns a pointer to the array of uint16\_\-t intergers containing the specific Sensor ID numbers. Otherwise NULL is returned \end{Desc}
+\hypertarget{libSSI_8c_b06e5daae7a5fd90d47d8cc7e1d5e32f}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_parse_obs_created@{libSSI\_\-parse\_\-obs\_\-created}}
+\index{libSSI_parse_obs_created@{libSSI\_\-parse\_\-obs\_\-created}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-parse\_\-obs\_\-created]{\setlength{\rightskip}{0pt plus 5cm}int lib\-SSI\_\-parse\_\-obs\_\-created (unsigned char $\ast$ {\em buffer}, unsigned char $\ast$ {\em address}, unsigned char $\ast$ {\em observer\_\-id})}}
+\label{libSSI_8c_b06e5daae7a5fd90d47d8cc7e1d5e32f}
+
+
+lib\-SSI\_\-parse\_\-obs\_\-created Parse an SSI Observer Created packet (type 'Y').
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buffer}]a pointer to an unsigned char array which contains the packet \item[{\em address}]a pointer to an unsigned char where the sensor address will be stored \item[{\em observer\_\-id}]a pointer to an unsigned char where the Observer ID will be stored \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]1 on success, -1 on failure \end{Desc}
+\hypertarget{libSSI_8c_6bf19d62c9f06e867f374679daeb6e9d}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_parse_obs_finished@{libSSI\_\-parse\_\-obs\_\-finished}}
+\index{libSSI_parse_obs_finished@{libSSI\_\-parse\_\-obs\_\-finished}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-parse\_\-obs\_\-finished]{\setlength{\rightskip}{0pt plus 5cm}int lib\-SSI\_\-parse\_\-obs\_\-finished (unsigned char $\ast$ {\em buffer}, unsigned char $\ast$ {\em address}, unsigned char $\ast$ {\em observer\_\-id})}}
+\label{libSSI_8c_6bf19d62c9f06e867f374679daeb6e9d}
+
+
+lib\-SSI\_\-parse\_\-obs\_\-finished Parse an SSI Observer Finished packet (type 'U').
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buffer}]a pointer to an unsigned char array which contains the packet \item[{\em address}]a pointer to an unsigned char where the sensor address will be stored \item[{\em observer\_\-id}]a pointer to an unsigned char where the sensor ID will be stored \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]1 on success, -1 on failure \end{Desc}
+\hypertarget{libSSI_8c_e999b15a2e684c22572024514984f1d8}{
+\index{libSSI.c@{lib\-SSI.c}!libSSI_sensor_discovery@{libSSI\_\-sensor\_\-discovery}}
+\index{libSSI_sensor_discovery@{libSSI\_\-sensor\_\-discovery}!libSSI.c@{lib\-SSI.c}}
+\subsubsection[libSSI\_\-sensor\_\-discovery]{\setlength{\rightskip}{0pt plus 5cm}unsigned char$\ast$ lib\-SSI\_\-sensor\_\-discovery (unsigned char $\ast$ {\em addr})}}
+\label{libSSI_8c_e999b15a2e684c22572024514984f1d8}
+
+
+lib\-SSI\_\-create\_\-discovery Create an SSI sensor discovery packet.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em addr}]The address (single byte) of the sensor (OPTIONAL) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to an unsigned char array that contains the discovery packet\end{Desc}
+NOTE: The user \_\-must\_\- take care of the freeing of the memory address that this function returns. 

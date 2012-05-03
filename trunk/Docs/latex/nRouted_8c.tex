@@ -1,0 +1,216 @@
+\hypertarget{nRouted_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/n\-Route/n\-Routed.c File Reference}
+\label{nRouted_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Tools/nRoute/nRouted.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/nRoute/nRouted.c}}
+}
+{\tt \#include $<$sys/types.h$>$}\par
+{\tt \#include $<$sys/stat.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$fcntl.h$>$}\par
+{\tt \#include $<$errno.h$>$}\par
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$syslog.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$stdarg.h$>$}\par
+{\tt \#include $<$sys/time.h$>$}\par
+{\tt \#include $<$time.h$>$}\par
+{\tt \#include $<$pthread.h$>$}\par
+{\tt \#include $<$getopt.h$>$}\par
+{\tt \#include $<$signal.h$>$}\par
+{\tt \#include \char`\"{}n\-Routed.h\char`\"{}}\par
+{\tt \#include \char`\"{}nrp.h\char`\"{}}\par
+{\tt \#include \char`\"{}port.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{nRouted_8c_42bf63540ee0039a3a23db1b5ec3202b}{CONFIG\_\-FILE}~\char`\"{}n\-Routed.conf\char`\"{}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{nRouted_8c_f9f24c4cf29126b1832517b188aeb585}{parse\_\-config} (void)
+\item 
+int \hyperlink{nRouted_8c_7cd8894f1ab35281456155581c0ae326}{parse\_\-opts} (int count, char $\ast$param\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{nRouted_8c_c29a66a1776031962fd983f38564890b}{logger} (int loglevel, const char $\ast$tolog,...)
+\item 
+void \hyperlink{nRouted_8c_40aea12bcf55afc06ed55efe9fc41e9b}{serial\_\-server} (void)
+\item 
+int \hyperlink{nRouted_8c_670df12c784cbf1b260ab50397194b66}{tcp\_\-server} (void)
+\item 
+int \hyperlink{nRouted_8c_3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\hyperlink{structnRdconfig__t}{n\-Rdconfig\_\-t} \hyperlink{nRouted_8c_f140eca56a91b1d202fdae8f6585f42a}{n\-Rdconf}
+\item 
+FILE $\ast$ \hyperlink{nRouted_8c_c16dab5cefce6fed135c20d1bae372a5}{logfp}
+\item 
+FILE $\ast$ \hyperlink{nRouted_8c_f106d2b15829dad5697a514e160a22f3}{serialfp}
+\item 
+int \hyperlink{nRouted_8c_47edf10920788f9aa97540340c5ff606}{haltsystem}
+\item 
+\hyperlink{structnRd__conn__table__t}{n\-Rd\_\-conn\_\-table\_\-t} $\ast$ \hyperlink{nRouted_8c_a50957a05a0532bdf6c0a7e71a553382}{n\-Rd\_\-conn\_\-table}
+\item 
+char \hyperlink{nRouted_8c_7564d12ad7b7d93d5ba603fc704d855a}{n\-Routed\_\-lockfile} \mbox{[}64\mbox{]}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+The n\-Routed daemon functionality.
+
+This file contains all the initialization functionality that is required for the n\-Routed daemon to start, open log files, create lock file and to connect to syslog. 
+
+\subsection{Define Documentation}
+\hypertarget{nRouted_8c_42bf63540ee0039a3a23db1b5ec3202b}{
+\index{nRouted.c@{n\-Routed.c}!CONFIG_FILE@{CONFIG\_\-FILE}}
+\index{CONFIG_FILE@{CONFIG\_\-FILE}!nRouted.c@{n\-Routed.c}}
+\subsubsection[CONFIG\_\-FILE]{\setlength{\rightskip}{0pt plus 5cm}\#define CONFIG\_\-FILE~\char`\"{}n\-Routed.conf\char`\"{}}}
+\label{nRouted_8c_42bf63540ee0039a3a23db1b5ec3202b}
+
+
+The n\-Routed configuration file.
+
+This file contains all the neccessary information for the n\-Routed daemon to work properly. If the file does not exist the daemon will try to use the built-in default parameters. These default parameters are not even designed to work on all possible distributions. As the development is done mostly on Fedora Core (currently version 5) Fedora users have the best chances of n\-Routed working without the config file. The format of the file and all the keywords are documented in n\-Routed Readme. 
+
+\subsection{Function Documentation}
+\hypertarget{nRouted_8c_c29a66a1776031962fd983f38564890b}{
+\index{nRouted.c@{n\-Routed.c}!logger@{logger}}
+\index{logger@{logger}!nRouted.c@{n\-Routed.c}}
+\subsubsection[logger]{\setlength{\rightskip}{0pt plus 5cm}void logger (int {\em loglevel}, const char $\ast$ {\em tolog},  {\em ...})}}
+\label{nRouted_8c_c29a66a1776031962fd983f38564890b}
+
+
+The n\-Routed general/multipurpose logger function.
+
+This function gives a nice and simple interface to output entries into the n\-Routed log file. \hypertarget{nRouted_8c_3c04138a5bfe5d72780bb7e82a18e627}{
+\index{nRouted.c@{n\-Routed.c}!main@{main}}
+\index{main@{main}!nRouted.c@{n\-Routed.c}}
+\subsubsection[main]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, char $\ast$$\ast$ {\em argv})}}
+\label{nRouted_8c_3c04138a5bfe5d72780bb7e82a18e627}
+
+
+The n\-Routed main function.
+
+If n\-Route is started with parameter -d the parent thread exits (almost) immediately but the daemon keeps on running in the child process.
+
+\begin{Desc}
+\item[Returns:]0 on success and -1 on error when it failed to create a child process \end{Desc}
+\hypertarget{nRouted_8c_f9f24c4cf29126b1832517b188aeb585}{
+\index{nRouted.c@{n\-Routed.c}!parse_config@{parse\_\-config}}
+\index{parse_config@{parse\_\-config}!nRouted.c@{n\-Routed.c}}
+\subsubsection[parse\_\-config]{\setlength{\rightskip}{0pt plus 5cm}int parse\_\-config (void)}}
+\label{nRouted_8c_f9f24c4cf29126b1832517b188aeb585}
+
+
+The n\-Routed config file parsing function.
+
+This function parses the n\-Routed config file.
+
+\begin{Desc}
+\item[Returns:]0 when config file was successfully parsed, 1 when no config file was found and n\-Routed will try to use default parameters -1 when config file was found but it contained errors. n\-Routed will try to continue operation with return values 0 and 1. With return value -1 the daemon will exit. \end{Desc}
+\hypertarget{nRouted_8c_7cd8894f1ab35281456155581c0ae326}{
+\index{nRouted.c@{n\-Routed.c}!parse_opts@{parse\_\-opts}}
+\index{parse_opts@{parse\_\-opts}!nRouted.c@{n\-Routed.c}}
+\subsubsection[parse\_\-opts]{\setlength{\rightskip}{0pt plus 5cm}int parse\_\-opts (int {\em count}, char $\ast$ {\em param}\mbox{[}$\,$\mbox{]})}}
+\label{nRouted_8c_7cd8894f1ab35281456155581c0ae326}
+
+
+The n\-Routed command line parsing function.
+
+This function parses the n\-Routed command line.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em count}]argc \item[{\em param}]argv\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 when command line was successfully parsed \end{Desc}
+\hypertarget{nRouted_8c_40aea12bcf55afc06ed55efe9fc41e9b}{
+\index{nRouted.c@{n\-Routed.c}!serial_server@{serial\_\-server}}
+\index{serial_server@{serial\_\-server}!nRouted.c@{n\-Routed.c}}
+\subsubsection[serial\_\-server]{\setlength{\rightskip}{0pt plus 5cm}void serial\_\-server (void)}}
+\label{nRouted_8c_40aea12bcf55afc06ed55efe9fc41e9b}
+
+
+The serial server.
+
+This function implements the serial port server which listens to data arriving from radio module.
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000010}{Todo}]Parts of the serial server is yet to be implemented. -mjs \end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000010}{Todo}]Dongle initialization has not been implemented. Need a dongle for this. -mjs \end{Desc}
+\hypertarget{nRouted_8c_670df12c784cbf1b260ab50397194b66}{
+\index{nRouted.c@{n\-Routed.c}!tcp_server@{tcp\_\-server}}
+\index{tcp_server@{tcp\_\-server}!nRouted.c@{n\-Routed.c}}
+\subsubsection[tcp\_\-server]{\setlength{\rightskip}{0pt plus 5cm}int tcp\_\-server (void)}}
+\label{nRouted_8c_670df12c784cbf1b260ab50397194b66}
+
+
+The TCP server.
+
+This function creates a simple TCP server which listens to specified port at address 127.0.0.1.
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000016}{Todo}]Must make sure that the server notices when the peer hangs/drops the connection and acts properly. -mjs \end{Desc}
+
+
+\subsection{Variable Documentation}
+\hypertarget{nRouted_8c_47edf10920788f9aa97540340c5ff606}{
+\index{nRouted.c@{n\-Routed.c}!haltsystem@{haltsystem}}
+\index{haltsystem@{haltsystem}!nRouted.c@{n\-Routed.c}}
+\subsubsection[haltsystem]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{tcpserver_8c_47edf10920788f9aa97540340c5ff606}{haltsystem}}}
+\label{nRouted_8c_47edf10920788f9aa97540340c5ff606}
+
+
+System communications.
+
+If an unrecoverable error occures in some of the daemons threads, the thread must set this system wide variable into 1. All threads must check this variable from time to time (interval $<$ 3 seconds) to see if they must stop execution and return to the main function which will then exit the whole daemon. \hypertarget{nRouted_8c_c16dab5cefce6fed135c20d1bae372a5}{
+\index{nRouted.c@{n\-Routed.c}!logfp@{logfp}}
+\index{logfp@{logfp}!nRouted.c@{n\-Routed.c}}
+\subsubsection[logfp]{\setlength{\rightskip}{0pt plus 5cm}FILE$\ast$ \hyperlink{nRouted_8h_c16dab5cefce6fed135c20d1bae372a5}{logfp}}}
+\label{nRouted_8c_c16dab5cefce6fed135c20d1bae372a5}
+
+
+Log file file descriptor.
+
+The global file descriptor variable that is associated to the log file in init\_\-conf() \hypertarget{nRouted_8c_a50957a05a0532bdf6c0a7e71a553382}{
+\index{nRouted.c@{n\-Routed.c}!nRd_conn_table@{nRd\_\-conn\_\-table}}
+\index{nRd_conn_table@{nRd\_\-conn\_\-table}!nRouted.c@{n\-Routed.c}}
+\subsubsection[nRd\_\-conn\_\-table]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structnRd__conn__table__t}{n\-Rd\_\-conn\_\-table\_\-t}$\ast$ \hyperlink{nRouted_8h_a50957a05a0532bdf6c0a7e71a553382}{n\-Rd\_\-conn\_\-table}}}
+\label{nRouted_8c_a50957a05a0532bdf6c0a7e71a553382}
+
+
+The connection table array.
+
+This is the actual declaration for the connection array. Memory for this array is reserved in the \hyperlink{nRouted_8c}{n\-Routed.c} file. The number of elements in this array is defined by the TCPMAXCONN configuration parameter. \hypertarget{nRouted_8c_f140eca56a91b1d202fdae8f6585f42a}{
+\index{nRouted.c@{n\-Routed.c}!nRdconf@{nRdconf}}
+\index{nRdconf@{nRdconf}!nRouted.c@{n\-Routed.c}}
+\subsubsection[nRdconf]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structnRdconfig__t}{n\-Rdconfig\_\-t} \hyperlink{tcpserver_8c_f140eca56a91b1d202fdae8f6585f42a}{n\-Rdconf}}}
+\label{nRouted_8c_f140eca56a91b1d202fdae8f6585f42a}
+
+
+Configuration struct.
+
+The global variable that contains the configuration data. The default values of some parameters are assigned to the variable in \hyperlink{nRouted_8c_f9f24c4cf29126b1832517b188aeb585}{parse\_\-config()}. \hypertarget{nRouted_8c_7564d12ad7b7d93d5ba603fc704d855a}{
+\index{nRouted.c@{n\-Routed.c}!nRouted_lockfile@{nRouted\_\-lockfile}}
+\index{nRouted_lockfile@{nRouted\_\-lockfile}!nRouted.c@{n\-Routed.c}}
+\subsubsection[nRouted\_\-lockfile]{\setlength{\rightskip}{0pt plus 5cm}char \hyperlink{tcpserver_8c_7564d12ad7b7d93d5ba603fc704d855a}{n\-Routed\_\-lockfile}\mbox{[}64\mbox{]}}}
+\label{nRouted_8c_7564d12ad7b7d93d5ba603fc704d855a}
+
+
+The n\-Routed lock file.
+
+When n\-Routed is started it eventually checks if a lock file exists. This is done so that only one instance of n\-Routed is running simultaneously. \hypertarget{nRouted_8c_f106d2b15829dad5697a514e160a22f3}{
+\index{nRouted.c@{n\-Routed.c}!serialfp@{serialfp}}
+\index{serialfp@{serialfp}!nRouted.c@{n\-Routed.c}}
+\subsubsection[serialfp]{\setlength{\rightskip}{0pt plus 5cm}FILE$\ast$ \hyperlink{serialserver_8c_f106d2b15829dad5697a514e160a22f3}{serialfp}}}
+\label{nRouted_8c_f106d2b15829dad5697a514e160a22f3}
+
+
+Serial port file descriptor.
+
+The global file descriptor variable that is associated to the serial port device file in init\_\-conf() 

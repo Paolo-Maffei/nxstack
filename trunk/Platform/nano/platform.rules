@@ -1,0 +1,569 @@
+# Nano platform default rules
+#
+
+RX_ON_WHEN_IDLE=1
+ENV_ERROR=0
+
+#Application section
+SRC = main.c
+
+#FreeRTOS section
+SRC	+= \
+$(SOURCE_DIR)/tasks.c \
+$(SOURCE_DIR)/queue.c \
+$(SOURCE_DIR)/list.c \
+$(PORT_DIR)/port.c
+
+SRC += $(SOURCE_DIR)/portable/MemMang/heap_2.c
+CFLAGS += -DHAVE_DYNAMIC_BUFFERS
+
+#Platform driver section
+SRC	+= \
+$(PLATFORM_DIR)/bus.c \
+$(PLATFORM_DIR)/mac.c
+
+ifeq ($(HAVE_POWERSAVE),1)
+SRC += $(PLATFORM_DIR)/powersave.c
+CFLAGS += -DHAVE_POWERSAVE
+endif
+
+ifeq ($(HAVE_GPIO),1)
+SRC += $(PLATFORM_DIR)/gpio.c
+CFLAGS += -DHAVE_GPIO
+endif
+
+ifeq ($(GPIO_MODEL),N600)
+CFLAGS += -DGPIO_MODEL=1
+endif
+
+ifeq ($(GPIO_MODEL),N710)
+CFLAGS += -DGPIO_MODEL=2
+endif
+ifeq ($(GPIO_MODEL),N711)
+CFLAGS += -DGPIO_MODEL=3
+endif
+
+
+SRC += $(PLATFORM_DIR)/timer.c
+ifeq ($(HAVE_PERIOD_TIMER),1)
+CFLAGS += -DHAVE_PERIOD_TIMER
+endif
+
+SRC += $(PLATFORM_DIR)/dma.c 
+ifeq ($(HAVE_DMA),1)
+CFLAGS += -DHAVE_DMA 
+endif
+
+#Radio section
+
+ifneq ($(RF_ACK_SOFT),1)
+CFLAGS += -DRF_ACK_HW
+endif
+
+ifeq ($(RF_DEFAULT_POWER),)
+CFLAGS += -DRF_DEFAULT_POWER=100
+else
+CFLAGS += -DRF_DEFAULT_POWER=$(RF_DEFAULT_POWER)
+endif
+
+ifeq ($(RF_DEFAULT_CHANNEL),)
+CFLAGS += -DRF_DEFAULT_CHANNEL=18
+else
+CFLAGS += -DRF_DEFAULT_CHANNEL=$(RF_DEFAULT_CHANNEL)
+endif
+
+ifeq ($(RF_DUAL_LED),1)
+CFLAGS += -DHAVE_RF_DUAL_LED -DHAVE_RF_LED
+else
+ifeq ($(HAVE_RF_LED),)
+else
+CFLAGS += -DHAVE_RF_LED=$(HAVE_RF_LED)
+endif
+endif
+
+CFLAGS += -DHAVE_RF_DMA
+SRC += $(PLATFORM_DIR)/rf_dma.c 
+
+#Nanostack internal section
+
+ifeq ($(STACK_BUFFERS_MAX),)
+CFLAGS += -DSTACK_BUFFERS_MAX=8
+else
+CFLAGS += -DSTACK_BUFFERS_MAX=$(STACK_BUFFERS_MAX)
+endif
+ifeq ($(STACK_BUFFERS_MIN),)
+CFLAGS += -DSTACK_BUFFERS_MIN=4
+else
+CFLAGS += -DSTACK_BUFFERS_MIN=$(STACK_BUFFERS_MIN)
+endif
+
+ifeq ($(DEBUG_RX_LEN),)
+CFLAGS += -DDEBUG_RX_LEN=8
+else
+CFLAGS += -DDEBUG_RX_LEN=$(DEBUG_RX_LEN)
+endif
+
+ifeq ($(DEBUG_TX_LEN),)
+CFLAGS += -DDEBUG_TX_LEN=64
+else
+CFLAGS += -DDEBUG_TX_LEN=$(DEBUG_TX_LEN)
+endif
+
+
+#Mac mode select and check
+ifeq ($(MAC_MODE),0)
+	AD_HOC_STATE=1
+else
+	ifeq ($(MAC_MODE),1)
+		MAC_RFD=1
+		ifeq ($(MAC_FFD),1)
+			ENV_ERROR=1
+		endif
+	else
+		ifeq ($(MAC_MODE),2)
+			MAC_FFD=1
+			ifeq ($(MAC_RFD),1)
+				ENV_ERROR=1
+			endif
+		endif
+	endif
+endif
+
+ifeq ($(AD_HOC_STATE),1)
+	HAVE_NWK_MANAGER=0
+	CFLAGS += -DAD_HOC_STATE
+	ifeq ($(MAC_RFD),1)
+	CFLAGS += -DMAC_RFD
+	else
+	CFLAGS += -DMAC_FFD
+	endif
+	ifeq ($(HAVE_ROUTING),1)
+		CFLAGS += -DHAVE_ROUTING
+	endif
+else
+	HAVE_NWK_MANAGER=1
+	ifeq ($(MAC_RFD),1)
+		NWK_CAP = 0
+		CFLAGS += -DMAC_RFD
+	else
+		ifeq ($(MAC_FFD),1)
+			ifeq ($(HAVE_ROUTING),1)
+				CFLAGS += -DHAVE_ROUTING
+			endif
+			NWK_CAP = MC_FFD_DEVICE
+			CFLAGS += -DMAC_FFD
+		else
+			ENV_ERROR=2
+		endif
+	endif
+ifeq ($(RX_ON_WHEN_IDLE),1)
+#NWK_CAP +=| MC_RX_ON_WHEN_IDLE
+#NWK_CAP += | 8
+#CFLAGS += -DMC_RX_ON_WHEN_IDLE
+endif
+ifeq ($(POWER_SOURCE_BATTERY),1)
+NWK_CAP += | MC_POWER_SOURCE
+CFLAGS += -DMC_POWER_SOURCE
+endif
+ifeq ($(SEC_SUPPORT),1)
+NWK_CAP += | MC_SECURITY
+CFLAGS += -DMC_SECURITY
+endif
+ifeq ($(SUPPORT_SHORT_ADDRESS),1)
+NWK_CAP += | MC_ALLOCATED_ADDR
+CFLAGS += -DSUPPORT_SHORT_ADDRESS
+endif
+
+CFLAGS += -DNWK_CAP_DEFAULTS="$(NWK_CAP)"
+endif
+
+ifeq ($(SUPERFRAME_MODE),1)
+	CFLAGS += -DHAVE_PERIOD_TIMER
+	CFLAGS += -DSUPERFRAME_MODE
+
+	ifeq ($(BEACON_ORDER),)
+		CFLAGS += -DBEACON_ORDER=7
+	else
+		CFLAGS += -DBEACON_ORDER=$(BEACON_ORDER)
+	endif
+	
+	ifeq ($(SUPERFRAME_ORDER),)
+		CFLAGS += -DSUPERFRAME_ORDER=7
+	else
+		CFLAGS += -DSUPERFRAME_ORDER=$(SUPERFRAME_ORDER)
+	endif
+endif
+
+
+#Neighbour & Routing table
+ifeq ($(NEIGHBOR_MAX),)
+CFLAGS += -DNEIGHBOR_MAX=20
+else
+CFLAGS += -DNEIGHBOR_MAX=$(NEIGHBOR_MAX)
+endif
+
+ifeq ($(NEIGHBOR_MIN),)
+CFLAGS += -DNEIGHBOR_MIN=15
+else
+CFLAGS += -DNEIGHBOR_MIN=$(NEIGHBOR_MIN)
+endif
+
+ifeq ($(ROUTE_MAX),)
+CFLAGS += -DROUTE_MAX=20
+else
+CFLAGS += -DROUTE_MAX=$(ROUTE_MAX)
+endif
+
+ifeq ($(ROUTE_MIN),)
+CFLAGS += -DROUTE_MIN=15
+else
+CFLAGS += -DROUTE_MIN=$(ROUTE_MIN)
+endif
+
+#Extra options for Coordinator and Gateway
+ifeq ($(SHORT_ADDRESS),)
+CFLAGS += -DSHORT_ADDRESS=0x4444
+else
+CFLAGS += -DSHORT_ADDRESS=$(SHORT_ADDRESS)
+endif
+
+ifeq ($(PAN_ID),)
+else
+CFLAGS += -DPAN_ID=$(PAN_ID)
+endif
+
+ifeq ($(PAN_CHANNEL),)
+CFLAGS += -DPAN_CHANNEL=18
+else
+CFLAGS += -DPAN_CHANNEL=$(PAN_CHANNEL)
+endif
+
+ifeq ($(NWK_MAX_CHILD),)
+CFLAGS += -DNWK_MAX_CHILD=15
+else
+CFLAGS += -DNWK_MAX_CHILD=$(NWK_MAX_CHILD)
+endif
+
+ifeq ($(NO_FCS),1)
+CFLAGS += -DNO_FCS
+endif
+
+#debug section
+
+SRC += $(PLATFORM_DIR)/debug.c 
+ifeq ($(HAVE_DEBUG),1)
+CFLAGS += -DHAVE_DEBUG
+
+ifeq ($(DEBUG_UART),0)
+
+CFLAGS += -DDEBUG_UART=0
+CFLAGS += -DHAVE_UART0
+ifeq ($(UART0_ALTERNATIVE_2),1)
+CFLAGS += -DUART0_ALTERNATIVE_2
+endif
+
+ifeq ($(HAVE_NRP),1)
+#CFLAGS += -DHAVE_UART1
+#CFLAGS += -DNRP_UART=1
+endif
+else
+CFLAGS += -DDEBUG_UART=1
+CFLAGS += -DHAVE_UART1
+ifeq ($(HAVE_NRP),1)
+#CFLAGS += -DHAVE_UART0
+#CFLAGS += -DNRP_UART=0
+endif
+endif
+
+SRC += $(PLATFORM_DIR)/uart.c 
+	ifeq ($(STACK_DEBUG),1)
+	CFLAGS += -DSTACK_DEBUG
+	endif
+	ifeq ($(CC2420_DEBUG),1)
+	CFLAGS += -DCC2420_DEBUG
+	endif
+	ifeq ($(CC2420_DEBUG_RSSI),1)
+	CFLAGS += -DCC2420_DEBUG_RSSI
+	endif
+	ifeq ($(B1W_DEBUG),1)
+	CFLAGS += -DB1W_DEBUG
+	endif
+	ifeq ($(NWK_CONFIG_DEBUG),1)
+	CFLAGS += -DNWK_CONFIG_DEBUG
+	endif
+	ifeq ($(CUDP_DEBUG),1)
+	CFLAGS += -DCUDP_DEBUG
+	endif
+	ifeq ($(ROUTING_DEBUG),1)
+	CFLAGS += -DROUTING_DEBUG
+	endif
+	ifeq ($(CIPV6_DEBUG),1)
+	CFLAGS += -DCIPV6_DEBUG
+	endif
+	ifeq ($(CIPV6_CONTROL_DEBUG),1)
+	CFLAGS += -DCIPV6_CONTROL_DEBUG
+	endif
+	ifeq ($(ICMP_DEBUG),1)
+	CFLAGS += -DICMP_DEBUG
+	endif
+	ifeq ($(SOCKET_DEBUG),1)
+	CFLAGS += -DSOCKET_DEBUG
+	endif
+	ifeq ($(RF_802_15_4_DEBUG),1)
+	CFLAGS += -DRF_802_15_4_DEBUG
+	endif
+	ifeq ($(RF_RAW_DEBUG),1)
+	CFLAGS += -DRF_RAW_DEBUG
+	endif
+	ifeq ($(SSI_DEBUG),1)
+	CFLAGS += -DSSI_DEBUG
+	endif
+	ifeq ($(MAC_15_4_DEBUG),1)
+	CFLAGS += -DMAC_15_4_DEBUG
+	endif
+else
+
+ifeq ($(HAVE_NRP),1)
+#SRC += $(PLATFORM_DIR)/uart.c 
+#CFLAGS += -DHAVE_UART1
+#CFLAGS += -DNRP_UART=1
+endif
+
+endif
+
+#NanoStack section
+SRC	+= \
+$(COMMON_DIR)/event_timer.c \
+$(COMMON_DIR)/module.c \
+$(COMMON_DIR)/socket.c \
+$(COMMON_DIR)/stack.c \
+$(COMMON_DIR)/routing.c
+
+#Nanostack service section
+ifeq ($(APP_ICMP_ECHO),1)
+CFLAGS += -DAPP_ICMP_ECHO
+HAVE_ICMP=1
+APP_ECHO=1
+endif
+
+ifeq ($(APP_UDP_ECHO),1)
+CFLAGS += -DAPP_UDP_ECHO
+APP_ECHO=1
+endif
+
+ifeq ($(APP_ECHO),1)
+CFLAGS += -DAPP_ECHO
+SRC	+= $(COMMON_DIR)/protocol_lib.c
+endif
+
+#Automatic GW tracking, only for FFD or AD-HOC mode devices
+ifeq ($(GW_AUTO_DISCOVER_SERVICE),1)
+CFLAGS += -DGW_AUTO_DISCOVER_SERVICE
+ifeq ($(APP_ECHO),1)
+else
+SRC	+= $(COMMON_DIR)/protocol_lib.c
+endif
+endif
+
+ifeq ($(HAVE_ROUTING),1)
+CFLAGS += -DHAVE_ROUTING 
+else
+endif
+
+ifeq ($(HAVE_NRP),1)
+SRC += nrp_uart.c nrp.c
+CFLAGS += -DHAVE_NRP 
+else
+endif
+
+ifeq ($(HAVE_NWK_MANAGER),1)
+SRC += $(COMMON_DIR)/modules/nwk_manager.c 
+CFLAGS += -DHAVE_NWK_MANAGER 
+else
+endif
+
+ifeq ($(HAVE_ICMP),1)
+SRC += $(COMMON_DIR)/modules/icmp.c 
+CFLAGS += -DHAVE_ICMP 
+else
+endif
+
+ifeq ($(HAVE_MAC_15_4),1)
+SRC += $(COMMON_DIR)/modules/mac_15_4.c
+CFLAGS += -DHAVE_MAC_15_4
+endif
+
+ifeq ($(HAVE_RF_802_15_4),1)
+SRC += $(COMMON_DIR)/modules/rf802_15_4.c
+CFLAGS += -DHAVE_RF_802_15_4
+endif
+
+ifeq ($(HAVE_CIPV6),1)
+SRC += $(COMMON_DIR)/modules/cIPv6.c 
+CFLAGS += -DHAVE_CIPV6
+endif
+
+ifeq ($(HAVE_CUDP),1)
+SRC += $(COMMON_DIR)/modules/cUDP.c 
+CFLAGS += -DHAVE_CUDP
+endif
+
+ifeq ($(HAVE_NUDP),1)
+SRC += $(COMMON_DIR)/modules/nudp.c 
+CFLAGS += -DHAVE_NUDP
+endif
+
+ifeq ($(HAVE_SSI),1)
+SRC += $(COMMON_DIR)/modules/ssi.c 
+CFLAGS += -DHAVE_SSI
+endif
+
+
+
+MODEL=large
+PARM_MODEL=--stack-auto
+
+#MODEL=medium
+#PARM_MODEL=--stack-auto
+
+#WARNINGS=-Wall -Wshadow -Wpointer-arith -Wbad-function-cast -Wcast-align -Wsign-compare \
+#		-Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wunused
+
+
+CFLAGS += --model-$(MODEL) $(PARM_MODEL) -DSDCC_CC2430 
+CFLAGS += -I. -I$(SOURCE_DIR)/include \
+          -I$(COMMON_DIR)/include -I$(PLATFORM_DIR)/include $(WARNINGS)
+LDFLAGS += --model-$(MODEL) $(PARM_MODEL)
+
+ifeq ($(HAVE_BANKING),1)
+#banking
+LDFLAGS += --code-size 0x20000 -Wl-bCSEG=0x000000 -Wl-bBANK1=0x018000
+LDFLAGS += -Wl-bBANK2=0x028000 -Wl-bBANK3=0x038000
+#relocated code (for bank switching )
+LDFLAGS += -Wl-r -Wl-t=bankproxy_template.rel
+CFLAGS += -DHAVE_SDCC_BANKING
+#LDFLAGS+=  -Wl-bPROXY=0x000000
+BANK_PROXY = bankproxy_template.rel
+else
+#no banking
+LDFLAGS += --code-loc 0000 --code-size 65500
+BANK_PROXY =
+endif
+
+#LDFLAGS+=--xram-loc 61440 --xram-size 3328
+LDFLAGS+=--xram-loc 57344 --xram-size 8192
+
+# Language standard.
+#CFLAGS += -std=c89
+#CFLAGS += -std=gnu89
+CFLAGS += --std-sdcc99
+#CFLAGS += -std=gnu99
+
+ASFLAGS = -plosgff
+# Define programs and commands.
+SHELL = sh
+
+CC = sdcc
+AS = sdcc-asx8051
+
+.SUFFIXES: .rel
+
+#OBJCOPY = msp430-objcopy
+#OBJDUMP = msp430-objdump
+#SIZE = msp430-size
+#NM = msp430-nm
+
+# Programming support
+
+# Output format.
+FORMAT = hex
+
+REMOVE = rm -f
+COPY = cp
+
+#HEXSIZE = $(SIZE) --target=$(FORMAT) $(TARGET).hex
+#ELFSIZE = $(SIZE) -B  
+
+# add math library
+#LDFLAGS += -lm
+
+ifneq ($(ENV_ERROR), 0)
+ifeq ($(ENV_ERROR), 1)
+
+error:
+	@echo "Configuration error."
+	@echo "MAC_RFD & MAC_FFD defined same time"
+	exit
+endif
+ifeq ($(ENV_ERROR), 2)
+
+error:
+	@echo "Configuration error."
+	@echo "MAC_MODE not selected"
+	exit
+endif
+endif
+
+ifeq ($(PGM_PORT),)
+PGM_PORT=$(BSL_PORT)
+endif
+
+all: binary
+	@echo
+
+ifeq ($(ENV_ERROR), 0)
+error: 
+	@echo
+endif
+
+#jtag: binary
+#	$(PROG) $(PROGOPT) $(TARGET).$(FORMAT)
+
+#bsl: binary
+#	$(BSL) $(BSL_INV) -c $(BSL_PORT) $(PROGOPT) $(TARGET).$(FORMAT)
+
+ifeq ($(HAVE_BANKING),1)
+#use this in $(call getsegment,$<) to get segment for a source file.
+#codeseg.list should have "BANKx yyyyyy.c" (without quotes ) lines
+code_segment = --codeseg $(word 1,$(shell grep "$(notdir $(1))" segment.rules ) CSEG )
+
+segment.rules:
+	cp $(PLATFORM_DIR)/segment.rules segment.rules
+
+bankproxy_template.asm: $(PLATFORM_DIR)/bankproxy_template.asm
+	cp $(PLATFORM_DIR)/bankproxy_template.asm bankproxy_template.asm
+
+bankproxy_template.rel: bankproxy_template.asm
+	$(AS) -plosgff bankproxy_template.asm
+else
+code_segment =
+endif
+	
+module_id.h: $(PLATFORM_DIR)/platform.rules app.rules Makefile
+	@make clean-deps
+	@echo "--- Generating module_id.h ---"
+	@echo "#ifndef _MODULE_ID_H" > $@
+	@echo "#define _MODULE_ID_H" >> $@
+	@echo "/* module_id.h generated */" >> $@
+	@echo "" >> $@
+	@echo "typedef enum { MODULE_NONE = 0," >> $@
+	@cat $(COMMON_DIR)/modules/*.c | grep -A1 "\[ID\]" | grep -v ID | grep -v "\-\-"  >> $@
+	@echo "MODULE_APP," >> $@
+	@echo "MODULE_MAX } module_id_t;" >> $@
+	@echo "#endif  /*_MODULE_ID_H*/" >> $@
+	@echo 
+
+modules_conf.h: $(PLATFORM_DIR)/platform.rules app.rules Makefile
+	@echo "--- Generating modules_conf.h ---"
+	@echo "/* modules_conf.h generated */" > $@
+	@echo "" >> $@
+	@echo "#ifdef COMPILING_MODULE_C" >> $@
+	@cat $(COMMON_DIR)/modules/*.c | grep -A4 "\[FUNCS\]" | grep -v FUNCS | grep -v "\-\-"  >> $@
+	@echo "" >> $@
+	@echo "module_t modules[] = {" >> $@
+	@cat $(COMMON_DIR)/modules/*.c | grep -A3 "\[INFO\]" | grep -v INFO | grep -v "\-\-"  >> $@
+	@echo "{0, 0, 0, 0, MODULE_NONE, 0, ADDR_NONE, 0 } };" >> $@
+	@echo "#else" >> $@
+	@echo "extern module_t modules[];" >> $@	
+	@echo "#endif" >> $@
+	@echo 

@@ -1,0 +1,121 @@
+\hypertarget{structbuffer__t}{
+\section{buffer\_\-t Struct Reference}
+\label{structbuffer__t}\index{buffer_t@{buffer\_\-t}}
+}
+{\tt \#include $<$buffer.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+\hyperlink{structsocket__t}{socket\_\-t} $\ast$ \hyperlink{structbuffer__t_b3d08149c91ea5c32d3808dfc369708c}{socket}
+\item 
+\hyperlink{structsockaddr__t}{sockaddr\_\-t} \hyperlink{structbuffer__t_77292f1f1beee8363cf331027cd4f76a}{dst\_\-sa}
+\item 
+\hyperlink{structsockaddr__t}{sockaddr\_\-t} \hyperlink{structbuffer__t_a93121920765652ba07cf01351cea7c2}{src\_\-sa}
+\item 
+module\_\-id\_\-t \hyperlink{structbuffer__t_57786381935d453fb5f30d6c7a0fd149}{from}
+\item 
+module\_\-id\_\-t \hyperlink{structbuffer__t_655f0a9f1662c7386e350d55b0ebe804}{to}
+\item 
+\hyperlink{buffer_8h_584321097d4e6c6a37198fbbb6d76c71}{buffer\_\-direction\_\-t} \hyperlink{structbuffer__t_90c0669e859280525c9a16dc1d1a6153}{dir}
+\item 
+uint16\_\-t \hyperlink{structbuffer__t_435b821b8f73bc752e5ed8b0edec6a2d}{buf\_\-ptr}
+\item 
+uint16\_\-t \hyperlink{structbuffer__t_93697fa152d62c9539dcd5b2f42b5d1d}{buf\_\-end}
+\item 
+uint16\_\-t \hyperlink{structbuffer__t_71b3f12052a171249ae6ad4e08e93ec4}{size}
+\item 
+\hyperlink{structbuffer__options__t}{buffer\_\-options\_\-t} \hyperlink{structbuffer__t_49d73f996520c91c472dd68bc7005e70}{options}
+\item 
+uint8\_\-t \hyperlink{structbuffer__t_ed0f8f327664a6eea8d419fd852a0b46}{buf} \mbox{[}2\mbox{]}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+buffer structure 
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structbuffer__t_ed0f8f327664a6eea8d419fd852a0b46}{
+\index{buffer_t@{buffer\_\-t}!buf@{buf}}
+\index{buf@{buf}!buffer_t@{buffer\_\-t}}
+\subsubsection[buf]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structbuffer__t_ed0f8f327664a6eea8d419fd852a0b46}{buffer\_\-t::buf}\mbox{[}2\mbox{]}}}
+\label{structbuffer__t_ed0f8f327664a6eea8d419fd852a0b46}
+
+
+Buffer pointer \hypertarget{structbuffer__t_93697fa152d62c9539dcd5b2f42b5d1d}{
+\index{buffer_t@{buffer\_\-t}!buf_end@{buf\_\-end}}
+\index{buf_end@{buf\_\-end}!buffer_t@{buffer\_\-t}}
+\subsubsection[buf\_\-end]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t \hyperlink{structbuffer__t_93697fa152d62c9539dcd5b2f42b5d1d}{buffer\_\-t::buf\_\-end}}}
+\label{structbuffer__t_93697fa152d62c9539dcd5b2f42b5d1d}
+
+
+End pointer in the buffer \hypertarget{structbuffer__t_435b821b8f73bc752e5ed8b0edec6a2d}{
+\index{buffer_t@{buffer\_\-t}!buf_ptr@{buf\_\-ptr}}
+\index{buf_ptr@{buf\_\-ptr}!buffer_t@{buffer\_\-t}}
+\subsubsection[buf\_\-ptr]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t \hyperlink{structbuffer__t_435b821b8f73bc752e5ed8b0edec6a2d}{buffer\_\-t::buf\_\-ptr}}}
+\label{structbuffer__t_435b821b8f73bc752e5ed8b0edec6a2d}
+
+
+Current pointer in the buffer \hypertarget{structbuffer__t_90c0669e859280525c9a16dc1d1a6153}{
+\index{buffer_t@{buffer\_\-t}!dir@{dir}}
+\index{dir@{dir}!buffer_t@{buffer\_\-t}}
+\subsubsection[dir]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{buffer_8h_584321097d4e6c6a37198fbbb6d76c71}{buffer\_\-direction\_\-t} \hyperlink{structbuffer__t_90c0669e859280525c9a16dc1d1a6153}{buffer\_\-t::dir}}}
+\label{structbuffer__t_90c0669e859280525c9a16dc1d1a6153}
+
+
+Up or down \hypertarget{structbuffer__t_77292f1f1beee8363cf331027cd4f76a}{
+\index{buffer_t@{buffer\_\-t}!dst_sa@{dst\_\-sa}}
+\index{dst_sa@{dst\_\-sa}!buffer_t@{buffer\_\-t}}
+\subsubsection[dst\_\-sa]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structsockaddr__t}{sockaddr\_\-t} \hyperlink{structbuffer__t_77292f1f1beee8363cf331027cd4f76a}{buffer\_\-t::dst\_\-sa}}}
+\label{structbuffer__t_77292f1f1beee8363cf331027cd4f76a}
+
+
+Destination sockaddr \hypertarget{structbuffer__t_57786381935d453fb5f30d6c7a0fd149}{
+\index{buffer_t@{buffer\_\-t}!from@{from}}
+\index{from@{from}!buffer_t@{buffer\_\-t}}
+\subsubsection[from]{\setlength{\rightskip}{0pt plus 5cm}module\_\-id\_\-t \hyperlink{structbuffer__t_57786381935d453fb5f30d6c7a0fd149}{buffer\_\-t::from}}}
+\label{structbuffer__t_57786381935d453fb5f30d6c7a0fd149}
+
+
+Layer buffer is coming from \hypertarget{structbuffer__t_49d73f996520c91c472dd68bc7005e70}{
+\index{buffer_t@{buffer\_\-t}!options@{options}}
+\index{options@{options}!buffer_t@{buffer\_\-t}}
+\subsubsection[options]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structbuffer__options__t}{buffer\_\-options\_\-t} \hyperlink{structbuffer__t_49d73f996520c91c472dd68bc7005e70}{buffer\_\-t::options}}}
+\label{structbuffer__t_49d73f996520c91c472dd68bc7005e70}
+
+
+Additional signal info etc \hypertarget{structbuffer__t_71b3f12052a171249ae6ad4e08e93ec4}{
+\index{buffer_t@{buffer\_\-t}!size@{size}}
+\index{size@{size}!buffer_t@{buffer\_\-t}}
+\subsubsection[size]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t \hyperlink{structbuffer__t_71b3f12052a171249ae6ad4e08e93ec4}{buffer\_\-t::size}}}
+\label{structbuffer__t_71b3f12052a171249ae6ad4e08e93ec4}
+
+
+Buffer size \hypertarget{structbuffer__t_b3d08149c91ea5c32d3808dfc369708c}{
+\index{buffer_t@{buffer\_\-t}!socket@{socket}}
+\index{socket@{socket}!buffer_t@{buffer\_\-t}}
+\subsubsection[socket]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structsocket__t}{socket\_\-t}$\ast$ \hyperlink{structbuffer__t_b3d08149c91ea5c32d3808dfc369708c}{buffer\_\-t::socket}}}
+\label{structbuffer__t_b3d08149c91ea5c32d3808dfc369708c}
+
+
+Pointer to the socket for outgoing packets \hypertarget{structbuffer__t_a93121920765652ba07cf01351cea7c2}{
+\index{buffer_t@{buffer\_\-t}!src_sa@{src\_\-sa}}
+\index{src_sa@{src\_\-sa}!buffer_t@{buffer\_\-t}}
+\subsubsection[src\_\-sa]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structsockaddr__t}{sockaddr\_\-t} \hyperlink{structbuffer__t_a93121920765652ba07cf01351cea7c2}{buffer\_\-t::src\_\-sa}}}
+\label{structbuffer__t_a93121920765652ba07cf01351cea7c2}
+
+
+Source sockaddr \hypertarget{structbuffer__t_655f0a9f1662c7386e350d55b0ebe804}{
+\index{buffer_t@{buffer\_\-t}!to@{to}}
+\index{to@{to}!buffer_t@{buffer\_\-t}}
+\subsubsection[to]{\setlength{\rightskip}{0pt plus 5cm}module\_\-id\_\-t \hyperlink{structbuffer__t_655f0a9f1662c7386e350d55b0ebe804}{buffer\_\-t::to}}}
+\label{structbuffer__t_655f0a9f1662c7386e350d55b0ebe804}
+
+
+Next layer 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/\hyperlink{buffer_8h}{buffer.h}\end{CompactItemize}

@@ -1,0 +1,120 @@
+\hypertarget{mac__15__4_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/mac\_\-15\_\-4.c File Reference}
+\label{mac__15__4_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/modules/mac_15_4.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/mac\_\-15\_\-4.c}}
+}
+802.15.4 protocol module. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}semphr.h\char`\"{}}\par
+{\tt \#include \char`\"{}list.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}socket.h\char`\"{}}\par
+{\tt \#include \char`\"{}buffer.h\char`\"{}}\par
+{\tt \#include \char`\"{}bus.h\char`\"{}}\par
+{\tt \#include \char`\"{}module.h\char`\"{}}\par
+{\tt \#include \char`\"{}control\_\-message.h\char`\"{}}\par
+{\tt \#include \char`\"{}cipv6.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf.h\char`\"{}}\par
+{\tt \#include \char`\"{}mac.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{mac__15__4_8c_e21043003731fcc05157f61cb6351a70}{FC\_\-DST\_\-MODE}~0x0C00
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{mac__15__4_8c_88eea7787eb3b03f9caf112302d1d869}{rf\_\-rx\_\-callback} (void $\ast$param)
+\item 
+void \hyperlink{mac__15__4_8c_5ab9bd89f5668ce9096c7f90e2e7d6df}{mac\_\-task} (void $\ast$pv\-Parameters)
+\item 
+void \hyperlink{mac__15__4_8c_b4d78451b1ccee855f36af110e6d6a2e}{mac\_\-push} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$b)
+\item 
+uint8\_\-t \hyperlink{mac__15__4_8c_26123fe135eee072c63b8548f8ca402e}{mac\_\-header\_\-generate} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+void \hyperlink{mac__15__4_8c_758ebd59146e7c5d54243b4089cf0b51}{rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set} (uint8\_\-t support\_\-short\_\-addr)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+802.15.4 protocol module. 
+
+802.15.4 MAC and CSMA sequence: handler functions. Modular version for positioning support etc. 
+
+\subsection{Define Documentation}
+\hypertarget{mac__15__4_8c_e21043003731fcc05157f61cb6351a70}{
+\index{mac_15_4.c@{mac\_\-15\_\-4.c}!FC_DST_MODE@{FC\_\-DST\_\-MODE}}
+\index{FC_DST_MODE@{FC\_\-DST\_\-MODE}!mac_15_4.c@{mac\_\-15\_\-4.c}}
+\subsubsection[FC\_\-DST\_\-MODE]{\setlength{\rightskip}{0pt plus 5cm}\#define FC\_\-DST\_\-MODE~0x0C00}}
+\label{mac__15__4_8c_e21043003731fcc05157f61cb6351a70}
+
+
+MAC Header masks 
+
+\subsection{Function Documentation}
+\hypertarget{mac__15__4_8c_26123fe135eee072c63b8548f8ca402e}{
+\index{mac_15_4.c@{mac\_\-15\_\-4.c}!mac_header_generate@{mac\_\-header\_\-generate}}
+\index{mac_header_generate@{mac\_\-header\_\-generate}!mac_15_4.c@{mac\_\-15\_\-4.c}}
+\subsubsection[mac\_\-header\_\-generate]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t mac\_\-header\_\-generate (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{mac__15__4_8c_26123fe135eee072c63b8548f8ca402e}
+
+
+Function creates MAC-frame.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]indicates pointer for buffer structure. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]ack flag which indicated ack-requirement for frame. \end{Desc}
+\hypertarget{mac__15__4_8c_b4d78451b1ccee855f36af110e6d6a2e}{
+\index{mac_15_4.c@{mac\_\-15\_\-4.c}!mac_push@{mac\_\-push}}
+\index{mac_push@{mac\_\-push}!mac_15_4.c@{mac\_\-15\_\-4.c}}
+\subsubsection[mac\_\-push]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-push (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em b})}}
+\label{mac__15__4_8c_b4d78451b1ccee855f36af110e6d6a2e}
+
+
+Function to push buffers to MAC, used by the RF driver \hypertarget{mac__15__4_8c_5ab9bd89f5668ce9096c7f90e2e7d6df}{
+\index{mac_15_4.c@{mac\_\-15\_\-4.c}!mac_task@{mac\_\-task}}
+\index{mac_task@{mac\_\-task}!mac_15_4.c@{mac\_\-15\_\-4.c}}
+\subsubsection[mac\_\-task]{\setlength{\rightskip}{0pt plus 5cm}void mac\_\-task (void $\ast$ {\em pv\-Parameters})}}
+\label{mac__15__4_8c_5ab9bd89f5668ce9096c7f90e2e7d6df}
+
+
+Mac task.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pv\-Parameters}]not used \end{description}
+\end{Desc}
+\hypertarget{mac__15__4_8c_758ebd59146e7c5d54243b4089cf0b51}{
+\index{mac_15_4.c@{mac\_\-15\_\-4.c}!rf_802_15_4_ip_layer_address_mode_set@{rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set}}
+\index{rf_802_15_4_ip_layer_address_mode_set@{rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set}!mac_15_4.c@{mac\_\-15\_\-4.c}}
+\subsubsection[rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-802\_\-15\_\-4\_\-ip\_\-layer\_\-address\_\-mode\_\-set (uint8\_\-t {\em support\_\-short\_\-addr})}}
+\label{mac__15__4_8c_758ebd59146e7c5d54243b4089cf0b51}
+
+
+Function setup IP modules address mode and also forward MAC and short address information.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em support\_\-short\_\-addr}]1=Support \& 0=Not support. \end{description}
+\end{Desc}
+\hypertarget{mac__15__4_8c_88eea7787eb3b03f9caf112302d1d869}{
+\index{mac_15_4.c@{mac\_\-15\_\-4.c}!rf_rx_callback@{rf\_\-rx\_\-callback}}
+\index{rf_rx_callback@{rf\_\-rx\_\-callback}!mac_15_4.c@{mac\_\-15\_\-4.c}}
+\subsubsection[rf\_\-rx\_\-callback]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-rx\_\-callback (void $\ast$ {\em param})}}
+\label{mac__15__4_8c_88eea7787eb3b03f9caf112302d1d869}
+
+
+RF receive callback \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em param}]not used \end{description}
+\end{Desc}

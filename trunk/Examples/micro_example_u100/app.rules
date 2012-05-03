@@ -1,0 +1,79 @@
+#This example program is a preliminary release to demonstrate routing-capable
+#networks.
+
+#Programming configuration
+#for Linux, this is the device file
+BSL_PORT=/dev/ttyUSB0
+
+#for Windows, this is the com port number - 1, 
+#i.e. 0 for COM1:, 9 for COM10:
+#BSL_PORT=2
+
+#this should be 0 for micro products
+BSL_INVERT=0
+
+# List additional build options here
+
+#RF driver configuration options
+RF_DEFAULT_POWER=100
+RF_DEFAULT_CHANNEL=18
+HAVE_RF_LED=2
+
+#Debug UART buffer sizes
+#DEBUG_RX_LEN=8
+#DEBUG_TX_LEN=64
+
+#Automatic power saving management
+#HAVE_POWERSAVE=1
+
+#NanoStack configuration
+
+#Echo service include ICMP & UDP echo
+APP_ICMP_ECHO=1
+APP_UDP_ECHO=1
+#Automatick GW tracking, not requirement used for MAC_RFD device
+GW_AUTO_DISCOVER_SERVICE=0
+
+#Buffers
+#STACK_BUFFERS_MAX=8
+#STACK_BUFFERS_MIN=4
+
+#6lowpan configuration
+HAVE_ROUTING=1
+
+#Neigghbour & Routing table sizes
+#NEIGHBOR_MAX=20
+#NEIGHBOR_MIN=15
+#ROUTE_MAX=20
+#ROUTE_MIN=15
+
+#Rf_802_15_4-modules configuration
+#MAC modes: 0=AD_HOC, 1=MAC_BEACON_RFD, 2=MAC_BEACON_FFD
+MAC_MODE=0
+
+#Modules
+HAVE_CUDP=1
+HAVE_CIPV6=1
+HAVE_ICMP=1
+HAVE_RF_802_15_4=1
+
+#Debug options
+HAVE_DEBUG=1
+
+#Module specific debug message macros
+#Don't use multiple debug flags, since excessive
+#debug messages may cause instability and timing problems
+#STACK_DEBUG=1
+#CC2420_DEBUG=1
+#CC2420_DEBUG_RSSI=1
+#B1W_DEBUG=1
+#SOCKET_DEBUG=1
+#NWK_CONFIG_DEBUG=1
+#ROUTING_DEBUG=1
+#CUDP_DEBUG=1
+#CIPV6_DEBUG=1
+#CIPV6_CONTROL_DEBUG=1
+#ICMP_DEBUG=1
+#RF_802_15_4_DEBUG=1
+#RF_RAW_DEBUG=1
+#SSI_DEBUG=1

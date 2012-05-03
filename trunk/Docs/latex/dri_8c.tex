@@ -1,0 +1,124 @@
+\hypertarget{dri_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/dri.c File Reference}
+\label{dri_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/modules/dri.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/dri.c}}
+}
+DRI (Direct Radio Interface) module. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}stack.h\char`\"{}}\par
+{\tt \#include \char`\"{}buffer.h\char`\"{}}\par
+{\tt \#include \char`\"{}bus.h\char`\"{}}\par
+{\tt \#include \char`\"{}gpio.h\char`\"{}}\par
+{\tt \#include \char`\"{}module.h\char`\"{}}\par
+{\tt \#include \char`\"{}event\_\-timer.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf\_\-802\_\-15\_\-4.h\char`\"{}}\par
+{\tt \#include \char`\"{}semphr.h\char`\"{}}\par
+{\tt \#include $<$signal.h$>$}\par
+{\tt \#include \char`\"{}powersave.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{dri_8c_abf9815811078a84636a2ca809f87302}{dri\_\-handle} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\begin{CompactList}\small\item\em This function receives buffer from the RF driver, adds a four byte preamble and sends it to UART This function is not compiled when HAVE\_\-DEBUG is set. \item\end{CompactList}\item 
+void \hyperlink{dri_8c_b0cfde0607fd6ea9948565fb43d463d8}{vdri\_\-task} (void $\ast$pv\-Parameters)
+\begin{CompactList}\small\item\em This function is not doing anything This function is not compiled when HAVE\_\-DEBUG is set. \item\end{CompactList}\item 
+\hyperlink{dri_8c_26d503e3b30e4660bc5f96c5c7773c24}{interrupt} (UART1RX\_\-VECTOR)
+\item 
+\hyperlink{dri_8c_fef8bc5096de600a8fe53984aee528ff}{interrupt} (UART1TX\_\-VECTOR)
+\begin{CompactList}\small\item\em This function is not compiled when HAVE\_\-DEBUG is set. \item\end{CompactList}\item 
+void \hyperlink{dri_8c_e58eb9ecc6e7df521eabbad98492ecc5}{dri\_\-tx\_\-start} (void)
+\begin{CompactList}\small\item\em Start the UART TX This function is not compiled when HAVE\_\-DEBUG is set. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+x\-Queue\-Handle \hyperlink{dri_8c_231a544d9ce4769fb14f3baa3ae53dd8}{buffers}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+DRI (Direct Radio Interface) module. 
+
+This module allows the future libpcap plugin (pcap-sensinode.c) to receive packets directly from the rf driver of a Sensinode micro series board.
+
+The module still lacks more or less all the documentation, but those will be added later (probably in the Nano\-Stack v1.1 release).
+
+The interface between the pcap-sensinode and the dri module is very rudimentary and is subject to changes in later releases. At the moment a packet is preceeded by a four byte header (0x44,0x52,0x49,0x\-LL) where the last byte is the lenght of the payload, including the two trailing bytes (RSSI, FCS ok/not ok and Corr.) 
+
+\subsection{Function Documentation}
+\hypertarget{dri_8c_abf9815811078a84636a2ca809f87302}{
+\index{dri.c@{dri.c}!dri_handle@{dri\_\-handle}}
+\index{dri_handle@{dri\_\-handle}!dri.c@{dri.c}}
+\subsubsection[dri\_\-handle]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR dri\_\-handle (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{dri_8c_abf9815811078a84636a2ca809f87302}
+
+
+This function receives buffer from the RF driver, adds a four byte preamble and sends it to UART This function is not compiled when HAVE\_\-DEBUG is set. 
+
+DRI handle function
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]A pointer to a standard \hyperlink{structbuffer__t}{buffer\_\-t} structure containing the packet. \end{description}
+\end{Desc}
+\hypertarget{dri_8c_e58eb9ecc6e7df521eabbad98492ecc5}{
+\index{dri.c@{dri.c}!dri_tx_start@{dri\_\-tx\_\-start}}
+\index{dri_tx_start@{dri\_\-tx\_\-start}!dri.c@{dri.c}}
+\subsubsection[dri\_\-tx\_\-start]{\setlength{\rightskip}{0pt plus 5cm}void dri\_\-tx\_\-start (void)}}
+\label{dri_8c_e58eb9ecc6e7df521eabbad98492ecc5}
+
+
+Start the UART TX This function is not compiled when HAVE\_\-DEBUG is set. 
+
+TX start function \hypertarget{dri_8c_fef8bc5096de600a8fe53984aee528ff}{
+\index{dri.c@{dri.c}!interrupt@{interrupt}}
+\index{interrupt@{interrupt}!dri.c@{dri.c}}
+\subsubsection[interrupt]{\setlength{\rightskip}{0pt plus 5cm}interrupt (UART1TX\_\-VECTOR)}}
+\label{dri_8c_fef8bc5096de600a8fe53984aee528ff}
+
+
+This function is not compiled when HAVE\_\-DEBUG is set. 
+
+Interrupt TX function \hypertarget{dri_8c_26d503e3b30e4660bc5f96c5c7773c24}{
+\index{dri.c@{dri.c}!interrupt@{interrupt}}
+\index{interrupt@{interrupt}!dri.c@{dri.c}}
+\subsubsection[interrupt]{\setlength{\rightskip}{0pt plus 5cm}interrupt (UART1RX\_\-VECTOR)}}
+\label{dri_8c_26d503e3b30e4660bc5f96c5c7773c24}
+
+
+Standard nanostack module initalizer.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{dri_8c_b0cfde0607fd6ea9948565fb43d463d8}{
+\index{dri.c@{dri.c}!vdri_task@{vdri\_\-task}}
+\index{vdri_task@{vdri\_\-task}!dri.c@{dri.c}}
+\subsubsection[vdri\_\-task]{\setlength{\rightskip}{0pt plus 5cm}void vdri\_\-task (void $\ast$ {\em pv\-Parameters})}}
+\label{dri_8c_b0cfde0607fd6ea9948565fb43d463d8}
+
+
+This function is not doing anything This function is not compiled when HAVE\_\-DEBUG is set. 
+
+DRI task
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pv\-Parameters}]stadard parameter pointer for a new task \end{description}
+\end{Desc}
+
+
+\subsection{Variable Documentation}
+\hypertarget{dri_8c_231a544d9ce4769fb14f3baa3ae53dd8}{
+\index{dri.c@{dri.c}!buffers@{buffers}}
+\index{buffers@{buffers}!dri.c@{dri.c}}
+\subsubsection[buffers]{\setlength{\rightskip}{0pt plus 5cm}x\-Queue\-Handle \hyperlink{rf__dma_8c_231a544d9ce4769fb14f3baa3ae53dd8}{buffers}}}
+\label{dri_8c_231a544d9ce4769fb14f3baa3ae53dd8}
+
+
+Common variables 

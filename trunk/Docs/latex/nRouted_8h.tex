@@ -1,0 +1,216 @@
+\hypertarget{nRouted_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/n\-Route/n\-Routed.h File Reference}
+\label{nRouted_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Tools/nRoute/nRouted.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/nRoute/nRouted.h}}
+}
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structnRdconfig__t}{n\-Rdconfig\_\-t}
+\item 
+struct \hyperlink{structnRdstat__t}{n\-Rdstat\_\-t}
+\item 
+struct \hyperlink{structnRd__conn__table__t}{n\-Rd\_\-conn\_\-table\_\-t}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{nRouted_8h_073e03498bb2f54c15502e671f90c5c0}{INC\_\-TCP\_\-CONNS}~n\-Rdstat.tcp\_\-connections++
+\item 
+\#define \hyperlink{nRouted_8h_f72468010c06bced50d04a29bfb53f69}{INC\_\-TCP\_\-OPEN}~n\-Rdstat.tcp\_\-conns\_\-open++
+\item 
+\#define \hyperlink{nRouted_8h_73f92fef92114749828770731d0fe0d1}{DEC\_\-TCP\_\-OPEN}~n\-Rdstat.tcp\_\-conns\_\-open--
+\item 
+\#define \hyperlink{nRouted_8h_8e3ff9164911684f208688bd51528e85}{INC\_\-TCP\_\-DROPPED}~n\-Rdstat.connections\_\-dropped++
+\item 
+\#define \hyperlink{nRouted_8h_095143e9b33663a7f09438c108fe14e7}{INC\_\-PKTS\_\-FROM\_\-TCP}~n\-Rdstat.packets\_\-from\_\-tcp++
+\item 
+\#define \hyperlink{nRouted_8h_da0b74bc760657632ac79245d51bf51b}{INC\_\-PKTS\_\-FROM\_\-SERIAL}~n\-Rdstat.packets\_\-from\_\-serial++
+\item 
+\#define \hyperlink{nRouted_8h_2bab0bd61f5391d3085e5f1cff5bb7d4}{INC\_\-SET\_\-CONF\_\-PKTS\_\-SENT}~n\-Rdstat.set\_\-config\_\-packets\_\-sent++
+\item 
+\#define \hyperlink{nRouted_8h_4884f8dcfa16557c7c1e45504cad6cfc}{INC\_\-GET\_\-CONF\_\-PKTS\_\-SENT}~n\-Rdstat.get\_\-config\_\-packets\_\-sent++
+\item 
+\#define \hyperlink{nRouted_8h_1e6ef40d810f00aaa3a3122b564da04b}{INC\_\-MALFORMED\_\-TCP\_\-PKTS}~n\-Rdstat.malformed\_\-packets\_\-tcp++
+\item 
+\#define \hyperlink{nRouted_8h_c62c42af0c985c056075a6311fa306f0}{INC\_\-MALFORMED\_\-SERIAL\_\-PKTS}~n\-Rdstat.malformed\_\-packets\_\-serial++
+\item 
+\#define \hyperlink{nRouted_8h_3f30a74842e6f75ab98db8e7b0b6050b}{INC\_\-BYTES\_\-SENT}~n\-Rdstat.bytes\_\-sent++
+\item 
+\#define \hyperlink{nRouted_8h_ebe67956824d275dacf04c22f4690cf8}{INC\_\-BYTES\_\-RECEIVED}~n\-Rdstat.bytes\_\-received++
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\hyperlink{structnRdstat__t}{n\-Rdstat\_\-t} \hyperlink{nRouted_8h_89e157c419f2afffe24a8266017a0d15}{n\-Rdstat}
+\item 
+\hyperlink{structnRdconfig__t}{n\-Rdconfig\_\-t} \hyperlink{nRouted_8h_f140eca56a91b1d202fdae8f6585f42a}{n\-Rdconf}
+\item 
+\hyperlink{structnRd__conn__table__t}{n\-Rd\_\-conn\_\-table\_\-t} $\ast$ \hyperlink{nRouted_8h_a50957a05a0532bdf6c0a7e71a553382}{n\-Rd\_\-conn\_\-table}
+\item 
+int \hyperlink{nRouted_8h_47edf10920788f9aa97540340c5ff606}{haltsystem}
+\item 
+FILE $\ast$ \hyperlink{nRouted_8h_c16dab5cefce6fed135c20d1bae372a5}{logfp}
+\item 
+FILE $\ast$ \hyperlink{nRouted_8h_f106d2b15829dad5697a514e160a22f3}{serialfp}
+\item 
+int \hyperlink{nRouted_8h_2a0eb177da8c25d4a4849e3c144e203c}{serial\_\-queue\_\-id}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{nRouted_8h}{n\-Routed.h} header file
+
+This header file contains some structure and global variable definitions for the n\-Routed daemon. 
+
+\subsection{Define Documentation}
+\hypertarget{nRouted_8h_73f92fef92114749828770731d0fe0d1}{
+\index{nRouted.h@{n\-Routed.h}!DEC_TCP_OPEN@{DEC\_\-TCP\_\-OPEN}}
+\index{DEC_TCP_OPEN@{DEC\_\-TCP\_\-OPEN}!nRouted.h@{n\-Routed.h}}
+\subsubsection[DEC\_\-TCP\_\-OPEN]{\setlength{\rightskip}{0pt plus 5cm}\#define DEC\_\-TCP\_\-OPEN~n\-Rdstat.tcp\_\-conns\_\-open--}}
+\label{nRouted_8h_73f92fef92114749828770731d0fe0d1}
+
+
+Decrease the number of open TCP connections. \hypertarget{nRouted_8h_ebe67956824d275dacf04c22f4690cf8}{
+\index{nRouted.h@{n\-Routed.h}!INC_BYTES_RECEIVED@{INC\_\-BYTES\_\-RECEIVED}}
+\index{INC_BYTES_RECEIVED@{INC\_\-BYTES\_\-RECEIVED}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-BYTES\_\-RECEIVED]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-BYTES\_\-RECEIVED~n\-Rdstat.bytes\_\-received++}}
+\label{nRouted_8h_ebe67956824d275dacf04c22f4690cf8}
+
+
+Increase the number of total bytes received. \hypertarget{nRouted_8h_3f30a74842e6f75ab98db8e7b0b6050b}{
+\index{nRouted.h@{n\-Routed.h}!INC_BYTES_SENT@{INC\_\-BYTES\_\-SENT}}
+\index{INC_BYTES_SENT@{INC\_\-BYTES\_\-SENT}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-BYTES\_\-SENT]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-BYTES\_\-SENT~n\-Rdstat.bytes\_\-sent++}}
+\label{nRouted_8h_3f30a74842e6f75ab98db8e7b0b6050b}
+
+
+Increase the number of total bytes sent. \hypertarget{nRouted_8h_4884f8dcfa16557c7c1e45504cad6cfc}{
+\index{nRouted.h@{n\-Routed.h}!INC_GET_CONF_PKTS_SENT@{INC\_\-GET\_\-CONF\_\-PKTS\_\-SENT}}
+\index{INC_GET_CONF_PKTS_SENT@{INC\_\-GET\_\-CONF\_\-PKTS\_\-SENT}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-GET\_\-CONF\_\-PKTS\_\-SENT]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-GET\_\-CONF\_\-PKTS\_\-SENT~n\-Rdstat.get\_\-config\_\-packets\_\-sent++}}
+\label{nRouted_8h_4884f8dcfa16557c7c1e45504cad6cfc}
+
+
+Increase the number of get\_\-conf packets sent. \hypertarget{nRouted_8h_c62c42af0c985c056075a6311fa306f0}{
+\index{nRouted.h@{n\-Routed.h}!INC_MALFORMED_SERIAL_PKTS@{INC\_\-MALFORMED\_\-SERIAL\_\-PKTS}}
+\index{INC_MALFORMED_SERIAL_PKTS@{INC\_\-MALFORMED\_\-SERIAL\_\-PKTS}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-MALFORMED\_\-SERIAL\_\-PKTS]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-MALFORMED\_\-SERIAL\_\-PKTS~n\-Rdstat.malformed\_\-packets\_\-serial++}}
+\label{nRouted_8h_c62c42af0c985c056075a6311fa306f0}
+
+
+Increase the number of malformed packets received from serial connections. \hypertarget{nRouted_8h_1e6ef40d810f00aaa3a3122b564da04b}{
+\index{nRouted.h@{n\-Routed.h}!INC_MALFORMED_TCP_PKTS@{INC\_\-MALFORMED\_\-TCP\_\-PKTS}}
+\index{INC_MALFORMED_TCP_PKTS@{INC\_\-MALFORMED\_\-TCP\_\-PKTS}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-MALFORMED\_\-TCP\_\-PKTS]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-MALFORMED\_\-TCP\_\-PKTS~n\-Rdstat.malformed\_\-packets\_\-tcp++}}
+\label{nRouted_8h_1e6ef40d810f00aaa3a3122b564da04b}
+
+
+Increase the number of malformed packets received from TCP connections. \hypertarget{nRouted_8h_da0b74bc760657632ac79245d51bf51b}{
+\index{nRouted.h@{n\-Routed.h}!INC_PKTS_FROM_SERIAL@{INC\_\-PKTS\_\-FROM\_\-SERIAL}}
+\index{INC_PKTS_FROM_SERIAL@{INC\_\-PKTS\_\-FROM\_\-SERIAL}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-PKTS\_\-FROM\_\-SERIAL]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-PKTS\_\-FROM\_\-SERIAL~n\-Rdstat.packets\_\-from\_\-serial++}}
+\label{nRouted_8h_da0b74bc760657632ac79245d51bf51b}
+
+
+Increase the number of packets received from serial connections. \hypertarget{nRouted_8h_095143e9b33663a7f09438c108fe14e7}{
+\index{nRouted.h@{n\-Routed.h}!INC_PKTS_FROM_TCP@{INC\_\-PKTS\_\-FROM\_\-TCP}}
+\index{INC_PKTS_FROM_TCP@{INC\_\-PKTS\_\-FROM\_\-TCP}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-PKTS\_\-FROM\_\-TCP]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-PKTS\_\-FROM\_\-TCP~n\-Rdstat.packets\_\-from\_\-tcp++}}
+\label{nRouted_8h_095143e9b33663a7f09438c108fe14e7}
+
+
+Increase the number of packets received from TCP connections. \hypertarget{nRouted_8h_2bab0bd61f5391d3085e5f1cff5bb7d4}{
+\index{nRouted.h@{n\-Routed.h}!INC_SET_CONF_PKTS_SENT@{INC\_\-SET\_\-CONF\_\-PKTS\_\-SENT}}
+\index{INC_SET_CONF_PKTS_SENT@{INC\_\-SET\_\-CONF\_\-PKTS\_\-SENT}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-SET\_\-CONF\_\-PKTS\_\-SENT]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-SET\_\-CONF\_\-PKTS\_\-SENT~n\-Rdstat.set\_\-config\_\-packets\_\-sent++}}
+\label{nRouted_8h_2bab0bd61f5391d3085e5f1cff5bb7d4}
+
+
+Increase the number of set\_\-conf packets sent. \hypertarget{nRouted_8h_073e03498bb2f54c15502e671f90c5c0}{
+\index{nRouted.h@{n\-Routed.h}!INC_TCP_CONNS@{INC\_\-TCP\_\-CONNS}}
+\index{INC_TCP_CONNS@{INC\_\-TCP\_\-CONNS}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-TCP\_\-CONNS]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-TCP\_\-CONNS~n\-Rdstat.tcp\_\-connections++}}
+\label{nRouted_8h_073e03498bb2f54c15502e671f90c5c0}
+
+
+Macros used to manipulate the statistics. Increase the total number of TCP connections. \hypertarget{nRouted_8h_8e3ff9164911684f208688bd51528e85}{
+\index{nRouted.h@{n\-Routed.h}!INC_TCP_DROPPED@{INC\_\-TCP\_\-DROPPED}}
+\index{INC_TCP_DROPPED@{INC\_\-TCP\_\-DROPPED}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-TCP\_\-DROPPED]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-TCP\_\-DROPPED~n\-Rdstat.connections\_\-dropped++}}
+\label{nRouted_8h_8e3ff9164911684f208688bd51528e85}
+
+
+Increase the number of dropped TCP connections. \hypertarget{nRouted_8h_f72468010c06bced50d04a29bfb53f69}{
+\index{nRouted.h@{n\-Routed.h}!INC_TCP_OPEN@{INC\_\-TCP\_\-OPEN}}
+\index{INC_TCP_OPEN@{INC\_\-TCP\_\-OPEN}!nRouted.h@{n\-Routed.h}}
+\subsubsection[INC\_\-TCP\_\-OPEN]{\setlength{\rightskip}{0pt plus 5cm}\#define INC\_\-TCP\_\-OPEN~n\-Rdstat.tcp\_\-conns\_\-open++}}
+\label{nRouted_8h_f72468010c06bced50d04a29bfb53f69}
+
+
+Increase the number of open TCP connections. 
+
+\subsection{Variable Documentation}
+\hypertarget{nRouted_8h_47edf10920788f9aa97540340c5ff606}{
+\index{nRouted.h@{n\-Routed.h}!haltsystem@{haltsystem}}
+\index{haltsystem@{haltsystem}!nRouted.h@{n\-Routed.h}}
+\subsubsection[haltsystem]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{tcpserver_8c_47edf10920788f9aa97540340c5ff606}{haltsystem}}}
+\label{nRouted_8h_47edf10920788f9aa97540340c5ff606}
+
+
+System communications.
+
+If an unrecoverable error occures in some of the daemons threads, the thread must set this system wide variable into 1. All threads must check this variable from time to time (interval $<$ 3 seconds) to see if they must stop execution and return to the main function which will then exit the whole daemon. \hypertarget{nRouted_8h_c16dab5cefce6fed135c20d1bae372a5}{
+\index{nRouted.h@{n\-Routed.h}!logfp@{logfp}}
+\index{logfp@{logfp}!nRouted.h@{n\-Routed.h}}
+\subsubsection[logfp]{\setlength{\rightskip}{0pt plus 5cm}FILE$\ast$ \hyperlink{nRouted_8h_c16dab5cefce6fed135c20d1bae372a5}{logfp}}}
+\label{nRouted_8h_c16dab5cefce6fed135c20d1bae372a5}
+
+
+Log file file descriptor.
+
+The global file descriptor variable that is associated to the log file in init\_\-conf() \hypertarget{nRouted_8h_a50957a05a0532bdf6c0a7e71a553382}{
+\index{nRouted.h@{n\-Routed.h}!nRd_conn_table@{nRd\_\-conn\_\-table}}
+\index{nRd_conn_table@{nRd\_\-conn\_\-table}!nRouted.h@{n\-Routed.h}}
+\subsubsection[nRd\_\-conn\_\-table]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structnRd__conn__table__t}{n\-Rd\_\-conn\_\-table\_\-t}$\ast$ \hyperlink{nRouted_8h_a50957a05a0532bdf6c0a7e71a553382}{n\-Rd\_\-conn\_\-table}}}
+\label{nRouted_8h_a50957a05a0532bdf6c0a7e71a553382}
+
+
+The connection table array.
+
+This is the actual declaration for the connection array. Memory for this array is reserved in the \hyperlink{nRouted_8c}{n\-Routed.c} file. The number of elements in this array is defined by the TCPMAXCONN configuration parameter. \hypertarget{nRouted_8h_f140eca56a91b1d202fdae8f6585f42a}{
+\index{nRouted.h@{n\-Routed.h}!nRdconf@{nRdconf}}
+\index{nRdconf@{nRdconf}!nRouted.h@{n\-Routed.h}}
+\subsubsection[nRdconf]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structnRdconfig__t}{n\-Rdconfig\_\-t} \hyperlink{tcpserver_8c_f140eca56a91b1d202fdae8f6585f42a}{n\-Rdconf}}}
+\label{nRouted_8h_f140eca56a91b1d202fdae8f6585f42a}
+
+
+Configuration struct.
+
+The global variable that contains the configuration data. The default values of some parameters are assigned to the variable in \hyperlink{nRouted_8c_f9f24c4cf29126b1832517b188aeb585}{parse\_\-config()}. \hypertarget{nRouted_8h_89e157c419f2afffe24a8266017a0d15}{
+\index{nRouted.h@{n\-Routed.h}!nRdstat@{nRdstat}}
+\index{nRdstat@{nRdstat}!nRouted.h@{n\-Routed.h}}
+\subsubsection[nRdstat]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structnRdstat__t}{n\-Rdstat\_\-t} \hyperlink{nRouted_8h_89e157c419f2afffe24a8266017a0d15}{n\-Rdstat}}}
+\label{nRouted_8h_89e157c419f2afffe24a8266017a0d15}
+
+
+The statistics struct.
+
+This is the actual declaration for the statistics struct. \hypertarget{nRouted_8h_2a0eb177da8c25d4a4849e3c144e203c}{
+\index{nRouted.h@{n\-Routed.h}!serial_queue_id@{serial\_\-queue\_\-id}}
+\index{serial_queue_id@{serial\_\-queue\_\-id}!nRouted.h@{n\-Routed.h}}
+\subsubsection[serial\_\-queue\_\-id]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{nRouted_8h_2a0eb177da8c25d4a4849e3c144e203c}{serial\_\-queue\_\-id}}}
+\label{nRouted_8h_2a0eb177da8c25d4a4849e3c144e203c}
+
+
+Serial port write queue identifier.
+
+This ID is used to send messages to the serial\_\-write() function. \hypertarget{nRouted_8h_f106d2b15829dad5697a514e160a22f3}{
+\index{nRouted.h@{n\-Routed.h}!serialfp@{serialfp}}
+\index{serialfp@{serialfp}!nRouted.h@{n\-Routed.h}}
+\subsubsection[serialfp]{\setlength{\rightskip}{0pt plus 5cm}FILE$\ast$ \hyperlink{serialserver_8c_f106d2b15829dad5697a514e160a22f3}{serialfp}}}
+\label{nRouted_8h_f106d2b15829dad5697a514e160a22f3}
+
+
+Serial port file descriptor.
+
+The global file descriptor variable that is associated to the serial port device file in init\_\-conf() 

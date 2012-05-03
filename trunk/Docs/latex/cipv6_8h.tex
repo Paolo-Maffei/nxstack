@@ -1,0 +1,73 @@
+\hypertarget{cipv6_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/cipv6.h File Reference}
+\label{cipv6_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/include/cipv6.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/cipv6.h}}
+}
+include structure defines and other constant 
+
+{\tt \#include \char`\"{}address.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structcipv6__ib__t}{cipv6\_\-ib\_\-t}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{cipv6_8h_0e8cdebc339c66e96798c77361e600ec}{build\_\-lowpan\_\-header} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+uint16\_\-t \hyperlink{cipv6_8h_02914104a4540b286813f07fe628942e}{ipv6\_\-fcf} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf, uint8\_\-t next\_\-protocol, uint8\_\-t rx\_\-case)
+\item 
+void \hyperlink{cipv6_8h_26116ba1af45489209c8fdd33b9602d5}{ip\_\-broken\_\-link\_\-notify} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf, uint8\_\-t no\_\-route\_\-reason)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+include structure defines and other constant 
+
+nano\-Stack: These tables are for zigbee and 6lowpan modules 
+
+\subsection{Function Documentation}
+\hypertarget{cipv6_8h_0e8cdebc339c66e96798c77361e600ec}{
+\index{cipv6.h@{cipv6.h}!build_lowpan_header@{build\_\-lowpan\_\-header}}
+\index{build_lowpan_header@{build\_\-lowpan\_\-header}!cipv6.h@{cipv6.h}}
+\subsubsection[build\_\-lowpan\_\-header]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR build\_\-lowpan\_\-header (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{cipv6_8h_0e8cdebc339c66e96798c77361e600ec}
+
+
+Function build lowpan header / mesh header.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to data \end{description}
+\end{Desc}
+\hypertarget{cipv6_8h_26116ba1af45489209c8fdd33b9602d5}{
+\index{cipv6.h@{cipv6.h}!ip_broken_link_notify@{ip\_\-broken\_\-link\_\-notify}}
+\index{ip_broken_link_notify@{ip\_\-broken\_\-link\_\-notify}!cipv6.h@{cipv6.h}}
+\subsubsection[ip\_\-broken\_\-link\_\-notify]{\setlength{\rightskip}{0pt plus 5cm}void ip\_\-broken\_\-link\_\-notify (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf}, uint8\_\-t {\em no\_\-route\_\-reason})}}
+\label{cipv6_8h_26116ba1af45489209c8fdd33b9602d5}
+
+
+Function notify for Broken link.
+
+Function remove allways neighbour info which not answer and if packet is Mesh routing header it will also remove routing info to destination. Then it check originator address, if address is device own it will notify application. if address is not own it will forward ctrl message to ICMP module which create ICMP error message to originator. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to data \end{description}
+\end{Desc}
+\hypertarget{cipv6_8h_02914104a4540b286813f07fe628942e}{
+\index{cipv6.h@{cipv6.h}!ipv6_fcf@{ipv6\_\-fcf}}
+\index{ipv6_fcf@{ipv6\_\-fcf}!cipv6.h@{cipv6.h}}
+\subsubsection[ipv6\_\-fcf]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t ipv6\_\-fcf (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf}, uint8\_\-t {\em next\_\-protocol}, uint8\_\-t {\em rx\_\-case})}}
+\label{cipv6_8h_02914104a4540b286813f07fe628942e}
+
+
+Check \& Calculate FCF.
+
+Function calculate typical IP FCF which is used IPv6 and ICMP protocols. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to data \item[{\em next\_\-protocol}]NEXT\_\-HEADER\_\-UDP / NEXT\_\-HEADER\_\-ICMP6 \item[{\em rx\_\-case}]flag when function now it have to check and when calculate\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]fcf 16-values \end{Desc}

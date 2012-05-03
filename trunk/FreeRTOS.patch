@@ -1,0 +1,13 @@
+--- FreeRTOS/Source/include/portable.h.orig	2008-01-29 15:17:43.000000000 +0200
++++ FreeRTOS/Source/include/portable.h	2007-06-14 15:47:22.000000000 +0300
+@@ -73,6 +73,10 @@
+ 	#include "../../Source/portable/SDCC/Cygnal/portmacro.h"
+ #endif
+ 
++#ifdef SDCC_CC2430
++	#include "../../Platform/nano/include/portmacro.h"
++#endif
++
+ #ifdef GCC_ARM7
+ 	#include "../../Source/portable/GCC/ARM7_LPC2000/portmacro.h"
+ #endif

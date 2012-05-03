@@ -1,0 +1,130 @@
+\hypertarget{flash_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/micro/flash.c File Reference}
+\label{flash_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Platform/micro/flash.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/micro/flash.c}}
+}
+micro external flash access. 
+
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}semphr.h\char`\"{}}\par
+{\tt \#include $<$sys/inttypes.h$>$}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}bus.h\char`\"{}}\par
+{\tt \#include \char`\"{}flash.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{flash_8c_cf135f88d5f04d6cd48f6d23274a684f}{flash\_\-read} (uint32\_\-t address, uint8\_\-t $\ast$buffer, uint16\_\-t length)
+\item 
+port\-CHAR \hyperlink{flash_8c_b7f07d62c50b1ac02e861464d1577617}{flash\_\-write} (uint32\_\-t address, uint8\_\-t $\ast$buffer, uint16\_\-t length)
+\item 
+port\-CHAR \hyperlink{flash_8c_7f8111e351f0d792f40b9bf0b958842c}{flash\_\-erase\_\-sector} (uint32\_\-t address)
+\item 
+int16\_\-t \hyperlink{flash_8c_f1958516b17c8e3242f50317b49d4237}{flash\_\-signature\_\-read} (void)
+\item 
+int16\_\-t \hyperlink{flash_8c_f56c32933157a17aabe729fe06400618}{flash\_\-status\_\-read} (void)
+\item 
+port\-CHAR \hyperlink{flash_8c_3ca897b707638452e485a8966c626f9b}{flash\_\-write\_\-wait} (void)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+micro external flash access. 
+
+Micro flash: support functions. Module selection, block read/write functions. 
+
+\subsection{Function Documentation}
+\hypertarget{flash_8c_7f8111e351f0d792f40b9bf0b958842c}{
+\index{flash.c@{flash.c}!flash_erase_sector@{flash\_\-erase\_\-sector}}
+\index{flash_erase_sector@{flash\_\-erase\_\-sector}!flash.c@{flash.c}}
+\subsubsection[flash\_\-erase\_\-sector]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR flash\_\-erase\_\-sector (uint32\_\-t {\em address})}}
+\label{flash_8c_7f8111e351f0d792f40b9bf0b958842c}
+
+
+Flash sector erase. Sector size is 64 kilobytes. Address must point at start of sector.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]block address on flash\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free or address not valid (must be at start of sector) \end{Desc}
+\hypertarget{flash_8c_cf135f88d5f04d6cd48f6d23274a684f}{
+\index{flash.c@{flash.c}!flash_read@{flash\_\-read}}
+\index{flash_read@{flash\_\-read}!flash.c@{flash.c}}
+\subsubsection[flash\_\-read]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR flash\_\-read (uint32\_\-t {\em address}, uint8\_\-t $\ast$ {\em buffer}, uint16\_\-t {\em length})}}
+\label{flash_8c_cf135f88d5f04d6cd48f6d23274a684f}
+
+
+Read flash block.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]block address on flash \item[{\em buffer}]pointer to buffer \item[{\em length}]length of read buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free or init failed \end{Desc}
+\hypertarget{flash_8c_f1958516b17c8e3242f50317b49d4237}{
+\index{flash.c@{flash.c}!flash_signature_read@{flash\_\-signature\_\-read}}
+\index{flash_signature_read@{flash\_\-signature\_\-read}!flash.c@{flash.c}}
+\subsubsection[flash\_\-signature\_\-read]{\setlength{\rightskip}{0pt plus 5cm}int16\_\-t flash\_\-signature\_\-read (void)}}
+\label{flash_8c_f1958516b17c8e3242f50317b49d4237}
+
+
+Flash signature read. Wakes the device up from power down mode. Signature value should be 0x12 if the flash is present and working.
+
+\begin{Desc}
+\item[Returns:]signature value 
+
+-1 bus not free \end{Desc}
+\hypertarget{flash_8c_f56c32933157a17aabe729fe06400618}{
+\index{flash.c@{flash.c}!flash_status_read@{flash\_\-status\_\-read}}
+\index{flash_status_read@{flash\_\-status\_\-read}!flash.c@{flash.c}}
+\subsubsection[flash\_\-status\_\-read]{\setlength{\rightskip}{0pt plus 5cm}int16\_\-t flash\_\-status\_\-read (void)}}
+\label{flash_8c_f56c32933157a17aabe729fe06400618}
+
+
+Flash status read.
+
+\begin{Desc}
+\item[Returns:]status register value 
+
+-1 bus not free \end{Desc}
+\hypertarget{flash_8c_b7f07d62c50b1ac02e861464d1577617}{
+\index{flash.c@{flash.c}!flash_write@{flash\_\-write}}
+\index{flash_write@{flash\_\-write}!flash.c@{flash.c}}
+\subsubsection[flash\_\-write]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR flash\_\-write (uint32\_\-t {\em address}, uint8\_\-t $\ast$ {\em buffer}, uint16\_\-t {\em length})}}
+\label{flash_8c_b7f07d62c50b1ac02e861464d1577617}
+
+
+Write flash page. Page size is 256 bytes. Write address must point at start of page.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]block address on flash \item[{\em buffer}]pointer to buffer \item[{\em length}]length of read buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free or address not valid (must be at start of page) \end{Desc}
+\hypertarget{flash_8c_3ca897b707638452e485a8966c626f9b}{
+\index{flash.c@{flash.c}!flash_write_wait@{flash\_\-write\_\-wait}}
+\index{flash_write_wait@{flash\_\-write\_\-wait}!flash.c@{flash.c}}
+\subsubsection[flash\_\-write\_\-wait]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR flash\_\-write\_\-wait (void)}}
+\label{flash_8c_3ca897b707638452e485a8966c626f9b}
+
+
+Wait flash operation to complete.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free \end{Desc}

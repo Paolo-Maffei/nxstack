@@ -1,0 +1,49 @@
+\hypertarget{structpacket__entry__t}{
+\section{packet\_\-entry\_\-t Struct Reference}
+\label{structpacket__entry__t}\index{packet_entry_t@{packet\_\-entry\_\-t}}
+}
+{\tt \#include $<$serialserver.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+\hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t} $\ast$ \hyperlink{structpacket__entry__t_3fe6dc267e444e95acf382b9844cecaf}{next}
+\item 
+\hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t} $\ast$ \hyperlink{structpacket__entry__t_bf2385bedd4ae2af115b923f29c8ec5d}{prev}
+\item 
+char \hyperlink{structpacket__entry__t_a4ed47e0ce37602056f98befd3340a42}{packet\_\-data} \mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Basic packet item in the FIFO buffer. 
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structpacket__entry__t_3fe6dc267e444e95acf382b9844cecaf}{
+\index{packet_entry_t@{packet\_\-entry\_\-t}!next@{next}}
+\index{next@{next}!packet_entry_t@{packet\_\-entry\_\-t}}
+\subsubsection[next]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t}$\ast$ \hyperlink{structpacket__entry__t_3fe6dc267e444e95acf382b9844cecaf}{packet\_\-entry\_\-t::next}}}
+\label{structpacket__entry__t_3fe6dc267e444e95acf382b9844cecaf}
+
+
+Pointer to next item in the FIFO buffer. \hypertarget{structpacket__entry__t_a4ed47e0ce37602056f98befd3340a42}{
+\index{packet_entry_t@{packet\_\-entry\_\-t}!packet_data@{packet\_\-data}}
+\index{packet_data@{packet\_\-data}!packet_entry_t@{packet\_\-entry\_\-t}}
+\subsubsection[packet\_\-data]{\setlength{\rightskip}{0pt plus 5cm}char \hyperlink{structpacket__entry__t_a4ed47e0ce37602056f98befd3340a42}{packet\_\-entry\_\-t::packet\_\-data}\mbox{[}MAX\_\-NRP\_\-PACKET\_\-SIZE\mbox{]}}}
+\label{structpacket__entry__t_a4ed47e0ce37602056f98befd3340a42}
+
+
+This array contains the actual packet that should be sent. \hypertarget{structpacket__entry__t_bf2385bedd4ae2af115b923f29c8ec5d}{
+\index{packet_entry_t@{packet\_\-entry\_\-t}!prev@{prev}}
+\index{prev@{prev}!packet_entry_t@{packet\_\-entry\_\-t}}
+\subsubsection[prev]{\setlength{\rightskip}{0pt plus 5cm}struct \hyperlink{structpacket__entry__t}{packet\_\-entry\_\-t}$\ast$ \hyperlink{structpacket__entry__t_bf2385bedd4ae2af115b923f29c8ec5d}{packet\_\-entry\_\-t::prev}}}
+\label{structpacket__entry__t_bf2385bedd4ae2af115b923f29c8ec5d}
+
+
+Pointer to previous item in the FIFO buffer. 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Tools/n\-Route/\hyperlink{serialserver_8h}{serialserver.h}\end{CompactItemize}

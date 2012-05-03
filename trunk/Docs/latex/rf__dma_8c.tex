@@ -1,0 +1,326 @@
+\hypertarget{rf__dma_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/nano/rf\_\-dma.c File Reference}
+\label{rf__dma_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Platform/nano/rf_dma.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/nano/rf\_\-dma.c}}
+}
+nano.4 DMA based RF driver. 
+
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}semphr.h\char`\"{}}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$sys/inttypes.h$>$}\par
+{\tt \#include \char`\"{}stack.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}bus.h\char`\"{}}\par
+{\tt \#include \char`\"{}dma.h\char`\"{}}\par
+{\tt \#include \char`\"{}mac.h\char`\"{}}\par
+{\tt \#include \char`\"{}gpio.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{rf__dma_8c_5fed384bd1a734f5951dc93528c22b46}{rf\_\-command} (uint8\_\-t command)
+\item 
+port\-CHAR \hyperlink{rf__dma_8c_4a0517c1790f41459d7d1b76f827dd64}{rf\_\-channel\_\-set} (uint8\_\-t channel)
+\item 
+port\-CHAR \hyperlink{rf__dma_8c_9d28009552b1b1a63ab5037f1bcf2a04}{rf\_\-power\_\-set} (uint8\_\-t new\_\-power)
+\item 
+port\-CHAR \hyperlink{rf__dma_8c_fd6db435d4b4e09d32c69a9d4d8334a8}{rf\_\-rx\_\-enable} (void)
+\item 
+port\-CHAR \hyperlink{rf__dma_8c_d82d143983e9998c415860e3b5fe47a1}{rf\_\-rx\_\-disable} (void)
+\item 
+port\-CHAR \hyperlink{rf__dma_8c_86c297f847f47f7c5630ca78f2aa5d68}{rf\_\-tx\_\-enable} (void)
+\item 
+port\-CHAR \hyperlink{rf__dma_8c_eec362bfdb2f849d39ad0d28e9222a72}{rf\_\-init} (void)
+\item 
+void \hyperlink{rf__dma_8c_262377dd5ce71a6ded4a7e4f86a2df1a}{rf\_\-set\_\-address} (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$address)
+\item 
+port\-CHAR \hyperlink{rf__dma_8c_1652b8296d7a61e97b28661c9bb9e40d}{rf\_\-address\_\-decoder\_\-mode} (rf\_\-address\_\-mode\_\-t mode)
+\item 
+int8\_\-t \hyperlink{rf__dma_8c_293d8239631f9bdb850229c63183db6c}{rf\_\-analyze\_\-rssi} (void)
+\item 
+port\-CHAR \hyperlink{rf__dma_8c_71b74455854c04aca3d86015cf95eb09}{rf\_\-cca\_\-check} (uint8\_\-t backoff\_\-count, uint8\_\-t slotted)
+\item 
+void \hyperlink{rf__dma_8c_91b1dad538e14708668fae49263edccb}{rf\_\-send\_\-ack} (uint8\_\-t pending)
+\item 
+port\-CHAR \hyperlink{rf__dma_8c_dcdd963f53baa6a6c1e696347cee1ee7}{rf\_\-write} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buffer)
+\item 
+port\-CHAR \hyperlink{rf__dma_8c_d5647eee88c52cfdce3ca0050698d6a8}{rf\_\-mac\_\-get} (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$address)
+\item 
+void \hyperlink{rf__dma_8c_748b1d62902e87ac884d9fe1b86c07a9}{rf\_\-dma\_\-callback\_\-isr} (void)
+\item 
+void \hyperlink{rf__dma_8c_88eea7787eb3b03f9caf112302d1d869}{rf\_\-rx\_\-callback} (void $\ast$param)
+\item 
+void \hyperlink{rf__dma_8c_1819b02fb81df165e59aa252c054900f}{rf\_\-ISR} (void)
+\item 
+void \hyperlink{rf__dma_8c_a72b36dbf0dd1cec1825399f30549010}{rf\_\-error\_\-ISR} (void)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+x\-Queue\-Handle \hyperlink{rf__dma_8c_231a544d9ce4769fb14f3baa3ae53dd8}{buffers}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+nano.4 DMA based RF driver. 
+
+Nano.4: RF control functions. 
+
+\subsection{Function Documentation}
+\hypertarget{rf__dma_8c_1652b8296d7a61e97b28661c9bb9e40d}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_address_decoder_mode@{rf\_\-address\_\-decoder\_\-mode}}
+\index{rf_address_decoder_mode@{rf\_\-address\_\-decoder\_\-mode}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-address\_\-decoder\_\-mode]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-address\_\-decoder\_\-mode (rf\_\-address\_\-mode\_\-t {\em mode})}}
+\label{rf__dma_8c_1652b8296d7a61e97b28661c9bb9e40d}
+
+
+Set address decoder on/off.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em param}]1=on 0=off. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE operation successful \end{Desc}
+\hypertarget{rf__dma_8c_293d8239631f9bdb850229c63183db6c}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_analyze_rssi@{rf\_\-analyze\_\-rssi}}
+\index{rf_analyze_rssi@{rf\_\-analyze\_\-rssi}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-analyze\_\-rssi]{\setlength{\rightskip}{0pt plus 5cm}int8\_\-t rf\_\-analyze\_\-rssi (void)}}
+\label{rf__dma_8c_293d8239631f9bdb850229c63183db6c}
+
+
+Channel energy detect.
+
+Coordinator use this function detect best channel for PAN-network. \begin{Desc}
+\item[Returns:]RSSI-energy level d\-Bm. 
+
+0 operation failed. \end{Desc}
+\hypertarget{rf__dma_8c_71b74455854c04aca3d86015cf95eb09}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_cca_check@{rf\_\-cca\_\-check}}
+\index{rf_cca_check@{rf\_\-cca\_\-check}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-cca\_\-check]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-cca\_\-check (uint8\_\-t {\em backoff\_\-count}, uint8\_\-t {\em slotted})}}
+\label{rf__dma_8c_71b74455854c04aca3d86015cf95eb09}
+
+
+Clear channel assesment check.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE CCA clear 
+
+pd\-FALSE CCA reserved \end{Desc}
+\hypertarget{rf__dma_8c_4a0517c1790f41459d7d1b76f827dd64}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_channel_set@{rf\_\-channel\_\-set}}
+\index{rf_channel_set@{rf\_\-channel\_\-set}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-channel\_\-set]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-channel\_\-set (uint8\_\-t {\em channel})}}
+\label{rf__dma_8c_4a0517c1790f41459d7d1b76f827dd64}
+
+
+Select RF channel.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em channel}]channel number to select\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]channel value or negative (invalid channel number) \end{Desc}
+\hypertarget{rf__dma_8c_5fed384bd1a734f5951dc93528c22b46}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_command@{rf\_\-command}}
+\index{rf_command@{rf\_\-command}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-command]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-command (uint8\_\-t {\em command})}}
+\label{rf__dma_8c_5fed384bd1a734f5951dc93528c22b46}
+
+
+Execute a single CSP command.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em command}]command to execute \end{description}
+\end{Desc}
+\hypertarget{rf__dma_8c_748b1d62902e87ac884d9fe1b86c07a9}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_dma_callback_isr@{rf\_\-dma\_\-callback\_\-isr}}
+\index{rf_dma_callback_isr@{rf\_\-dma\_\-callback\_\-isr}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-dma\_\-callback\_\-isr]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-dma\_\-callback\_\-isr (void)}}
+\label{rf__dma_8c_748b1d62902e87ac884d9fe1b86c07a9}
+
+
+RF DMA callback, ISR version.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em param}]not used; \end{description}
+\end{Desc}
+\hypertarget{rf__dma_8c_a72b36dbf0dd1cec1825399f30549010}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_error_ISR@{rf\_\-error\_\-ISR}}
+\index{rf_error_ISR@{rf\_\-error\_\-ISR}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-error\_\-ISR]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-error\_\-ISR (void)}}
+\label{rf__dma_8c_a72b36dbf0dd1cec1825399f30549010}
+
+
+RF error interrupt service routine. \hypertarget{rf__dma_8c_eec362bfdb2f849d39ad0d28e9222a72}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_init@{rf\_\-init}}
+\index{rf_init@{rf\_\-init}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-init]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-init (void)}}
+\label{rf__dma_8c_eec362bfdb2f849d39ad0d28e9222a72}
+
+
+Initialize RF.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free or init failed \end{Desc}
+\hypertarget{rf__dma_8c_1819b02fb81df165e59aa252c054900f}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_ISR@{rf\_\-ISR}}
+\index{rf_ISR@{rf\_\-ISR}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-ISR]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-ISR (void)}}
+\label{rf__dma_8c_1819b02fb81df165e59aa252c054900f}
+
+
+RF interrupt service routine. \hypertarget{rf__dma_8c_d5647eee88c52cfdce3ca0050698d6a8}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_mac_get@{rf\_\-mac\_\-get}}
+\index{rf_mac_get@{rf\_\-mac\_\-get}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-mac\_\-get]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-mac\_\-get (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em address})}}
+\label{rf__dma_8c_d5647eee88c52cfdce3ca0050698d6a8}
+
+
+Get HW MAC address
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]address to set \end{description}
+\end{Desc}
+\hypertarget{rf__dma_8c_9d28009552b1b1a63ab5037f1bcf2a04}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_power_set@{rf\_\-power\_\-set}}
+\index{rf_power_set@{rf\_\-power\_\-set}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-power\_\-set]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-power\_\-set (uint8\_\-t {\em new\_\-power})}}
+\label{rf__dma_8c_9d28009552b1b1a63ab5037f1bcf2a04}
+
+
+Select RF transmit power.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em new\_\-power}]new power level (in per cent)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]new level or negative (value out of range) \end{Desc}
+\hypertarget{rf__dma_8c_88eea7787eb3b03f9caf112302d1d869}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_rx_callback@{rf\_\-rx\_\-callback}}
+\index{rf_rx_callback@{rf\_\-rx\_\-callback}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-rx\_\-callback]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-rx\_\-callback (void $\ast$ {\em param})}}
+\label{rf__dma_8c_88eea7787eb3b03f9caf112302d1d869}
+
+
+RF receive callback \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em param}]not used \end{description}
+\end{Desc}
+\hypertarget{rf__dma_8c_d82d143983e9998c415860e3b5fe47a1}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_rx_disable@{rf\_\-rx\_\-disable}}
+\index{rf_rx_disable@{rf\_\-rx\_\-disable}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-rx\_\-disable]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-rx\_\-disable (void)}}
+\label{rf__dma_8c_d82d143983e9998c415860e3b5fe47a1}
+
+
+Disable RF receiver.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free \end{Desc}
+\hypertarget{rf__dma_8c_fd6db435d4b4e09d32c69a9d4d8334a8}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_rx_enable@{rf\_\-rx\_\-enable}}
+\index{rf_rx_enable@{rf\_\-rx\_\-enable}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-rx\_\-enable]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-rx\_\-enable (void)}}
+\label{rf__dma_8c_fd6db435d4b4e09d32c69a9d4d8334a8}
+
+
+Enable RF receiver.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free \end{Desc}
+\hypertarget{rf__dma_8c_91b1dad538e14708668fae49263edccb}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_send_ack@{rf\_\-send\_\-ack}}
+\index{rf_send_ack@{rf\_\-send\_\-ack}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-send\_\-ack]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-send\_\-ack (uint8\_\-t {\em pending})}}
+\label{rf__dma_8c_91b1dad538e14708668fae49263edccb}
+
+
+Send ACK.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pending}]set up pending flag if pending $>$ 0. \end{description}
+\end{Desc}
+\hypertarget{rf__dma_8c_262377dd5ce71a6ded4a7e4f86a2df1a}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_set_address@{rf\_\-set\_\-address}}
+\index{rf_set_address@{rf\_\-set\_\-address}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-set\_\-address]{\setlength{\rightskip}{0pt plus 5cm}void rf\_\-set\_\-address (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em address})}}
+\label{rf__dma_8c_262377dd5ce71a6ded4a7e4f86a2df1a}
+
+
+Set address decoder parameters
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]address for decoder \end{description}
+\end{Desc}
+\hypertarget{rf__dma_8c_86c297f847f47f7c5630ca78f2aa5d68}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_tx_enable@{rf\_\-tx\_\-enable}}
+\index{rf_tx_enable@{rf\_\-tx\_\-enable}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-tx\_\-enable]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-tx\_\-enable (void)}}
+\label{rf__dma_8c_86c297f847f47f7c5630ca78f2aa5d68}
+
+
+Enable RF transmitter.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE bus not free \end{Desc}
+\hypertarget{rf__dma_8c_dcdd963f53baa6a6c1e696347cee1ee7}{
+\index{rf_dma.c@{rf\_\-dma.c}!rf_write@{rf\_\-write}}
+\index{rf_write@{rf\_\-write}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[rf\_\-write]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR rf\_\-write (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buffer})}}
+\label{rf__dma_8c_dcdd963f53baa6a6c1e696347cee1ee7}
+
+
+Transmit packet.
+
+Missing feature: address type check
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em mac}]RF HW address \item[{\em dst}]destination HW address \item[{\em buffer}]data buffer pointer \item[{\em length}]length of data\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE+1 channel occupied 
+
+pd\-TRUE 
+
+pd\-FALSE bus reserved \end{Desc}
+
+
+\subsection{Variable Documentation}
+\hypertarget{rf__dma_8c_231a544d9ce4769fb14f3baa3ae53dd8}{
+\index{rf_dma.c@{rf\_\-dma.c}!buffers@{buffers}}
+\index{buffers@{buffers}!rf_dma.c@{rf\_\-dma.c}}
+\subsubsection[buffers]{\setlength{\rightskip}{0pt plus 5cm}x\-Queue\-Handle \hyperlink{rf__dma_8c_231a544d9ce4769fb14f3baa3ae53dd8}{buffers}}}
+\label{rf__dma_8c_231a544d9ce4769fb14f3baa3ae53dd8}
+
+
+Common variables 

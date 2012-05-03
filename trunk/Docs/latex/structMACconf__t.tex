@@ -1,0 +1,140 @@
+\hypertarget{structMACconf__t}{
+\section{MACconf\_\-t Struct Reference}
+\label{structMACconf__t}\index{MACconf_t@{MACconf\_\-t}}
+}
+{\tt \#include $<$control\_\-message.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3}{mac\_\-control\_\-id\_\-t} \hyperlink{structMACconf__t_7d4dad417562c658e705accd2bf0ddd6}{message\_\-id}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\hyperlink{structrf__802__15__4__beacon__notify__t}{rf\_802\_15\_4\_beacon\_notify\_t} \hyperlink{structMACconf__t_798614411040fccfac2f811d38f9efb4}{beacon\_notify}\\
+\>\hyperlink{structrf__802__15__4__assoc__req__t}{rf\_802\_15\_4\_assoc\_req\_t} \hyperlink{structMACconf__t_e47a1dd387bee08f7bacc39767ab40fb}{assoc\_req}\\
+\>uint8\_t \hyperlink{structMACconf__t_2b7fa48ad7fcf57826a84788de348506}{reset\_pib}\\
+\>\hyperlink{structrf__802__15__4__rx__enable__req__t}{rf\_802\_15\_4\_rx\_enable\_req\_t} \hyperlink{structMACconf__t_605ed174a898d40031b09106bb52652b}{rx\_enable\_req}\\
+\>\hyperlink{structrf__802__15__4__scan__req__t}{rf\_802\_15\_4\_scan\_req\_t} \hyperlink{structMACconf__t_73ddbc4883498f43868b76256fabc951}{scan\_req}\\
+\>\hyperlink{structrf__802__15__4__scan__confirm__t}{rf\_802\_15\_4\_scan\_confirm\_t} \hyperlink{structMACconf__t_e9b07a3ac6318d15eed2e166c751a712}{scan\_confirm}\\
+\>\hyperlink{structrf__802__15__4__comm__status__ind__t}{rf\_802\_15\_4\_comm\_status\_ind\_t} \hyperlink{structMACconf__t_d549d77083fd4e3268eb07f5253d486d}{comm\_status\_ind}\\
+\>\hyperlink{structrf__802__15__4__disassocite__req__t}{rf\_802\_15\_4\_disassocite\_req\_t} \hyperlink{structMACconf__t_78aa8f60a5acacc24e18bb33458945e1}{diss\_assoc\_req}\\
+\>\hyperlink{structrf__802__15__4__synch__req__t}{rf\_802\_15\_4\_synch\_req\_t} \hyperlink{structMACconf__t_52c0778c38fbd508c85c73b6843c34df}{synch\_req}\\
+\>\hyperlink{structrf__802__15__4__synch__lost__t}{rf\_802\_15\_4\_synch\_lost\_t} \hyperlink{structMACconf__t_1e2659ba9ca3c9393ed0b6b4b4b095ec}{synch\_loss\_reason}\\
+\>\hyperlink{structrf__802__15__4__poll__req__t}{rf\_802\_15\_4\_poll\_req\_t} \hyperlink{structMACconf__t_33c70a1389613a28534827454b214c78}{poll\_req}\\
+\>\hyperlink{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af}{assoc\_status\_t} \hyperlink{structMACconf__t_1a8fef873257b76abe7e7058001a6ea9}{assoc\_confirm}\\
+\} \hyperlink{structMACconf__t_6f1770beed1fc26677997b27799bb364}{message}\\
+
+\end{tabbing}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Mac-layers control messages 
+
+
+
+\subsection{Field Documentation}
+\hypertarget{structMACconf__t_1a8fef873257b76abe7e7058001a6ea9}{
+\index{MACconf_t@{MACconf\_\-t}!assoc_confirm@{assoc\_\-confirm}}
+\index{assoc_confirm@{assoc\_\-confirm}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[assoc\_\-confirm]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{rf__802__15__4_8h_8dd8e855fea9627a62ab967a7b3b47af}{assoc\_\-status\_\-t} \hyperlink{structMACconf__t_1a8fef873257b76abe7e7058001a6ea9}{MACconf\_\-t::assoc\_\-confirm}}}
+\label{structMACconf__t_1a8fef873257b76abe7e7058001a6ea9}
+
+
+Confirm for assocation request. \hypertarget{structMACconf__t_e47a1dd387bee08f7bacc39767ab40fb}{
+\index{MACconf_t@{MACconf\_\-t}!assoc_req@{assoc\_\-req}}
+\index{assoc_req@{assoc\_\-req}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[assoc\_\-req]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structrf__802__15__4__assoc__req__t}{rf\_\-802\_\-15\_\-4\_\-assoc\_\-req\_\-t} \hyperlink{structMACconf__t_e47a1dd387bee08f7bacc39767ab40fb}{MACconf\_\-t::assoc\_\-req}}}
+\label{structMACconf__t_e47a1dd387bee08f7bacc39767ab40fb}
+
+
+Association request. \hypertarget{structMACconf__t_798614411040fccfac2f811d38f9efb4}{
+\index{MACconf_t@{MACconf\_\-t}!beacon_notify@{beacon\_\-notify}}
+\index{beacon_notify@{beacon\_\-notify}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[beacon\_\-notify]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structrf__802__15__4__beacon__notify__t}{rf\_\-802\_\-15\_\-4\_\-beacon\_\-notify\_\-t} \hyperlink{structMACconf__t_798614411040fccfac2f811d38f9efb4}{MACconf\_\-t::beacon\_\-notify}}}
+\label{structMACconf__t_798614411040fccfac2f811d38f9efb4}
+
+
+Beacon notification used in superframe-state. \hypertarget{structMACconf__t_d549d77083fd4e3268eb07f5253d486d}{
+\index{MACconf_t@{MACconf\_\-t}!comm_status_ind@{comm\_\-status\_\-ind}}
+\index{comm_status_ind@{comm\_\-status\_\-ind}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[comm\_\-status\_\-ind]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structrf__802__15__4__comm__status__ind__t}{rf\_\-802\_\-15\_\-4\_\-comm\_\-status\_\-ind\_\-t} \hyperlink{structMACconf__t_d549d77083fd4e3268eb07f5253d486d}{MACconf\_\-t::comm\_\-status\_\-ind}}}
+\label{structMACconf__t_d549d77083fd4e3268eb07f5253d486d}
+
+
+Communications status. \hypertarget{structMACconf__t_78aa8f60a5acacc24e18bb33458945e1}{
+\index{MACconf_t@{MACconf\_\-t}!diss_assoc_req@{diss\_\-assoc\_\-req}}
+\index{diss_assoc_req@{diss\_\-assoc\_\-req}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[diss\_\-assoc\_\-req]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structrf__802__15__4__disassocite__req__t}{rf\_\-802\_\-15\_\-4\_\-disassocite\_\-req\_\-t} \hyperlink{structMACconf__t_78aa8f60a5acacc24e18bb33458945e1}{MACconf\_\-t::diss\_\-assoc\_\-req}}}
+\label{structMACconf__t_78aa8f60a5acacc24e18bb33458945e1}
+
+
+Disassociation request. \hypertarget{structMACconf__t_6f1770beed1fc26677997b27799bb364}{
+\index{MACconf_t@{MACconf\_\-t}!message@{message}}
+\index{message@{message}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[message]{\setlength{\rightskip}{0pt plus 5cm}union \{ ... \}  \hyperlink{structMACconf__t_6f1770beed1fc26677997b27799bb364}{MACconf\_\-t::message}}}
+\label{structMACconf__t_6f1770beed1fc26677997b27799bb364}
+
+
+Name of the control-message union \hypertarget{structMACconf__t_7d4dad417562c658e705accd2bf0ddd6}{
+\index{MACconf_t@{MACconf\_\-t}!message_id@{message\_\-id}}
+\index{message_id@{message\_\-id}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[message\_\-id]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{rf__802__15__4_8h_01e0aae058da837b0908ec100a76e3d3}{mac\_\-control\_\-id\_\-t} \hyperlink{structMACconf__t_7d4dad417562c658e705accd2bf0ddd6}{MACconf\_\-t::message\_\-id}}}
+\label{structMACconf__t_7d4dad417562c658e705accd2bf0ddd6}
+
+
+message id. \hypertarget{structMACconf__t_33c70a1389613a28534827454b214c78}{
+\index{MACconf_t@{MACconf\_\-t}!poll_req@{poll\_\-req}}
+\index{poll_req@{poll\_\-req}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[poll\_\-req]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structrf__802__15__4__poll__req__t}{rf\_\-802\_\-15\_\-4\_\-poll\_\-req\_\-t} \hyperlink{structMACconf__t_33c70a1389613a28534827454b214c78}{MACconf\_\-t::poll\_\-req}}}
+\label{structMACconf__t_33c70a1389613a28534827454b214c78}
+
+
+Poll data from coordinator request. \hypertarget{structMACconf__t_2b7fa48ad7fcf57826a84788de348506}{
+\index{MACconf_t@{MACconf\_\-t}!reset_pib@{reset\_\-pib}}
+\index{reset_pib@{reset\_\-pib}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[reset\_\-pib]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t \hyperlink{structMACconf__t_2b7fa48ad7fcf57826a84788de348506}{MACconf\_\-t::reset\_\-pib}}}
+\label{structMACconf__t_2b7fa48ad7fcf57826a84788de348506}
+
+
+Reset Mac-PIB. \hypertarget{structMACconf__t_605ed174a898d40031b09106bb52652b}{
+\index{MACconf_t@{MACconf\_\-t}!rx_enable_req@{rx\_\-enable\_\-req}}
+\index{rx_enable_req@{rx\_\-enable\_\-req}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[rx\_\-enable\_\-req]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structrf__802__15__4__rx__enable__req__t}{rf\_\-802\_\-15\_\-4\_\-rx\_\-enable\_\-req\_\-t} \hyperlink{structMACconf__t_605ed174a898d40031b09106bb52652b}{MACconf\_\-t::rx\_\-enable\_\-req}}}
+\label{structMACconf__t_605ed174a898d40031b09106bb52652b}
+
+
+RX enable request. \hypertarget{structMACconf__t_e9b07a3ac6318d15eed2e166c751a712}{
+\index{MACconf_t@{MACconf\_\-t}!scan_confirm@{scan\_\-confirm}}
+\index{scan_confirm@{scan\_\-confirm}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[scan\_\-confirm]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structrf__802__15__4__scan__confirm__t}{rf\_\-802\_\-15\_\-4\_\-scan\_\-confirm\_\-t} \hyperlink{structMACconf__t_e9b07a3ac6318d15eed2e166c751a712}{MACconf\_\-t::scan\_\-confirm}}}
+\label{structMACconf__t_e9b07a3ac6318d15eed2e166c751a712}
+
+
+Result of scan request. \hypertarget{structMACconf__t_73ddbc4883498f43868b76256fabc951}{
+\index{MACconf_t@{MACconf\_\-t}!scan_req@{scan\_\-req}}
+\index{scan_req@{scan\_\-req}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[scan\_\-req]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structrf__802__15__4__scan__req__t}{rf\_\-802\_\-15\_\-4\_\-scan\_\-req\_\-t} \hyperlink{structMACconf__t_73ddbc4883498f43868b76256fabc951}{MACconf\_\-t::scan\_\-req}}}
+\label{structMACconf__t_73ddbc4883498f43868b76256fabc951}
+
+
+Scan request. \hypertarget{structMACconf__t_1e2659ba9ca3c9393ed0b6b4b4b095ec}{
+\index{MACconf_t@{MACconf\_\-t}!synch_loss_reason@{synch\_\-loss\_\-reason}}
+\index{synch_loss_reason@{synch\_\-loss\_\-reason}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[synch\_\-loss\_\-reason]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structrf__802__15__4__synch__lost__t}{rf\_\-802\_\-15\_\-4\_\-synch\_\-lost\_\-t} \hyperlink{structMACconf__t_1e2659ba9ca3c9393ed0b6b4b4b095ec}{MACconf\_\-t::synch\_\-loss\_\-reason}}}
+\label{structMACconf__t_1e2659ba9ca3c9393ed0b6b4b4b095ec}
+
+
+Synchronize-loss reason. \hypertarget{structMACconf__t_52c0778c38fbd508c85c73b6843c34df}{
+\index{MACconf_t@{MACconf\_\-t}!synch_req@{synch\_\-req}}
+\index{synch_req@{synch\_\-req}!MACconf_t@{MACconf\_\-t}}
+\subsubsection[synch\_\-req]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structrf__802__15__4__synch__req__t}{rf\_\-802\_\-15\_\-4\_\-synch\_\-req\_\-t} \hyperlink{structMACconf__t_52c0778c38fbd508c85c73b6843c34df}{MACconf\_\-t::synch\_\-req}}}
+\label{structMACconf__t_52c0778c38fbd508c85c73b6843c34df}
+
+
+Synchronize request by next beacon. 
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/\hyperlink{control__message_8h}{control\_\-message.h}\end{CompactItemize}

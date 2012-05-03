@@ -1,0 +1,352 @@
+\hypertarget{dma_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/nano/include/dma.h File Reference}
+\label{dma_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Platform/nano/include/dma.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/nano/include/dma.h}}
+}
+nano.4 DMA library. 
+
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structdma__config__t}{dma\_\-config\_\-t}
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum \hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d}{dma\_\-trigger\_\-t} \{ \par
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964dee33cd0c6e92e0ee77e634a0fc7e1478}{DMA\_\-T\_\-NONE} = 0, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2cf34572cb74edbaed131e4dc1f99f69}{DMA\_\-T\_\-PREV} = 1, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d9f047a8973d9c296e719b8a74d4be05c}{DMA\_\-T\_\-T1\_\-CH0} = 2, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964df391454834809c9302a8a325ca162fb7}{DMA\_\-T\_\-T1\_\-CH1} = 3, 
+\par
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d5fbffef8afe369bdbc3e65593186dd23}{DMA\_\-T\_\-T1\_\-CH2} = 4, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d3ffe0ab828aa775c652db1464c007771}{DMA\_\-T\_\-T2\_\-COMP} = 5, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964de8cacd352b7fc28b3f54662ef3f57e72}{DMA\_\-T\_\-T2\_\-OVFL} = 6, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d02a6d125aaadf2fe420928338a372947}{DMA\_\-T\_\-T3\_\-CH0} = 7, 
+\par
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964df6e0181352b8ae494230f047f83bc6de}{DMA\_\-T\_\-T3\_\-CH1} = 8, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964dc0faf33d01d1cf195253b39311aa7395}{DMA\_\-T\_\-T4\_\-CH0} = 9, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964da1143fcf7d33e4985c056f9e44ff101c}{DMA\_\-T\_\-T4\_\-CH1} = 10, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d0d0f68bf65c21e5dc51cefe1d8d40944}{DMA\_\-T\_\-ST} = 11, 
+\par
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d0ef87a8dbbf408ddedfe2babb37c90b0}{DMA\_\-T\_\-IOC\_\-0} = 12, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2d84f23fc7540e7e8a471bb3ef22dad8}{DMA\_\-T\_\-IOC\_\-1} = 13, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d915efee7221fc2e387d45773390f70c2}{DMA\_\-T\_\-URX0} = 14, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d4c2068ef6066c40cd4c2099c9a5cbbf1}{DMA\_\-T\_\-UTX0} = 15, 
+\par
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d35f7e8ff69d6ad1f60931398733b1826}{DMA\_\-T\_\-URX1} = 16, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d9f079ba8003bc8c88baf65fb6d5fc1c5}{DMA\_\-T\_\-UTX1} = 17, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2acc85ca862b94ec5f3e007817817d82}{DMA\_\-T\_\-FLASH} = 18, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964dc333f3b570e5cd68d21164a29c12e308}{DMA\_\-T\_\-RADIO} = 19, 
+\par
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964dea5a1b8f986b2cdbe44719ca03cb31e5}{DMA\_\-T\_\-ADC\_\-CHALL} = 20, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2fef1c95602aa22a729e50b8ae304ddc}{DMA\_\-T\_\-ADC\_\-CH11} = 21, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d1cebbeee0019bc115f52da2b2dd0c985}{DMA\_\-T\_\-ADC\_\-CH21} = 22, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d4c7f0c3f345c19f5f4e6f1d190a021cc}{DMA\_\-T\_\-ADC\_\-CH32} = 23, 
+\par
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964de390e3f45a19d1c5ab09ffd2c1aee7d2}{DMA\_\-T\_\-ADC\_\-CH42} = 24, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d42b039172f04d0b47b2c5783327ec230}{DMA\_\-T\_\-ADC\_\-CH53} = 25, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964def7ae01fd114058c68385234dd390644}{DMA\_\-T\_\-ADC\_\-CH63} = 26, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d4e480404158011ebe76a5f0140b2ed24}{DMA\_\-T\_\-ADC\_\-CH74} = 27, 
+\par
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d94a5cbcb1689114b0d5b52c10f1957bd}{DMA\_\-T\_\-ADC\_\-CH84} = 28, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964de3bb53671efeb59abe6b9afbd6d6f285}{DMA\_\-T\_\-ENC\_\-DW} = 29, 
+\hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d8f579d6bee8968ca85f571064505aa81}{DMA\_\-T\_\-ENC\_\-UP} = 30
+ \}
+\item 
+enum \hyperlink{dma_8h_4e415d3875e64e1effd98503eae5eda2}{dma\_\-vlen\_\-t} \{ \par
+\hyperlink{dma_8h_4e415d3875e64e1effd98503eae5eda285bab705e99f11eca445a677745400e2}{DMA\_\-VLEN\_\-LEN} =  (0 $<$$<$ 5), 
+\hyperlink{dma_8h_4e415d3875e64e1effd98503eae5eda218c152ccde4fd133e06f7e2416b81150}{DMA\_\-VLEN\_\-N1} =  (1 $<$$<$ 5), 
+\hyperlink{dma_8h_4e415d3875e64e1effd98503eae5eda2bc2a852d9bd5f283c4ab0a31b6299233}{DMA\_\-VLEN\_\-N} =  (2 $<$$<$ 5), 
+\hyperlink{dma_8h_4e415d3875e64e1effd98503eae5eda22c381bc00595d7c0a93cbd0ed690c04d}{DMA\_\-VLEN\_\-N2} =  (3 $<$$<$ 5), 
+\par
+\hyperlink{dma_8h_4e415d3875e64e1effd98503eae5eda2c9b735786917220c03419c75cf1f1ced}{DMA\_\-VLEN\_\-N3} =  (4 $<$$<$ 5), 
+\hyperlink{dma_8h_4e415d3875e64e1effd98503eae5eda286e1cb68e370666db2bbf6a5efa960ca}{DMA\_\-VLEN\_\-RES1} =  (5 $<$$<$ 5), 
+\hyperlink{dma_8h_4e415d3875e64e1effd98503eae5eda2485b8763e47a5e06d4fbaf20dda45e88}{DMA\_\-VLEN\_\-RES2} =  (6 $<$$<$ 5), 
+\hyperlink{dma_8h_4e415d3875e64e1effd98503eae5eda2dc724637d0b85da7e05e2cd40feb0713}{DMA\_\-VLEN\_\-LEN2} =  (7 $<$$<$ 5)
+ \}
+\item 
+enum \hyperlink{dma_8h_e39b3fde51d45d53a53429f8a233822a}{dma\_\-inc\_\-t} \{ \hyperlink{dma_8h_e39b3fde51d45d53a53429f8a233822a94201d5106c445fb3b6419d5c06c6247}{DMA\_\-NOINC} =  0, 
+\hyperlink{dma_8h_e39b3fde51d45d53a53429f8a233822a50a7b771323b726fe6b123582fa4df62}{DMA\_\-INC} =  1, 
+\hyperlink{dma_8h_e39b3fde51d45d53a53429f8a233822ab568331cb866a818eb881b331d21238b}{DMA\_\-INC2} =  2, 
+\hyperlink{dma_8h_e39b3fde51d45d53a53429f8a233822ac8fe092d246df092b285b6e587dc1595}{DMA\_\-DEC} =  3
+ \}
+\item 
+enum \hyperlink{dma_8h_1eee1e02499e4f74e61cc5131bc9863b}{dma\_\-type\_\-t} \{ \hyperlink{dma_8h_1eee1e02499e4f74e61cc5131bc9863b941223bcd09e11c796b560f5850cef8e}{DMA\_\-SINGLE} =  0, 
+\hyperlink{dma_8h_1eee1e02499e4f74e61cc5131bc9863b6d0708304b8a196e94ecb756860f3f3e}{DMA\_\-BLOCK} =  1, 
+\hyperlink{dma_8h_1eee1e02499e4f74e61cc5131bc9863b85c9c5bf26b3bd30a13c0b25371a8ea3}{DMA\_\-RPT} =  2, 
+\hyperlink{dma_8h_1eee1e02499e4f74e61cc5131bc9863b50d32ce248271db4bb17ca43eaef95f8}{DMA\_\-BLOCK\_\-RPT} = 3
+ \}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{dma_8h_1c9e133b825bded7bf8039c43b49d2c7}{dma\_\-init} (void)
+\item 
+void \hyperlink{dma_8h_3e9e62af966a7267f840dc84b753ae4d}{dma\_\-ISR} (void) interrupt(DMA\_\-VECTOR)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+nano.4 DMA library. 
+
+Nano.4: DMA control headers. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{dma_8h_e39b3fde51d45d53a53429f8a233822a}{
+\index{dma.h@{dma.h}!dma_inc_t@{dma\_\-inc\_\-t}}
+\index{dma_inc_t@{dma\_\-inc\_\-t}!dma.h@{dma.h}}
+\subsubsection[dma\_\-inc\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{dma_8h_e39b3fde51d45d53a53429f8a233822a}{dma\_\-inc\_\-t}}}
+\label{dma_8h_e39b3fde51d45d53a53429f8a233822a}
+
+
+address increment modes \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{DMA_NOINC@{DMA\_\-NOINC}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_NOINC@{DMA\_\-NOINC}}\item[{\em 
+\hypertarget{dma_8h_e39b3fde51d45d53a53429f8a233822a94201d5106c445fb3b6419d5c06c6247}{
+DMA\_\-NOINC}
+\label{dma_8h_e39b3fde51d45d53a53429f8a233822a94201d5106c445fb3b6419d5c06c6247}
+}]No increment \index{DMA_INC@{DMA\_\-INC}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_INC@{DMA\_\-INC}}\item[{\em 
+\hypertarget{dma_8h_e39b3fde51d45d53a53429f8a233822a50a7b771323b726fe6b123582fa4df62}{
+DMA\_\-INC}
+\label{dma_8h_e39b3fde51d45d53a53429f8a233822a50a7b771323b726fe6b123582fa4df62}
+}]Increment \index{DMA_INC2@{DMA\_\-INC2}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_INC2@{DMA\_\-INC2}}\item[{\em 
+\hypertarget{dma_8h_e39b3fde51d45d53a53429f8a233822ab568331cb866a818eb881b331d21238b}{
+DMA\_\-INC2}
+\label{dma_8h_e39b3fde51d45d53a53429f8a233822ab568331cb866a818eb881b331d21238b}
+}]Increment 2 \index{DMA_DEC@{DMA\_\-DEC}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_DEC@{DMA\_\-DEC}}\item[{\em 
+\hypertarget{dma_8h_e39b3fde51d45d53a53429f8a233822ac8fe092d246df092b285b6e587dc1595}{
+DMA\_\-DEC}
+\label{dma_8h_e39b3fde51d45d53a53429f8a233822ac8fe092d246df092b285b6e587dc1595}
+}]Decrement \end{description}
+\end{Desc}
+
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d}{
+\index{dma.h@{dma.h}!dma_trigger_t@{dma\_\-trigger\_\-t}}
+\index{dma_trigger_t@{dma\_\-trigger\_\-t}!dma.h@{dma.h}}
+\subsubsection[dma\_\-trigger\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{dma_8h_5c1063a45bd037868ad1aca1b7c5964d}{dma\_\-trigger\_\-t}}}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d}
+
+
+DMA triggers \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{DMA_T_NONE@{DMA\_\-T\_\-NONE}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_NONE@{DMA\_\-T\_\-NONE}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964dee33cd0c6e92e0ee77e634a0fc7e1478}{
+DMA\_\-T\_\-NONE}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964dee33cd0c6e92e0ee77e634a0fc7e1478}
+}]DMA No trigger, setting DMAREQ.DMAREQx bit starts transfer \index{DMA_T_PREV@{DMA\_\-T\_\-PREV}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_PREV@{DMA\_\-T\_\-PREV}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2cf34572cb74edbaed131e4dc1f99f69}{
+DMA\_\-T\_\-PREV}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2cf34572cb74edbaed131e4dc1f99f69}
+}]DMA DMA channel is triggered by completion of previous channel \index{DMA_T_T1_CH0@{DMA\_\-T\_\-T1\_\-CH0}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_T1_CH0@{DMA\_\-T\_\-T1\_\-CH0}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d9f047a8973d9c296e719b8a74d4be05c}{
+DMA\_\-T\_\-T1\_\-CH0}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d9f047a8973d9c296e719b8a74d4be05c}
+}]Timer 1 Timer 1, compare, channel 0 \index{DMA_T_T1_CH1@{DMA\_\-T\_\-T1\_\-CH1}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_T1_CH1@{DMA\_\-T\_\-T1\_\-CH1}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964df391454834809c9302a8a325ca162fb7}{
+DMA\_\-T\_\-T1\_\-CH1}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964df391454834809c9302a8a325ca162fb7}
+}]Timer 1 Timer 1, compare, channel 1 \index{DMA_T_T1_CH2@{DMA\_\-T\_\-T1\_\-CH2}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_T1_CH2@{DMA\_\-T\_\-T1\_\-CH2}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d5fbffef8afe369bdbc3e65593186dd23}{
+DMA\_\-T\_\-T1\_\-CH2}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d5fbffef8afe369bdbc3e65593186dd23}
+}]Timer 1 Timer 1, compare, channel 2 \index{DMA_T_T2_COMP@{DMA\_\-T\_\-T2\_\-COMP}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_T2_COMP@{DMA\_\-T\_\-T2\_\-COMP}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d3ffe0ab828aa775c652db1464c007771}{
+DMA\_\-T\_\-T2\_\-COMP}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d3ffe0ab828aa775c652db1464c007771}
+}]Timer 2 Timer 2, compare \index{DMA_T_T2_OVFL@{DMA\_\-T\_\-T2\_\-OVFL}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_T2_OVFL@{DMA\_\-T\_\-T2\_\-OVFL}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964de8cacd352b7fc28b3f54662ef3f57e72}{
+DMA\_\-T\_\-T2\_\-OVFL}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964de8cacd352b7fc28b3f54662ef3f57e72}
+}]Timer 2 Timer 2, overflow \index{DMA_T_T3_CH0@{DMA\_\-T\_\-T3\_\-CH0}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_T3_CH0@{DMA\_\-T\_\-T3\_\-CH0}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d02a6d125aaadf2fe420928338a372947}{
+DMA\_\-T\_\-T3\_\-CH0}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d02a6d125aaadf2fe420928338a372947}
+}]Timer 3 Timer 3, compare, channel 0 \index{DMA_T_T3_CH1@{DMA\_\-T\_\-T3\_\-CH1}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_T3_CH1@{DMA\_\-T\_\-T3\_\-CH1}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964df6e0181352b8ae494230f047f83bc6de}{
+DMA\_\-T\_\-T3\_\-CH1}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964df6e0181352b8ae494230f047f83bc6de}
+}]Timer 3 Timer 3, compare, channel 1 \index{DMA_T_T4_CH0@{DMA\_\-T\_\-T4\_\-CH0}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_T4_CH0@{DMA\_\-T\_\-T4\_\-CH0}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964dc0faf33d01d1cf195253b39311aa7395}{
+DMA\_\-T\_\-T4\_\-CH0}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964dc0faf33d01d1cf195253b39311aa7395}
+}]Timer 4 Timer 4, compare, channel 0 \index{DMA_T_T4_CH1@{DMA\_\-T\_\-T4\_\-CH1}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_T4_CH1@{DMA\_\-T\_\-T4\_\-CH1}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964da1143fcf7d33e4985c056f9e44ff101c}{
+DMA\_\-T\_\-T4\_\-CH1}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964da1143fcf7d33e4985c056f9e44ff101c}
+}]Timer 4 Timer 4, compare, channel 1 \index{DMA_T_ST@{DMA\_\-T\_\-ST}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ST@{DMA\_\-T\_\-ST}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d0d0f68bf65c21e5dc51cefe1d8d40944}{
+DMA\_\-T\_\-ST}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d0d0f68bf65c21e5dc51cefe1d8d40944}
+}]Sleep Timer Sleep Timer compare \index{DMA_T_IOC_0@{DMA\_\-T\_\-IOC\_\-0}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_IOC_0@{DMA\_\-T\_\-IOC\_\-0}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d0ef87a8dbbf408ddedfe2babb37c90b0}{
+DMA\_\-T\_\-IOC\_\-0}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d0ef87a8dbbf408ddedfe2babb37c90b0}
+}]IO Controller Port 0 I/O pin input transition \index{DMA_T_IOC_1@{DMA\_\-T\_\-IOC\_\-1}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_IOC_1@{DMA\_\-T\_\-IOC\_\-1}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2d84f23fc7540e7e8a471bb3ef22dad8}{
+DMA\_\-T\_\-IOC\_\-1}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2d84f23fc7540e7e8a471bb3ef22dad8}
+}]IO Controller Port 1 I/O pin input transition \index{DMA_T_URX0@{DMA\_\-T\_\-URX0}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_URX0@{DMA\_\-T\_\-URX0}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d915efee7221fc2e387d45773390f70c2}{
+DMA\_\-T\_\-URX0}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d915efee7221fc2e387d45773390f70c2}
+}]USART0 USART0 RX complete \index{DMA_T_UTX0@{DMA\_\-T\_\-UTX0}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_UTX0@{DMA\_\-T\_\-UTX0}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d4c2068ef6066c40cd4c2099c9a5cbbf1}{
+DMA\_\-T\_\-UTX0}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d4c2068ef6066c40cd4c2099c9a5cbbf1}
+}]USART0 USART0 TX complete \index{DMA_T_URX1@{DMA\_\-T\_\-URX1}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_URX1@{DMA\_\-T\_\-URX1}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d35f7e8ff69d6ad1f60931398733b1826}{
+DMA\_\-T\_\-URX1}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d35f7e8ff69d6ad1f60931398733b1826}
+}]USART1 USART1 RX complete \index{DMA_T_UTX1@{DMA\_\-T\_\-UTX1}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_UTX1@{DMA\_\-T\_\-UTX1}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d9f079ba8003bc8c88baf65fb6d5fc1c5}{
+DMA\_\-T\_\-UTX1}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d9f079ba8003bc8c88baf65fb6d5fc1c5}
+}]USART1 USART1 TX complete \index{DMA_T_FLASH@{DMA\_\-T\_\-FLASH}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_FLASH@{DMA\_\-T\_\-FLASH}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2acc85ca862b94ec5f3e007817817d82}{
+DMA\_\-T\_\-FLASH}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2acc85ca862b94ec5f3e007817817d82}
+}]Flash controller Flash data write complete \index{DMA_T_RADIO@{DMA\_\-T\_\-RADIO}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_RADIO@{DMA\_\-T\_\-RADIO}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964dc333f3b570e5cd68d21164a29c12e308}{
+DMA\_\-T\_\-RADIO}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964dc333f3b570e5cd68d21164a29c12e308}
+}]Radio RF packet byte received/transmit \index{DMA_T_ADC_CHALL@{DMA\_\-T\_\-ADC\_\-CHALL}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ADC_CHALL@{DMA\_\-T\_\-ADC\_\-CHALL}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964dea5a1b8f986b2cdbe44719ca03cb31e5}{
+DMA\_\-T\_\-ADC\_\-CHALL}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964dea5a1b8f986b2cdbe44719ca03cb31e5}
+}]ADC ADC end of a conversion in a sequence, sample ready \index{DMA_T_ADC_CH11@{DMA\_\-T\_\-ADC\_\-CH11}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ADC_CH11@{DMA\_\-T\_\-ADC\_\-CH11}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2fef1c95602aa22a729e50b8ae304ddc}{
+DMA\_\-T\_\-ADC\_\-CH11}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d2fef1c95602aa22a729e50b8ae304ddc}
+}]ADC ADC end of conversion channel 0 in sequence, sample ready \index{DMA_T_ADC_CH21@{DMA\_\-T\_\-ADC\_\-CH21}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ADC_CH21@{DMA\_\-T\_\-ADC\_\-CH21}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d1cebbeee0019bc115f52da2b2dd0c985}{
+DMA\_\-T\_\-ADC\_\-CH21}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d1cebbeee0019bc115f52da2b2dd0c985}
+}]ADC ADC end of conversion channel 1 in sequence, sample ready \index{DMA_T_ADC_CH32@{DMA\_\-T\_\-ADC\_\-CH32}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ADC_CH32@{DMA\_\-T\_\-ADC\_\-CH32}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d4c7f0c3f345c19f5f4e6f1d190a021cc}{
+DMA\_\-T\_\-ADC\_\-CH32}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d4c7f0c3f345c19f5f4e6f1d190a021cc}
+}]ADC ADC end of conversion channel 2 in sequence, sample ready \index{DMA_T_ADC_CH42@{DMA\_\-T\_\-ADC\_\-CH42}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ADC_CH42@{DMA\_\-T\_\-ADC\_\-CH42}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964de390e3f45a19d1c5ab09ffd2c1aee7d2}{
+DMA\_\-T\_\-ADC\_\-CH42}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964de390e3f45a19d1c5ab09ffd2c1aee7d2}
+}]ADC ADC end of conversion channel 3 in sequence, sample ready \index{DMA_T_ADC_CH53@{DMA\_\-T\_\-ADC\_\-CH53}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ADC_CH53@{DMA\_\-T\_\-ADC\_\-CH53}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d42b039172f04d0b47b2c5783327ec230}{
+DMA\_\-T\_\-ADC\_\-CH53}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d42b039172f04d0b47b2c5783327ec230}
+}]ADC ADC end of conversion channel 4 in sequence, sample ready \index{DMA_T_ADC_CH63@{DMA\_\-T\_\-ADC\_\-CH63}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ADC_CH63@{DMA\_\-T\_\-ADC\_\-CH63}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964def7ae01fd114058c68385234dd390644}{
+DMA\_\-T\_\-ADC\_\-CH63}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964def7ae01fd114058c68385234dd390644}
+}]ADC ADC end of conversion channel 5 in sequence, sample ready \index{DMA_T_ADC_CH74@{DMA\_\-T\_\-ADC\_\-CH74}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ADC_CH74@{DMA\_\-T\_\-ADC\_\-CH74}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d4e480404158011ebe76a5f0140b2ed24}{
+DMA\_\-T\_\-ADC\_\-CH74}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d4e480404158011ebe76a5f0140b2ed24}
+}]ADC ADC end of conversion channel 6 in sequence, sample ready \index{DMA_T_ADC_CH84@{DMA\_\-T\_\-ADC\_\-CH84}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ADC_CH84@{DMA\_\-T\_\-ADC\_\-CH84}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d94a5cbcb1689114b0d5b52c10f1957bd}{
+DMA\_\-T\_\-ADC\_\-CH84}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d94a5cbcb1689114b0d5b52c10f1957bd}
+}]ADC ADC end of conversion channel 7 in sequence, sample ready \index{DMA_T_ENC_DW@{DMA\_\-T\_\-ENC\_\-DW}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ENC_DW@{DMA\_\-T\_\-ENC\_\-DW}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964de3bb53671efeb59abe6b9afbd6d6f285}{
+DMA\_\-T\_\-ENC\_\-DW}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964de3bb53671efeb59abe6b9afbd6d6f285}
+}]AES AES encryption processor requests download input data \index{DMA_T_ENC_UP@{DMA\_\-T\_\-ENC\_\-UP}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_T_ENC_UP@{DMA\_\-T\_\-ENC\_\-UP}}\item[{\em 
+\hypertarget{dma_8h_5c1063a45bd037868ad1aca1b7c5964d8f579d6bee8968ca85f571064505aa81}{
+DMA\_\-T\_\-ENC\_\-UP}
+\label{dma_8h_5c1063a45bd037868ad1aca1b7c5964d8f579d6bee8968ca85f571064505aa81}
+}]AES AES encryption processor requests upload output data \end{description}
+\end{Desc}
+
+\hypertarget{dma_8h_1eee1e02499e4f74e61cc5131bc9863b}{
+\index{dma.h@{dma.h}!dma_type_t@{dma\_\-type\_\-t}}
+\index{dma_type_t@{dma\_\-type\_\-t}!dma.h@{dma.h}}
+\subsubsection[dma\_\-type\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{dma_8h_1eee1e02499e4f74e61cc5131bc9863b}{dma\_\-type\_\-t}}}
+\label{dma_8h_1eee1e02499e4f74e61cc5131bc9863b}
+
+
+transfer types \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{DMA_SINGLE@{DMA\_\-SINGLE}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_SINGLE@{DMA\_\-SINGLE}}\item[{\em 
+\hypertarget{dma_8h_1eee1e02499e4f74e61cc5131bc9863b941223bcd09e11c796b560f5850cef8e}{
+DMA\_\-SINGLE}
+\label{dma_8h_1eee1e02499e4f74e61cc5131bc9863b941223bcd09e11c796b560f5850cef8e}
+}]Single \index{DMA_BLOCK@{DMA\_\-BLOCK}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_BLOCK@{DMA\_\-BLOCK}}\item[{\em 
+\hypertarget{dma_8h_1eee1e02499e4f74e61cc5131bc9863b6d0708304b8a196e94ecb756860f3f3e}{
+DMA\_\-BLOCK}
+\label{dma_8h_1eee1e02499e4f74e61cc5131bc9863b6d0708304b8a196e94ecb756860f3f3e}
+}]Block \index{DMA_RPT@{DMA\_\-RPT}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_RPT@{DMA\_\-RPT}}\item[{\em 
+\hypertarget{dma_8h_1eee1e02499e4f74e61cc5131bc9863b85c9c5bf26b3bd30a13c0b25371a8ea3}{
+DMA\_\-RPT}
+\label{dma_8h_1eee1e02499e4f74e61cc5131bc9863b85c9c5bf26b3bd30a13c0b25371a8ea3}
+}]Repeated single \index{DMA_BLOCK_RPT@{DMA\_\-BLOCK\_\-RPT}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_BLOCK_RPT@{DMA\_\-BLOCK\_\-RPT}}\item[{\em 
+\hypertarget{dma_8h_1eee1e02499e4f74e61cc5131bc9863b50d32ce248271db4bb17ca43eaef95f8}{
+DMA\_\-BLOCK\_\-RPT}
+\label{dma_8h_1eee1e02499e4f74e61cc5131bc9863b50d32ce248271db4bb17ca43eaef95f8}
+}]Repeated block \end{description}
+\end{Desc}
+
+\hypertarget{dma_8h_4e415d3875e64e1effd98503eae5eda2}{
+\index{dma.h@{dma.h}!dma_vlen_t@{dma\_\-vlen\_\-t}}
+\index{dma_vlen_t@{dma\_\-vlen\_\-t}!dma.h@{dma.h}}
+\subsubsection[dma\_\-vlen\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{dma_8h_4e415d3875e64e1effd98503eae5eda2}{dma\_\-vlen\_\-t}}}
+\label{dma_8h_4e415d3875e64e1effd98503eae5eda2}
+
+
+variable DMA length modes \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{DMA_VLEN_LEN@{DMA\_\-VLEN\_\-LEN}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_VLEN_LEN@{DMA\_\-VLEN\_\-LEN}}\item[{\em 
+\hypertarget{dma_8h_4e415d3875e64e1effd98503eae5eda285bab705e99f11eca445a677745400e2}{
+DMA\_\-VLEN\_\-LEN}
+\label{dma_8h_4e415d3875e64e1effd98503eae5eda285bab705e99f11eca445a677745400e2}
+}]Use LEN for transfer count \index{DMA_VLEN_N1@{DMA\_\-VLEN\_\-N1}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_VLEN_N1@{DMA\_\-VLEN\_\-N1}}\item[{\em 
+\hypertarget{dma_8h_4e415d3875e64e1effd98503eae5eda218c152ccde4fd133e06f7e2416b81150}{
+DMA\_\-VLEN\_\-N1}
+\label{dma_8h_4e415d3875e64e1effd98503eae5eda218c152ccde4fd133e06f7e2416b81150}
+}]Transfer the number of bytes/words specified by first byte/word + 1 (up to a maximum specified by LEN). Thus transfer count excludes length byte/word. \index{DMA_VLEN_N@{DMA\_\-VLEN\_\-N}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_VLEN_N@{DMA\_\-VLEN\_\-N}}\item[{\em 
+\hypertarget{dma_8h_4e415d3875e64e1effd98503eae5eda2bc2a852d9bd5f283c4ab0a31b6299233}{
+DMA\_\-VLEN\_\-N}
+\label{dma_8h_4e415d3875e64e1effd98503eae5eda2bc2a852d9bd5f283c4ab0a31b6299233}
+}]Transfer the number of bytes/words specified by first byte/word (up to a maximum specified by LEN). Thus transfer count includes length byte/word. \index{DMA_VLEN_N2@{DMA\_\-VLEN\_\-N2}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_VLEN_N2@{DMA\_\-VLEN\_\-N2}}\item[{\em 
+\hypertarget{dma_8h_4e415d3875e64e1effd98503eae5eda22c381bc00595d7c0a93cbd0ed690c04d}{
+DMA\_\-VLEN\_\-N2}
+\label{dma_8h_4e415d3875e64e1effd98503eae5eda22c381bc00595d7c0a93cbd0ed690c04d}
+}]Transfer the number of bytes/words specified by first byte/word + 2 (up to a maximum specified by LEN). \index{DMA_VLEN_N3@{DMA\_\-VLEN\_\-N3}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_VLEN_N3@{DMA\_\-VLEN\_\-N3}}\item[{\em 
+\hypertarget{dma_8h_4e415d3875e64e1effd98503eae5eda2c9b735786917220c03419c75cf1f1ced}{
+DMA\_\-VLEN\_\-N3}
+\label{dma_8h_4e415d3875e64e1effd98503eae5eda2c9b735786917220c03419c75cf1f1ced}
+}]Transfer the number of bytes/words specified by first byte/word + 3 (up to a maximum specified by LEN). \index{DMA_VLEN_RES1@{DMA\_\-VLEN\_\-RES1}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_VLEN_RES1@{DMA\_\-VLEN\_\-RES1}}\item[{\em 
+\hypertarget{dma_8h_4e415d3875e64e1effd98503eae5eda286e1cb68e370666db2bbf6a5efa960ca}{
+DMA\_\-VLEN\_\-RES1}
+\label{dma_8h_4e415d3875e64e1effd98503eae5eda286e1cb68e370666db2bbf6a5efa960ca}
+}]reserved \index{DMA_VLEN_RES2@{DMA\_\-VLEN\_\-RES2}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_VLEN_RES2@{DMA\_\-VLEN\_\-RES2}}\item[{\em 
+\hypertarget{dma_8h_4e415d3875e64e1effd98503eae5eda2485b8763e47a5e06d4fbaf20dda45e88}{
+DMA\_\-VLEN\_\-RES2}
+\label{dma_8h_4e415d3875e64e1effd98503eae5eda2485b8763e47a5e06d4fbaf20dda45e88}
+}]reserved \index{DMA_VLEN_LEN2@{DMA\_\-VLEN\_\-LEN2}!dma.h@{dma.h}}\index{dma.h@{dma.h}!DMA_VLEN_LEN2@{DMA\_\-VLEN\_\-LEN2}}\item[{\em 
+\hypertarget{dma_8h_4e415d3875e64e1effd98503eae5eda2dc724637d0b85da7e05e2cd40feb0713}{
+DMA\_\-VLEN\_\-LEN2}
+\label{dma_8h_4e415d3875e64e1effd98503eae5eda2dc724637d0b85da7e05e2cd40feb0713}
+}]Use LEN for transfer count \end{description}
+\end{Desc}
+
+
+
+\subsection{Function Documentation}
+\hypertarget{dma_8h_1c9e133b825bded7bf8039c43b49d2c7}{
+\index{dma.h@{dma.h}!dma_init@{dma\_\-init}}
+\index{dma_init@{dma\_\-init}!dma.h@{dma.h}}
+\subsubsection[dma\_\-init]{\setlength{\rightskip}{0pt plus 5cm}void dma\_\-init (void)}}
+\label{dma_8h_1c9e133b825bded7bf8039c43b49d2c7}
+
+
+Init DMA structures. \hypertarget{dma_8h_3e9e62af966a7267f840dc84b753ae4d}{
+\index{dma.h@{dma.h}!dma_ISR@{dma\_\-ISR}}
+\index{dma_ISR@{dma\_\-ISR}!dma.h@{dma.h}}
+\subsubsection[dma\_\-ISR]{\setlength{\rightskip}{0pt plus 5cm}void dma\_\-ISR (void)}}
+\label{dma_8h_3e9e62af966a7267f840dc84b753ae4d}
+
+
+DMA interrupt service routine. 

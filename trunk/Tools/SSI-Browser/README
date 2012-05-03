@@ -1,0 +1,33 @@
+SSI-Browser README v0.9
+-----------------------
+
+1.	Overview
+
+	The SSI-Browser v0.8 is a simple command line browser that implements the most essential subset of the SSI protocol.
+	The supported functions are sensor discovery and sensor data request. See more details from the SSI protocol
+	specification. The SSI (Simple Sensor Interface) protocol is an extremely simplified but yet versatile protocol
+	to fetch information from sensor nodes. The information can be general information about the configuration of
+	the node and specific information about the sensor data that is available.
+
+2.	Structure
+
+	The SSI-Browser has only slightly more complicated structure when compared to the one of nPing. These differences are
+	mostly due to the SSI protocol. All the preliminary steps before the actual actions can be started are almost identical
+	to the of nPing. When the nPing application would start sending the ping packets the SSI-Browser sends 1) a sensor
+	discovery packet and 2) sensor data request packet.
+	
+3.	Usage
+
+	Usage information is available by typing ./SSI-Browser --help.
+
+4.	Notes
+
+	The SSI-Browser will be modified to use the libSSI quite soon.
+
+5.	Bugs
+
+	Probably several, but none that I'm aware of.
+	
+	2006-07-14	Mikko Saarnivala	Initial version
+	2007-03-30	Mikko Saarnivala	Multiple bug fixes by Martti Huttunen and updated README by myself
+	

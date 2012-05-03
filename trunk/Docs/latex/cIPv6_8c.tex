@@ -1,0 +1,147 @@
+\hypertarget{cIPv6_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/c\-IPv6.c File Reference}
+\label{cIPv6_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/modules/cIPv6.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/cIPv6.c}}
+}
+Lowpan and c\-IPv6 module. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$sys/inttypes.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}stack.h\char`\"{}}\par
+{\tt \#include \char`\"{}buffer.h\char`\"{}}\par
+{\tt \#include \char`\"{}address.h\char`\"{}}\par
+{\tt \#include \char`\"{}module.h\char`\"{}}\par
+{\tt \#include \char`\"{}neighbor\_\-routing\_\-table.h\char`\"{}}\par
+{\tt \#include \char`\"{}control\_\-message.h\char`\"{}}\par
+{\tt \#include \char`\"{}event\_\-timer.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf.h\char`\"{}}\par
+{\tt \#include \char`\"{}cipv6.h\char`\"{}}\par
+{\tt \#include \char`\"{}socket.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{cIPv6_8c_48a25f41a07f31f107ee15fa4490ebaf}{cipv6\_\-init} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{cIPv6_8c_d5701812e7c1ea9a6df6cca21fbd2944}{cipv6\_\-handle} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{cIPv6_8c_3df2cb2b09ba86a7d9dca062521ea136}{cipv6\_\-check} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+void \hyperlink{cIPv6_8c_2ea8027f9dcb9f1123d9cf353ac80b35}{cipv6\_\-compress\_\-mode} (uint8\_\-t mode)
+\item 
+port\-CHAR \hyperlink{cIPv6_8c_0e8cdebc339c66e96798c77361e600ec}{build\_\-lowpan\_\-header} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+uint16\_\-t \hyperlink{cIPv6_8c_02914104a4540b286813f07fe628942e}{ipv6\_\-fcf} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf, uint8\_\-t next\_\-protocol, uint8\_\-t rx\_\-case)
+\item 
+void \hyperlink{cIPv6_8c_26116ba1af45489209c8fdd33b9602d5}{ip\_\-broken\_\-link\_\-notify} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf, uint8\_\-t no\_\-route\_\-reason)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Lowpan and c\-IPv6 module. 
+
+Module includes Low\-Pan adaptation module. 
+
+\subsection{Function Documentation}
+\hypertarget{cIPv6_8c_0e8cdebc339c66e96798c77361e600ec}{
+\index{cIPv6.c@{c\-IPv6.c}!build_lowpan_header@{build\_\-lowpan\_\-header}}
+\index{build_lowpan_header@{build\_\-lowpan\_\-header}!cIPv6.c@{c\-IPv6.c}}
+\subsubsection[build\_\-lowpan\_\-header]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR build\_\-lowpan\_\-header (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{cIPv6_8c_0e8cdebc339c66e96798c77361e600ec}
+
+
+Function build lowpan header / mesh header.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to data \end{description}
+\end{Desc}
+\hypertarget{cIPv6_8c_3df2cb2b09ba86a7d9dca062521ea136}{
+\index{cIPv6.c@{c\-IPv6.c}!cipv6_check@{cipv6\_\-check}}
+\index{cipv6_check@{cipv6\_\-check}!cIPv6.c@{c\-IPv6.c}}
+\subsubsection[cipv6\_\-check]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR cipv6\_\-check (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{cIPv6_8c_3df2cb2b09ba86a7d9dca062521ea136}
+
+
+The c\-IPv6 buffer checker.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE is c\-IPv6 
+
+pd\-FALSE is not c\-IPv6 or broken header \end{Desc}
+\hypertarget{cIPv6_8c_2ea8027f9dcb9f1123d9cf353ac80b35}{
+\index{cIPv6.c@{c\-IPv6.c}!cipv6_compress_mode@{cipv6\_\-compress\_\-mode}}
+\index{cipv6_compress_mode@{cipv6\_\-compress\_\-mode}!cIPv6.c@{c\-IPv6.c}}
+\subsubsection[cipv6\_\-compress\_\-mode]{\setlength{\rightskip}{0pt plus 5cm}void cipv6\_\-compress\_\-mode (uint8\_\-t {\em mode})}}
+\label{cIPv6_8c_2ea8027f9dcb9f1123d9cf353ac80b35}
+
+
+Set Lo\-WPAN's compression mode.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{cIPv6_8c_d5701812e7c1ea9a6df6cca21fbd2944}{
+\index{cIPv6.c@{c\-IPv6.c}!cipv6_handle@{cipv6\_\-handle}}
+\index{cipv6_handle@{cipv6\_\-handle}!cIPv6.c@{c\-IPv6.c}}
+\subsubsection[cipv6\_\-handle]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR cipv6\_\-handle (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{cIPv6_8c_d5701812e7c1ea9a6df6cca21fbd2944}
+
+
+Main c\-UDP buffer handler.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to buffer \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{cIPv6_8c_48a25f41a07f31f107ee15fa4490ebaf}{
+\index{cIPv6.c@{c\-IPv6.c}!cipv6_init@{cipv6\_\-init}}
+\index{cipv6_init@{cipv6\_\-init}!cIPv6.c@{c\-IPv6.c}}
+\subsubsection[cipv6\_\-init]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR cipv6\_\-init (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{cIPv6_8c_48a25f41a07f31f107ee15fa4490ebaf}
+
+
+Initialize c\-IPv6 module.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{cIPv6_8c_26116ba1af45489209c8fdd33b9602d5}{
+\index{cIPv6.c@{c\-IPv6.c}!ip_broken_link_notify@{ip\_\-broken\_\-link\_\-notify}}
+\index{ip_broken_link_notify@{ip\_\-broken\_\-link\_\-notify}!cIPv6.c@{c\-IPv6.c}}
+\subsubsection[ip\_\-broken\_\-link\_\-notify]{\setlength{\rightskip}{0pt plus 5cm}void ip\_\-broken\_\-link\_\-notify (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf}, uint8\_\-t {\em no\_\-route\_\-reason})}}
+\label{cIPv6_8c_26116ba1af45489209c8fdd33b9602d5}
+
+
+Function notify for Broken link.
+
+Function remove allways neighbour info which not answer and if packet is Mesh routing header it will also remove routing info to destination. Then it check originator address, if address is device own it will notify application. if address is not own it will forward ctrl message to ICMP module which create ICMP error message to originator. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to data \end{description}
+\end{Desc}
+\hypertarget{cIPv6_8c_02914104a4540b286813f07fe628942e}{
+\index{cIPv6.c@{c\-IPv6.c}!ipv6_fcf@{ipv6\_\-fcf}}
+\index{ipv6_fcf@{ipv6\_\-fcf}!cIPv6.c@{c\-IPv6.c}}
+\subsubsection[ipv6\_\-fcf]{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t ipv6\_\-fcf (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf}, uint8\_\-t {\em next\_\-protocol}, uint8\_\-t {\em rx\_\-case})}}
+\label{cIPv6_8c_02914104a4540b286813f07fe628942e}
+
+
+Check \& Calculate FCF.
+
+Function calculate typical IP FCF which is used IPv6 and ICMP protocols. \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to data \item[{\em next\_\-protocol}]NEXT\_\-HEADER\_\-UDP / NEXT\_\-HEADER\_\-ICMP6 \item[{\em rx\_\-case}]flag when function now it have to check and when calculate\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]fcf 16-values \end{Desc}

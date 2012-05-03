@@ -1,0 +1,77 @@
+\hypertarget{module_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/module.h File Reference}
+\label{module_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/include/module.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/module.h}}
+}
+Protocol stack module API. 
+
+{\tt \#include \char`\"{}module\_\-id.h\char`\"{}}\par
+{\tt \#include \char`\"{}modules\_\-conf.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structmodule__t}{module\_\-t}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{module_8h_c84c3ac4fb630b84aa64d63ff17f4a42}{module\_\-init} (void)
+\item 
+\hyperlink{structmodule__t}{module\_\-t} $\ast$ \hyperlink{module_8h_4f20574aabaadc1e814bafacefae9968}{module\_\-get} (module\_\-id\_\-t id)
+\item 
+port\-CHAR \hyperlink{module_8h_4629394f45f592e201fe8eae88634526}{module\_\-call} (module\_\-id\_\-t id, \hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buffer)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Protocol stack module API. 
+
+Protocol stack module structure definitions 
+
+\subsection{Function Documentation}
+\hypertarget{module_8h_4629394f45f592e201fe8eae88634526}{
+\index{module.h@{module.h}!module_call@{module\_\-call}}
+\index{module_call@{module\_\-call}!module.h@{module.h}}
+\subsubsection[module\_\-call]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR module\_\-call (module\_\-id\_\-t {\em id}, \hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buffer})}}
+\label{module_8h_4629394f45f592e201fe8eae88634526}
+
+
+Call module handler.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em id}]Protocol ID \item[{\em buffer}]Buffer to be sent to selected module\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE handler called 
+
+pd\-FALSE module not found or buffer not handled by module \end{Desc}
+\hypertarget{module_8h_4f20574aabaadc1e814bafacefae9968}{
+\index{module.h@{module.h}!module_get@{module\_\-get}}
+\index{module_get@{module\_\-get}!module.h@{module.h}}
+\subsubsection[module\_\-get]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structmodule__t}{module\_\-t}$\ast$ module\_\-get (module\_\-id\_\-t {\em id})}}
+\label{module_8h_4f20574aabaadc1e814bafacefae9968}
+
+
+Find a protocol module.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em id}]Protocol ID\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to module structure \end{Desc}
+\hypertarget{module_8h_c84c3ac4fb630b84aa64d63ff17f4a42}{
+\index{module.h@{module.h}!module_init@{module\_\-init}}
+\index{module_init@{module\_\-init}!module.h@{module.h}}
+\subsubsection[module\_\-init]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR module\_\-init (void)}}
+\label{module_8h_c84c3ac4fb630b84aa64d63ff17f4a42}
+
+
+Initialize modules.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK 
+
+pd\-FALSE out of resources \end{Desc}

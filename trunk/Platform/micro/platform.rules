@@ -1,0 +1,500 @@
+# Micro.4 platform default rules
+#
+#POWER_SOURCE_BATTERY=1
+RX_ON_WHEN_IDLE=1
+ENV_ERROR=0
+#FreeRTOS section
+SRC	= \
+$(SOURCE_DIR)/tasks.c \
+$(SOURCE_DIR)/queue.c \
+$(SOURCE_DIR)/portable/MemMang/heap_2.c\
+$(SOURCE_DIR)/list.c \
+$(PORT_DIR)/port.c
+
+#Nanostack internal section
+CFLAGS += -DHAVE_DYNAMIC_BUFFERS
+ifeq ($(STACK_BUFFERS_MAX),)
+CFLAGS += -DSTACK_BUFFERS_MAX=8
+else
+CFLAGS += -DSTACK_BUFFERS_MAX=$(STACK_BUFFERS_MAX)
+endif
+
+ifeq ($(STACK_BUFFERS_MIN),)
+CFLAGS += -DSTACK_BUFFERS_MIN=4
+else
+CFLAGS += -DSTACK_BUFFERS_MIN=$(STACK_BUFFERS_MIN)
+endif
+
+ifeq ($(DEBUG_RX_LEN),)
+CFLAGS += -DDEBUG_RX_LEN=8
+else
+CFLAGS += -DDEBUG_RX_LEN=$(DEBUG_RX_LEN)
+endif
+
+ifeq ($(DEBUG_TX_LEN),)
+CFLAGS += -DDEBUG_TX_LEN=64
+else
+CFLAGS += -DDEBUG_TX_LEN=$(DEBUG_TX_LEN)
+endif
+
+#Mac mode select and check
+ifeq ($(MAC_MODE),0)
+	AD_HOC_STATE=1
+else
+	ifeq ($(MAC_MODE),1)
+		MAC_RFD=1
+		ifeq ($(MAC_FFD),1)
+			ENV_ERROR=1
+		endif
+	else
+		ifeq ($(MAC_MODE),2)
+			MAC_FFD=1
+			ifeq ($(MAC_RFD),1)
+				ENV_ERROR=1
+			endif
+		endif
+	endif
+endif
+
+
+ifeq ($(SUPPORT_UNCOMP_IPV6),1)
+		CFLAGS += -DSUPPORT_UNCOMP_IPV6
+	endif
+
+
+ifeq ($(AD_HOC_STATE),1)
+	CFLAGS += -DAD_HOC_STATE
+	ifeq ($(MAC_RFD),1)
+	CFLAGS += -DMAC_RFD
+	else
+	CFLAGS += -DMAC_FFD
+	endif
+	ifeq ($(HAVE_ROUTING),1)
+		CFLAGS += -DHAVE_ROUTING
+	endif
+else
+	HAVE_NWK_MANAGER=1
+	ifeq ($(MAC_RFD),1)
+		NWK_CAP = 0
+		CFLAGS += -DMAC_RFD
+	else
+		ifeq ($(MAC_FFD),1)
+			ifeq ($(HAVE_ROUTING),1)
+				CFLAGS += -DHAVE_ROUTING
+			endif
+			NWK_CAP = MC_FFD_DEVICE
+			CFLAGS += -DMAC_FFD
+		else
+			ENV_ERROR=2
+		endif
+	endif
+endif
+
+
+#Nanostack radio section
+ifeq ($(RF_DEFAULT_POWER),)
+CFLAGS += -DRF_DEFAULT_POWER=100
+else
+CFLAGS += -DRF_DEFAULT_POWER=$(RF_DEFAULT_POWER)
+endif
+
+ifeq ($(RF_DEFAULT_CHANNEL),)
+CFLAGS += -DRF_DEFAULT_CHANNEL=18
+else
+CFLAGS += -DRF_DEFAULT_CHANNEL=$(RF_DEFAULT_CHANNEL)
+endif
+
+ifeq ($(HAVE_RF_LED),)
+else
+CFLAGS += -DHAVE_RF_LED=$(HAVE_RF_LED)
+endif
+
+#Neighbour & Routing table
+ifeq ($(NEIGHBOR_MAX),)
+CFLAGS += -DNEIGHBOR_MAX=20
+else
+CFLAGS += -DNEIGHBOR_MAX=$(NEIGHBOR_MAX)
+endif
+
+ifeq ($(NEIGHBOR_MIN),)
+CFLAGS += -DNEIGHBOR_MIN=15
+else
+CFLAGS += -DNEIGHBOR_MIN=$(NEIGHBOR_MIN)
+endif
+
+ifeq ($(ROUTE_MAX),)
+CFLAGS += -DROUTE_MAX=20
+else
+CFLAGS += -DROUTE_MAX=$(ROUTE_MAX)
+endif
+
+ifeq ($(ROUTE_MIN),)
+CFLAGS += -DROUTE_MIN=15
+else
+CFLAGS += -DROUTE_MIN=$(ROUTE_MIN)
+endif
+
+#Extra options for Coordinator and Gateway
+ifeq ($(SHORT_ADDRESS),)
+else
+CFLAGS += -DSHORT_ADDRESS=$(SHORT_ADDRESS)
+endif
+
+ifeq ($(PAN_ID),)
+else
+CFLAGS += -DPAN_ID=$(PAN_ID)
+endif
+
+ifeq ($(PAN_CHANNEL),)
+CFLAGS += -DPAN_CHANNEL=18
+else
+CFLAGS += -DPAN_CHANNEL=$(PAN_CHANNEL)
+endif
+
+ifeq ($(NWK_MAX_CHILD),)
+CFLAGS += -DNWK_MAX_CHILD=15
+else
+CFLAGS += -DNWK_MAX_CHILD=$(NWK_MAX_CHILD)
+endif
+
+ifeq ($(HAVE_NRP),1)
+#This is not possible
+HAVE_DEBUG=0
+endif
+
+
+#Nanostack service section
+ifeq ($(APP_ICMP_ECHO),1)
+CFLAGS += -DAPP_ICMP_ECHO
+HAVE_ICMP=1
+APP_ECHO=1
+endif
+
+ifeq ($(APP_UDP_ECHO),1)
+CFLAGS += -DAPP_UDP_ECHO
+APP_ECHO=1
+endif
+
+ifeq ($(APP_ECHO),1)
+CFLAGS += -DAPP_ECHO
+
+endif
+
+#Automatic GW tracking, only for FFD or AD-HOC mode devices
+ifeq ($(GW_AUTO_DISCOVER_SERVICE),1)
+CFLAGS += -DGW_AUTO_DISCOVER_SERVICE
+endif
+SRC	+= $(COMMON_DIR)/protocol_lib.c
+
+#Debug section
+ifeq ($(HAVE_DEBUG),1)
+CFLAGS += -DHAVE_DEBUG
+
+	ifeq ($(STACK_DEBUG),1)
+	CFLAGS += -DSTACK_DEBUG
+	endif
+	ifeq ($(CC2420_DEBUG),1)
+	CFLAGS += -DCC2420_DEBUG
+	endif
+	ifeq ($(CC2420_DEBUG_RSSI),1)
+	CFLAGS += -DCC2420_DEBUG_RSSI
+	endif
+	ifeq ($(B1W_DEBUG),1)
+	CFLAGS += -DB1W_DEBUG
+	endif
+	ifeq ($(NWK_CONFIG_DEBUG),1)
+	CFLAGS += -DNWK_CONFIG_DEBUG
+	endif
+	ifeq ($(CUDP_DEBUG),1)
+	CFLAGS += -DCUDP_DEBUG
+	endif
+	ifeq ($(ROUTING_DEBUG),1)
+	CFLAGS += -DROUTING_DEBUG
+	endif
+	ifeq ($(CIPV6_DEBUG),1)
+	CFLAGS += -DCIPV6_DEBUG
+	endif
+	ifeq ($(CIPV6_CONTROL_DEBUG),1)
+	CFLAGS += -DCIPV6_CONTROL_DEBUG
+	endif
+	ifeq ($(ICMP_DEBUG),1)
+	CFLAGS += -DICMP_DEBUG
+	endif
+	ifeq ($(SOCKET_DEBUG),1)
+	CFLAGS += -DSOCKET_DEBUG
+	endif
+	ifeq ($(RF_802_15_4_DEBUG),1)
+	CFLAGS += -DRF_802_15_4_DEBUG
+	endif
+	ifeq ($(RF_RAW_DEBUG),1)
+	CFLAGS += -DRF_RAW_DEBUG
+	endif
+	ifeq ($(SSI_DEBUG),1)
+	CFLAGS += -DSSI_DEBUG
+	endif
+
+endif
+
+
+#Platform driver section
+SRC	+= \
+$(PLATFORM_DIR)/bus.c \
+$(PLATFORM_DIR)/gpio.c \
+$(PLATFORM_DIR)/flash.c \
+$(PLATFORM_DIR)/debug.c \
+$(PLATFORM_DIR)/1wire.c \
+$(PLATFORM_DIR)/mac.c
+
+ifeq ($(HAVE_RF_LED),1)
+CFLAGS += -DHAVE_RF_LED 
+endif
+
+ifeq ($(HAVE_1WIRE),1)
+SRC += $(PLATFORM_DIR)/1wire.c 
+CFLAGS += -DHAVE_1WIRE
+endif
+
+ifeq ($(HAVE_RF802_15_4_RAW),1)
+SRC += $(PLATFORM_DIR)/rf.c 
+CFLAGS += -DRF802_15_4_RAW
+CFLAGS += -DMAC_MODULE=MODULE_RF802_15_4_RAW
+endif
+
+ifeq ($(HAVE_POWERSAVE),1)
+SRC += $(PLATFORM_DIR)/powersave.c
+CFLAGS += -DHAVE_POWERSAVE
+endif
+
+ifeq ($(SUPERFRAME_MODE),1)
+	CFLAGS += -DHAVE_PERIOD_TIMER
+	CFLAGS += -DSUPERFRAME_MODE
+
+	ifeq ($(BEACON_ORDER),)
+		CFLAGS += -DBEACON_ORDER=7
+	else
+		CFLAGS += -DBEACON_ORDER=$(BEACON_ORDER)
+	endif
+	
+	ifeq ($(SUPERFRAME_ORDER),)
+		CFLAGS += -DSUPERFRAME_ORDER=7
+	else
+		CFLAGS += -DSUPERFRAME_ORDER=$(SUPERFRAME_ORDER)
+	endif
+endif
+
+SRC += $(PLATFORM_DIR)/timer.c
+
+ifeq ($(POWER_SOURCE_BATTERY),1)
+NWK_CAP += | MC_POWER_SOURCE
+CFLAGS += -DMC_POWER_SOURCE
+endif
+ifeq ($(RX_ON_WHEN_IDLE),1)
+NWK_CAP += | MC_RX_ON_WHEN_IDLE
+#CFLAGS += -DMC_RX_ON_WHEN_IDLE
+endif
+ifeq ($(SEC_SUPPORT),1)
+NWK_CAP += | MC_SECURITY
+CFLAGS += -DMC_SECURITY
+endif
+ifeq ($(SUPPORT_SHORT_ADDRESS),1)
+NWK_CAP += | MC_ALLOCATED_ADDR
+CFLAGS += -DSUPPORT_SHORT_ADDRESS
+endif
+
+CFLAGS += -DNWK_CAP_DEFAULTS="$(NWK_CAP)"
+
+#NanoStack section
+SRC	+= \
+$(COMMON_DIR)/event_timer.c \
+$(COMMON_DIR)/module.c \
+$(COMMON_DIR)/socket.c \
+$(COMMON_DIR)/stack.c
+#ifeq ($(HAVE_NTRX),0)
+SRC	+= $(COMMON_DIR)/routing.c
+#endif
+
+ifeq ($(HAVE_NRP),)
+	CFLAGS += -DRF_ADDRESS_DECODER
+	CFLAGS += -DRF_AUTO_ACK
+else
+	ifeq ($(HAVE_NRP),1)
+		SRC += $(COMMON_DIR)/modules/nrp.c 
+		CFLAGS += -DHAVE_NRP 
+	endif
+endif
+
+ifeq ($(HAVE_NWK_MANAGER),1)
+SRC += $(COMMON_DIR)/modules/nwk_manager.c 
+CFLAGS += -DHAVE_NWK_MANAGER 
+else
+endif
+
+ifeq ($(HAVE_ICMP),1)
+SRC += $(COMMON_DIR)/modules/icmp.c 
+CFLAGS += -DHAVE_ICMP 
+else
+endif
+
+ifeq ($(HAVE_802_15_4_RAW),1)
+SRC += $(COMMON_DIR)/modules/rf802_15_4_raw.c 
+SRC += $(PLATFORM_DIR)/rf.c 
+CFLAGS += -DHAVE_802_15_4_RAW
+#CFLAGS += -DMAC_MODULE=MODULE_802_15_4_RAW
+else
+ifeq ($(HAVE_RF_802_15_4),1)
+SRC += $(COMMON_DIR)/modules/rf802_15_4.c 
+#ifeq ($(HAVE_NTRX), 0)
+SRC += $(PLATFORM_DIR)/rf.c 
+#endif
+CFLAGS += -DHAVE_RF_802_15_4
+#CFLAGS += -DMAC_MODULE=MODULE_RF_802_15_4
+#else
+#CFLAGS += -DMAC_MODULE=MODULE_NONE
+endif
+endif
+
+ifeq ($(HAVE_NTRX),1)
+SRC += $(PLATFORM_DIR)/rf_ntrx.c
+CFLAGS += -DHAVE_NTRX
+endif
+
+
+ifeq ($(HAVE_DRI), 1)
+SRC += $(COMMON_DIR)/modules/dri.c
+SRC += $(PLATFORM_DIR)/rf.c 
+CFLAGS += -DHAVE_DRI
+CFLAGS += -DMAC_MODULE=MODULE_DRI
+endif
+
+ifeq ($(HAVE_CIPV6),1)
+SRC += $(COMMON_DIR)/modules/cIPv6.c 
+CFLAGS += -DHAVE_CIPV6
+endif
+
+ifeq ($(HAVE_CUDP),1)
+SRC += $(COMMON_DIR)/modules/cUDP.c 
+CFLAGS += -DHAVE_CUDP
+endif
+
+ifeq ($(HAVE_NUDP),1)
+SRC += $(COMMON_DIR)/modules/nudp.c 
+CFLAGS += -DHAVE_NUDP
+endif
+
+ifeq ($(HAVE_SSI),1)
+SRC += $(COMMON_DIR)/modules/ssi.c 
+CFLAGS += -DHAVE_SSI
+endif
+
+#Application section
+SRC += main.c
+
+
+#Compiler, tools and build options
+WARNINGS=-Wall -Wshadow -Wpointer-arith -Wbad-function-cast -Wcast-align -Wsign-compare \
+		-Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wunused
+
+CFLAGS += -mmcu=msp430x1611 -I. -I$(SOURCE_DIR)/include \
+          -I$(COMMON_DIR)/include -I$(PLATFORM_DIR)/include -DGCC_MSP430 $(WARNINGS)
+
+# Language standard.
+#CFLAGS += -std=c89
+#CFLAGS += -std=gnu89
+#CFLAGS += -std=c99
+CFLAGS += -std=gnu99
+
+# Define programs and commands.
+SHELL = sh
+
+CC = msp430-gcc
+
+OBJCOPY = msp430-objcopy
+OBJDUMP = msp430-objdump
+SIZE = msp430-size
+NM = msp430-nm
+
+# Programming support
+BSL=msp430-bsl
+ifeq ($(BSL_INVERT),1)
+BSL_INV = --invert-test
+BSL_INV += --invert-reset
+else
+BSL_INV=
+endif
+PROG=msp430-jtag
+PROGOPT=-epIr 
+
+# Output format. (can be srec, ihex, binary)
+FORMAT = ihex
+
+REMOVE = rm -f
+COPY = cp
+
+HEXSIZE = $(SIZE) --target=$(FORMAT) $(TARGET).hex
+ELFSIZE = $(SIZE) -B  
+
+# add math library
+LDFLAGS += -lm
+
+ifneq ($(ENV_ERROR), 0)
+ifeq ($(ENV_ERROR), 1)
+
+error:
+	@echo "Configuration error."
+	@echo "MAC_RFD & MAC_FFD defined same time"
+	exit
+endif
+ifeq ($(ENV_ERROR), 2)
+
+error:
+	@echo "Configuration error."
+	@echo "MAC_MODE not selected"
+	exit
+endif
+endif
+
+all: binary
+	@echo
+
+ifeq ($(ENV_ERROR), 0)
+error:
+	@echo
+endif
+
+jtag: binary
+	$(PROG) $(PROGOPT) $(TARGET).$(FORMAT)
+
+bsl: binary
+	$(BSL) $(BSL_INV) -c $(BSL_PORT) $(PROGOPT) $(TARGET).$(FORMAT)
+
+size: binary
+	$(SIZE) $(OBJS) $(TARGET).elf
+	
+module_id.h: $(PLATFORM_DIR)/platform.rules app.rules Makefile
+	@make clean-deps
+	@echo "--- Generating module_id.h ---"
+	@echo "#ifndef _MODULE_ID_H" > $@
+	@echo "#define _MODULE_ID_H" >> $@
+	@echo "/* module_id.h generated */" >> $@
+	@echo "" >> $@
+	@echo "typedef enum { MODULE_NONE = 0," >> $@
+	@cat $(COMMON_DIR)/modules/*.c | grep -A1 "\[ID\]" | grep -v ID | grep -v "\-\-"  >> $@
+	@echo "MODULE_APP," >> $@
+	@echo "MODULE_MAX } module_id_t;" >> $@
+	@echo "#endif /*_MODULE_ID_H*/" >> $@
+	@echo 
+
+modules_conf.h: $(PLATFORM_DIR)/platform.rules app.rules Makefile
+	@echo "--- Generating modules_conf.h ---"
+	@echo "/* modules_conf.h generated */" > $@
+	@echo "" >> $@
+	@echo "#ifdef COMPILING_MODULE_C" >> $@
+	@cat $(COMMON_DIR)/modules/*.c | grep -A4 "\[FUNCS\]" | grep -v FUNCS | grep -v "\-\-"  >> $@
+	@echo "" >> $@
+	@echo "module_t modules[] = {" >> $@
+	@cat $(COMMON_DIR)/modules/*.c | grep -A3 "\[INFO\]" | grep -v INFO | grep -v "\-\-"  >> $@
+	@echo "{0, 0, 0, 0, MODULE_NONE, 0, ADDR_NONE, 0 } };" >> $@
+	@echo "#else" >> $@
+	@echo "extern module_t modules[];" >> $@	
+	@echo "#endif" >> $@
+	@echo 

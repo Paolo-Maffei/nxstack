@@ -1,0 +1,66 @@
+\hypertarget{icmp_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/icmp.c File Reference}
+\label{icmp_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/modules/icmp.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/modules/icmp.c}}
+}
+ICMP protocol module. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}socket.h\char`\"{}}\par
+{\tt \#include \char`\"{}control\_\-message.h\char`\"{}}\par
+{\tt \#include \char`\"{}neighbor\_\-routing\_\-table.h\char`\"{}}\par
+{\tt \#include \char`\"{}cipv6.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{icmp_8c_6db5f4b935c4315b10c63780d41f5c20}{icmp\_\-init} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+port\-CHAR \hyperlink{icmp_8c_9d83b5ec3b62ab29fb874ec7aa9c21d4}{icmp\_\-handle} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\item 
+void \hyperlink{icmp_8c_3e2a4c37e4519d352bec8453545a1fc3}{enable\_\-router\_\-features} (void)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+ICMP protocol module. 
+
+Module includes Echo Req/Response... . 
+
+\subsection{Function Documentation}
+\hypertarget{icmp_8c_3e2a4c37e4519d352bec8453545a1fc3}{
+\index{icmp.c@{icmp.c}!enable_router_features@{enable\_\-router\_\-features}}
+\index{enable_router_features@{enable\_\-router\_\-features}!icmp.c@{icmp.c}}
+\subsubsection[enable\_\-router\_\-features]{\setlength{\rightskip}{0pt plus 5cm}void enable\_\-router\_\-features (void)}}
+\label{icmp_8c_3e2a4c37e4519d352bec8453545a1fc3}
+
+
+Function set gateway features for ICMP module. \hypertarget{icmp_8c_9d83b5ec3b62ab29fb874ec7aa9c21d4}{
+\index{icmp.c@{icmp.c}!icmp_handle@{icmp\_\-handle}}
+\index{icmp_handle@{icmp\_\-handle}!icmp.c@{icmp.c}}
+\subsubsection[icmp\_\-handle]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR icmp\_\-handle (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{icmp_8c_9d83b5ec3b62ab29fb874ec7aa9c21d4}
+
+
+Main ICMP buffer handler.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer to buffer \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}
+\hypertarget{icmp_8c_6db5f4b935c4315b10c63780d41f5c20}{
+\index{icmp.c@{icmp.c}!icmp_init@{icmp\_\-init}}
+\index{icmp_init@{icmp\_\-init}!icmp.c@{icmp.c}}
+\subsubsection[icmp\_\-init]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR icmp\_\-init (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{icmp_8c_6db5f4b935c4315b10c63780d41f5c20}
+
+
+Initialize ICMP module.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE OK \end{Desc}

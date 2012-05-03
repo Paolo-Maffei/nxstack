@@ -1,0 +1,180 @@
+\hypertarget{control__message_8h}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/control\_\-message.h File Reference}
+\label{control__message_8h}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/include/control_message.h@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/include/control\_\-message.h}}
+}
+control\_\-message type defined 
+
+{\tt \#include \char`\"{}address.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf\_\-802\_\-15\_\-4.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structMACconf__t}{MACconf\_\-t}
+\item 
+struct \hyperlink{structIPconf__t}{IPconf\_\-t}
+\item 
+struct \hyperlink{structcontrol__message__t}{control\_\-message\_\-t}
+\item 
+struct \hyperlink{structchild__list__t}{child\_\-list\_\-t}
+\item 
+struct \hyperlink{structparent__info__t}{parent\_\-info\_\-t}
+\item 
+struct \hyperlink{structnwk__manager__pib__t}{nwk\_\-manager\_\-pib\_\-t}
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum \hyperlink{control__message_8h_a517e422e7baca3bcf3f4676a7a70597}{ip\_\-control\_\-id\_\-t} \{ \hyperlink{control__message_8h_a517e422e7baca3bcf3f4676a7a70597202cc34a7db4ef237da669b8cedf41c8}{IP\_\-ADDRESS\_\-\_\-MODE\_\-SETUP}, 
+\hyperlink{control__message_8h_a517e422e7baca3bcf3f4676a7a705979c8ca6bc307a19e5afdf3d390e594a3f}{ROUTER\_\-DISCOVER}, 
+\hyperlink{control__message_8h_a517e422e7baca3bcf3f4676a7a705972d85edc4c3b71eb7969081dcf216010d}{ROUTER\_\-DISCOVER\_\-RESPONSE}, 
+\hyperlink{control__message_8h_a517e422e7baca3bcf3f4676a7a705977658ccd68c01cc5e70d046576a989d86}{ROUTER\_\-ADVER\_\-SEND}
+ \}
+\item 
+enum \hyperlink{control__message_8h_765eec1c6952fff014490febed0346d6}{icmp\_\-error\_\-status} 
+\item 
+enum \hyperlink{control__message_8h_7552604c791b87aabea2522977678931}{nwk\_\-manager\_\-state\_\-t} \{ \par
+\hyperlink{control__message_8h_7552604c791b87aabea25229776789313061abe472e08e205154fb8b5d2a659b}{CORD\_\-STATE}, 
+\hyperlink{control__message_8h_7552604c791b87aabea252297767893148a596b21419dd542bbabd7c08c303ed}{CLIENT\_\-STATE}, 
+\hyperlink{control__message_8h_7552604c791b87aabea2522977678931fdf2a46fa629575e3d36207f1b84f878}{ROUTER\_\-STATE}, 
+\hyperlink{control__message_8h_7552604c791b87aabea2522977678931e257191d488f618dfe6a6505ce898807}{NWK\_\-DISCOVER\_\-STATE}, 
+\par
+\hyperlink{control__message_8h_7552604c791b87aabea2522977678931fa3ccbc197a94430e3bff8d1b4685998}{NWK\_\-FORMATION\_\-STATE}, 
+\hyperlink{control__message_8h_7552604c791b87aabea2522977678931d49924b98d4575f8854ba3e195d6db5e}{NWK\_\-ASSOC\_\-STATE}
+ \}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{control__message_8h_3e2a4c37e4519d352bec8453545a1fc3}{enable\_\-router\_\-features} (void)
+\item 
+\hyperlink{control__message_8h_a517e422e7baca3bcf3f4676a7a70597}{ip\_\-control\_\-id\_\-t} \hyperlink{control__message_8h_8d434572b03cf0883331092902895fb2}{parse\_\-event\_\-message} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$buf)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+control\_\-message type defined 
+
+nano\-Stack: control-message structure including config messages 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{control__message_8h_765eec1c6952fff014490febed0346d6}{
+\index{control_message.h@{control\_\-message.h}!icmp_error_status@{icmp\_\-error\_\-status}}
+\index{icmp_error_status@{icmp\_\-error\_\-status}!control_message.h@{control\_\-message.h}}
+\subsubsection[icmp\_\-error\_\-status]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{control__message_8h_765eec1c6952fff014490febed0346d6}{icmp\_\-error\_\-status}}}
+\label{control__message_8h_765eec1c6952fff014490febed0346d6}
+
+
+ICMP error type \hypertarget{control__message_8h_a517e422e7baca3bcf3f4676a7a70597}{
+\index{control_message.h@{control\_\-message.h}!ip_control_id_t@{ip\_\-control\_\-id\_\-t}}
+\index{ip_control_id_t@{ip\_\-control\_\-id\_\-t}!control_message.h@{control\_\-message.h}}
+\subsubsection[ip\_\-control\_\-id\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{control__message_8h_a517e422e7baca3bcf3f4676a7a70597}{ip\_\-control\_\-id\_\-t}}}
+\label{control__message_8h_a517e422e7baca3bcf3f4676a7a70597}
+
+
+ICMP and IP control messages \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{IP_ADDRESS__MODE_SETUP@{IP\_\-ADDRESS\_\-\_\-MODE\_\-SETUP}!control_message.h@{control\_\-message.h}}\index{control_message.h@{control\_\-message.h}!IP_ADDRESS__MODE_SETUP@{IP\_\-ADDRESS\_\-\_\-MODE\_\-SETUP}}\item[{\em 
+\hypertarget{control__message_8h_a517e422e7baca3bcf3f4676a7a70597202cc34a7db4ef237da669b8cedf41c8}{
+IP\_\-ADDRESS\_\-\_\-MODE\_\-SETUP}
+\label{control__message_8h_a517e422e7baca3bcf3f4676a7a70597202cc34a7db4ef237da669b8cedf41c8}
+}]\index{ROUTER_DISCOVER@{ROUTER\_\-DISCOVER}!control_message.h@{control\_\-message.h}}\index{control_message.h@{control\_\-message.h}!ROUTER_DISCOVER@{ROUTER\_\-DISCOVER}}\item[{\em 
+\hypertarget{control__message_8h_a517e422e7baca3bcf3f4676a7a705979c8ca6bc307a19e5afdf3d390e594a3f}{
+ROUTER\_\-DISCOVER}
+\label{control__message_8h_a517e422e7baca3bcf3f4676a7a705979c8ca6bc307a19e5afdf3d390e594a3f}
+}]\index{ROUTER_DISCOVER_RESPONSE@{ROUTER\_\-DISCOVER\_\-RESPONSE}!control_message.h@{control\_\-message.h}}\index{control_message.h@{control\_\-message.h}!ROUTER_DISCOVER_RESPONSE@{ROUTER\_\-DISCOVER\_\-RESPONSE}}\item[{\em 
+\hypertarget{control__message_8h_a517e422e7baca3bcf3f4676a7a705972d85edc4c3b71eb7969081dcf216010d}{
+ROUTER\_\-DISCOVER\_\-RESPONSE}
+\label{control__message_8h_a517e422e7baca3bcf3f4676a7a705972d85edc4c3b71eb7969081dcf216010d}
+}]\index{ROUTER_ADVER_SEND@{ROUTER\_\-ADVER\_\-SEND}!control_message.h@{control\_\-message.h}}\index{control_message.h@{control\_\-message.h}!ROUTER_ADVER_SEND@{ROUTER\_\-ADVER\_\-SEND}}\item[{\em 
+\hypertarget{control__message_8h_a517e422e7baca3bcf3f4676a7a705977658ccd68c01cc5e70d046576a989d86}{
+ROUTER\_\-ADVER\_\-SEND}
+\label{control__message_8h_a517e422e7baca3bcf3f4676a7a705977658ccd68c01cc5e70d046576a989d86}
+}]\end{description}
+\end{Desc}
+
+\hypertarget{control__message_8h_7552604c791b87aabea2522977678931}{
+\index{control_message.h@{control\_\-message.h}!nwk_manager_state_t@{nwk\_\-manager\_\-state\_\-t}}
+\index{nwk_manager_state_t@{nwk\_\-manager\_\-state\_\-t}!control_message.h@{control\_\-message.h}}
+\subsubsection[nwk\_\-manager\_\-state\_\-t]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{control__message_8h_7552604c791b87aabea2522977678931}{nwk\_\-manager\_\-state\_\-t}}}
+\label{control__message_8h_7552604c791b87aabea2522977678931}
+
+
+network manager modules state enumeration \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{CORD_STATE@{CORD\_\-STATE}!control_message.h@{control\_\-message.h}}\index{control_message.h@{control\_\-message.h}!CORD_STATE@{CORD\_\-STATE}}\item[{\em 
+\hypertarget{control__message_8h_7552604c791b87aabea25229776789313061abe472e08e205154fb8b5d2a659b}{
+CORD\_\-STATE}
+\label{control__message_8h_7552604c791b87aabea25229776789313061abe472e08e205154fb8b5d2a659b}
+}]Coordinator state which handles received mac-command like assocation req etc. \index{CLIENT_STATE@{CLIENT\_\-STATE}!control_message.h@{control\_\-message.h}}\index{control_message.h@{control\_\-message.h}!CLIENT_STATE@{CLIENT\_\-STATE}}\item[{\em 
+\hypertarget{control__message_8h_7552604c791b87aabea252297767893148a596b21419dd542bbabd7c08c303ed}{
+CLIENT\_\-STATE}
+\label{control__message_8h_7552604c791b87aabea252297767893148a596b21419dd542bbabd7c08c303ed}
+}]Client state: functions for superframe-state. \index{ROUTER_STATE@{ROUTER\_\-STATE}!control_message.h@{control\_\-message.h}}\index{control_message.h@{control\_\-message.h}!ROUTER_STATE@{ROUTER\_\-STATE}}\item[{\em 
+\hypertarget{control__message_8h_7552604c791b87aabea2522977678931fdf2a46fa629575e3d36207f1b84f878}{
+ROUTER\_\-STATE}
+\label{control__message_8h_7552604c791b87aabea2522977678931fdf2a46fa629575e3d36207f1b84f878}
+}]Router state:not ready with this release. \index{NWK_DISCOVER_STATE@{NWK\_\-DISCOVER\_\-STATE}!control_message.h@{control\_\-message.h}}\index{control_message.h@{control\_\-message.h}!NWK_DISCOVER_STATE@{NWK\_\-DISCOVER\_\-STATE}}\item[{\em 
+\hypertarget{control__message_8h_7552604c791b87aabea2522977678931e257191d488f618dfe6a6505ce898807}{
+NWK\_\-DISCOVER\_\-STATE}
+\label{control__message_8h_7552604c791b87aabea2522977678931e257191d488f618dfe6a6505ce898807}
+}]Discover state: module waiting response for active-scan. \index{NWK_FORMATION_STATE@{NWK\_\-FORMATION\_\-STATE}!control_message.h@{control\_\-message.h}}\index{control_message.h@{control\_\-message.h}!NWK_FORMATION_STATE@{NWK\_\-FORMATION\_\-STATE}}\item[{\em 
+\hypertarget{control__message_8h_7552604c791b87aabea2522977678931fa3ccbc197a94430e3bff8d1b4685998}{
+NWK\_\-FORMATION\_\-STATE}
+\label{control__message_8h_7552604c791b87aabea2522977678931fa3ccbc197a94430e3bff8d1b4685998}
+}]Formation state: module waiting response for ed-scan. \index{NWK_ASSOC_STATE@{NWK\_\-ASSOC\_\-STATE}!control_message.h@{control\_\-message.h}}\index{control_message.h@{control\_\-message.h}!NWK_ASSOC_STATE@{NWK\_\-ASSOC\_\-STATE}}\item[{\em 
+\hypertarget{control__message_8h_7552604c791b87aabea2522977678931d49924b98d4575f8854ba3e195d6db5e}{
+NWK\_\-ASSOC\_\-STATE}
+\label{control__message_8h_7552604c791b87aabea2522977678931d49924b98d4575f8854ba3e195d6db5e}
+}]Association state: module waiting response for association request. \end{description}
+\end{Desc}
+
+
+
+\subsection{Function Documentation}
+\hypertarget{control__message_8h_3e2a4c37e4519d352bec8453545a1fc3}{
+\index{control_message.h@{control\_\-message.h}!enable_router_features@{enable\_\-router\_\-features}}
+\index{enable_router_features@{enable\_\-router\_\-features}!control_message.h@{control\_\-message.h}}
+\subsubsection[enable\_\-router\_\-features]{\setlength{\rightskip}{0pt plus 5cm}void enable\_\-router\_\-features (void)}}
+\label{control__message_8h_3e2a4c37e4519d352bec8453545a1fc3}
+
+
+Function set gateway features for ICMP module. \hypertarget{control__message_8h_8d434572b03cf0883331092902895fb2}{
+\index{control_message.h@{control\_\-message.h}!parse_event_message@{parse\_\-event\_\-message}}
+\index{parse_event_message@{parse\_\-event\_\-message}!control_message.h@{control\_\-message.h}}
+\subsubsection[parse\_\-event\_\-message]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{control__message_8h_a517e422e7baca3bcf3f4676a7a70597}{ip\_\-control\_\-id\_\-t} parse\_\-event\_\-message (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em buf})}}
+\label{control__message_8h_8d434572b03cf0883331092902895fb2}
+
+
+Parse stack evet message.
+
+Function parse stack event message and return event type.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em buf}]pointer for stack event message \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]BROKEN\_\-LINK when packet transmission was failed to destination. 
+
+ROUTER\_\-DISCOVER\_\-RESPONSE GW-table updated by GW advertisment. 
+
+PENDING\_\-TIMEOUT Indirect data send was not Polling from pending proxy. 
+
+TOO\_\-LONG\_\-PACKET application payload too long to send. 
+
+ASSOCIATION\_\-WITH\_\-COORDINATOR RFD device was complete assocation with Cordinator now RFD can send data. 
+
+ASSOCIATION\_\-LOST Assocation to Cordinator losted 
+
+COORDINATOR\_\-STARTED Cordinators network and MAC setups ready. 
+
+GATEWAY\_\-STARTED Gateways network and MAC setups ready. 
+
+NOT\_\-ASSOCIATED Error status when RFD device try to send data before assocation. 
+
+MAC\_\-QUEUE\_\-FULL MAC task message queue full then application shuold wait a while. 
+
+MAC\_\-CCA\_\-ERR Channel reserve fail and transmission fail also. \end{Desc}

@@ -1,0 +1,240 @@
+\hypertarget{compass_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/micro/compass.c File Reference}
+\label{compass_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Platform/micro/compass.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Platform/micro/compass.c}}
+}
+micro.compass module driver. 
+
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}semphr.h\char`\"{}}\par
+{\tt \#include $<$sys/inttypes.h$>$}\par
+{\tt \#include \char`\"{}compass.h\char`\"{}}\par
+{\tt \#include \char`\"{}bus.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+port\-CHAR \hyperlink{compass_8c_86dff8751ce6818093fc86d5da177bd2}{compass\_\-select} (void)
+\item 
+void \hyperlink{compass_8c_b0c35ade6729fc48043cf05b47aa3fe3}{compass\_\-unselect} (void)
+\item 
+compass\_\-mode\_\-t \hyperlink{compass_8c_3ce98d226c3c65dad546d57c322adb7a}{compass\_\-mode} (compass\_\-mode\_\-t mode)
+\item 
+port\-CHAR \hyperlink{compass_8c_1689d2cad14ff2f2219cde9496c7318b}{compass\_\-mag\_\-interval} (uint8\_\-t interval)
+\item 
+port\-CHAR \hyperlink{compass_8c_4154c7529dfcd072cc6031bd87f53b83}{compass\_\-accel\_\-interval} (uint8\_\-t interval)
+\item 
+port\-CHAR \hyperlink{compass_8c_fc6993440f63d463d28679c63e77d167}{compass\_\-accel\_\-range} (uint8\_\-t range)
+\item 
+port\-CHAR \hyperlink{compass_8c_f61438f47d9645f397bc307b89238ad2}{compass\_\-status} (uint8\_\-t $\ast$status)
+\item 
+port\-CHAR \hyperlink{compass_8c_61073c8100decd0dd1d51a29e7331256}{compass\_\-mag\_\-read} (int16\_\-t $\ast$value)
+\item 
+port\-CHAR \hyperlink{compass_8c_91aa65547ec33fb997320f1725155713}{compass\_\-mag\_\-read\_\-single} (int16\_\-t $\ast$value)
+\item 
+port\-CHAR \hyperlink{compass_8c_05ace57e395c1c1502f6e00a0146cc22}{compass\_\-accel\_\-read} (int16\_\-t $\ast$value)
+\item 
+port\-CHAR \hyperlink{compass_8c_0f6e50327dab563e636ff49b7e27698f}{compass\_\-accel\_\-read\_\-single} (int16\_\-t $\ast$value)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+micro.compass module driver. 
+
+Micro: micro.compass module driver functions. 
+
+\subsection{Function Documentation}
+\hypertarget{compass_8c_4154c7529dfcd072cc6031bd87f53b83}{
+\index{compass.c@{compass.c}!compass_accel_interval@{compass\_\-accel\_\-interval}}
+\index{compass_accel_interval@{compass\_\-accel\_\-interval}!compass.c@{compass.c}}
+\subsubsection[compass\_\-accel\_\-interval]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR compass\_\-accel\_\-interval (uint8\_\-t {\em interval})}}
+\label{compass_8c_4154c7529dfcd072cc6031bd87f53b83}
+
+
+Select accelerometer sampling interval.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em interval}]interval in milliseconds, 0 to 255\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE compass is not selected \end{Desc}
+\hypertarget{compass_8c_fc6993440f63d463d28679c63e77d167}{
+\index{compass.c@{compass.c}!compass_accel_range@{compass\_\-accel\_\-range}}
+\index{compass_accel_range@{compass\_\-accel\_\-range}!compass.c@{compass.c}}
+\subsubsection[compass\_\-accel\_\-range]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR compass\_\-accel\_\-range (uint8\_\-t {\em range})}}
+\label{compass_8c_fc6993440f63d463d28679c63e77d167}
+
+
+Select accelerometer range.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em range}]0=1.5G, 1=3G, 2=4.5G, 3=6G\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE compass is not selected \end{Desc}
+\hypertarget{compass_8c_05ace57e395c1c1502f6e00a0146cc22}{
+\index{compass.c@{compass.c}!compass_accel_read@{compass\_\-accel\_\-read}}
+\index{compass_accel_read@{compass\_\-accel\_\-read}!compass.c@{compass.c}}
+\subsubsection[compass\_\-accel\_\-read]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR compass\_\-accel\_\-read (int16\_\-t $\ast$ {\em value})}}
+\label{compass_8c_05ace57e395c1c1502f6e00a0146cc22}
+
+
+Get accelerometer values.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em value}]pointer to store return values, array of 3 int16\_\-t\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE compass is not selected \end{Desc}
+\hypertarget{compass_8c_0f6e50327dab563e636ff49b7e27698f}{
+\index{compass.c@{compass.c}!compass_accel_read_single@{compass\_\-accel\_\-read\_\-single}}
+\index{compass_accel_read_single@{compass\_\-accel\_\-read\_\-single}!compass.c@{compass.c}}
+\subsubsection[compass\_\-accel\_\-read\_\-single]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR compass\_\-accel\_\-read\_\-single (int16\_\-t $\ast$ {\em value})}}
+\label{compass_8c_0f6e50327dab563e636ff49b7e27698f}
+
+
+Get accelerometer values: start module, do a single read and shutdown module.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em value}]pointer to store return values, array of 3 int16\_\-t\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE compass is not selected \end{Desc}
+\hypertarget{compass_8c_1689d2cad14ff2f2219cde9496c7318b}{
+\index{compass.c@{compass.c}!compass_mag_interval@{compass\_\-mag\_\-interval}}
+\index{compass_mag_interval@{compass\_\-mag\_\-interval}!compass.c@{compass.c}}
+\subsubsection[compass\_\-mag\_\-interval]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR compass\_\-mag\_\-interval (uint8\_\-t {\em interval})}}
+\label{compass_8c_1689d2cad14ff2f2219cde9496c7318b}
+
+
+Select magnetometer sampling interval.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em interval}]interval in milliseconds, 0 to 255\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE compass is not selected \end{Desc}
+\hypertarget{compass_8c_61073c8100decd0dd1d51a29e7331256}{
+\index{compass.c@{compass.c}!compass_mag_read@{compass\_\-mag\_\-read}}
+\index{compass_mag_read@{compass\_\-mag\_\-read}!compass.c@{compass.c}}
+\subsubsection[compass\_\-mag\_\-read]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR compass\_\-mag\_\-read (int16\_\-t $\ast$ {\em value})}}
+\label{compass_8c_61073c8100decd0dd1d51a29e7331256}
+
+
+Get magnetometer values.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em value}]pointer to store return values, array of 3 int16\_\-t\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE compass is not selected \end{Desc}
+\hypertarget{compass_8c_91aa65547ec33fb997320f1725155713}{
+\index{compass.c@{compass.c}!compass_mag_read_single@{compass\_\-mag\_\-read\_\-single}}
+\index{compass_mag_read_single@{compass\_\-mag\_\-read\_\-single}!compass.c@{compass.c}}
+\subsubsection[compass\_\-mag\_\-read\_\-single]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR compass\_\-mag\_\-read\_\-single (int16\_\-t $\ast$ {\em value})}}
+\label{compass_8c_91aa65547ec33fb997320f1725155713}
+
+
+Get magnetometer values: start module, do a single read and shutdown module.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em value}]pointer to store return values, array of 3 int16\_\-t\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE compass is not selected \end{Desc}
+\hypertarget{compass_8c_3ce98d226c3c65dad546d57c322adb7a}{
+\index{compass.c@{compass.c}!compass_mode@{compass\_\-mode}}
+\index{compass_mode@{compass\_\-mode}!compass.c@{compass.c}}
+\subsubsection[compass\_\-mode]{\setlength{\rightskip}{0pt plus 5cm}compass\_\-mode\_\-t compass\_\-mode (compass\_\-mode\_\-t {\em mode})}}
+\label{compass_8c_3ce98d226c3c65dad546d57c322adb7a}
+
+
+Select compass mode.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em mode}]mode to select\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]selected mode 
+
+-1 compass is not selected \end{Desc}
+\hypertarget{compass_8c_86dff8751ce6818093fc86d5da177bd2}{
+\index{compass.c@{compass.c}!compass_select@{compass\_\-select}}
+\index{compass_select@{compass\_\-select}!compass.c@{compass.c}}
+\subsubsection[compass\_\-select]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR compass\_\-select (void)}}
+\label{compass_8c_86dff8751ce6818093fc86d5da177bd2}
+
+
+Select compass module.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE module selected 
+
+pd\-FALSE bus reserved \end{Desc}
+\hypertarget{compass_8c_f61438f47d9645f397bc307b89238ad2}{
+\index{compass.c@{compass.c}!compass_status@{compass\_\-status}}
+\index{compass_status@{compass\_\-status}!compass.c@{compass.c}}
+\subsubsection[compass\_\-status]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR compass\_\-status (uint8\_\-t $\ast$ {\em status})}}
+\label{compass_8c_f61438f47d9645f397bc307b89238ad2}
+
+
+Get sampling status.
+
+Note that if the module is powered down, reading status will start mode 1.
+
+Status byte low nibble contains magnetometer status, 1 means channel value valid
+
+Status byte high nibble contains accelerometer status, 1 means channel value valid
+
+Bits 7 and 4 are not used.
+
+Summary of status byte: $|$ NA $|$ AX $|$ AY $|$ AZ $|$ NA $|$ MX $|$ MY $|$ MZ $|$
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em status}]pointer to store return value\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE compass is not selected \end{Desc}
+\hypertarget{compass_8c_b0c35ade6729fc48043cf05b47aa3fe3}{
+\index{compass.c@{compass.c}!compass_unselect@{compass\_\-unselect}}
+\index{compass_unselect@{compass\_\-unselect}!compass.c@{compass.c}}
+\subsubsection[compass\_\-unselect]{\setlength{\rightskip}{0pt plus 5cm}void compass\_\-unselect (void)}}
+\label{compass_8c_b0c35ade6729fc48043cf05b47aa3fe3}
+
+
+Unselect compass module. 

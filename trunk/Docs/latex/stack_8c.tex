@@ -1,0 +1,317 @@
+\hypertarget{stack_8c}{
+\section{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/stack.c File Reference}
+\label{stack_8c}\index{/home/tech/release/K210-Devkit-CDROM-v1_0_3/subversion/nanostack/Common/stack.c@{/home/tech/release/K210-Devkit-CDROM-v1\_\-0\_\-3/subversion/nanostack/Common/stack.c}}
+}
+Protocol stack main module. 
+
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}Free\-RTOS.h\char`\"{}}\par
+{\tt \#include \char`\"{}task.h\char`\"{}}\par
+{\tt \#include \char`\"{}queue.h\char`\"{}}\par
+{\tt \#include $<$sys/inttypes.h$>$}\par
+{\tt \#include \char`\"{}stack.h\char`\"{}}\par
+{\tt \#include \char`\"{}buffer.h\char`\"{}}\par
+{\tt \#include \char`\"{}socket.h\char`\"{}}\par
+{\tt \#include \char`\"{}module.h\char`\"{}}\par
+{\tt \#include \char`\"{}debug.h\char`\"{}}\par
+{\tt \#include \char`\"{}control\_\-message.h\char`\"{}}\par
+{\tt \#include \char`\"{}rf.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{stack_8c_674570cbde0c671571015dcfa1c2d5d2}{stack\_\-main} (void $\ast$pv\-Parameters)
+\item 
+void \hyperlink{stack_8c_38607caae7e254c21e8dedd5f62a2e19}{stack\_\-buffer} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$b)
+\item 
+void \hyperlink{stack_8c_81f4e4546328fbfb5d0cbd8dde9c3681}{stack\_\-module\_\-call} (uint8\_\-t stack\_\-id, uint8\_\-t layer, \hyperlink{structbuffer__t}{buffer\_\-t} $\ast$b)
+\item 
+port\-CHAR \hyperlink{stack_8c_8abf77c70c7f21a5439006db020d5856}{stack\_\-module\_\-check} (uint8\_\-t stack\_\-id, uint8\_\-t layer, \hyperlink{structbuffer__t}{buffer\_\-t} $\ast$b)
+\item 
+port\-CHAR \hyperlink{stack_8c_5c9e02eb6434c27146b549b96ef41337}{stack\_\-init} (void)
+\item 
+\hyperlink{stack_8h_4673241f819ec79dfe9fee967f0a9ddd}{start\_\-status\_\-t} \hyperlink{stack_8c_19a4f4ab3bc3c408e58e1011b74fe4f8}{stack\_\-start} (\hyperlink{structstack__init__t}{stack\_\-init\_\-t} $\ast$stack\_\-parameters)
+\item 
+\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ \hyperlink{stack_8c_9278b8b035f1091d0acde68092801d34}{stack\_\-buffer\_\-get} (port\-Tick\-Type blocktime)
+\item 
+void \hyperlink{stack_8c_3ce873a78dca313ced02431b05987965}{stack\_\-buffer\_\-free} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$b)
+\item 
+port\-CHAR \hyperlink{stack_8c_5d46d04d1762d647b99a1053e627c13d}{stack\_\-buffer\_\-push} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$b)
+\item 
+port\-CHAR \hyperlink{stack_8c_e279ff90ae96c0cfdd6e6030f2e62297}{stack\_\-buffer\_\-headroom} (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$b, uint16\_\-t size)
+\item 
+uint8\_\-t \hyperlink{stack_8c_869ac438e7e5c7cbc750792bb323a4e0}{stack\_\-number\_\-get} ()
+\item 
+stack\_\-event\_\-t \hyperlink{stack_8c_419500ce25a23140ee0949bf38b24088}{open\_\-stack\_\-event\_\-bus} (void)
+\item 
+\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ \hyperlink{stack_8c_4f656ccf68f51a5d47aad3a33c27b4d5}{waiting\_\-stack\_\-event} (uint16\_\-t time)
+\item 
+port\-CHAR \hyperlink{stack_8c_01420520554ac136708a1e1054c01e32}{stack\_\-compare\_\-address} (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$a1, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$a2)
+\begin{CompactList}\small\item\em Convert addresses to full format if fields are missing. \item\end{CompactList}\item 
+uint8\_\-t $\ast$ \hyperlink{stack_8c_e2c8d6b842b7f9ac0757cfd7388d98f1}{stack\_\-insert\_\-address\_\-to\_\-buffer} (uint8\_\-t $\ast$dptr, \hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} type, \hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} address)
+\item 
+port\-CHAR \hyperlink{stack_8c_f3b360b4e32558f12be911a84521f155}{stack\_\-check\_\-broadcast} (\hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} address, \hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} type)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+x\-Queue\-Handle \hyperlink{stack_8c_231a544d9ce4769fb14f3baa3ae53dd8}{buffers}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Protocol stack main module. 
+
+Protocol stack main module: handling of the buffer/event queue, buffer management 
+
+\subsection{Function Documentation}
+\hypertarget{stack_8c_419500ce25a23140ee0949bf38b24088}{
+\index{stack.c@{stack.c}!open_stack_event_bus@{open\_\-stack\_\-event\_\-bus}}
+\index{open_stack_event_bus@{open\_\-stack\_\-event\_\-bus}!stack.c@{stack.c}}
+\subsubsection[open\_\-stack\_\-event\_\-bus]{\setlength{\rightskip}{0pt plus 5cm}stack\_\-event\_\-t open\_\-stack\_\-event\_\-bus (void)}}
+\label{stack_8c_419500ce25a23140ee0949bf38b24088}
+
+
+Open bus for stack event messages.
+
+\begin{Desc}
+\item[Returns:]event\_\-queue what is the pointer stacks event message queue. \end{Desc}
+\hypertarget{stack_8c_38607caae7e254c21e8dedd5f62a2e19}{
+\index{stack.c@{stack.c}!stack_buffer@{stack\_\-buffer}}
+\index{stack_buffer@{stack\_\-buffer}!stack.c@{stack.c}}
+\subsubsection[stack\_\-buffer]{\setlength{\rightskip}{0pt plus 5cm}void stack\_\-buffer (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em b})}}
+\label{stack_8c_38607caae7e254c21e8dedd5f62a2e19}
+
+
+Buffer handler
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em b}]pointer to buffer \end{description}
+\end{Desc}
+\hypertarget{stack_8c_3ce873a78dca313ced02431b05987965}{
+\index{stack.c@{stack.c}!stack_buffer_free@{stack\_\-buffer\_\-free}}
+\index{stack_buffer_free@{stack\_\-buffer\_\-free}!stack.c@{stack.c}}
+\subsubsection[stack\_\-buffer\_\-free]{\setlength{\rightskip}{0pt plus 5cm}void stack\_\-buffer\_\-free (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em b})}}
+\label{stack_8c_3ce873a78dca313ced02431b05987965}
+
+
+Free stack buffer.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em b}]pointer to buffer \end{description}
+\end{Desc}
+\hypertarget{stack_8c_9278b8b035f1091d0acde68092801d34}{
+\index{stack.c@{stack.c}!stack_buffer_get@{stack\_\-buffer\_\-get}}
+\index{stack_buffer_get@{stack\_\-buffer\_\-get}!stack.c@{stack.c}}
+\subsubsection[stack\_\-buffer\_\-get]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structbuffer__t}{buffer\_\-t}$\ast$ stack\_\-buffer\_\-get (port\-Tick\-Type {\em blocktime})}}
+\label{stack_8c_9278b8b035f1091d0acde68092801d34}
+
+
+Get buffer from stack.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em blocktime}]time to wait for buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to buffer, 0 on failure (all buffers allocated) \end{Desc}
+\hypertarget{stack_8c_e279ff90ae96c0cfdd6e6030f2e62297}{
+\index{stack.c@{stack.c}!stack_buffer_headroom@{stack\_\-buffer\_\-headroom}}
+\index{stack_buffer_headroom@{stack\_\-buffer\_\-headroom}!stack.c@{stack.c}}
+\subsubsection[stack\_\-buffer\_\-headroom]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR stack\_\-buffer\_\-headroom (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em b}, uint16\_\-t {\em size})}}
+\label{stack_8c_e279ff90ae96c0cfdd6e6030f2e62297}
+
+
+Check buffer headroom.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em b}]pointer to buffer \item[{\em size}]required headroom space\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE packet too long \end{Desc}
+\hypertarget{stack_8c_5d46d04d1762d647b99a1053e627c13d}{
+\index{stack.c@{stack.c}!stack_buffer_push@{stack\_\-buffer\_\-push}}
+\index{stack_buffer_push@{stack\_\-buffer\_\-push}!stack.c@{stack.c}}
+\subsubsection[stack\_\-buffer\_\-push]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR stack\_\-buffer\_\-push (\hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em b})}}
+\label{stack_8c_5d46d04d1762d647b99a1053e627c13d}
+
+
+Push buffer to stack.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em b}]pointer to buffer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE queue full \end{Desc}
+\hypertarget{stack_8c_f3b360b4e32558f12be911a84521f155}{
+\index{stack.c@{stack.c}!stack_check_broadcast@{stack\_\-check\_\-broadcast}}
+\index{stack_check_broadcast@{stack\_\-check\_\-broadcast}!stack.c@{stack.c}}
+\subsubsection[stack\_\-check\_\-broadcast]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR stack\_\-check\_\-broadcast (\hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} {\em address}, \hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} {\em type})}}
+\label{stack_8c_f3b360b4e32558f12be911a84521f155}
+
+
+Check if all the bytes in the address field are 0xff
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em address}]The address field to check \item[{\em type}]The address type (so that the function knows how many bytes to check) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-FALSE Not a broadcast address 
+
+pd\-TRUE A brodcast address \end{Desc}
+\hypertarget{stack_8c_01420520554ac136708a1e1054c01e32}{
+\index{stack.c@{stack.c}!stack_compare_address@{stack\_\-compare\_\-address}}
+\index{stack_compare_address@{stack\_\-compare\_\-address}!stack.c@{stack.c}}
+\subsubsection[stack\_\-compare\_\-address]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR stack\_\-compare\_\-address (\hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em a1}, \hyperlink{structsockaddr__t}{sockaddr\_\-t} $\ast$ {\em a2})}}
+\label{stack_8c_01420520554ac136708a1e1054c01e32}
+
+
+Convert addresses to full format if fields are missing. 
+
+Compare two addresses
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em a1}]first address to compare \item[{\em a2}]second address to compare\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pd\-TRUE match 
+
+pd\-FALSE no match \end{Desc}
+\hypertarget{stack_8c_5c9e02eb6434c27146b549b96ef41337}{
+\index{stack.c@{stack.c}!stack_init@{stack\_\-init}}
+\index{stack_init@{stack\_\-init}!stack.c@{stack.c}}
+\subsubsection[stack\_\-init]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR stack\_\-init (void)}}
+\label{stack_8c_5c9e02eb6434c27146b549b96ef41337}
+
+
+Initialize protocol stack and start stack task. Allocate initial set of buffers.
+
+\begin{Desc}
+\item[Returns:]pd\-TRUE 
+
+pd\-FALSE insufficient memory \end{Desc}
+\hypertarget{stack_8c_e2c8d6b842b7f9ac0757cfd7388d98f1}{
+\index{stack.c@{stack.c}!stack_insert_address_to_buffer@{stack\_\-insert\_\-address\_\-to\_\-buffer}}
+\index{stack_insert_address_to_buffer@{stack\_\-insert\_\-address\_\-to\_\-buffer}!stack.c@{stack.c}}
+\subsubsection[stack\_\-insert\_\-address\_\-to\_\-buffer]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t$\ast$ stack\_\-insert\_\-address\_\-to\_\-buffer (uint8\_\-t $\ast$ {\em dptr}, \hyperlink{address_8h_faf76b5591da0abd0584dec411d0551d}{addrtype\_\-t} {\em type}, \hyperlink{address_8h_65ce5a1faf29ab669a1d3dc6ce26c2ab}{address\_\-t} {\em address})}}
+\label{stack_8c_e2c8d6b842b7f9ac0757cfd7388d98f1}
+
+
+Add an address to a given buffer
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em dptr}]Index to the data field of the buffer where to insert the address \item[{\em type}]Type of the address (ADDR\_\-802\_\-15\_\-4\_\-PAN\_\-LONG, ADDR\_\-802\_\-15\_\-4\_\-LONG, ADDR\_\-802\_\-15\_\-4\_\-PAN\_\-SHORT or ADDR\_\-802\_\-15\_\-4\_\-SHORT) \item[{\em address}]The actual address structure \end{description}
+\end{Desc}
+\hypertarget{stack_8c_674570cbde0c671571015dcfa1c2d5d2}{
+\index{stack.c@{stack.c}!stack_main@{stack\_\-main}}
+\index{stack_main@{stack\_\-main}!stack.c@{stack.c}}
+\subsubsection[stack\_\-main]{\setlength{\rightskip}{0pt plus 5cm}void stack\_\-main (void $\ast$ {\em pv\-Parameters})}}
+\label{stack_8c_674570cbde0c671571015dcfa1c2d5d2}
+
+
+The main stack task
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pv\-Parameters}]not used \end{description}
+\end{Desc}
+\hypertarget{stack_8c_81f4e4546328fbfb5d0cbd8dde9c3681}{
+\index{stack.c@{stack.c}!stack_module_call@{stack\_\-module\_\-call}}
+\index{stack_module_call@{stack\_\-module\_\-call}!stack.c@{stack.c}}
+\subsubsection[stack\_\-module\_\-call]{\setlength{\rightskip}{0pt plus 5cm}void stack\_\-module\_\-call (uint8\_\-t {\em stack\_\-id}, uint8\_\-t {\em layer}, \hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em b})}}
+\label{stack_8c_81f4e4546328fbfb5d0cbd8dde9c3681}
+
+
+Call module handler. Free buffer if module can't be called.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em stack\_\-id}]stack identifier \item[{\em layer}]which layer is to be called \item[{\em b}]pointer to buffer \end{description}
+\end{Desc}
+\hypertarget{stack_8c_8abf77c70c7f21a5439006db020d5856}{
+\index{stack.c@{stack.c}!stack_module_check@{stack\_\-module\_\-check}}
+\index{stack_module_check@{stack\_\-module\_\-check}!stack.c@{stack.c}}
+\subsubsection[stack\_\-module\_\-check]{\setlength{\rightskip}{0pt plus 5cm}port\-CHAR stack\_\-module\_\-check (uint8\_\-t {\em stack\_\-id}, uint8\_\-t {\em layer}, \hyperlink{structbuffer__t}{buffer\_\-t} $\ast$ {\em b})}}
+\label{stack_8c_8abf77c70c7f21a5439006db020d5856}
+
+
+Call module check function. Return pd\-FALSE if module can't be called.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em stack\_\-id}]stack identifier \item[{\em layer}]which layer is to be called \item[{\em b}]pointer to buffer \end{description}
+\end{Desc}
+\hypertarget{stack_8c_869ac438e7e5c7cbc750792bb323a4e0}{
+\index{stack.c@{stack.c}!stack_number_get@{stack\_\-number\_\-get}}
+\index{stack_number_get@{stack\_\-number\_\-get}!stack.c@{stack.c}}
+\subsubsection[stack\_\-number\_\-get]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t stack\_\-number\_\-get (void)}}
+\label{stack_8c_869ac438e7e5c7cbc750792bb323a4e0}
+
+
+Get number of stacks.
+
+\begin{Desc}
+\item[Returns:]STACKS\_\-MAX \end{Desc}
+\hypertarget{stack_8c_19a4f4ab3bc3c408e58e1011b74fe4f8}{
+\index{stack.c@{stack.c}!stack_start@{stack\_\-start}}
+\index{stack_start@{stack\_\-start}!stack.c@{stack.c}}
+\subsubsection[stack\_\-start]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{stack_8h_4673241f819ec79dfe9fee967f0a9ddd}{start\_\-status\_\-t} stack\_\-start (\hyperlink{structstack__init__t}{stack\_\-init\_\-t} $\ast$ {\em stack\_\-parameters})}}
+\label{stack_8c_19a4f4ab3bc3c408e58e1011b74fe4f8}
+
+
+Initialize protocol stack logical type.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em stack\_\-parameters}]pointer for start parameters, 0 start stack on the default mode. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]START\_\-SUCCESS when start parameters are valid. 
+
+CHANNEL\_\-NOT\_\-SUPPORTED when given parameter is not valid. 
+
+TYPE\_\-NOT\_\-SUPPORTED when logical type is not supported. \end{Desc}
+\hypertarget{stack_8c_4f656ccf68f51a5d47aad3a33c27b4d5}{
+\index{stack.c@{stack.c}!waiting_stack_event@{waiting\_\-stack\_\-event}}
+\index{waiting_stack_event@{waiting\_\-stack\_\-event}!stack.c@{stack.c}}
+\subsubsection[waiting\_\-stack\_\-event]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structbuffer__t}{buffer\_\-t}$\ast$ waiting\_\-stack\_\-event (uint16\_\-t {\em time})}}
+\label{stack_8c_4f656ccf68f51a5d47aad3a33c27b4d5}
+
+
+Waiting stack event messages from stack.
+
+\begin{Desc}
+\item[Returns:]pointer to event message. \end{Desc}
+
+
+\subsection{Variable Documentation}
+\hypertarget{stack_8c_231a544d9ce4769fb14f3baa3ae53dd8}{
+\index{stack.c@{stack.c}!buffers@{buffers}}
+\index{buffers@{buffers}!stack.c@{stack.c}}
+\subsubsection[buffers]{\setlength{\rightskip}{0pt plus 5cm}x\-Queue\-Handle \hyperlink{rf__dma_8c_231a544d9ce4769fb14f3baa3ae53dd8}{buffers}}}
+\label{stack_8c_231a544d9ce4769fb14f3baa3ae53dd8}
+
+
+Common variables 
