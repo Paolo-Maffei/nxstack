@@ -66,6 +66,23 @@ void EXTI_IRQHandler(void)
 /******************************************************************************/
 
 /**
+  * @brief  This function handles USART1 global interrupt request.
+  * @param  None
+  * @retval None
+  */
+void USART1_IRQHandler(void)
+{
+  if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
+  {
+      bus_rxISR();
+  }
+  if(USART_GetITStatus(USART1, USART_IT_TXE) != RESET)
+  {   
+      bus_txISR();
+  }
+}
+
+/**
   * @brief  This function handles PPP interrupt request.
   * @param  None
   * @retval None
