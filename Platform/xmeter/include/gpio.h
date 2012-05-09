@@ -37,19 +37,24 @@
  *	
  */
 
-
 #ifndef _MICRO_GPIO_H
 #define _MICRO_GPIO_H
 
-#define LED_INIT() P6DIR |= 0x30
-#define LED2_OFF() P6OUT &= ~0x20;
-#define LED2_ON() P6OUT |= 0x20;
-#define LED1_OFF() P6OUT &= ~0x10;
-#define LED1_ON() P6OUT |= 0x10;
+#define LED_INIT() led_init()
+#define LED2_OFF() led2_off()
+#define LED2_ON()  led2_on()
+#define LED1_OFF() led1_off()
+#define LED1_ON()  led1_on()
 
-portCHAR gpio1_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge);
+extern void gpio_init(void);
 
-portCHAR gpio2_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge);
+extern portCHAR gpio1_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge);
 
+extern portCHAR gpio2_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge);
 
+extern void led_init(void);
+extern void led1_off(void);
+extern void led1_on(void);
+extern void led2_off(void);
+extern void led2_on(void);
 #endif /* _MICRO_GPIO_H */

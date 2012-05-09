@@ -47,6 +47,16 @@
  ../../Common/include/module.h modules_conf.h \
  ../../Common/include/neighbor_routing_table.h
 .objs/build/root/x_meter_gateway/../../Platform/xmeter/bus.o: ../../Platform/xmeter/bus.c \
+ ../../Platform/xmeter/cmsis/stm32f10x.h \
+ ../../Platform/xmeter/cmsis/core_cm3.h \
+ ../../Platform/xmeter/cmsis/system_stm32f10x.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_conf.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_exti.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_gpio.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_rcc.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_spi.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_tim.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_usart.h \
  ../../FreeRTOS/Source/include/FreeRTOS.h \
  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
  ../../FreeRTOS/Source/include/portable.h \
@@ -59,6 +69,17 @@
  ../../Common/include/debug.h ../../Platform/xmeter/include/progmem.h \
  ../../Common/include/address.h ../../Platform/xmeter/include/bus.h
 .objs/build/root/x_meter_gateway/../../Platform/xmeter/gpio.o: ../../Platform/xmeter/gpio.c \
+ ../../Platform/xmeter/cmsis/stm32f10x.h \
+ ../../Platform/xmeter/cmsis/core_cm3.h \
+ ../../Platform/xmeter/cmsis/system_stm32f10x.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_conf.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_exti.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_gpio.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_rcc.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_spi.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_tim.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_usart.h \
+ ../../Platform/xmeter/stdplib/inc/misc.h \
  ../../FreeRTOS/Source/include/FreeRTOS.h \
  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
  ../../FreeRTOS/Source/include/portable.h \
@@ -73,6 +94,17 @@
  ../../Platform/xmeter/include/gpio.h \
  ../../FreeRTOS/Source/include/portable.h
 .objs/build/root/x_meter_gateway/../../Platform/xmeter/debug.o: ../../Platform/xmeter/debug.c \
+ ../../Platform/xmeter/cmsis/stm32f10x.h \
+ ../../Platform/xmeter/cmsis/core_cm3.h \
+ ../../Platform/xmeter/cmsis/system_stm32f10x.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_conf.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_exti.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_gpio.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_rcc.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_spi.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_tim.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_usart.h \
+ ../../Platform/xmeter/stdplib/inc/misc.h \
  ../../FreeRTOS/Source/include/FreeRTOS.h \
  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
  ../../FreeRTOS/Source/include/portable.h \

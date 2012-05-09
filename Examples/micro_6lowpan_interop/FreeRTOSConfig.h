@@ -81,11 +81,11 @@
 #endif
 
 #define configUSE_PREEMPTION		1
-#define configCPU_CLOCK_HZ			( ( unsigned portLONG ) 8000000 ) /* Clock setup from main.c in the demo application. */
+#define configCPU_CLOCK_HZ			( ( unsigned portLONG ) 72000000 ) /* Clock setup from main.c in the demo application. */
 #define configTICK_RATE_HZ			( ( portTickType ) 100 )
 #define configMAX_PRIORITIES		( ( unsigned portBASE_TYPE ) 4 )
 #define configMINIMAL_STACK_SIZE	( ( unsigned portSHORT ) 50 )
-#define configMAXIMUM_STACK_SIZE  ( ( unsigned portSHORT ) 250 )
+#define configMAXIMUM_STACK_SIZE  	( ( unsigned portSHORT ) 250 )
 #define configTOTAL_HEAP_SIZE		( ( size_t ) ( 7000 ) )
 #define configMAX_TASK_NAME_LEN		( 8 )
 #define configUSE_TRACE_FACILITY	0

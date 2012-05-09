@@ -1,32 +1,3 @@
-/*
-    NanoStack: MCU software and PC tools for IP-based wireless sensor networking.
-		
-    Copyright (C) 2006-2007 Sensinode Ltd.
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-		Address:
-		Sensinode Ltd.
-		Teknologiantie 6	
-		90570 Oulu, Finland
-
-		E-mail:
-		info@sensinode.com
-*/
-
-
 /**
  *
  * \file gpio.c
@@ -36,6 +7,7 @@
  *	
  */
 
+#include "stm32f10x.h"
  
 #include "FreeRTOS.h"
 #include "queue.h"
@@ -55,31 +27,108 @@
 #include "powersave.h"
 #endif
 
-extern void bus_irq(void);
  
 typedef void (*irq_handler_t)(void);
 
-irq_handler_t vPort1_ISRs[8] =
+void exti_default_isr(void){}
+
+volatile irq_handler_t exti_isr[16] =
 {
-	bus_irq,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0
+    exti_default_isr,exti_default_isr,exti_default_isr,exti_default_isr,
+    exti_default_isr,exti_default_isr,exti_default_isr,exti_default_isr,
+    exti_default_isr,exti_default_isr,exti_default_isr,exti_default_isr
 };
 
-irq_handler_t vPort2_ISRs[4] =
+void __attribute__ ((interrupt)) __cs3_isr_exti0(void)
 {
-	0,
-	0,
-	0,
-	0
-};
+    exti_isr[0]();
+}
+void __attribute__ ((interrupt)) __cs3_isr_exti1(void)
+{
+    exti_isr[1]();
+}
+void __attribute__ ((interrupt)) __cs3_isr_exti2(void)
+{
+    exti_isr[2]();
+}
+void __attribute__ ((interrupt)) __cs3_isr_exti3(void)
+{
+    exti_isr[3]();
+}
+void __attribute__ ((interrupt)) __cs3_isr_exti4(void)
+{
+    exti_isr[4]();
+}
+void __attribute__ ((interrupt)) __cs3_isr_exti9_5(void)
+{
+    uint8_t i;
+    uint32_t bitmask = (0x0001<<5);
+    for(i=5;i<=9;i++)
+    {
+	if(RESET != EXTI_GetFlagStatus(bitmask))
+	{
+	    exti_isr[i]();
+	}
+	bitmask <<= 1;
+    }
+}
+void __attribute__ ((interrupt)) __cs3_isr_exti15_10(void)
+{
+    uint8_t i;
+    uint32_t bitmask = (0x0001<<10);
+    for(i=10;i<=15;i++)
+    {
+	if(RESET != EXTI_GetFlagStatus(bitmask))
+	{
+	    exti_isr[i]();
+	}
+	bitmask <<= 1;
+    }
+}
+/*
+ * Init GPIO port
+ * */
+void gpio_init()
+{
+  GPIO_InitTypeDef GPIO_InitStructure;
+  EXTI_InitTypeDef EXTI_InitStructure;
+  NVIC_InitTypeDef NVIC_InitStructure;
+  /* Enable GPIOA clock */
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+  
+  /* Configure PA.00 and PA.01 pin as input floating */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
 
+  /* Enable AFIO clock */
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
 
+  /* Connect EXTI0 Line to PA.00 and PA.01  pin */
+  GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource0);
+  GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);
+
+  /* Configure EXTI0 and EXTI1 line */
+  EXTI_InitStructure.EXTI_Line = EXTI_Line0|EXTI_Line1;
+  EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+  EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  EXTI_Init(&EXTI_InitStructure);
+
+  /* Enable and set EXTI0 Interrupt to the lowest priority */
+  NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+  
+    /* Enable and set EXTI1 Interrupt to the lowest priority */
+  NVIC_InitStructure.NVIC_IRQChannel =  EXTI1_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0E;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+}
 /**
  *  Allocate interrupt in port 1.
  *
@@ -92,62 +141,9 @@ irq_handler_t vPort2_ISRs[4] =
  */
 portCHAR gpio1_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge)
 {
-#if 0
-	uint8_t mask = (1 << pin);
-	if (mask)
-	{
-		if (vPort1_ISRs[pin] == 0) vPort1_ISRs[pin] = isr;
-		if (vPort1_ISRs[pin] == isr)
-		{
-			P1IE &= ~mask;
-			if (edge)
-			{
-				P1IES |= mask;
-			}
-			else
-			{
-				P1IES &= ~mask;
-			}
-			P1IFG &= ~mask;
-			P1IE |= mask;
-			return pdTRUE;
-		}
-	}
-	return pdFALSE;
-#endif
+    exti_isr[0] = (irq_handler_t)isr;
+    return pdTRUE;
 }
-#if 0
-interrupt (PORT1_VECTOR) vPort1_ISR( void );
-
-/**
- *  Port 1 interrupt handler.
- *
- *
- */
-interrupt (PORT1_VECTOR) vPort1_ISR( void )
-{
-	{
-		uint8_t i,mask;
-		mask = 1;
-
-		for (i=0; i<8; i++)
-		{
-			if (P1IFG & mask)
-			{
-				if (vPort1_ISRs[i])
-				{
-					vPort1_ISRs[i]();
-				}
-				P1IFG &= ~mask;
-			}
-			mask <<= 1;		
-		}
-	}
-#ifdef HAVE_POWERSAVE
-	power_interrupt_epilogue();
-#endif
-}
-#endif
 /**
  *  Allocate interrupt in port 2.
  *
@@ -160,61 +156,36 @@ interrupt (PORT1_VECTOR) vPort1_ISR( void )
  */
 portCHAR gpio2_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge)
 {
-#if 0 
-	uint8_t mask = (1 << pin);
-	mask &= 0x0F;
-		
-	if (mask)
-	{
-		if (vPort2_ISRs[pin] == 0) vPort2_ISRs[pin] = isr;
-		if (vPort2_ISRs[pin] == isr)
-		{
-			P2IE &= ~mask;
-			if (edge)
-			{
-				P2IES |= mask;
-			}
-			else
-			{
-				P2IES &= ~mask;
-			}
-			P2IFG &= ~mask;
-			P2IE |= mask;
-			return pdTRUE;
-		}
-	}
-	return pdFALSE;
-#endif
+    exti_isr[1] = (irq_handler_t)isr;
+    return pdTRUE;
 }
-#if 0 
-interrupt (PORT2_VECTOR) vPort2_ISR( void );
-/**
- *  Port 2 interrupt handler.
- *
- *
- */
-interrupt (PORT2_VECTOR) vPort2_ISR( void )
-{
-	{
-		uint8_t i,mask;
-		mask = 1;
 
-		for (i=0; i<4; i++)
-		{
-			if (P2IFG & mask)
-			{
-				if (vPort2_ISRs[i])
-				{
-					vPort2_ISRs[i]();
-				}
-				P2IFG &= ~mask;
-			}
-			mask <<= 1;
-		}
-		P2IFG &= ~0xF0;	/*Port 2 high pins are MS3:0, should not be used for this*/
-	}
-#ifdef HAVE_POWERSAVE
-	power_interrupt_epilogue();
-#endif
+void led_init()
+{
+  GPIO_InitTypeDef GPIO_InitStructure;
+  /* Enable GPIOA clock */
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+  
+  /* Configure PB.00 and PB.01 pin as output */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
 }
-#endif
+
+void led1_off()
+{
+    GPIO_WriteBit(GPIOB,GPIO_Pin_0,Bit_RESET);
+}
+void led1_on()
+{
+    GPIO_WriteBit(GPIOB,GPIO_Pin_0,Bit_SET);
+}
+
+void led2_off()
+{
+    GPIO_WriteBit(GPIOB,GPIO_Pin_1,Bit_RESET);
+}
+void led2_on()
+{
+    GPIO_WriteBit(GPIOB,GPIO_Pin_1,Bit_SET);
+}
