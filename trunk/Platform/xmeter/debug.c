@@ -1,32 +1,3 @@
-/*
-    NanoStack: MCU software and PC tools for IP-based wireless sensor networking.
-		
-    Copyright (C) 2006-2007 Sensinode Ltd.
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-		Address:
-		Sensinode Ltd.
-		Teknologiantie 6	
-		90570 Oulu, Finland
-
-		E-mail:
-		info@sensinode.com
-*/
-
-
 /**
  *
  * \file debug.c
@@ -39,7 +10,7 @@
  *  exist.
  */
 
- 
+#include "stm32f10x.h"
 
 #include "FreeRTOS.h"
 #include "queue.h"
@@ -121,11 +92,6 @@ uint8_t debug_buffer[64];
  */
 void debug_init(uint32_t speed)
 {
-#if 0
-	unsigned long rate;
-	uint8_t clock_sel;
-	uint8_t mod = 0;
-
 	portENTER_CRITICAL();
 #ifdef HAVE_POWERSAVE
 	if (debug_ph == 0)
@@ -138,64 +104,58 @@ void debug_init(uint32_t speed)
 		debug_rx = xQueueCreate( DEBUG_RX_LEN, ( unsigned portBASE_TYPE ) sizeof( signed portCHAR ) );
 		debug_tx = xQueueCreate( DEBUG_TX_LEN, ( unsigned portBASE_TYPE ) sizeof( signed portCHAR ) );
 	}
-	if (speed > 9600)
-	{
-		clock_sel = (SSEL0 | SSEL1);
-#ifndef configSMCLK_HZ
-		rate = configCPU_CLOCK_HZ / speed;
-#else
-		rate = configSMCLK_HZ / speed;
-#endif
+	/* Private variables ---------------------------------------------------------*/
+	USART_InitTypeDef USART_InitStructure;
+	GPIO_InitTypeDef GPIO_InitStructure;
 
-#ifdef HAVE_POWERSAVE
-		power_set(POWER_LPM0, debug_ph);
-#endif		
-	}
-	else
-	{	
-		clock_sel = (SSEL0);
-		rate = portACLK_FREQUENCY_HZ / speed;
-#ifdef HAVE_POWERSAVE
-		power_set(POWER_LPM3, debug_ph);
-#endif
-	}
-	
-	
-	U1CTL |= SWRST;
-	P3SEL |= (BIT6|BIT7);
-	P3DIR |= BIT6;					/* Use P3.6 as TX */
-	P3DIR &= ~BIT7;					/* Use P3.7 as RX */
+	portENTER_CRITICAL();
+	/* Enable GPIOA, GPIOD and USART1 clock */
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_USART1  , ENABLE);
 
-	P5DIR &= ~(BIT2|BIT1);	/* SPI pins are hooked into these on micro.4*/
+	/* Configure USART1 Rx (PA.10) as input floating */
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-	U1CTL = CHAR + SWRST;	/* 8N1 */
-	U1TCTL = clock_sel;
+	/* Configure USART1 Tx (PA.09) as alternate function push-pull */
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-	U1MCTL = mod;
+	/* USARTx configured as follow:
+	   - BaudRate = 115200 baud  
+	   - Word Length = 8 Bits
+	   - One Stop Bit
+	   - No parity
+	   - Hardware flow control disabled (RTS and CTS signals)
+	   - Receive and transmit enabled
+	   */
+	USART_InitStructure.USART_BaudRate = speed;
+	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+	USART_InitStructure.USART_StopBits = USART_StopBits_1;
+	USART_InitStructure.USART_Parity = USART_Parity_No;
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 
-	/* Setup baud rate */
-	U1BR0 = (uint8_t) ( rate );
-	rate >>= 8;
-	U1BR1 = (uint8_t) ( rate );
+	USART_Init(USART1, &USART_InitStructure);
+	/* Enable USART1 Receive and Transmit interrupts */
+	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+	USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
 
-	/* Module enable */
-	ME2 |= UTXE1 + URXE1;
-	U1CTL &= ~SWRST;
-	/* IRQ flags */
-	IFG2 |= UTXIFG1;
-	IFG2 &= ~URXIFG1;
-
+	USART_Cmd(USART1,ENABLE);
+		
+	/* Nothing in the buffer yet. */
 	debug_txempty = pdTRUE;
 
 	/* Enable interrupts. */
-	IE2 |= URXIE1 + UTXIE1;
 	portEXIT_CRITICAL();	
 
 	if( debug_tx_lock == NULL )
 	{
 		vSemaphoreCreateBinary( debug_tx_lock );
 	}
-#endif 
 }
 
 /**
@@ -205,13 +165,10 @@ void debug_init(uint32_t speed)
  */
 void debug_close(void)
 {
-#if 0
-	/* Disable interrupts. */
-	IE2 &= ~(URXIE1 + UTXIE1);
-	ME2 &= ~(UTXE1 + URXE1);
+	/* Disable USART. */
+	USART_Cmd(USART1,DISABLE);
 #ifdef HAVE_POWERSAVE
 	power_set(POWER_LPM4, debug_ph);
-#endif
 #endif
 }
 
@@ -316,7 +273,6 @@ int8_t debug_put(uint8_t c)
  */
 int8_t debug_putchar(uint8_t c)
 {
-#if 0
 	int8_t retval = -1;
 	portCHAR status;
 	
@@ -325,7 +281,7 @@ int8_t debug_putchar(uint8_t c)
 	{
 		/* Start TX shifter. */
 		debug_txempty = pdFALSE;
-		U1TXBUF = c;
+  		USART_SendData(USART1, (uint8_t)c);
 		retval = 0;
 	}
 	else
@@ -347,14 +303,13 @@ int8_t debug_putchar(uint8_t c)
 			{
 				xQueueReceive( debug_tx, &c, 0);
 				debug_txempty = pdFALSE;
-				U1TXBUF = c;
+				USART_SendData(USART1, (uint8_t)c);
 			}
 			retval = 0;
 		}
 	}
 	portEXIT_CRITICAL();
 	return retval;
-#endif 
 }
 
 /**
@@ -483,18 +438,33 @@ void debug_address(sockaddr_t *addr)
 	}
 }
 
-/**
- * UART RX interrupt service routine
- * for UART 1
+/*
+ * USART1 ISR
  */
-#if 0
-interrupt (UART1RX_VECTOR) uart1_rxISR( void )
+void bus_rxISR( void );
+void bus_txISR( void );
+
+void __attribute__ ((interrupt)) __cs3_isr_usart1(void)
+{
+    if( USART_GetITStatus(USART1,USART_IT_RXNE) != RESET )
+    {
+	bus_rxISR();
+    }
+    if( USART_GetITStatus(USART1,USART_IT_TXE) != RESET )
+    {
+	bus_txISR();
+    }
+}
+/**
+ * Bus UART RX interrupt.
+ */
+void bus_rxISR( void )
 {
 	uint8_t byte;
 
 	/* Get the character from the UART and post it on the queue of Rxed 
 	characters. */
-	byte = U1RXBUF;
+	byte = USART_ReceiveData(USART1);
 
 	if( xQueueSendFromISR(debug_rx, &byte, pdFALSE ) )
 	{
@@ -506,20 +476,20 @@ interrupt (UART1RX_VECTOR) uart1_rxISR( void )
 #ifdef HAVE_POWERSAVE
 	power_interrupt_epilogue();
 #endif
+
 }
 
 /**
- * UART Tx interrupt service routine.
- * for UART 1
+ * Bus UART Tx interrupt.
  */
-interrupt (UART1TX_VECTOR) uart1_txISR( void )
+void bus_txISR( void )
 {
 	uint8_t byte;
 	portBASE_TYPE task;
 
 	if( xQueueReceiveFromISR( debug_tx, &byte, &task ) == pdTRUE )
 	{
-		U1TXBUF = byte;
+  		USART_SendData(USART1, (uint8_t) byte);
 	}
 	else
 	{
@@ -528,8 +498,8 @@ interrupt (UART1TX_VECTOR) uart1_txISR( void )
 #ifdef HAVE_POWERSAVE
 	power_interrupt_epilogue();
 #endif
+
 }
-#endif
 
 #endif /*HAVE_DEBUG_UART*/
 

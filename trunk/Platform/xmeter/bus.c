@@ -9,6 +9,8 @@
  *	
  */
 
+#include "stm32f10x.h"
+
 #include "FreeRTOS.h"
 #include "queue.h"
 #include "task.h"
@@ -33,9 +35,9 @@
 #define portACLK_FREQUENCY_HZ ( ( unsigned portLONG ) 32768 )
 #endif
 
-void bus_spi_init();
+void bus_spi_init(void);
 
-void bus_uart_init();
+//void bus_uart_init(void);
 
 
 /**
@@ -66,8 +68,8 @@ uint8_t bus_serial[4] = { 0x01, 0x02, 0x03, 0x04 };
 portCHAR bus_init(void)
 {
 	vSemaphoreCreateBinary( bus_lock );
-	bus_spi_init(BUS_STE + BUS_PHASE_INVERT);
-	bus_uart_init();
+	bus_spi_init();
+//	bus_uart_init();
 	return pdTRUE;
 }
 
@@ -170,6 +172,16 @@ uint8_t bus_spi_exchange(uint8_t out)
   return (char)SPI_I2S_ReceiveData(SPI1);
 }
 
+void bus_spi_cs_low(void)
+{
+    GPIO_ResetBits(GPIOA,GPIO_Pin_4);
+}
+
+void bus_spi_cs_high(void)
+{
+    GPIO_SetBits(GPIOA,GPIO_Pin_4);
+}
+
 #if 0
 /**
  * Bus parallel init.
@@ -183,11 +195,6 @@ void bus_par_init(void)
 	P3DIR &= ~0x30; /*UART pins in*/
 	P4DIR = 0x00;		/*data bus in*/
 }
-#endif 
-
-/** Interrupt service routines. */
-//interrupt (UART0RX_VECTOR) bus_rxISR( void );
-//interrupt (UART0TX_VECTOR) bus_txISR( void );
 
 /** The queues for UART  */
 static xQueueHandle bus_rx = 0; 
@@ -384,7 +391,10 @@ void bus_txISR( void )
 		bus_txempty = pdTRUE;
 	}
 }
+#endif 
 
+
+#define NOP __asm__ __volatile__("; nop")
 /**
  * Approximate CPU loop pause.
  *
@@ -396,16 +406,14 @@ void bus_txISR( void )
  
 void pause (uint16_t time)
 {
-#if 0
   uint16_t i, j;
 	
   for (i = 0; i < time; i++)
-		/*configCPU_CLOCK_HZ/1000 = millisec, 8 cycles/loop*/
+    /*configCPU_CLOCK_HZ/1000 = millisec, 8 cycles/loop*/
     for (j = 0; j < (configCPU_CLOCK_HZ/(1000*8)); j++) 
     {
         NOP;
     }
-#endif 
 }
 
 /**
@@ -418,9 +426,8 @@ void pause (uint16_t time)
  */
 void pause_us (uint16_t time)
 {
-#if 0
   uint16_t i;
-  for (i = 1; i < time; i++)
+  for (i = 1; i < 9*time; i++)
 	{
 		NOP;
 		NOP;
@@ -428,7 +435,6 @@ void pause_us (uint16_t time)
 		NOP;
 		NOP;
 	}
-#endif
 }
 
 /* Random value table */

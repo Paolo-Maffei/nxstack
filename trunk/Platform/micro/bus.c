@@ -605,19 +605,6 @@ void bus_1wire_init(void)
 #endif
 }
 
-void bus_irq(void);
-/**
- *  Bus interrupt.
- *
- *	Multiplexed bus interrupt in pin 1.0
- *  Enumeration sequence and execution of handlers.
- *
- *	\todo enumeration and allocation functions missing
- */
-void bus_irq(void)
-{
-}
-
 
 #define NOP __asm__ __volatile__("; nop")
 

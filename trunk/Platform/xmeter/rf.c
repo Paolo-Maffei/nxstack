@@ -1,32 +1,3 @@
-/*
-    NanoStack: MCU software and PC tools for IP-based wireless sensor networking.
-		
-    Copyright (C) 2006-2007 Sensinode Ltd.
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-		Address:
-		Sensinode Ltd.
-		Teknologiantie 6	
-		90570 Oulu, Finland
-
-		E-mail:
-		info@sensinode.com
-*/
-
-
 /**
  *
  * \file rf.c
@@ -239,12 +210,12 @@ typedef enum cc2420_addr_t
 #define CC2420_RSSI_VALID		  (1 << 1)
 
 /*RF SPI mode open and close*/
-#define CC2420_OPEN(x) bus_select(1, BUS_SPI, BUS_STE + BUS_PHASE_INVERT)
+#define CC2420_OPEN(x) bus_select()
 #define CC2420_CLOSE(x) bus_free()
 
 /*These macros control RF select signal and assume correct bus state*/
-#define CC2420_SELECT(x) P3OUT |= 0x01
-#define CC2420_UNSELECT(x) P3OUT &= ~0x01
+#define CC2420_SELECT(x)   bus_spi_cs_low()
+#define CC2420_UNSELECT(x) bus_spi_cs_high();
 
 /*I/O init and status readout macros*/
 #define CC2420_INIT(x) P5DIR &= ~0x70; P1DIR &= ~0x80; P5SEL &= ~0x70; P1SEL &= ~0x80

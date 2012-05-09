@@ -1,4 +1,4 @@
-adc.o: ../../Platform/micro/adc.c \
+bus.o: ../../Platform/micro/bus.c \
   ../../FreeRTOS/Source/include/FreeRTOS.h \
   ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
   ../../FreeRTOS/Source/include/portable.h \
@@ -8,5 +8,4 @@ adc.o: ../../Platform/micro/adc.c \
   ../../FreeRTOS/Source/include/list.h \
   ../../FreeRTOS/Source/include/semphr.h ../../Common/include/debug.h \
   ../../Platform/micro/include/progmem.h ../../Common/include/address.h \
-  ../../Platform/micro/include/adc.h \
-  ../../Platform/micro/include/powersave.h
+  ../../Platform/micro/include/bus.h ../../Platform/micro/include/1wire.h

@@ -1,32 +1,3 @@
-/*
-    NanoStack: MCU software and PC tools for IP-based wireless sensor networking.
-		
-    Copyright (C) 2006-2007 Sensinode Ltd.
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-		Address:
-		Sensinode Ltd.
-		Teknologiantie 6	
-		90570 Oulu, Finland
-
-		E-mail:
-		info@sensinode.com
-*/
-
-
 /**
  *
  * \file bus.h
@@ -40,7 +11,7 @@
 
 #ifndef _MICRO_BUS_H
 #define _MICRO_BUS_H
-
+#if 0
 typedef enum 
 {
 	BUS_GPIO = 0x00,
@@ -64,18 +35,16 @@ typedef enum
 	BUS_CLOCK_4MHZ = 0x60,
 	BUS_SPI_SLAVE = 0x80
 }bus_spi_flags;
-
+#endif /* 0 */
 extern portCHAR bus_init(void);
-extern portCHAR bus_select(uint8_t id, bus_mode mode, uint8_t flags);
+extern portCHAR bus_select(void);
 extern portCHAR bus_free(void);
 
 extern uint8_t bus_spi_exchange(uint8_t out);
+extern void bus_spi_cs_low(void);
+extern void bus_spi_cs_high(void);
 
-typedef enum 
-{
-	BUS_I2C_DEFAULT = 0x00
-}bus_i2c_flags;
-
+#if 0
 typedef enum 
 {
 	BUS_UART_9600 = 0x00,
@@ -90,6 +59,7 @@ typedef enum
 
 extern portCHAR bus_uart_put( uint8_t byte, portTickType blocktime );
 extern portCHAR bus_uart_get( uint8_t *byte, portTickType blocktime );
+#endif /* 0 */
 	
 extern void pause (uint16_t time);
 extern void pause_us (uint16_t time);
