@@ -173,57 +173,57 @@ typedef enum cc2420_addr_t
 #define CC2420_TX_ACTIVE 0x40*/
 
 /*MDMCTRL0 bits*/
-#define CC2420_MC0_RESERVED_FRAME_MODE  0x2000
+#define CC2420_MC0_RESERVED_FRAME_MODE  	0x2000
 #define CC2420_MC0_PAN_COORDINATOR  		0x1000
-#define CC2420_MC0_ADDR_DECODE		  		0x0800
-#define CC2420_MC0_CCA_HYST_MASK	  		0x0700
-#define CC2420_MC0_CCA_MODE_MASK	  		0x00C0
-#define CC2420_MC0_CCA_MODE_RSSI	  		0x0040
+#define CC2420_MC0_ADDR_DECODE		  	0x0800
+#define CC2420_MC0_CCA_HYST_MASK	  	0x0700
+#define CC2420_MC0_CCA_MODE_MASK	  	0x00C0
+#define CC2420_MC0_CCA_MODE_RSSI	  	0x0040
 #define CC2420_MC0_CCA_MODE_802154  		0x0080
-#define CC2420_MC0_CCA_MODE_BOTH	  		0x00C0
-#define CC2420_MC0_AUTOCRC				  		0x0020
-#define CC2420_MC0_AUTOACK				  		0x0010
+#define CC2420_MC0_CCA_MODE_BOTH	  	0x00C0
+#define CC2420_MC0_AUTOCRC		 	0x0020
+#define CC2420_MC0_AUTOACK		 	0x0010
 #define CC2420_MC0_PREAMB_LEN_MASK  		0x000F
 
 /*MDMCTRL1 bits*/
-#define CC2420_MC1_CORR_THR_MASK	  		0x07C0
-#define CC2420_MC1_DEMOD_AVG_MODE	  		0x0020
+#define CC2420_MC1_CORR_THR_MASK	  	0x07C0
+#define CC2420_MC1_DEMOD_AVG_MODE	  	0x0020
 #define CC2420_MC1_MODULATION_MODE  		0x0010
-#define CC2420_MC1_TX_MODE_MASK 	  		0x000C
+#define CC2420_MC1_TX_MODE_MASK 	  	0x000C
 #define CC2420_MC1_TX_MODE_BUFFERED  		0x0000
-#define CC2420_MC1_TX_MODE_SERIAL	  		0x0001
-#define CC2420_MC1_TX_MODE_LOOP 	  		0x0002
-#define CC2420_MC1_RX_MODE_MASK 	  		0x0003
+#define CC2420_MC1_TX_MODE_SERIAL	  	0x0001
+#define CC2420_MC1_TX_MODE_LOOP 	  	0x0002
+#define CC2420_MC1_RX_MODE_MASK 	  	0x0003
 #define CC2420_MC1_RX_MODE_BUFFERED  		0x0000
-#define CC2420_MC1_RX_MODE_SERIAL	  		0x0001
-#define CC2420_MC1_RX_MODE_LOOP 	  		0x0002
+#define CC2420_MC1_RX_MODE_SERIAL	  	0x0001
+#define CC2420_MC1_RX_MODE_LOOP 	  	0x0002
 
 #define CC2420_MDMCTRL1_MODULED_TEST_TX  	0x050c
 
 #define TXCTRL_INIT				0xA0FF
 /* Status byte */
-#define CC2420_XOSC16M_STABLE	(1 << 6)
-#define CC2420_TX_UNDERFLOW		(1 << 5)
+#define CC2420_XOSC16M_STABLE			(1 << 6)
+#define CC2420_TX_UNDERFLOW			(1 << 5)
 #define CC2420_ENC_BUSY				(1 << 4)
 #define CC2420_TX_ACTIVE			(1 << 3)
-#define CC2420_LOCK						(1 << 2)
-#define CC2420_RSSI_VALID		  (1 << 1)
+#define CC2420_LOCK				(1 << 2)
+#define CC2420_RSSI_VALID			(1 << 1)
 
 /*RF SPI mode open and close*/
-#define CC2420_OPEN(x) bus_select()
-#define CC2420_CLOSE(x) bus_free()
+#define CC2420_OPEN(x) 		bus_select()
+#define CC2420_CLOSE(x) 	bus_free()
 
 /*These macros control RF select signal and assume correct bus state*/
-#define CC2420_SELECT(x)   bus_spi_cs_low()
-#define CC2420_UNSELECT(x) bus_spi_cs_high();
+#define CC2420_SELECT(x)   	bus_spi_cs_low()
+#define CC2420_UNSELECT(x) 	bus_spi_cs_high();
 
 /*I/O init and status readout macros*/
-#define CC2420_INIT(x) P5DIR &= ~0x70; P1DIR &= ~0x80; P5SEL &= ~0x70; P1SEL &= ~0x80
+#define CC2420_INIT(x) 		P5DIR &= ~0x70; P1DIR &= ~0x80; P5SEL &= ~0x70; P1SEL &= ~0x80
 
-#define CC2420_FIFO(x) ( (P5IN >> 5) & 1 ) 
-#define CC2420_FIFOP(x) ( (P5IN >> 6) & 1 )
-#define CC2420_CCA(x) ( (P5IN >> 4) & 1 )
-#define CC2420_SFD(x) ( (P1IN >> 7) & 1 )
+#define CC2420_FIFO(x) 		( (P5IN >> 5) & 1 ) 
+#define CC2420_FIFOP(x) 	( (P5IN >> 6) & 1 )
+#define CC2420_CCA(x) 		( (P5IN >> 4) & 1 )
+#define CC2420_SFD(x) 		( (P1IN >> 7) & 1 )
 
 /**
  * State flags.

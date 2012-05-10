@@ -238,13 +238,14 @@ endif
 #stm32 standard lib
 SRC	+= \
 #$(PLATFORM_DIR)/cmsis/core_cm3.c \
-#$(PLATFORM_DIR)/cmsis/system_stm32f10x.c \
+$(PLATFORM_DIR)/cmsis/system_stm32f10x.c \
 $(PLATFORM_DIR)/stdplib/src/stm32f10x_usart.c \
 $(PLATFORM_DIR)/stdplib/src/stm32f10x_spi.c \
 $(PLATFORM_DIR)/stdplib/src/stm32f10x_tim.c \
 $(PLATFORM_DIR)/stdplib/src/stm32f10x_gpio.c \
-$(PLATFORM_DIR)/stdplib/src/stm32f10x_exti.c 
-
+$(PLATFORM_DIR)/stdplib/src/stm32f10x_exti.c \
+$(PLATFORM_DIR)/stdplib/src/stm32f10x_rcc.c \
+$(PLATFORM_DIR)/stdplib/src/misc.c
 #Platform driver section
 SRC	+= \
 $(PLATFORM_DIR)/bus.c \
@@ -254,11 +255,6 @@ $(PLATFORM_DIR)/mac.c
 
 ifeq ($(HAVE_RF_LED),1)
 CFLAGS += -DHAVE_RF_LED 
-endif
-
-ifeq ($(HAVE_1WIRE),1)
-SRC += $(PLATFORM_DIR)/1wire.c 
-CFLAGS += -DHAVE_1WIRE
 endif
 
 ifeq ($(HAVE_RF802_15_4_RAW),1)
