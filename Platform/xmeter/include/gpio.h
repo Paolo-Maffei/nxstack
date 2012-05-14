@@ -52,6 +52,9 @@ extern portCHAR gpio1_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge)
 
 extern portCHAR gpio2_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge);
 
+extern void gpio_irq_enable(uint8_t pin);
+extern void gpio_irq_disable(uint8_t pin);
+
 extern void led_init(void);
 extern void led1_off(void);
 extern void led1_on(void);

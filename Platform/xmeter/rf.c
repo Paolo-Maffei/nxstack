@@ -153,6 +153,7 @@ typedef enum
  CC_REG_TXFIFO           =0x3E,
  CC_REG_RXFIFO           =0x3F
 }cc2420_reg_t;
+
 /*
 typedef enum cc2420_addr_t
 {
@@ -168,6 +169,58 @@ typedef enum cc2420_addr_t
  CC_ADDR_PANID			=0x168,
  CC_ADDR_SHORTADDR		=0x16A
 }cc2420_addr_t;*/
+// Instruction implementation
+typedef enum
+{
+ CC2520_INS_SNOP                =0x00,
+ CC2520_INS_IBUFLD              =0x02,
+ CC2520_INS_SIBUFEX             =0x03,
+ CC2520_INS_SSAMPLECCA          =0x04,
+ CC2520_INS_SRES                =0x0F,
+ CC2520_INS_MEMRD               =0x10,
+ CC2520_INS_MEMWR               =0x20,
+ CC2520_INS_RXBUF               =0x30,
+ CC2520_INS_RXBUFCP             =0x38,
+ CC2520_INS_RXBUFMOV            =0x32,
+ CC2520_INS_TXBUF               =0x3A,
+ CC2520_INS_TXBUFCP             =0x3E,
+ CC2520_INS_RANDOM              =0x3C,
+ CC2520_INS_SXOSCON             =0x40,
+ CC2520_INS_STXCAL              =0x41,
+ CC2520_INS_SRXON               =0x42,
+ CC2520_INS_STXON               =0x43,
+ CC2520_INS_STXONCCA            =0x44,
+ CC2520_INS_SRFOFF              =0x45,
+ CC2520_INS_SXOSCOFF            =0x46,
+ CC2520_INS_SFLUSHRX            =0x47,
+ CC2520_INS_SFLUSHTX            =0x48,
+ CC2520_INS_SACK                =0x49,
+ CC2520_INS_SACKPEND            =0x4A,
+ CC2520_INS_SNACK               =0x4B,
+ CC2520_INS_SRXMASKBITSET       =0x4C,
+ CC2520_INS_SRXMASKBITCLR       =0x4D,
+ CC2520_INS_RXMASKAND           =0x4E,
+ CC2520_INS_RXMASKOR            =0x4F,
+ CC2520_INS_MEMCP               =0x50,
+ CC2520_INS_MEMCPR              =0x52,
+ CC2520_INS_MEMXCP              =0x54,
+ CC2520_INS_MEMXWR              =0x56,
+ CC2520_INS_BCLR                =0x58,
+ CC2520_INS_BSET                =0x59,
+ CC2520_INS_CTR                 =0x60,
+ CC2520_INS_CBCMAC              =0x64,
+ CC2520_INS_UCBCMAC             =0x66,
+ CC2520_INS_CCM                 =0x68,
+ CC2520_INS_UCCM                =0x6A,
+ CC2520_INS_ECB                 =0x70,
+ CC2520_INS_ECBO                =0x72,
+ CC2520_INS_ECBX                =0x74,
+ CC2520_INS_ECBXO               =0x76,
+ CC2520_INS_INC                 =0x78,
+ CC2520_INS_ABORT               =0x7F,
+ CC2520_INS_REGRD               =0x80,
+ CC2520_INS_REGWR               =0xC0,
+}cc2520_command_t;
 
 /*#define CC2420_RSSI_VALID 0x80
 #define CC2420_TX_ACTIVE 0x40*/
@@ -476,7 +529,6 @@ void CC2420_STAT(uint8_t status)
 #endif
 }
 
-
 /**
  * Set RF to receive mode.
  *
@@ -485,17 +537,14 @@ void CC2420_STAT(uint8_t status)
 
 void rx_enable(uint8_t irq_state)
 {
-	CC2420_COMMAND(CC_REG_SRXON);
+	CC2420_COMMAND(CC2520_INS_SRXON);
 	
-	P1IE &= ~0x80;
-#if 0 
-	P1IES &= ~0x80; /*rising edge*/
-#endif
-	P1IES |= 0x80; /*falling edge*/
-
+	//disable rx interrupt
+	gpio_irq_disable();
 	rx_flags &= ~ACTIVE;
-	if (irq_state) P1IE |= 0x80;
-	P1IFG &= ~0x80;
+	//enable rx interrupt
+	if (irq_state) 
+	    gpio_irq_enable();
 	rx_flags |= ACTIVE;
 }
 
