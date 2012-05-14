@@ -159,6 +159,35 @@ portCHAR gpio2_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge)
     exti_isr[1] = (irq_handler_t)isr;
     return pdTRUE;
 }
+void gpio_irq_enable(uint8_t pin)
+{
+/* Configure EXTI0 or EXTI1 line */
+  EXTI_InitTypeDef EXTI_InitStructure;
+  if(1 == pin)
+      EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+  else(2 == pin)
+      EXTI_InitStructure.EXTI_Line = EXTI_Line1;
+  EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+  EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  EXTI_Init(&EXTI_InitStructure);
+}
+
+void gpio_irq_disable(uint8_t pin)
+{
+/* Configure EXTI0 or EXTI1 line */
+  EXTI_InitTypeDef EXTI_InitStructure;
+  if(1 == pin)
+      EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+  else(2 == pin)
+      EXTI_InitStructure.EXTI_Line = EXTI_Line1;
+  EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+  EXTI_InitStructure.EXTI_LineCmd = DISABLE;
+  EXTI_Init(&EXTI_InitStructure);
+}
+
+
 
 void led_init()
 {
