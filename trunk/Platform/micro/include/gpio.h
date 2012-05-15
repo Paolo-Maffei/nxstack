@@ -49,7 +49,7 @@
 
 portCHAR gpio1_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge);
 
-portCHAR gpio2_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge);
+//portCHAR gpio2_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge);
 
 
 #endif /* _MICRO_GPIO_H */
