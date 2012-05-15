@@ -251,7 +251,8 @@ SRC	+= \
 $(PLATFORM_DIR)/bus.c \
 $(PLATFORM_DIR)/gpio.c \
 $(PLATFORM_DIR)/debug.c \
-$(PLATFORM_DIR)/mac.c
+$(PLATFORM_DIR)/mac.c	\
+$(PLATFORM_DIR)/cc2520hal.c
 
 ifeq ($(HAVE_RF_LED),1)
 CFLAGS += -DHAVE_RF_LED 
