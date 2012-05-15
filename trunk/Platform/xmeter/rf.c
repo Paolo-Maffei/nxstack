@@ -337,18 +337,6 @@ uint16_t CC2420_REG_GET(cc2420_reg_t reg)
 }
 
 /**
- * RF SPI reset.
- *
- *
- */
-
-void CC2420_SPI_RESET(void)
-{
-	CC2420_REG_SET(CC_REG_MAIN, 0x0000);
-	CC2420_REG_SET(CC_REG_MAIN, 0xF801);	/*bit 1 activates external clock*/
-}
-
-/**
  * Select RF channel.
  *
  * \param channel channel number to select
@@ -641,25 +629,24 @@ portCHAR rf_init(void)
 	if (CC2420_OPEN() == pdTRUE)
 	{		
 		/*do SPI reset, selects clock*/
-		
- 		CC2420_SPI_RESET();
+  		CC2520_SRES();
 		
 		debug("RF_CC2420: SPI init");
 		j=0;
 		status = 0;
-		while( !(status == CC2420_XOSC16M_STABLE) && (j++ < 3) )
+		while( !(status == CC2520_STB_XOSC_STABLE_BV) && (j++ < 3) )
 		{	
 			debug(".");	
 			/* Reset CC2420 using SPI*/
-  		CC2420_SPI_RESET();
+  			CC2520_SRES();
 	
 			pause(2);
 
 			/* Set oscillator on */
-			CC2420_COMMAND(CC_REG_SXOSCON);	
+			CC2520_INS_STROBE(CC2520_INS_SXOSCON);	
 			pause(2);
 
-			status = CC2420_COMMAND_GET(CC_REG_SNOP);
+			status = CC2520_INS_STROBE(CC2520_INS_SNOP);
 	
 			pause(2);
 	 		/* Wait until oscillator is stable */
@@ -668,9 +655,9 @@ portCHAR rf_init(void)
  			do 
 			{
 				pause(1);
-				status = CC2420_COMMAND_GET(CC_REG_SNOP);
+				status = CC2520_INS_STROBE(CC2520_INS_SNOP);
 				i++;
- 			} while (!(status == CC2420_XOSC16M_STABLE) && (i<20));
+ 			} while (!(status == CC2520_STB_XOSC_STABLE_BV) && (i<20));
 
 		}
 		if (i >= 20)
