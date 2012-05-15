@@ -98,77 +98,6 @@ typedef struct
 	uint8_t 	data[8];
 }rf_ram_access_t;
 
-typedef enum
-{
- CC_REG_SNOP             =0x00,
- CC_REG_SXOSCON          =0x01,
- CC_REG_STXCAL           =0x02,
- CC_REG_SRXON            =0x03,
- CC_REG_STXON            =0x04,
- CC_REG_STXONCCA         =0x05,
- CC_REG_SRFOFF           =0x06,
- CC_REG_SXOSCOFF         =0x07,
- CC_REG_SFLUSHRX         =0x08,
- CC_REG_SFLUSHTX         =0x09,
- CC_REG_SACK             =0x0A,
- CC_REG_SACKPEND         =0x0B,
- CC_REG_SRXDEC           =0x0C,
- CC_REG_STXENC           =0x0D,
- CC_REG_SAES             =0x0E,
-
- CC_REG_MAIN             =0x10,
- CC_REG_MDMCTRL0         =0x11,
- CC_REG_MDMCTRL1         =0x12,
- CC_REG_RSSI             =0x13,
- CC_REG_SYNCWORD         =0x14,
- CC_REG_TXCTRL           =0x15,
- CC_REG_RXCTRL0          =0x16,
- CC_REG_RXCTRL1          =0x17,
- CC_REG_FSCTRL           =0x18,
- CC_REG_SECCTRL0         =0x19,
- CC_REG_SECCTRL1         =0x1A,
- CC_REG_BATTMON          =0x1B,
- CC_REG_IOCFG0           =0x1C,
- CC_REG_IOCFG1           =0x1D,
- CC_REG_MANFIDL          =0x1E,
- CC_REG_MANFIDH          =0x1F,
- CC_REG_FSMTC            =0x20,
- CC_REG_MANAND           =0x21,
- CC_REG_MANOR            =0x22,
- CC_REG_AGCCTRL          =0x23,
- CC_REG_AGCTST0          =0x24,
- CC_REG_AGCTST1          =0x25,
- CC_REG_AGCTST2          =0x26,
- CC_REG_FSTST0           =0x27,
- CC_REG_FSTST1           =0x28,
- CC_REG_FSTST2           =0x29,
- CC_REG_FSTST3           =0x2A,
- CC_REG_RXBPFTST         =0x2B,
- CC_REG_FSMSTATE         =0x2C,
- CC_REG_ADCTST           =0x2D,
- CC_REG_DACTST           =0x2E,
- CC_REG_TOPTST           =0x2F,
- CC_REG_RESERVED         =0x30,
-
- CC_REG_TXFIFO           =0x3E,
- CC_REG_RXFIFO           =0x3F
-}cc2420_reg_t;
-
-/*
-typedef enum cc2420_addr_t
-{
- CC_ADDR_TXFIFO		=0x000,
- CC_ADDR_RXFIFO		=0x080,
- CC_ADDR_KEY0			=0x100,
- CC_ADDR_RXNONCE		=0x110,
- CC_ADDR_SABUF			=0x120,
- CC_ADDR_KEY1			=0x130,
- CC_ADDR_TXNONCE		=0x140,
- CC_ADDR_CBCSTATE		=0x150,
- CC_ADDR_IEEEADDR		=0x160,
- CC_ADDR_PANID			=0x168,
- CC_ADDR_SHORTADDR		=0x16A
-}cc2420_addr_t;*/
 // Instruction implementation
 typedef enum
 {
@@ -255,12 +184,6 @@ typedef enum
 
 #define TXCTRL_INIT				0xA0FF
 /* Status byte */
-#define CC2420_XOSC16M_STABLE			(1 << 6)
-#define CC2420_TX_UNDERFLOW			(1 << 5)
-#define CC2420_ENC_BUSY				(1 << 4)
-#define CC2420_TX_ACTIVE			(1 << 3)
-#define CC2420_LOCK				(1 << 2)
-#define CC2420_RSSI_VALID			(1 << 1)
 
 /*RF SPI mode open and close*/
 #define CC2420_OPEN(x) 		bus_select()
@@ -271,12 +194,12 @@ typedef enum
 #define CC2420_UNSELECT(x) 	bus_spi_cs_high();
 
 /*I/O init and status readout macros*/
-#define CC2420_INIT(x) 		P5DIR &= ~0x70; P1DIR &= ~0x80; P5SEL &= ~0x70; P1SEL &= ~0x80
+#define CC2420_INIT(x) 		//function move to gpio_init()
 
-#define CC2420_FIFO(x) 		( (P5IN >> 5) & 1 ) 
-#define CC2420_FIFOP(x) 	( (P5IN >> 6) & 1 )
-#define CC2420_CCA(x) 		( (P5IN >> 4) & 1 )
-#define CC2420_SFD(x) 		( (P1IN >> 7) & 1 )
+#define CC2420_FIFO(x) 		GPIO_ReadInputDataBit(GPIOC,GPIO_Pin_13) 
+#define CC2420_FIFOP(x) 	GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_1)
+#define CC2420_CCA(x) 		GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)
+#define CC2420_SFD(x) 		GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)
 
 /**
  * State flags.
@@ -441,14 +364,9 @@ int8_t CC2420_CHANNEL_SET(uint8_t channel)
 	/* Channel values: 11-26 */
 	freq = (uint16_t) channel - 11;
 	freq *= 5;	/*channel spacing*/
-	freq += 357; /*correct channel range*/
-	freq |= 0x4000; /*LOCK_THR = 1*/
+	freq += 11; /*correct channel range*/
 	
-	CC2420_SELECT();
-	bus_spi_exchange(CC_REG_FSCTRL);
-	bus_spi_exchange(freq >> 8);
-	bus_spi_exchange((uint8_t) freq);
-	CC2420_UNSELECT();
+	CC2520_REGWR8(CC2520_FREQCTRL,freq);
 	return (int8_t) channel;
 }
 
@@ -472,19 +390,19 @@ int8_t CC2420_CHANNEL_SET(uint8_t channel)
  
 int8_t CC2420_POWER_SET(uint8_t new_power)
 {
+	/*
 	uint16_t power;
 	
 	if (new_power > 100) return -1;
 	
 	power = 31 * new_power;
 	power /= 100;
-	power += 0xA0E0;	/* 0x80e0 has 128us TX calibrate, A0E0 192us */
-		
-	/* Set transmitter power */
-	CC2420_REG_SET(CC_REG_TXCTRL, (uint16_t) power);
+	power += 0xA0E0;	
+	*/
+	/* Set transmitter max power */
+	CC2520_REGWR8(CC2520_TXPOWER,0xF7);
 	
-	tx_power = (int8_t) new_power;
-	return tx_power;
+	return new_power;
 }
 
 /**
@@ -497,34 +415,24 @@ int8_t CC2420_POWER_SET(uint8_t new_power)
 void CC2420_STAT(uint8_t status)
 {
 #ifdef DEBUG
-	if (status & CC2420_XOSC16M_STABLE)
+	if (status & CC2520_STB_XOSC_STABLE_BV)
 	{
 		debug(" OSC");
 	}
 	
-	if (status & CC2420_TX_UNDERFLOW)
+	if (status & CC2520_STB_RSSI_VALID_BV)
 	{
-		debug(" TX_UND");
+		debug(" RSSI_VALID");
 	}
 
-	if (status & CC2420_ENC_BUSY)
+	if (status & CC2520_STB_TX_ACTIVE_BV)
 	{
-		debug(" ENC");
+		debug(" TX_ACTIVE");
 	}
 
-	if (status & CC2420_TX_ACTIVE)
+	if (status & CC2520_STB_RX_ACTIVE_BV)
 	{
-		debug(" TX");
-	}
-	
-	if (status & CC2420_LOCK)
-	{
-		debug(" LOCK");
-	}
-	
-	if (status & CC2420_RSSI_VALID)
-	{
-		debug(" RSSI");
+		debug(" RX_ACTIVE");
 	}
 #endif
 }
@@ -537,7 +445,7 @@ void CC2420_STAT(uint8_t status)
 
 void rx_enable(uint8_t irq_state)
 {
-	CC2420_COMMAND(CC2520_INS_SRXON);
+	CC2520_INS_STROBE(CC2520_INS_SRXON);
 	
 	//disable rx interrupt
 	gpio_irq_disable();
@@ -558,13 +466,12 @@ void rx_disable(void)
 {
 	while (rx_flags & TX_ACK);
 	
-	CC2420_COMMAND(CC_REG_SRFOFF);
-	CC2420_COMMAND(CC_REG_SFLUSHRX);
-	CC2420_COMMAND(CC_REG_SFLUSHRX);
+	CC2520_INS_STROBE(CC2520_INS_SRXOFF);
+	CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
 	timer_rf_stop();
 	rx_flags = 0;
-	P1IE &= ~0x80;
-	P1IFG &= ~0x80;
+	//disable rx interrupt
+	gpio_irq_disable();
 }
 
 /**
@@ -574,8 +481,8 @@ void rx_disable(void)
  */
 void tx_enable(void)
 {
-	P1IE &= ~0x80;
-	P1IFG &= ~0x80;
+	//disable rx interrupt
+	gpio_irq_disable();
 	timer_rf_stop();
 	rx_flags = 0;
 	tx_flags |= ACTIVE;
@@ -656,11 +563,11 @@ void rf_send_ack(uint8_t pending)
 		CC2420_SELECT();
 		if(pending)
 		{
-			CC2420_COMMAND(CC_REG_SACKPEND);
+		    CC2520_INS_STROBE(CC2520_INS_SACKPEND);
 		}
 		else
 		{
-			CC2420_COMMAND(CC_REG_SACK);
+		    CC2520_INS_STROBE(CC2520_INS_SACK);
 		}
 		CC2420_UNSELECT();	
 		CC2420_CLOSE();

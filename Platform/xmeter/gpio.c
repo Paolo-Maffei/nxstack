@@ -95,34 +95,36 @@ void gpio_init()
   NVIC_InitTypeDef NVIC_InitStructure;
   /* Enable GPIOA clock */
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
   
-  /* Configure PA.00 and PA.01 pin as input floating */
+  /* Configure PC13 pin as input floating */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  /* Configure PB0 and PB1 pin as input floating */
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  /* Configure PA1 */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
 
   /* Enable AFIO clock */
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
 
-  /* Connect EXTI0 Line to PA.00 and PA.01  pin */
-  GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource0);
-  GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);
+  /* Connect EXTI1 Line to and PB1  pin */
+  GPIO_EXTILineConfig(GPIO_PortSourceGPIOB, GPIO_PinSource1);
 
-  /* Configure EXTI0 and EXTI1 line */
-  EXTI_InitStructure.EXTI_Line = EXTI_Line0|EXTI_Line1;
+  /* Configure EXTI1 line */
+  EXTI_InitStructure.EXTI_Line = EXTI_Line1;
   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
   EXTI_Init(&EXTI_InitStructure);
 
-  /* Enable and set EXTI0 Interrupt to the lowest priority */
-  NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
-  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-  NVIC_Init(&NVIC_InitStructure);
-  
-    /* Enable and set EXTI1 Interrupt to the lowest priority */
+  /* Enable and set EXTI1 Interrupt to the lowest priority */
   NVIC_InitStructure.NVIC_IRQChannel =  EXTI1_IRQn;
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0E;
@@ -144,6 +146,7 @@ portCHAR gpio1_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge)
     exti_isr[0] = (irq_handler_t)isr;
     return pdTRUE;
 }
+#if 0
 /**
  *  Allocate interrupt in port 2.
  *
@@ -159,14 +162,13 @@ portCHAR gpio2_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge)
     exti_isr[1] = (irq_handler_t)isr;
     return pdTRUE;
 }
+#endif /* 0 */
+
 void gpio_irq_enable(uint8_t pin)
 {
-/* Configure EXTI0 or EXTI1 line */
+/* Configure EXTI1 line */
   EXTI_InitTypeDef EXTI_InitStructure;
-  if(1 == pin)
-      EXTI_InitStructure.EXTI_Line = EXTI_Line0;
-  else(2 == pin)
-      EXTI_InitStructure.EXTI_Line = EXTI_Line1;
+  EXTI_InitStructure.EXTI_Line = EXTI_Line1;
   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
@@ -175,12 +177,9 @@ void gpio_irq_enable(uint8_t pin)
 
 void gpio_irq_disable(uint8_t pin)
 {
-/* Configure EXTI0 or EXTI1 line */
+/* Configure EXTI1 line */
   EXTI_InitTypeDef EXTI_InitStructure;
-  if(1 == pin)
-      EXTI_InitStructure.EXTI_Line = EXTI_Line0;
-  else(2 == pin)
-      EXTI_InitStructure.EXTI_Line = EXTI_Line1;
+  EXTI_InitStructure.EXTI_Line = EXTI_Line1;
   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
   EXTI_InitStructure.EXTI_LineCmd = DISABLE;
