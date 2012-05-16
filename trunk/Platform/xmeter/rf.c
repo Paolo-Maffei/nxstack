@@ -8,6 +8,7 @@
  *	
  */
 
+#include "stm32f10x.h"
  
 #include "FreeRTOS.h"
 #include "queue.h"
@@ -28,6 +29,7 @@
 #include "stack.h"
 #include "mac.h"
 
+#include "cc2520hal.h"
 #include "gpio.h"
 #include "rf.h"
 #include "rf_802_15_4.h"
@@ -99,37 +101,37 @@ typedef struct
 }rf_ram_access_t;
 
 typedef struct {
-    uint8 reg;
-    uint8 val;
+    uint8_t reg;
+    uint8_t val;
 } cc2520_reg_t;
 
 // Recommended register settings which differ from the data sheet
 static cc2520_reg_t cc2520_reg[]= {
     // Tuning settings
-    CC2520_TXPOWER,     0xF7,       // Max TX output power
-    CC2520_CCACTRL0,    0xF8,       // CCA treshold -80dBm
+    { CC2520_TXPOWER,     0xF7 },       // Max TX output power
+    { CC2520_CCACTRL0,    0xF8 },       // CCA treshold -80dBm
     // Recommended RX settings
-    CC2520_MDMCTRL0,    0x85,
-    CC2520_MDMCTRL1,    0x14,
-    CC2520_RXCTRL,      0x3F,
-    CC2520_FSCTRL,      0x5A,
-    CC2520_FSCAL1,      0x03,
+    { CC2520_MDMCTRL0,    0x85 },
+    { CC2520_MDMCTRL1,    0x14 },
+    { CC2520_RXCTRL,      0x3F },
+    { CC2520_FSCTRL,      0x5A },
+    { CC2520_FSCAL1,      0x03 },
 
-    CC2520_AGCCTRL1,    0x11,
-    CC2520_ADCTEST0,    0x10,
-    CC2520_ADCTEST1,    0x0E,
-    CC2520_ADCTEST2,    0x03,
+    { CC2520_AGCCTRL1,    0x11 },
+    { CC2520_ADCTEST0,    0x10 },
+    { CC2520_ADCTEST1,    0x0E },
+    { CC2520_ADCTEST2,    0x03 },
     // Configuration for applications using halRfInit()
-    CC2520_FRMCTRL0,    0x60,               // no Auto-ack
-    CC2520_EXTCLOCK,    0x00,
+    { CC2520_FRMCTRL0,    0x60 },               // no Auto-ack
+    { CC2520_EXTCLOCK,    0x00 },
 
-    CC2520_GPIOCTRL1,   CC2520_GPIO_FIFO,
-    CC2520_GPIOCTRL2,   CC2520_GPIO_FIFOP,
+    { CC2520_GPIOCTRL1,   CC2520_GPIO_FIFO },
+    { CC2520_GPIOCTRL2,   CC2520_GPIO_FIFOP },
 
-    CC2520_GPIOCTRL3,   CC2520_GPIO_CCA,
-    CC2520_GPIOCTRL4,   CC2520_GPIO_SFD,
+    { CC2520_GPIOCTRL3,   CC2520_GPIO_CCA },
+    { CC2520_GPIOCTRL4,   CC2520_GPIO_SFD },
     // Terminate array
-    0,                  0x00
+    { 0,                  0x00 }
 };
 /*#define CC2420_RSSI_VALID 0x80
 #define CC2420_TX_ACTIVE 0x40*/
@@ -178,10 +180,6 @@ uint8_t rf_state(void);
 void rf_config(void);
 void rf_rxflush(void);
 
-void CC2420_COMMAND(uint8_t command);
-uint8_t CC2420_COMMAND_GET(uint8_t command);
-void CC2420_REG_SET(cc2420_reg_t reg, uint16_t data);
-uint16_t CC2420_REG_GET(cc2420_reg_t reg);
 int8_t CC2420_CHANNEL_SET(uint8_t channel);
 int8_t CC2420_POWER_SET(uint8_t new_power);
 void CC2420_STAT(uint8_t status);
@@ -214,76 +212,6 @@ extern void mac_push(buffer_t *b);
 extern sockaddr_t mac_long;
 
 portCHAR rf_mac_get(sockaddr_t *address);
-
-/**
- * RF single byte command.
- *
- * \param command RF command to send
- *
- */
- 
-void CC2420_COMMAND(uint8_t command)  
-{
-	CC2420_SELECT();
-	bus_spi_exchange(command);
-	CC2420_UNSELECT();
-}
-
-/**
- * RF single byte command with return value.
- *
- * \param command RF command to send
- *
- * \return status byte from SPI
- */
- 
-uint8_t CC2420_COMMAND_GET(uint8_t command)  
-{
-	uint8_t value;
-	
-	CC2420_SELECT();
-	value = bus_spi_exchange(command);
-	CC2420_UNSELECT();
-	return value;
-}
-
-
-/**
- * RF register write.
- *
- *
- */
- 
-void CC2420_REG_SET(cc2420_reg_t reg, uint16_t data)
-{
-	uint8_t byte;
-	
-	CC2420_SELECT();
-	bus_spi_exchange((uint8_t) reg & 0x3F);
-	byte = ((uint16_t)data >> 8);
-	bus_spi_exchange((uint8_t) byte);
-	bus_spi_exchange((uint8_t) data);
-	CC2420_UNSELECT();
-}
-
-/**
- * RF register read.
- *
- *
- */
- 
-uint16_t CC2420_REG_GET(cc2420_reg_t reg)
-{
-	uint16_t value;
-	
-	CC2420_SELECT();
-	bus_spi_exchange((uint8_t) reg | 0x40);
-	value = bus_spi_exchange(0);
-	value <<= 8;
-	value |= (uint16_t)bus_spi_exchange(0);
-	CC2420_UNSELECT();
-	return value;
-}
 
 /**
  * Select RF channel.
@@ -385,11 +313,11 @@ void rx_enable(uint8_t irq_state)
 	CC2520_INS_STROBE(CC2520_INS_SRXON);
 	
 	//disable rx interrupt
-	gpio_irq_disable();
+	gpio_irq_disable(1);
 	rx_flags &= ~ACTIVE;
 	//enable rx interrupt
 	if (irq_state) 
-	    gpio_irq_enable();
+	    gpio_irq_enable(1);
 	rx_flags |= ACTIVE;
 }
 
@@ -403,12 +331,12 @@ void rx_disable(void)
 {
 	while (rx_flags & TX_ACK);
 	
-	CC2520_INS_STROBE(CC2520_INS_SRXOFF);
+	CC2520_INS_STROBE(CC2520_INS_SRFOFF);
 	CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
 	timer_rf_stop();
 	rx_flags = 0;
 	//disable rx interrupt
-	gpio_irq_disable();
+	gpio_irq_disable(1);
 }
 
 /**
@@ -419,7 +347,7 @@ void rx_disable(void)
 void tx_enable(void)
 {
 	//disable rx interrupt
-	gpio_irq_disable();
+	gpio_irq_disable(1);
 	timer_rf_stop();
 	rx_flags = 0;
 	tx_flags |= ACTIVE;
