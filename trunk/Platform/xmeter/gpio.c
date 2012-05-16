@@ -143,7 +143,7 @@ void gpio_init()
  */
 portCHAR gpio1_irq_allocate(uint8_t pin, void (*isr)(void), uint8_t edge)
 {
-    exti_isr[0] = (irq_handler_t)isr;
+    exti_isr[1] = (irq_handler_t)isr;
     return pdTRUE;
 }
 #if 0
