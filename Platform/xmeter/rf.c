@@ -42,7 +42,7 @@
 #endif
 
 #ifndef RF_DEFAULT_CHANNEL
-#define RF_DEFAULT_CHANNEL 18
+#define RF_DEFAULT_CHANNEL 26
 #endif
 
 #ifdef HAVE_RF_LED
@@ -98,92 +98,41 @@ typedef struct
 	uint8_t 	data[8];
 }rf_ram_access_t;
 
-// Instruction implementation
-typedef enum
-{
- CC2520_INS_SNOP                =0x00,
- CC2520_INS_IBUFLD              =0x02,
- CC2520_INS_SIBUFEX             =0x03,
- CC2520_INS_SSAMPLECCA          =0x04,
- CC2520_INS_SRES                =0x0F,
- CC2520_INS_MEMRD               =0x10,
- CC2520_INS_MEMWR               =0x20,
- CC2520_INS_RXBUF               =0x30,
- CC2520_INS_RXBUFCP             =0x38,
- CC2520_INS_RXBUFMOV            =0x32,
- CC2520_INS_TXBUF               =0x3A,
- CC2520_INS_TXBUFCP             =0x3E,
- CC2520_INS_RANDOM              =0x3C,
- CC2520_INS_SXOSCON             =0x40,
- CC2520_INS_STXCAL              =0x41,
- CC2520_INS_SRXON               =0x42,
- CC2520_INS_STXON               =0x43,
- CC2520_INS_STXONCCA            =0x44,
- CC2520_INS_SRFOFF              =0x45,
- CC2520_INS_SXOSCOFF            =0x46,
- CC2520_INS_SFLUSHRX            =0x47,
- CC2520_INS_SFLUSHTX            =0x48,
- CC2520_INS_SACK                =0x49,
- CC2520_INS_SACKPEND            =0x4A,
- CC2520_INS_SNACK               =0x4B,
- CC2520_INS_SRXMASKBITSET       =0x4C,
- CC2520_INS_SRXMASKBITCLR       =0x4D,
- CC2520_INS_RXMASKAND           =0x4E,
- CC2520_INS_RXMASKOR            =0x4F,
- CC2520_INS_MEMCP               =0x50,
- CC2520_INS_MEMCPR              =0x52,
- CC2520_INS_MEMXCP              =0x54,
- CC2520_INS_MEMXWR              =0x56,
- CC2520_INS_BCLR                =0x58,
- CC2520_INS_BSET                =0x59,
- CC2520_INS_CTR                 =0x60,
- CC2520_INS_CBCMAC              =0x64,
- CC2520_INS_UCBCMAC             =0x66,
- CC2520_INS_CCM                 =0x68,
- CC2520_INS_UCCM                =0x6A,
- CC2520_INS_ECB                 =0x70,
- CC2520_INS_ECBO                =0x72,
- CC2520_INS_ECBX                =0x74,
- CC2520_INS_ECBXO               =0x76,
- CC2520_INS_INC                 =0x78,
- CC2520_INS_ABORT               =0x7F,
- CC2520_INS_REGRD               =0x80,
- CC2520_INS_REGWR               =0xC0,
-}cc2520_command_t;
+typedef struct {
+    uint8 reg;
+    uint8 val;
+} cc2520_reg_t;
 
+// Recommended register settings which differ from the data sheet
+static cc2520_reg_t cc2520_reg[]= {
+    // Tuning settings
+    CC2520_TXPOWER,     0xF7,       // Max TX output power
+    CC2520_CCACTRL0,    0xF8,       // CCA treshold -80dBm
+    // Recommended RX settings
+    CC2520_MDMCTRL0,    0x85,
+    CC2520_MDMCTRL1,    0x14,
+    CC2520_RXCTRL,      0x3F,
+    CC2520_FSCTRL,      0x5A,
+    CC2520_FSCAL1,      0x03,
+
+    CC2520_AGCCTRL1,    0x11,
+    CC2520_ADCTEST0,    0x10,
+    CC2520_ADCTEST1,    0x0E,
+    CC2520_ADCTEST2,    0x03,
+    // Configuration for applications using halRfInit()
+    CC2520_FRMCTRL0,    0x60,               // no Auto-ack
+    CC2520_EXTCLOCK,    0x00,
+
+    CC2520_GPIOCTRL1,   CC2520_GPIO_FIFO,
+    CC2520_GPIOCTRL2,   CC2520_GPIO_FIFOP,
+
+    CC2520_GPIOCTRL3,   CC2520_GPIO_CCA,
+    CC2520_GPIOCTRL4,   CC2520_GPIO_SFD,
+    // Terminate array
+    0,                  0x00
+};
 /*#define CC2420_RSSI_VALID 0x80
 #define CC2420_TX_ACTIVE 0x40*/
-
-/*MDMCTRL0 bits*/
-#define CC2420_MC0_RESERVED_FRAME_MODE  	0x2000
-#define CC2420_MC0_PAN_COORDINATOR  		0x1000
-#define CC2420_MC0_ADDR_DECODE		  	0x0800
-#define CC2420_MC0_CCA_HYST_MASK	  	0x0700
-#define CC2420_MC0_CCA_MODE_MASK	  	0x00C0
-#define CC2420_MC0_CCA_MODE_RSSI	  	0x0040
-#define CC2420_MC0_CCA_MODE_802154  		0x0080
-#define CC2420_MC0_CCA_MODE_BOTH	  	0x00C0
-#define CC2420_MC0_AUTOCRC		 	0x0020
-#define CC2420_MC0_AUTOACK		 	0x0010
-#define CC2420_MC0_PREAMB_LEN_MASK  		0x000F
-
-/*MDMCTRL1 bits*/
-#define CC2420_MC1_CORR_THR_MASK	  	0x07C0
-#define CC2420_MC1_DEMOD_AVG_MODE	  	0x0020
-#define CC2420_MC1_MODULATION_MODE  		0x0010
-#define CC2420_MC1_TX_MODE_MASK 	  	0x000C
-#define CC2420_MC1_TX_MODE_BUFFERED  		0x0000
-#define CC2420_MC1_TX_MODE_SERIAL	  	0x0001
-#define CC2420_MC1_TX_MODE_LOOP 	  	0x0002
-#define CC2420_MC1_RX_MODE_MASK 	  	0x0003
-#define CC2420_MC1_RX_MODE_BUFFERED  		0x0000
-#define CC2420_MC1_RX_MODE_SERIAL	  	0x0001
-#define CC2420_MC1_RX_MODE_LOOP 	  	0x0002
-
-#define CC2420_MDMCTRL1_MODULED_TEST_TX  	0x050c
-
-#define TXCTRL_INIT				0xA0FF
-/* Status byte */
 
 /*RF SPI mode open and close*/
 #define CC2420_OPEN(x) 		bus_select()
@@ -667,18 +616,19 @@ portCHAR rf_init(void)
 			CC2420_CLOSE();
 			return pdFALSE;
 		}
-		
+
 		retval = pdTRUE;
-		CC2420_REG_SET(CC_REG_MDMCTRL0, 0x02e2); //0x02e2 earlie
- 		CC2420_REG_SET(CC_REG_MDMCTRL1, 0x0500); // Set the correlation threshold = 20    
-
- 		CC2420_REG_SET(CC_REG_IOCFG0, 0x007F);   // Set the FIFOP threshold to maximum 
- 		CC2420_REG_SET(CC_REG_SECCTRL0, 0x01C4); // Turn off "Security enable"
-
+		cc2520_reg_t* p = cc2520_reg;
+		    // Write non-default register values
+		while (p->reg!=0) {
+		    CC2520_MEMWR8(p->reg,p->val);
+			p++;
+		}
+		
 		/* get ID for MAC */
-		rf_manfid = CC2420_REG_GET(CC_REG_MANFIDH);
-		rf_manfid <<= 16;		
-		rf_manfid += (uint32_t) CC2420_REG_GET(CC_REG_MANFIDL);
+		rf_manfid = CC2520_MEMRD8(CC2520_CHIPID);
+		rf_manfid <<= 8;		
+		rf_manfid += (uint8_t) CC2520_MEMRD8(CC2520_VERSION);
 
 		CC2420_CHANNEL_SET(RF_DEFAULT_CHANNEL);
 
@@ -688,12 +638,12 @@ portCHAR rf_init(void)
 
 		CC2420_UNSELECT();  	/*CS up*/
 	
-		gpio1_irq_allocate(7, rf_isr, 0);
+		gpio1_irq_allocate(1, rf_isr, 0);
 				
 		debug("RF_CC2420: Init complete.\r\n");		
 		retval = pdTRUE;
 		
-		CC2420_COMMAND(CC_REG_SFLUSHTX);
+		CC2520_INS_STROBE(CC2520_INS_SFLUSHTX);
 		tx_flags = 0;
 		
 		while(CC2420_SFD());

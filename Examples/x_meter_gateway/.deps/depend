@@ -133,6 +133,9 @@
  ../../Common/include/rf_802_15_4.h ../../Platform/xmeter/include/rf.h \
  ../../Common/include/neighbor_routing_table.h ../../Common/include/mac.h \
  ../../Common/include/rf_802_15_4.h
+.objs/build/root/x_meter_gateway/../../Platform/xmeter/cc2520hal.o: ../../Platform/xmeter/cc2520hal.c \
+ ../../Platform/xmeter/include/sys/inttypes.h \
+ ../../Platform/xmeter/include/cc2520hal.h
 .objs/build/root/x_meter_gateway/../../Platform/xmeter/timer.o: ../../Platform/xmeter/timer.c \
  ../../FreeRTOS/Source/include/FreeRTOS.h \
  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
