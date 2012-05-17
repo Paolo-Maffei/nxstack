@@ -33,7 +33,10 @@ int main( void )
     	//init stm32 clock
     	SystemInit();
 
+	debug_printf("system initialized,init gpio\n");
 	gpio_init();
+
+	debug_printf("gpio initialized,init led\n");
 	LED_INIT();
 	if (bus_init() == pdFALSE)
 	{
