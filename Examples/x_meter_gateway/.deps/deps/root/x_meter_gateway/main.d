@@ -1,4 +1,5 @@
-.objs/build/root/x_meter_gateway/./main.o: main.c ../../FreeRTOS/Source/include/FreeRTOS.h \
+.objs/build/root/x_meter_gateway/./main.o: main.c ../../Platform/xmeter/include/sys/inttypes.h \
+ ../../FreeRTOS/Source/include/FreeRTOS.h \
  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
  ../../FreeRTOS/Source/include/portable.h \
  ../../Platform/xmeter/portmacro.h ../../FreeRTOS/Source/include/task.h \
@@ -6,9 +7,19 @@
  ../../FreeRTOS/Source/include/queue.h \
  ../../FreeRTOS/Source/include/semphr.h \
  ../../FreeRTOS/Source/include/queue.h \
+ ../../Platform/xmeter/cmsis/stm32f10x.h \
+ ../../Platform/xmeter/cmsis/core_cm3.h \
+ ../../Platform/xmeter/cmsis/system_stm32f10x.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_conf.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_exti.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_gpio.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_rcc.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_spi.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_tim.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_usart.h \
+ ../../Platform/xmeter/stdplib/inc/misc.h \
  ../../Platform/xmeter/include/bus.h ../../Platform/xmeter/include/gpio.h \
  ../../Common/include/debug.h ../../Platform/xmeter/include/progmem.h \
- ../../Platform/xmeter/include/sys/inttypes.h \
  ../../Common/include/address.h ../../Common/include/socket.h \
  ../../Common/include/stack.h ../../Common/include/buffer.h module_id.h \
  ../../Common/include/module.h modules_conf.h \
