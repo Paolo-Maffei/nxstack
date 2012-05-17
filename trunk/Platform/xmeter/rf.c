@@ -594,23 +594,22 @@ portCHAR rf_init(void)
 
 portCHAR rf_ram_set(rf_ram_access_t *ram_access)
 {
-	uint8_t status, counter, i, byte, byte2;
+	uint8_t status, counter;
 	portCHAR retval = pdFALSE;
-	
+
 	if (CC2420_OPEN() == pdTRUE)
 	{						
 		debug("RF_CC2420: Open.\r\n");
 		CC2420_SELECT();
-		CC2420_COMMAND(CC_REG_SXOSCON);
+		CC2520_INS_STROBE(CC2520_INS_SXOSCON);
 		pause(2);	
-		status = CC2420_COMMAND_GET(CC_REG_SNOP);
+		status = CC2520_INS_STROBE(CC2520_INS_SNOP);
 		counter = 0;
-		do
-		{
+		do{
 			pause(1);
-			status = CC2420_COMMAND_GET(CC_REG_SNOP);
-		}while (!(status & CC2420_XOSC16M_STABLE) && (counter++ < 20)); 
-		if (!(status & CC2420_XOSC16M_STABLE))
+			status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+		}while (!(status & CC2520_STB_XOSC_STABLE_BV) && (counter++ < 20)); 
+		if (!(status & CC2520_STB_XOSC_STABLE_BV))
 		{
 			CC2420_STAT(status);		
 			debug("RF_CC2420: CO never stabil.\r\n");
@@ -618,46 +617,26 @@ portCHAR rf_ram_set(rf_ram_access_t *ram_access)
 		}
 		else
 		{
-			byte2 =0x80;
 			CC2420_UNSELECT();
 			switch(ram_access->address)
 			{
 				case  CC_ADDR_IEEEADDR:
-					
-					byte=0xe0;
+					/* Set ext_ieee address */
 					CC2420_SELECT();
-					/* Send ram access address */
-					bus_spi_exchange((uint8_t) byte);
-					bus_spi_exchange((uint8_t) byte2);
-					for(i=0; i< 8; i++)
-					{
-						bus_spi_exchange(ram_access->data[i]);
-					}
+					CC2520_MEMWR(0x3ea, 8, ram_access->data);
 					CC2420_UNSELECT();
 					break;
 
 				case CC_ADDR_PANID:
-					byte=0xe8;
+					/* Set panid address */
 					CC2420_SELECT();
-					/* Send ram access address */
-					bus_spi_exchange((uint8_t) byte);
-					bus_spi_exchange((uint8_t) byte2);
-					for(i=0; i< 2; i++)
-					{
-						bus_spi_exchange(ram_access->data[i]);
-					}
+					CC2520_MEMWR(0x3f2, 2, ram_access->data);
 					CC2420_UNSELECT();
 					break;
 				case CC_ADDR_SHORTADDR:
-					byte=0xeA;
+					/* Set shortaddr address */
 					CC2420_SELECT();
-					/* Send ram access address */
-					bus_spi_exchange((uint8_t) byte);
-					bus_spi_exchange((uint8_t) byte2);
-					for(i=0; i< 2; i++)
-					{
-						bus_spi_exchange(ram_access->data[i]);
-					}
+					CC2520_MEMWR(0x3f4, 2, ram_access->data);
 					CC2420_UNSELECT();
 					break;
 
@@ -832,25 +811,22 @@ portCHAR rf_address_decoder_mode(rf_address_mode_t mode)
 {
 	uint8_t status, counter;
 	portCHAR retval = pdFALSE;
-	
 	if (CC2420_OPEN() == pdTRUE)
 	{						
 		debug("RF_CC2420: Open.\r\n");
 		CC2420_SELECT();
-		CC2420_COMMAND(CC_REG_SXOSCON);
-		pause(2);
-
-		status = CC2420_COMMAND_GET(CC_REG_SNOP);
+		CC2520_INS_STROBE(CC2520_INS_SXOSCON);
+		pause(2);	
+		status = CC2520_INS_STROBE(CC2520_INS_SNOP);
 		counter = 0;
-		do
-		{
+		do{
 			pause(1);
-			status = CC2420_COMMAND_GET(CC_REG_SNOP);
-		}while (!(status & CC2420_XOSC16M_STABLE) && (counter++ < 20)); 
-		if (!(status & CC2420_XOSC16M_STABLE))
+			status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+		}while (!(status & CC2520_STB_XOSC_STABLE_BV) && (counter++ < 20)); 
+		if (!(status & CC2520_STB_XOSC_STABLE_BV))
 		{
-			CC2420_STAT(status);
-			debug("RF_CC2420: CO never stable.\r\n");
+			CC2420_STAT(status);		
+			debug("RF_CC2420: CO never stabil.\r\n");
 			retval = pdFALSE;
 		}
 		else
@@ -859,16 +835,19 @@ portCHAR rf_address_decoder_mode(rf_address_mode_t mode)
 			{
 #ifndef HAVE_NRP
 				case RF_DECODER_COORDINATOR:
-					CC2420_REG_SET(CC_REG_MDMCTRL0, 0x1AF2);	/*Coordinator, Addres-decode, NO AUTO ACK=E */
-					CC2420_REG_SET(CC_REG_IOCFG0, 0x087f);		/* Enable receive beacon if address decoder is enabled */
+//				        CC2520_REGWR8(CC2520_FRMFILT0, 0x0F)
+//					CC2420_REG_SET(CC_REG_MDMCTRL0, 0x1AF2);	/*Coordinator, Addres-decode, NO AUTO ACK=E */
+//					CC2420_REG_SET(CC_REG_IOCFG0, 0x087f);		/* Enable receive beacon if address decoder is enabled */
 					break;
 				case RF_DECODER_ON:
-					CC2420_REG_SET(CC_REG_MDMCTRL0, 0x0AF2);	/*Addres-decode, AUTO ACK */
-					CC2420_REG_SET(CC_REG_IOCFG0, 0x087f);		/* Enable receive beacon if address decoder is enabled */
+//					CC2420_REG_SET(CC_REG_MDMCTRL0, 0x0AF2);	/*Addres-decode, AUTO ACK */
+//					CC2420_REG_SET(CC_REG_IOCFG0, 0x087f);		/* Enable receive beacon if address decoder is enabled */
 					break;
 #endif
-				default:
-					CC2420_REG_SET(CC_REG_MDMCTRL0, 0x02E2);
+				default: //set to rf_init status
+					CC2520_REGWR8(CC2520_MDMCTRL0,0x85);
+					CC2520_REGWR8(CC2520_MDMCTRL1,0x14); 
+					CC2520_REGWR8(CC2520_FRMCTRL0,0x60);
 					break;
 			}
 			retval = pdTRUE;
