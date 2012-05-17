@@ -835,18 +835,19 @@ portCHAR rf_address_decoder_mode(rf_address_mode_t mode)
 			{
 #ifndef HAVE_NRP
 				case RF_DECODER_COORDINATOR:
-//				        CC2520_REGWR8(CC2520_FRMFILT0, 0x0F)
-//					CC2420_REG_SET(CC_REG_MDMCTRL0, 0x1AF2);	/*Coordinator, Addres-decode, NO AUTO ACK=E */
-//					CC2420_REG_SET(CC_REG_IOCFG0, 0x087f);		/* Enable receive beacon if address decoder is enabled */
+				        CC2520_REGWR8(CC2520_FRMFILT0,0x0F); //coordinator
+				        CC2520_REGWR8(CC2520_FRMFILT1,0x78); //enable receive beacon
+					CC2520_REGWR8(CC2520_FRMCTRL0,0x60);//no auto ack
 					break;
 				case RF_DECODER_ON:
-//					CC2420_REG_SET(CC_REG_MDMCTRL0, 0x0AF2);	/*Addres-decode, AUTO ACK */
-//					CC2420_REG_SET(CC_REG_IOCFG0, 0x087f);		/* Enable receive beacon if address decoder is enabled */
+				        CC2520_REGWR8(CC2520_FRMFILT0,0x0D);	//Addres-decode, AUTO ACK 
+				        CC2520_REGWR8(CC2520_FRMFILT1,0x78);	// Enable receive beacon 
+					CC2520_REGWR8(CC2520_FRMCTRL0,0x70);    //auto ack
 					break;
 #endif
 				default: //set to rf_init status
-					CC2520_REGWR8(CC2520_MDMCTRL0,0x85);
-					CC2520_REGWR8(CC2520_MDMCTRL1,0x14); 
+					CC2520_REGWR8(CC2520_FRMFILT0,0x0D);	//Addres-decode, AUTO ACK 
+				        CC2520_REGWR8(CC2520_FRMFILT1,0x78);	// Enable receive beacon 
 					CC2520_REGWR8(CC2520_FRMCTRL0,0x60);
 					break;
 			}
@@ -876,16 +877,16 @@ int8_t rf_analyze_rssi(void)
 	if (CC2420_OPEN() == pdTRUE)
 	{						
 		debug("RF_CC2420: Open.\r\n");
-		CC2420_COMMAND(CC_REG_SRXON);
+		CC2520_INS_STROBE(CC2520_INS_SRXON);
 
-		status = CC2420_COMMAND_GET(CC_REG_SNOP);
+		status = CC2520_INS_STROBE(CC2520_INS_SNOP);
 		counter = 0;
 		do
 		{
-			status = CC2420_COMMAND_GET(CC_REG_SNOP);
-			status = CC2420_COMMAND_GET(CC_REG_SNOP);
-		}while (!(status & CC2420_RSSI_VALID) && (counter++ < 130)); 
-		if (!(status & CC2420_RSSI_VALID))
+			status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+			status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+		}while (!(status & CC2520_STB_RSSI_VALID_BV) && (counter++ < 130)); 
+		if (!(status & CC2520_STB_RSSI_VALID_BV))
 		{
 			CC2420_STAT(status);
 			debug("RF_CC2420: RSSI never valid.\r\n");
@@ -895,7 +896,7 @@ int8_t rf_analyze_rssi(void)
 		{
 			for(i=0; i<8; i++)
 			{
-				temp = (int8_t)CC2420_REG_GET(CC_REG_RSSI);
+				temp = (int8_t)CC2520_REGRD8(CC2520_RSSI);
 				temp -= 45;
 				sum += (int16_t)temp;
 				pause_us(16);				/* waiting one symbol period */
@@ -922,16 +923,16 @@ portCHAR rf_cca_check(uint8_t backoff_count, uint8_t slotted)
 
 	if (CC2420_OPEN() == pdTRUE)
 	{
-		CC2420_COMMAND(CC_REG_SRXON);
+		CC2520_INS_STROBE(CC2520_INS_SRXON);
 
-		status = CC2420_COMMAND_GET(CC_REG_SNOP);
+		status = CC2520_INS_STROBE(CC2520_INS_SNOP);
 		counter = 0;
 		do
 		{
-			status = CC2420_COMMAND_GET(CC_REG_SNOP);
-			status = CC2420_COMMAND_GET(CC_REG_SNOP);
-		}while (!(status & CC2420_RSSI_VALID) && (counter++ < 130)); 
-		if (!(status & CC2420_RSSI_VALID))
+			status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+			status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+		}while (!(status & CC2520_STB_RSSI_VALID_BV) && (counter++ < 130)); 
+		if (!(status & CC2520_STB_RSSI_VALID_BV))
 		{
 			CC2420_STAT(status);
 			debug("RF_CC2420: RSSI never valid.\r\n");
@@ -1003,88 +1004,62 @@ portCHAR rf_write(buffer_t *buffer)
 
 	if (CC2420_OPEN() == pdTRUE)
 	{
-		CC2420_COMMAND(CC_REG_SFLUSHTX);
-		status = CC2420_COMMAND_GET(CC_REG_SNOP);
+		CC2520_INS_STROBE(CC2520_INS_SFLUSHTX);
+		status = CC2520_INS_STROBE(CC2520_INS_SNOP);
 		counter = 0;
 		do
 		{
-			status = CC2420_COMMAND_GET(CC_REG_SNOP);
-			status = CC2420_COMMAND_GET(CC_REG_SNOP);
-		}while (!(status & CC2420_RSSI_VALID) && (counter++ < 130));
-
-		/*CC2420_SELECT();
-		bus_spi_exchange((cc2420_reg_t) CC_REG_TXFIFO);
-
-		bus_spi_exchange(length+2);
-				
-		status = 0;
-		for (i = buffer->buf_ptr; i < (buffer->buf_ptr+length) ; i++)
-		{
-			bus_spi_exchange(buffer->buf[i]);
-			if (!CC2420_CCA() || (rx_flags & TX_ACK))
-			{
-				i = 250;
-				status = 1;
-			}
-		}
-		
-		if (status)
-		{
-			CC2420_UNSELECT();
-			CC2420_COMMAND(CC_REG_SFLUSHTX);
-			CC2420_CLOSE();
-			return pdFALSE;
-			//return pdTRUE+1;
-		}
-		bus_spi_exchange(0);
-		bus_spi_exchange(0);
-		CC2420_UNSELECT();*/
+		    status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+		    status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+		}while (!(status & CC2520_STB_RSSI_VALID_BV) && (counter++ < 130));
 
 		tx_enable();
+
 		i= 0;
 		while (i++ < 3)
 		{
-			CC2420_COMMAND(CC_REG_STXONCCA);
+			CC2520_INS_STROBE(CC2520_INS_STXONCCA);
 			counter = 0;	
 			do
 			{
-				status = CC2420_COMMAND_GET(CC_REG_SNOP);
-				status = CC2420_COMMAND_GET(CC_REG_SNOP);
-			}while ( !(status & CC2420_TX_ACTIVE)  && (counter++ < 130)); 
-			if (status & CC2420_TX_ACTIVE) i = 200;
+				status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+				status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+			}while ( !(status & CC2520_STB_TX_ACTIVE_BV)  && (counter++ < 130)); 
+
+			if (status & CC2520_STB_TX_ACTIVE_BV) 
+			    i = 200;
 		}
 
-		if (!(status & CC2420_TX_ACTIVE))
+		if (!(status & CC2520_STB_TX_ACTIVE_BV))
 		{
 			CC2420_STAT(status);
-			//CC2420_COMMAND(CC_REG_SFLUSHTX);
 			retval = pdFALSE;
 		}
 
 		if (retval == pdTRUE)
 		{
 			RF_TX_LED_ON();
+			//write data to txfifo
 			CC2420_SELECT();
-			bus_spi_exchange((cc2420_reg_t) CC_REG_TXFIFO);
-			bus_spi_exchange(length+2);
+			CC2520_SPI_TXRX(CC2520_INS_TXBUF);
+			CC2520_SPI_TXRX(length+2);
 				
 			for (i = buffer->buf_ptr; i < (buffer->buf_ptr+length) ; i++)
 			{
-				bus_spi_exchange(buffer->buf[i]);
+				CC2520_SPI_TXRX(buffer->buf[i]);
 			}
-			bus_spi_exchange(0);
-			bus_spi_exchange(0);
+			CC2520_SPI_TXRX(0);
+			CC2520_SPI_TXRX(0);
 			CC2420_UNSELECT();
+			CC2520_INS_STROBE(CC2520_INS_STXONCCA);
 			while (!CC2420_SFD())
 			{
 			}
-
 			while (CC2420_SFD())
 			{ /*wait for transmit to complete*/
 			}
 		}
 
-		//while(CC2420_SFD());
 		tx_flags = 0;
 		rx_enable(1);
 		CC2420_CLOSE();
@@ -1123,8 +1098,8 @@ portCHAR rf_write_no_cca(buffer_t *buffer)
 			{
 				if (CC2420_FIFOP())
 				{
-					CC2420_COMMAND(CC_REG_SFLUSHTX);
-					CC2420_COMMAND(CC_REG_SFLUSHRX);
+					CC2520_INS_STROBE(CC2520_INS_SFLUSHTX);
+					CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
 				}
 				
 				retval = pdFALSE;		
@@ -1135,26 +1110,25 @@ portCHAR rf_write_no_cca(buffer_t *buffer)
 		{
 
 			CC2420_SELECT();
-			bus_spi_exchange((cc2420_reg_t) CC_REG_TXFIFO);
-
-			bus_spi_exchange(length+2); 
+			CC2520_SPI_TXRX(CC2520_INS_TXBUF);
+			CC2520_SPI_TXRX(length+2);
 
 			for (i = buffer->buf_ptr; i < (buffer->buf_ptr+length) ; i++)
 			{
-				bus_spi_exchange(buffer->buf[i]);
+				CC2520_SPI_TXRX(buffer->buf[i]);
 			}
-			bus_spi_exchange(0);
-			bus_spi_exchange(0);
+			CC2520_SPI_TXRX(0);
+			CC2520_SPI_TXRX(0);
 			CC2420_UNSELECT();
-			CC2420_COMMAND(CC_REG_STXON);
+			CC2520_INS_STROBE(CC2520_INS_STXON);
 			counter = 0;	
 			do
 			{
-				status = CC2420_COMMAND_GET(CC_REG_SNOP);
-				status = CC2420_COMMAND_GET(CC_REG_SNOP);
-			}while ( !(status & CC2420_TX_ACTIVE)  && (counter++ < 200));
+				status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+				status = CC2520_INS_STROBE(CC2520_INS_SNOP);
+			}while ( !(status & CC2520_STB_TX_ACTIVE_BV)  && (counter++ < 200));
 
-			if (status & CC2420_TX_ACTIVE)
+			if (status & CC2520_STB_TX_ACTIVE_BV)
 			{
 				RF_TX_LED_ON();
 				while (!CC2420_SFD())
@@ -1164,12 +1138,12 @@ portCHAR rf_write_no_cca(buffer_t *buffer)
 				while (CC2420_SFD())
 				{ /*wait for transmit to complete*/
 				}
-				CC2420_COMMAND(CC_REG_SFLUSHTX);
+				CC2520_INS_STROBE(CC2520_INS_SFLUSHTX);
 			}
 			else
 			{
 				CC2420_STAT(status);
-				CC2420_COMMAND(CC_REG_SFLUSHTX);
+				CC2520_INS_STROBE(CC2520_INS_SFLUSHTX);
 
 				retval = pdFALSE;
 			}
@@ -1232,8 +1206,8 @@ void rf_rxflush(void)
 {
 	if (CC2420_OPEN() == pdTRUE)
 	{		
-		CC2420_COMMAND(CC_REG_SFLUSHRX);
-		CC2420_COMMAND(CC_REG_SFLUSHRX);
+		CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
+		CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
 		
 		CC2420_CLOSE();
 	}
@@ -1296,9 +1270,10 @@ void rf_rx_callback( void *param )
 			return;
 		}
 		RF_RX_LED_ON();
+
 		CC2420_SELECT();
-		bus_spi_exchange((cc2420_reg_t) CC_REG_RXFIFO | 0x40); /*read bit up!*/
-		length = bus_spi_exchange(0) & 0x7F;
+		CC2520_SPI_TXRX(CC2520_INS_RXBUF);
+		length = ( CC2520_SPI_TXRX(0) & 0x7F );
 		if( length < 128 && length > 4)
 		{
 			length -= 2;
@@ -1306,11 +1281,11 @@ void rf_rx_callback( void *param )
 			rf_buf->buf_end = length;
 			for (i=0; i < length ; i++)
 			{
-				rf_buf->buf[i] = bus_spi_exchange(0);	
+				rf_buf->buf[i] = CC2520_SPI_TXRX(0);	
 			}
 
-			rf_buf->options.rf_dbm = ((int8_t) bus_spi_exchange(0)) - 45;
-			rf_buf->options.rf_lqi = bus_spi_exchange(0);
+			rf_buf->options.rf_dbm = ((int8_t) CC2520_SPI_TXRX(0)) - 45;
+			rf_buf->options.rf_lqi = CC2520_SPI_TXRX(0);
 
 			if (rf_buf->options.rf_lqi & 0x80)
 			{	/*CRC OK*/
@@ -1330,21 +1305,22 @@ void rf_rx_callback( void *param )
 		else
 		{
 			CC2420_UNSELECT();
-			CC2420_COMMAND(CC_REG_SFLUSHRX);
-			CC2420_COMMAND(CC_REG_SFLUSHRX);
+			CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
+			CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
 			rf_buf->to = MODULE_NONE;
 		}
 		CC2420_UNSELECT();
 
 		if (CC2420_FIFO() == 0 && CC2420_FIFOP())
 		{	//buffer overflow
-			CC2420_COMMAND(CC_REG_SFLUSHRX);
-			CC2420_COMMAND(CC_REG_SFLUSHRX);
+			CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
+			CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
 		}
 
 		rx_flags = ACTIVE;
-		P1IES |= 0x80; /*falling edge*/
-		P1IE |= 0x80;
+
+		gpio_irq_enable(1);
+
 		CC2420_CLOSE();
 
 		if (rf_buf->to != MODULE_NONE)
@@ -1371,14 +1347,15 @@ void rf_rx_callback( void *param )
 		{
 			CC2420_SELECT();
 			CC2420_UNSELECT();
-			CC2420_COMMAND(CC_REG_SFLUSHRX);
-			CC2420_COMMAND(CC_REG_SFLUSHRX);
+			CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
+			CC2520_INS_STROBE(CC2520_INS_SFLUSHRX);
 			CC2420_CLOSE();
 			RF_RX_LED_OFF();
 		}
 		rx_flags = ACTIVE;
-		P1IES |= 0x80; /*falling edge*/
-		P1IE |= 0x80;
+
+		gpio_irq_enable(1);
+
 		CC2420_CLOSE();
 	}
 	RF_RX_LED_OFF();
@@ -1438,7 +1415,7 @@ void rf_isr(void)
 {
 	mac_15_4_event_t event;
 	RF_RX_LED_ON();
-	P1IFG &= ~0x80;
+	//P1IFG &= ~0x80;
 	if (rx_flags & ACTIVE)
 	{
 		if (CC2420_FIFOP())
@@ -1456,7 +1433,7 @@ void rf_isr(void)
 	power_interrupt_epilogue();
 #endif
 }
-
+#if 0
 #ifdef TX_TES_MODE_LOOP
 portCHAR start_tx_test_mode(uint8_t channel)
 {
@@ -1505,4 +1482,5 @@ portCHAR stop_tx_test_mode(void)
 	debug("RF_CC2420: Bus allocation failed.\r\n");		
 	return pdFALSE;
 }
+#endif // 0
 #endif
