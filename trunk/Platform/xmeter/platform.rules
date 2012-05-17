@@ -9,6 +9,7 @@ $(SOURCE_DIR)/tasks.c \
 $(SOURCE_DIR)/queue.c \
 $(SOURCE_DIR)/portable/MemMang/heap_2.c\
 $(SOURCE_DIR)/list.c \
+$(SOURCE_DIR)/croutine.c \
 $(PORT_DIR)/port.c
 
 #Nanostack internal section
@@ -237,7 +238,6 @@ endif
 
 #stm32 standard lib
 SRC	+= \
-#$(PLATFORM_DIR)/cmsis/core_cm3.c \
 $(PLATFORM_DIR)/cmsis/system_stm32f10x.c \
 $(PLATFORM_DIR)/stdplib/src/stm32f10x_usart.c \
 $(PLATFORM_DIR)/stdplib/src/stm32f10x_spi.c \
@@ -246,6 +246,7 @@ $(PLATFORM_DIR)/stdplib/src/stm32f10x_gpio.c \
 $(PLATFORM_DIR)/stdplib/src/stm32f10x_exti.c \
 $(PLATFORM_DIR)/stdplib/src/stm32f10x_rcc.c \
 $(PLATFORM_DIR)/stdplib/src/misc.c
+#$(PLATFORM_DIR)/cmsis/core_cm3.c 
 #Platform driver section
 SRC	+= \
 $(PLATFORM_DIR)/bus.c \
@@ -406,6 +407,9 @@ CFLAGS += -mcpu=cortex-m3 -mthumb -I. -I$(SOURCE_DIR)/include \
 #CFLAGS += -std=gnu89
 #CFLAGS += -std=c99
 CFLAGS += -std=gnu99
+
+#Define linker script
+CFLAGS += -T thumb2/stm3210b-eval-rom.ld
 
 # Define programs and commands.
 SHELL = sh
