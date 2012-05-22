@@ -112,6 +112,14 @@ void debug_init(uint32_t speed)
 	/* Enable GPIOA, GPIOD and USART1 clock */
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_USART1  , ENABLE);
 
+	NVIC_InitTypeDef NVIC_InitStructure;
+	/* Configure the NVIC Preemption Priority Bits */  
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
+	/* Enable the USARTy Interrupt */
+	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannel = 0;
+	NVIC_InitStructure.NVIC_IRQChannel = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);  
 	/* Configure USART1 Rx (PA.10) as input floating */
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
