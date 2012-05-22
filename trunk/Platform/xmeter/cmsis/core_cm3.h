@@ -1728,7 +1728,7 @@ static __INLINE void NVIC_SystemReset(void)
 /*@}*/ /* end of group CMSIS_CM3_Core_FunctionInterface */
 
 
-
+#if 0
 /* ##################################### Debug In/Output function ########################################### */
 
 /** @addtogroup CMSIS_CM3_CoreDebugInterface CMSIS CM3 Core Debug Interface
@@ -1806,6 +1806,7 @@ static __INLINE int ITM_CheckChar (void) {
 
 /*@}*/ /* end of group CMSIS_CM3_core_DebugInterface */
 
+#endif //0
 
 #ifdef __cplusplus
 }
