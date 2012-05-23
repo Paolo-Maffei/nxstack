@@ -1,51 +1,3 @@
-/*
-	FreeRTOS.org V4.5.0 - Copyright (C) 2003-2007 Richard Barry.
-
-	This file is part of the FreeRTOS.org distribution.
-
-	FreeRTOS.org is free software; you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation; either version 2 of the License, or
-	(at your option) any later version.
-
-	FreeRTOS.org is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with FreeRTOS.org; if not, write to the Free Software
-	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-	A special exception to the GPL can be applied should you wish to distribute
-	a combined work that includes FreeRTOS.org, without being obliged to provide
-	the source code for any proprietary components.  See the licensing section 
-	of http://www.FreeRTOS.org for full details of how and when the exception
-	can be applied.
-
-	***************************************************************************
-	See http://www.FreeRTOS.org for documentation, latest information, license 
-	and contact details.  Please ensure to read the configuration and relevant 
-	port sections of the online documentation.
-
-	Also see http://www.SafeRTOS.com for an IEC 61508 compliant version along
-	with commercial development and support options.
-	***************************************************************************
-*/
-
-/*
-	Changes between V4.0.0 and V4.0.1
-
-	+ Reduced the code used to setup the initial stack frame.
-	+ The kernel no longer has to install or handle the fault interrupt.
-	
-	Change from V4.4.0:
-
-	+ Introduced usage of configKERNEL_INTERRUPT_PRIORITY macro to set the
-	  interrupt priority used by the kernel.
-*/
-
-
 /*-----------------------------------------------------------
  * Implementation of functions defined in portable.h for the ARM CM3 port.
  *----------------------------------------------------------*/
@@ -276,6 +228,7 @@ void __attribute__ ((interrupt)) __cs3_isr_systick(void)
 	(
 	"    ldr r2, uxCriticalNestingConst2	\n" 
 	"    ldr r2, [r2]						\n"
+	"    orr r14, #0x1					\n"
 	"    cbnz r2, tick_disable_interrupts	\n"
 	"    bx r14" 
 	);
@@ -286,7 +239,7 @@ void __attribute__ ((interrupt)) __cs3_isr_systick(void)
 	"	ldr r1, =ulKernelPriority 			\n"
 	"	ldr r1, [r1]						\n"
 	"	msr	basepri, r1						\n"
-	"    bx r14								\n"
+	"    	bx r14								\n"
 	"										\n"
 	"	.align 2							\n"
 	"uxCriticalNestingConst2: .word uxCriticalNesting"

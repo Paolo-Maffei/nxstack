@@ -80,12 +80,12 @@
 
 #define configUSE_PREEMPTION		1
 #define configUSE_TICK_HOOK			0
-#define configCPU_CLOCK_HZ			( ( unsigned portLONG ) 20000000 )
+#define configCPU_CLOCK_HZ			( ( unsigned portLONG ) 72000000 )
 #define configTICK_RATE_HZ			( ( portTickType ) 1000 )
-#define configMINIMAL_STACK_SIZE	( ( unsigned portSHORT ) 59 )
-#define configMAXIMUM_STACK_SIZE        ( ( unsigned portSHORT ) 200)
-#define configTOTAL_HEAP_SIZE		( ( size_t ) ( 8000 ) )
-#define configMAX_TASK_NAME_LEN		( 3 )
+#define configMINIMAL_STACK_SIZE	( ( unsigned portSHORT ) 100 )
+#define configMAXIMUM_STACK_SIZE        ( ( unsigned portSHORT ) 400)
+#define configTOTAL_HEAP_SIZE		( ( size_t ) ( 14000 ) )
+#define configMAX_TASK_NAME_LEN		( 8 )
 #define configUSE_TRACE_FACILITY	0
 #define configUSE_16_BIT_TICKS		0
 #define configIDLE_SHOULD_YIELD		0
