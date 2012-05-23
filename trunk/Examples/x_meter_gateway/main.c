@@ -30,9 +30,12 @@ extern sockaddr_t mac_long;
 
 int main( void )
 {
+    	int b =1;
+//	while(b==1);
     	//init stm32 clock
     	SystemInit();
 
+	debug_init(115200);
 	debug_printf("system initialized,init gpio\n");
 	gpio_init();
 
