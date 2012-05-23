@@ -27,7 +27,7 @@ include $(PLATFORM_DIR)/platform.rules
 TARGET = $(APP)
 
 # Optimization level
-OPT = s
+OPT = 0
 
 # List additional C source files here. (C dependencies are automatically generated.)
 
@@ -46,7 +46,7 @@ EXTRAINCDIRS =
 
 # Optional compiler flags.
 
-#DEBUG_LEVEL=-g
+DEBUG_LEVEL=-g
 
 CFLAGS += -O$(OPT) $(DEBUG_LEVEL)
 
@@ -112,7 +112,7 @@ eeprom: link $(TARGET)_eeprom.$(FORMAT)
 
 clean:
 	rm -f $(OBJS) *.elf *.ihex *.srec modules_conf.h module_id.h
-	rm -rf .objs .deps
+#	rm -rf .objs .deps
 
 
 clean-deps: 
