@@ -9,6 +9,7 @@
  ../../Platform/xmeter/stdplib/inc/stm32f10x_spi.h \
  ../../Platform/xmeter/stdplib/inc/stm32f10x_tim.h \
  ../../Platform/xmeter/stdplib/inc/stm32f10x_usart.h \
+ ../../Platform/xmeter/stdplib/inc/misc.h \
  ../../FreeRTOS/Source/include/FreeRTOS.h \
  ../../FreeRTOS/Source/include/projdefs.h FreeRTOSConfig.h \
  ../../FreeRTOS/Source/include/portable.h \
