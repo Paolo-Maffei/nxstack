@@ -6,6 +6,8 @@
  ../../Platform/xmeter/stdplib/inc/stm32f10x_conf.h \
  ../../Platform/xmeter/stdplib/inc/stm32f10x_exti.h \
  ../../Platform/xmeter/stdplib/inc/stm32f10x_gpio.h \
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_rcc.h \
  ../../Platform/xmeter/stdplib/inc/stm32f10x_spi.h \
  ../../Platform/xmeter/stdplib/inc/stm32f10x_tim.h \
- ../../Platform/xmeter/stdplib/inc/stm32f10x_usart.h
+ ../../Platform/xmeter/stdplib/inc/stm32f10x_usart.h \
+ ../../Platform/xmeter/stdplib/inc/misc.h
