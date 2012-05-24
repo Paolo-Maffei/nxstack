@@ -73,7 +73,7 @@ static void vgateway( void *pvParameters )
 	stack_init_t *stack_rules=0;
 	
 	pause(200);
-	debug_init(115200);
+//	debug_init(115200);
 	pause(300);
 
 	/* Open socket for stack status message and init that */
