@@ -73,9 +73,11 @@ static void vgateway( void *pvParameters )
 	stack_init_t *stack_rules=0;
 	
 	pause(200);
-//	debug_init(115200);
+	debug_init(115200);
+	debug_printf("debug port initialized\n");
 	pause(300);
 
+	debug_printf("initializing stack...\n");
 	/* Open socket for stack status message and init that */
 	stack_event 		= open_stack_event_bus();		
 	stack_service_init( stack_event,NULL, 0 , NULL );	
