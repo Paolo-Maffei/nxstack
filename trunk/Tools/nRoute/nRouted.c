@@ -168,7 +168,7 @@ int main(int argc, char **argv)
 	if (parse_opts(argc, argv) != 0)
 	{
 		usage();
-		exit -1;
+		exit (-1);
 	}
 /*	Install a new handler for keyboard interrupt. */
 	if((signal(SIGINT, (sighandler_t)sig_interrupt)) == SIG_ERR)

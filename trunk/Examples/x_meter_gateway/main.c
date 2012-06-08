@@ -30,16 +30,13 @@ extern sockaddr_t mac_long;
 
 int main( void )
 {
-    	int b =1;
-	while(b==1);
+ //   	int b =1;
+//	while(b==1);
     	//init stm32 clock
     	SystemInit();
 
-//	debug_init(115200);
-//	debug_printf("system initialized,init gpio\n");
 	gpio_init();
 
-//	debug_printf("gpio initialized,init led\n");
 	LED_INIT();
 	if (bus_init() == pdFALSE)
 	{
@@ -72,12 +69,12 @@ static void vgateway( void *pvParameters )
 	int16_t byte;
 	stack_init_t *stack_rules=0;
 	
-	pause(200);
+	//pause(200);
 	debug_init(115200);
 	debug_printf("debug port initialized\n");
-	pause(300);
+	//pause(300);
 
-	debug_printf("initializing stack...\n");
+//	debug_printf("initializing stack...\n");
 	/* Open socket for stack status message and init that */
 	stack_event 		= open_stack_event_bus();		
 	stack_service_init( stack_event,NULL, 0 , NULL );	
@@ -104,6 +101,8 @@ static void vgateway( void *pvParameters )
 	
 	for( ;; )
 	{
+
+//	        debug("loop +1\r\n");
 		vTaskDelay(10 / portTICK_RATE_MS );
 		byte = debug_read_blocking(10);
 		if(byte != -1)

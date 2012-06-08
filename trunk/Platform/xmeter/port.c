@@ -39,8 +39,7 @@
 
 
 /*-----------------------------------------------------------
- * Implementation of functions defined in portable.h for the ARM CM3 port.
- *----------------------------------------------------------*/
+ * Implementation of functions defined in portable.h for the ARM CM3 port.  *----------------------------------------------------------*/
 
 /* Scheduler includes. */
 #include "FreeRTOS.h"
@@ -75,8 +74,8 @@ static void prvSetupTimerInterrupt( void );
 /*
  * Exception handlers.
  */
-void xPortPendSVHandler( void ) __attribute__ (( naked ));
-void xPortSysTickHandler( void ) __attribute__ (( naked ));
+//void xPortPendSVHandler( void ) __attribute__ (( naked ));
+//void xPortSysTickHandler( void ) __attribute__ (( naked ));
 
 /*
  * Set the MSP/PSP to a known value.
@@ -183,107 +182,91 @@ void vPortExitCritical( void )
 /*-----------------------------------------------------------*/
 
 //void xPortPendSVHandler( void )
-void __attribute__ ((interrupt)) __cs3_isr_pendsv(void)
+void __attribute__ ((naked)) __cs3_isr_pendsv(void)
 {
 	/* Start first task if the stack has not yet been setup. */
-	__asm volatile
-	( 
-	"	mrs r0, psp						\n"
-	"	cbz r0, no_save					\n"
-	"									\n"	/* Save the context into the TCB. */					
-	"	sub r0, #0x20					\n"
-	"	stm r0, {r4-r11}				\n"
-	"	nop								\n"
-	"	sub r0, #0x04					\n"
-	"	ldr r1, uxCriticalNestingConst	\n"
-	"	ldr r1, [r1]					\n"
-	"	stm r0, {r1}					\n"
-	"	ldr r1, pxCurrentTCBConst		\n"
-	"	ldr r1, [r1]					\n"
-	"	str r0, [r1]					\n"
-	"									\n"
-	"no_save:\n"	
-	"	ldr r0, vTaskSwitchContextConst	\n"	/* Find the task to execute. */
-	"	push {r14}						\n"
-	"	cpsid i							\n"
-	"	blx r0							\n"
-	"	cpsie i							\n"
-	"	pop {r14}						\n"
-	"									\n"	/* Restore the context. */	
-	"	ldr r1, pxCurrentTCBConst		\n"
-	"	ldr r1, [r1]					\n"
-	"	ldr r0, [r1]					\n"
-	"	ldm r0, {r1, r4-r11}			\n"
-	"	nop								\n"
-	"	ldr r2, uxCriticalNestingConst	\n"
-	"	str r1, [r2]					\n"
-	"	add r0, #0x24					\n"
-	"	msr psp, r0						\n"
-	"	orr r14, #0xd					\n"
-	"									\n"	/* Exit with interrupts in the state required by the task. */	
-	"	cbnz r1, sv_disable_interrupts	\n"
-	"	bx r14							\n"
-	"									\n"
-	"sv_disable_interrupts:				\n"
-	"	cpsid i							\n"
-	"	bx r14							\n"
-	"									\n"
-	"	.align 2						\n"
-	"vTaskSwitchContextConst: .word vTaskSwitchContext	\n"
-	"pxCurrentTCBConst: .word pxCurrentTCB				\n"
-	"uxCriticalNestingConst: .word uxCriticalNesting	\n"
-	);
+	__asm volatile(" 	mrs r0, psp						");
+	__asm volatile(" 	cbz r0, no_save					");
+	__asm volatile(" 									");	/* Save the context into the TCB. */					
+	__asm volatile(" 	sub r0, #0x20					");
+	__asm volatile(" 	stm r0, {r4-r11}				");
+	__asm volatile(" 	nop								");
+	__asm volatile(" 	sub r0, #0x04					");
+	__asm volatile(" 	ldr r1, uxCriticalNestingConst	");
+	__asm volatile(" 	ldr r1, [r1]					");
+	__asm volatile(" 	stm r0, {r1}					");
+	__asm volatile(" 	ldr r1, pxCurrentTCBConst		");
+	__asm volatile(" 	ldr r1, [r1]					");
+	__asm volatile(" 	str r0, [r1]					");
+	__asm volatile(" 									");
+	__asm volatile(" no_save:");	
+	__asm volatile(" 	ldr r0, vTaskSwitchContextConst	");	/* Find the task to execute. */
+	__asm volatile(" 	push {r14}						");
+	__asm volatile(" 	cpsid i							");
+	__asm volatile(" 	blx r0							");
+	__asm volatile(" 	cpsie i							");
+	__asm volatile(" 	pop {r14}						");
+	__asm volatile(" 									");	/* Restore the context. */	
+	__asm volatile(" 	ldr r1, pxCurrentTCBConst		");
+	__asm volatile(" 	ldr r1, [r1]					");
+	__asm volatile(" 	ldr r0, [r1]					");
+	__asm volatile(" 	ldm r0, {r1, r4-r11}			");
+	__asm volatile(" 	nop								");
+	__asm volatile(" 	ldr r2, uxCriticalNestingConst	");
+	__asm volatile(" 	str r1, [r2]					");
+	__asm volatile(" 	add r0, #0x24					");
+	__asm volatile(" 	msr psp, r0						");
+	__asm volatile(" 	orr r14, #0xd					");
+	__asm volatile(" 									");	/* Exit with interrupts in the state required by the task. */	
+	__asm volatile(" 	cbnz r1, sv_disable_interrupts	");
+	__asm volatile(" 	bx r14							");
+	__asm volatile(" 									");
+	__asm volatile(" sv_disable_interrupts:				");
+	__asm volatile(" 	cpsid i							");
+	__asm volatile(" 	bx r14							");
+	__asm volatile(" 									");
+	__asm volatile(" 	.align 2						");
+	__asm volatile(" vTaskSwitchContextConst: .word vTaskSwitchContext	");
+	__asm volatile(" pxCurrentTCBConst: .word pxCurrentTCB				");
+	__asm volatile(" uxCriticalNestingConst: .word uxCriticalNesting	");
 }
 /*-----------------------------------------------------------*/
 
+//extern void vTaskIncrementTick( void );
+//extern void vPortYieldFromISR( void );
 //void xPortSysTickHandler( void )
-void __attribute__ ((interrupt)) __cs3_isr_systick(void)
+void __attribute__ ((naked)) __cs3_isr_systick(void)
 {
-	extern void vTaskIncrementTick( void );
-	extern void vPortYieldFromISR( void );
-
 	/* Call the scheduler tick function. */
-	__asm volatile
-	( 
-	"	ldr r0, vTaskIncrementTickConst		\n"
-	"	push {r14}							\n"
-	"	cpsid i								\n"
-	"	blx r0								\n"
-	"	cpsie i								\n"
-	"	pop {r14}" 
-	);
+	__asm volatile(" 	ldr r0, vTaskIncrementTickConst		");
+	__asm volatile(" 	push {r14}							");
+	__asm volatile(" 	cpsid i								");
+	__asm volatile(" 	blx r0								");
+	__asm volatile(" 	cpsie i								");
+	__asm volatile(" 	pop {r14}" 				);
 
 	/* If using preemption, also force a context switch. */
 	#if configUSE_PREEMPTION == 1
-	__asm volatile
-	( 
-	"	push {r14}							\n"
-	"	ldr r0, vPortYieldFromISRConst2		\n"
-	"	blx r0								\n"
-	"	pop {r14}" 
-	);
+	__asm volatile(" 	push {r14}							");
+	__asm volatile(" 	ldr r0, vPortYieldFromISRConst2		");
+	__asm volatile(" 	blx r0								");
+	__asm volatile(" 	pop {r14}" 				);
 	#endif
 
 	/* Exit with interrupts in the correct state. */
-	__asm volatile
-	(
-	"    ldr r2, uxCriticalNestingConst2	\n" 
-	"    ldr r2, [r2]						\n"
-	"    cbnz r2, tick_disable_interrupts	\n"
-	"    bx r14" 
-	);
+	__asm volatile("     ldr r2, uxCriticalNestingConst2	"); 
+	__asm volatile("     ldr r2, [r2]						");
+	__asm volatile("     cbnz r2, tick_disable_interrupts	");
+	__asm volatile("     bx r14" 				);
 
-   __asm volatile
-   (
-	"tick_disable_interrupts:				\n"
-	"    cpsid i							\n"
-	"    bx r14								\n"
-	"										\n"
-	"	.align 2							\n"
-	"vPortYieldFromISRConst2: .word vPortYieldFromISR\n"
-	"vTaskIncrementTickConst: .word vTaskIncrementTick\n" 
-	"uxCriticalNestingConst2: .word uxCriticalNesting"
-	);
+	__asm volatile(" tick_disable_interrupts:				");
+	__asm volatile("     cpsid i							");
+	__asm volatile("     bx r14								");
+	__asm volatile(" 										");
+	__asm volatile(" 	.align 2							");
+	__asm volatile(" vPortYieldFromISRConst2: .word vPortYieldFromISR");
+	__asm volatile(" vTaskIncrementTickConst: .word vTaskIncrementTick"); 
+	__asm volatile(" uxCriticalNestingConst2: .word uxCriticalNesting");
 }
 /*-----------------------------------------------------------*/
 
