@@ -409,7 +409,7 @@ CFLAGS += -mcpu=cortex-m3 -mthumb -I. -I$(SOURCE_DIR)/include \
 CFLAGS += -std=gnu99
 
 #Define linker script
-CFLAGS += -T thumb2/stm3210b-eval-rom.ld
+CFLAGS += -T thumb2/stm3210b-eval-rom.ld -Xlinker -Map=output.map
 
 # Define programs and commands.
 SHELL = sh

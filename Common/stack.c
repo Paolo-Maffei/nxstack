@@ -264,8 +264,7 @@ portCHAR stack_init( void )
   			memset(b, 0, sizeof(buffer_t));
 			b->size = BUFFER_SIZE;
 			n_buffers++;
-  		if (xQueueSend( buffers, ( void * ) &b,
-					(portTickType) 0 ) == pdFALSE)
+			if (xQueueSend( buffers, ( void * ) &b,(portTickType) 0 ) == pdFALSE)
 			{ 
 				debug("Stack: buffers fail.\r\n");
 				return pdFALSE;

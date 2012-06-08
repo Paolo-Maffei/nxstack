@@ -117,8 +117,8 @@ void debug_init(uint32_t speed)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
 	/* Enable the USARTy Interrupt */
 	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannel = 0;
-	NVIC_InitStructure.NVIC_IRQChannel = ENABLE;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);  
 	/* Configure USART1 Rx (PA.10) as input floating */
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
@@ -295,6 +295,7 @@ int8_t debug_putchar(uint8_t c)
 	else
 	{
 		status = xQueueSend( debug_tx, &c, 0);
+		USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
 
 		/* Depending on queue sizing and task prioritisation:  While we 
 		were blocked waiting to post on the queue interrupts were not 
@@ -502,6 +503,7 @@ void bus_txISR( void )
 	else
 	{
 		debug_txempty = pdTRUE;
+		USART_ITConfig(USART1, USART_IT_TXE, DISABLE);
 	}
 #ifdef HAVE_POWERSAVE
 	power_interrupt_epilogue();
